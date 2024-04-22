@@ -7,7 +7,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./Caddyfile:/etc/caddy/Caddyfile
 
   jellyfin: # Media Server
     image: jellyfin/jellyfin
@@ -16,13 +16,3 @@ services:
     volumes:
       - ./jellyfin/config:/config
       - ./jellyfin/cache:/cache
-
-  nextcloud: # Data Server
-    image: linuxserver/nextcloud:latest
-    hostname: nextcloud
-    restart: unless-stopped
-    environment:
-      - TZ=Europe/Paris
-    volumes:
-      - ./nextcloud/config:/config
-      - /nextcloud/data:/data
