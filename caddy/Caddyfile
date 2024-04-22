@@ -1,0 +1,3 @@
+jellyfin.vividonyx.fr {
+    reverse_proxy jellyfin:80
+}
