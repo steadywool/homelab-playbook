@@ -16,3 +16,13 @@ services:
     volumes:
       - ./jellyfin/config:/config
       - ./jellyfin/cache:/cache
+
+  nextcloud: # Data Server
+    image: linuxserver/nextcloud:latest
+    hostname: nextcloud
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/Paris
+    volumes:
+      - ./nextcloud/config:/config
+      - /nextcloud/data:/data

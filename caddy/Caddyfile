@@ -5,3 +5,7 @@
 http://jellyfin.endlessazurite.fr {
     reverse_proxy jellyfin:8096
 }
+
+http://nextcloud.endlessazurite.fr {
+    reverse_proxy nextcloud:443
+}
