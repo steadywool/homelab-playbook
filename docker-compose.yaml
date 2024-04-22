@@ -7,12 +7,22 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./config/Caddyfile:/etc/caddy/Caddyfile
 
   jellyfin: # Media Server
     image: jellyfin/jellyfin
     hostname: jellyfin
     restart: 'unless-stopped'
     volumes:
-      - ./jellyfin/config:/config
-      - ./jellyfin/cache:/cache
+      - ./config/jellyfin:/config
+
+  syncthing: # File server
+    image: syncthing/syncthing
+    hostname: syncthing
+    restart: unless-stopped
+    volumes:
+      - ./data/syncthing:/var/syncthing
+    ports:
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp

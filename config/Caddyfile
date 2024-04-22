@@ -1,0 +1,9 @@
+jellyfin.endlessazurite.fr {
+    tls internal
+    reverse_proxy jellyfin:8096
+}
+
+syncthing.endlessazurite.fr {
+    tls internal
+    reverse_proxy syncthing:8384
+}

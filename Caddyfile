@@ -1,7 +1,0 @@
-{
-    auto_https off
-}
-
-jellyfin.endlessazurite.fr:80 {
-    reverse_proxy jellyfin:8096
-}
