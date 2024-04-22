@@ -1,3 +1,7 @@
-jellyfin.vividonyx.fr {
-    reverse_proxy jellyfin:80
+{
+    auto_https off
+}
+
+http://jellyfin.endlessazurite.fr {
+    reverse_proxy jellyfin:8096
 }
