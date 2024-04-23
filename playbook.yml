@@ -8,7 +8,7 @@
         path: "{{ container_directory }}"
         state: directory
       become: false
-      tags: test
+      tags: all
 
     - name: Run network containers
       ansible.builtin.import_role:

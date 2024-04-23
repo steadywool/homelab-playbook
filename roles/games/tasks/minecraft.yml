@@ -33,8 +33,8 @@
         blossomlib,blossomtpa,blossomback,blossomhomes
       # Rules
       FORCE_GAMEMODE: true
-      VIEW_DISTANCE: 12
-      SIMULATION_DISTANCE: 12
+      VIEW_DISTANCE: 10
+      SIMULATION_DISTANCE: 10
       MAX_PLAYERS: 8
       SPAWN_PROTECTION: 0
       # Advanced
