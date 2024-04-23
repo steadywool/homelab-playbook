@@ -1,0 +1,12 @@
+---
+- name: Install packages
+  ansible.builtin.package:
+    name: {{ packages }}
+    state: present
+  become: false
+
+- name: Create Podman directory
+  ansible.builtin.file:
+    path: "{{ podman_data }}"
+    state: directory
+  become: false

@@ -1,0 +1,47 @@
+---
+- name: Enable lingering
+  ansible.builtin.command: "loginctl enable-linger {{ ansible_user_id }}"
+
+- name: Run minecraft server
+  containers.podman.podman_container:
+    name: minecraft
+    image: docker.io/itzg/minecraft-server
+    state: started
+    restart_policy: always
+    userns: keep-id
+    publish:
+      - 38819:38819
+    volume:
+      - "/{{ podman_data }}/minecraft_data:/data:rw"
+    env:
+      # Appearance
+      SERVER_NAME: "minecraft-survival"
+      MOTD: "Serveur Poulet"
+      # Global
+      TYPE: "FABRIC"
+      MODE: "survival"
+      DIFFICULTY: "normal"
+      HARDCORE: false
+      VERSION: "1.20.4"
+      MODRINTH_PROJECTS: |
+        fabric-api,lithium,
+        terrablender,terralith,nullscape,incendium,
+        yungs-api,cloth-config,yungs-better-mineshafts,yungs-better-dungeons,
+        yungs-better-ocean-monuments,yungs-better-nether-fortresses,yungs-better-strongholds,
+        yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
+        yungs-better-jungle-temples,yungs-extras,yungs-better-end-island
+        cristel-lib,towns-and-towers,
+        blossomlib,blossomtpa,blossomback,blossomhomes
+      # Rules
+      FORCE_GAMEMODE: true
+      VIEW_DISTANCE: 12
+      SIMULATION_DISTANCE: 12
+      MAX_PLAYERS: 8
+      SPAWN_PROTECTION: 0
+      # Advanced
+      EULA: true
+      ONLINE_MODE: false
+      SNOOPER_ENABLED: false
+      USE_AIKAR_FLAGS: true
+      MEMORY: "2G"
+      SERVER_PORT: 38819

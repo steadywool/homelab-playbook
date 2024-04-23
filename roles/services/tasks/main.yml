@@ -1,0 +1,12 @@
+---
+- ansible.builtin.import_tasks: caddy.yml
+  become: false
+  tags: services.caddy
+
+- ansible.builtin.import_tasks: syncthing.yml
+  become: false
+  tags: services.syncthing
+
+- ansible.builtin.import_tasks: wireguard.yml
+  become: true
+  tags: services.wireguard

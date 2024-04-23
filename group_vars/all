@@ -1,0 +1,10 @@
+---
+# Packages
+packages:
+  - podman
+
+# Main containers folder
+podman_data: "{{ ansible_user_id }}/podman_data"
+
+# Custom networks
+caddy_network: caddy_network

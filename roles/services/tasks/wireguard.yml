@@ -1,0 +1,21 @@
+---
+- name: Run Wireguard container
+  containers.podman.podman_container:
+    name: wireguard
+    image: docker.io/linuxserver/wireguard:latest
+    state: started
+    restart_policy: always
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctl:
+      - net.ipv4.conf.all.src_valid_mark=1
+    publish:
+      - 51820:51820/udp
+    volume:
+      - "{{ podman_data }}/wireguard_config:/config:Z"
+      - /lib/modules:/lib/modules:Z
+    env:
+      TZ: Europe/Paris
+      SERVERURL: wireguard.endlessazurite.fr
+      PEERS: red-taurus,cyan-fox

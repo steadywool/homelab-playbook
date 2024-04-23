@@ -1,0 +1,20 @@
+---
+- name: Copy Caddy configuration
+  ansible.builtin.copy:
+    src: Caddyfile
+    dest: "{{ podman_data }}/Caddyfile"
+
+- name: Run Caddy container
+  containers.podman.podman_container:
+    name: caddy
+    image: docker.io/caddy:alpine
+    state: started
+    restart_policy: always
+    userns: keep-id
+    publish:
+      - 80:80
+      - 443:443
+    volume:
+      - "{{ podman_data }}/Caddyfile:/etc/caddy/Caddyfile:Z"
+      - "{{ podman_data }}/caddy_data:/data:Z"
+    network: "{{ caddy_network }}"

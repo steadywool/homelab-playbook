@@ -1,0 +1,15 @@
+---
+- name: Run Syncthing container
+  containers.podman.podman_container:
+    name: syncthing
+    image: docker.io/syncthing/syncthing
+    state: started
+    restart_policy: always
+    userns: keep-id
+    publish:
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    volume:
+      - "{{ podman_data }}/syncthing_data:/var/syncthing:Z"
+    network: "{{ caddy_network }}"

@@ -1,0 +1,19 @@
+---
+- hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Run main tasks
+      ansible.builtin.import_role:
+        name: main
+      tags: main
+
+    - name: Run Games containers
+      ansible.builtin.import_role:
+        name: games
+      tags: games
+
+    - name: Run Services containers
+      ansible.builtin.import_role:
+        name: services
+      tags: services
