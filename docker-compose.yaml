@@ -1,28 +1,42 @@
 services:
   caddy: # Reverse Proxy
     image: caddy:alpine
-    hostname: caddy
-    restart: unless-stopped
+    restart: always
     ports:
       - 80:80
       - 443:443
     volumes:
-      - ./config/Caddyfile:/etc/caddy/Caddyfile
-
-  jellyfin: # Media Server
-    image: jellyfin/jellyfin
-    hostname: jellyfin
-    restart: 'unless-stopped'
-    volumes:
-      - ./config/jellyfin:/config
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
 
   syncthing: # File server
     image: syncthing/syncthing
-    hostname: syncthing
-    restart: unless-stopped
+    restart: always
     volumes:
-      - ./data/syncthing:/var/syncthing
+      - ./syncthing_data:/var/syncthing
     ports:
+      - 8384:8384
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
+
+  wireguard: # VPN Server
+    image: linuxserver/wireguard:latest
+    restart: always
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - TZ=Europe/Paris
+      - SERVERURL=wireguard.endlessazurite.fr
+      - PEERS=red-taurus,cyan-fox
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    volumes:
+      - ./wireguard_config:/config
+      - /lib/modules:/lib/modules
+    ports:
+      - "51820:51820/udp"
+
+volumes:
+  caddy_data:
