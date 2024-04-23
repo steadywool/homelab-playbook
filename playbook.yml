@@ -10,15 +10,10 @@
       become: false
       tags: all
 
-    - name: Run network containers
+    - name: Run services containers
       ansible.builtin.import_role:
-        name: network
-      tags: network
-
-    - name: Run medias containers
-      ansible.builtin.import_role:
-        name: medias
-      tags: medias
+        name: services
+      tags: services
 
     - name: Run games containers
       ansible.builtin.import_role:
