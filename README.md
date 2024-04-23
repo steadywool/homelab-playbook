@@ -6,7 +6,6 @@ Create Podman containers with Ansible.
 
 > [!IMPORTANT]
 > Important variables are present in the `group_vars` directory. You need to edit them to customize your installation. </br></br>
-> You also need to edit the `inventory` file to add your server IP adress by replacing the "REMOTE_SERVER" placeholder. </br></br>
 > Never run this playbook with `sudo` or as root. If you need privileges, use the `-K` argument.
 
 Firstly, install Ansible:
