@@ -10,11 +10,10 @@
     image: docker.io/caddy:alpine
     state: started
     restart_policy: always
-    userns: keep-id
+    network: host
     publish:
       - 80:80
       - 443:443
     volume:
       - "{{ podman_data }}/Caddyfile:/etc/caddy/Caddyfile:Z"
       - "{{ podman_data }}/caddy_data:/data:Z"
-    network: "{{ caddy_network }}"

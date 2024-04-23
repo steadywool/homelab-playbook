@@ -5,6 +5,7 @@
     image: docker.io/linuxserver/wireguard:latest
     state: started
     restart_policy: always
+    network: host
     cap_add:
       - NET_ADMIN
       - SYS_MODULE

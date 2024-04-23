@@ -1,4 +1,0 @@
-syncthing.endlessazurite.fr {
-    tls internal
-    reverse_proxy syncthing:8384
-}

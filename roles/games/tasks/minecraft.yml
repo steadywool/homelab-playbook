@@ -8,7 +8,6 @@
     image: docker.io/itzg/minecraft-server
     state: started
     restart_policy: always
-    userns: keep-id
     publish:
       - 38819:38819
     volume:

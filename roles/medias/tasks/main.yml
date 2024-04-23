@@ -1,0 +1,4 @@
+---
+- ansible.builtin.import_tasks: syncthing.yml
+  become: false
+  tags: medias.syncthing

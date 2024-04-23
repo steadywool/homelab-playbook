@@ -1,0 +1,9 @@
+syncthing.endlessazurite.fr {
+    tls internal
+    reverse_proxy localhost:8384
+}
+
+proxmox.endlessazurite.fr {
+    tls internal
+    reverse_proxy 192.168.1.10:8006
+}

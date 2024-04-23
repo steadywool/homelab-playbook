@@ -3,17 +3,29 @@
   gather_facts: yes
 
   tasks:
-    - name: Run main tasks
-      ansible.builtin.import_role:
-        name: main
-      tags: main
+    - name: Install packages
+      ansible.builtin.package:
+        name: {{ packages }}
+        state: present
+      become: false
 
-    - name: Run Games containers
+    - name: Create Podman directory
+      ansible.builtin.file:
+        path: "{{ podman_data }}"
+        state: directory
+      become: false
+
+    - name: Run network containers
+      ansible.builtin.import_role:
+        name: network
+      tags: network
+
+    - name: Run medias containers
+      ansible.builtin.import_role:
+        name: medias
+      tags: medias
+
+    - name: Run games containers
       ansible.builtin.import_role:
         name: games
       tags: games
-
-    - name: Run Services containers
-      ansible.builtin.import_role:
-        name: services
-      tags: services
