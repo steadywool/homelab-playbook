@@ -11,7 +11,7 @@
     publish:
       - 38819:38819
     volume:
-      - "/{{ podman_data }}/minecraft_data:/data:rw"
+      - "{{ container_directory }}/minecraft:/data:rw"
     env:
       # Appearance
       SERVER_NAME: "minecraft-survival"

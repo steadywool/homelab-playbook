@@ -11,4 +11,4 @@
       - 22000:22000/udp
       - 21027:21027/udp
     volume:
-      - "{{ podman_data }}/syncthing_data:/var/syncthing:Z"
+      - "{{ container_directory }}/syncthing:/var/syncthing:Z"

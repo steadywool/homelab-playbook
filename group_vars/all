@@ -1,7 +1,3 @@
 ---
-# Packages
-packages:
-  - podman
-
-# Main containers folder
-podman_data: "{{ ansible_user_id }}/podman_data"
+# Containers directories
+container_directory: "{{ ansible_user_id }}/podman_data"

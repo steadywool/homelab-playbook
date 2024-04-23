@@ -1,8 +1,4 @@
 ---
-- ansible.builtin.import_tasks: caddy.yml
-  become: false
-  tags: network.caddy
-
 - ansible.builtin.import_tasks: wireguard.yml
   become: true
   tags: network.wireguard

@@ -5,7 +5,7 @@
     image: docker.io/linuxserver/wireguard:latest
     state: started
     restart_policy: always
-    network: host
+    network: bridge
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -14,7 +14,7 @@
     publish:
       - 51820:51820/udp
     volume:
-      - "{{ podman_data }}/wireguard_config:/config:Z"
+      - "{{ container_directory }}/wireguard:/config:Z"
       - /lib/modules:/lib/modules:Z
     env:
       TZ: Europe/Paris

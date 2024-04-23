@@ -1,19 +1,14 @@
 ---
-- hosts: all
+- hosts: localhost
   gather_facts: yes
 
   tasks:
-    - name: Install packages
-      ansible.builtin.package:
-        name: {{ packages }}
-        state: present
-      become: false
-
-    - name: Create Podman directory
+    - name: Create container directory
       ansible.builtin.file:
-        path: "{{ podman_data }}"
+        path: "{{ container_directory }}"
         state: directory
       become: false
+      tags: test
 
     - name: Run network containers
       ansible.builtin.import_role:
