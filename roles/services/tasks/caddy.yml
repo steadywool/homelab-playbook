@@ -1,4 +1,9 @@
 ---
+- name: Copy Caddy configuration
+  ansible.builtin.copy:
+    src: Caddyfile
+    dest: "{{ container_volumes.caddy }}/Caddyfile"
+
 - name: Create Caddy volumes
   community.docker.docker_volume:
     state: present

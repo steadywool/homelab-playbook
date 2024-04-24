@@ -21,7 +21,7 @@
       - mariadb_data:/var/lib/mysql
     network_mode: nextcloud_network
     env:
-      MYSQL_RANDOM_ROOT_PASSWORD: true
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
       MYSQL_PASSWORD: iI5tG6pThrrH8O7i
       MYSQL_DATABASE: nextcloud
       MYSQL_USER: nextcloud
