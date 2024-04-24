@@ -6,3 +6,7 @@
 - ansible.builtin.import_tasks: syncthing.yml
   become: false
   tags: services.syncthing
+
+- ansible.builtin.import_tasks: nextcloud.yml
+  become: false
+  tags: services.nextcloud

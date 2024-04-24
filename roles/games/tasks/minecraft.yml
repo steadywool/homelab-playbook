@@ -1,7 +1,4 @@
 ---
-- name: Enable lingering
-  ansible.builtin.command: "loginctl enable-linger {{ ansible_user_id }}"
-
 - name: Run minecraft server
   containers.podman.podman_container:
     name: minecraft
@@ -11,7 +8,7 @@
     publish:
       - 38819:38819
     volume:
-      - "{{ container_directory }}/minecraft:/data:rw"
+      - "{{ container_data.minecraft }}:/data"
     env:
       # Appearance
       SERVER_NAME: "minecraft-survival"

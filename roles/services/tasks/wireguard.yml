@@ -14,7 +14,7 @@
     publish:
       - 51820:51820/udp
     volume:
-      - "{{ container_directory }}/wireguard:/config:Z"
+      - "{{ container_data.wireguard }}:/config:Z"
       - /lib/modules:/lib/modules:Z
     env:
       TZ: Europe/Paris

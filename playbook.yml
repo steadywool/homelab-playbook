@@ -5,10 +5,11 @@
   tasks:
     - name: Create container directory
       ansible.builtin.file:
-        path: "{{ container_directory }}"
+        path: "{{ item.value }}"
         state: directory
       become: false
-      tags: all
+      loop: "{{ container_data|dict2items }}"
+      tags: always
 
     - name: Run services containers
       ansible.builtin.import_role:
