@@ -1,0 +1,22 @@
+---
+- name: Create Nextcloud volumes
+  community.docker.docker_volume:
+    state: present
+    name: "{{ item }}"
+  loop:
+    - nginx_data
+    - letsencrypt_data
+
+- name: Run Nginx Proxy Manager container
+  community.docker.docker_container:
+    name: nginx
+    image: jc21/nginx-proxy-manager
+    state: started
+    restart_policy: always
+    ports:
+      - 80:80
+      - 81:81
+      - 443:443
+    volumes:
+      - nginx_data:/data
+      - letsencrypt_data:/etc/letsencrypt

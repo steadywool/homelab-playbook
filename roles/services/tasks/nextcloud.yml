@@ -9,6 +9,7 @@
     name: "{{ item }}"
   loop: 
     - mariadb_data
+    - redis_data
     - nextcloud_config
 
 - name: Run Mariadb container
@@ -17,6 +18,7 @@
     image: docker.io/library/mariadb
     state: started
     restart_policy: always
+    command: "--transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW"
     volumes:
       - mariadb_data:/var/lib/mysql
     network_mode: nextcloud_network
@@ -25,6 +27,17 @@
       MYSQL_PASSWORD: iI5tG6pThrrH8O7i
       MYSQL_DATABASE: nextcloud
       MYSQL_USER: nextcloud
+
+- name: Run Redis container
+  community.docker.docker_container:
+    name: redis
+    image: docker.io/library/redis:alpine
+    state: started
+    restart_policy: always
+    command: redis-server --requirepass cZvxFJs6dJIyJNBJ
+    volumes:
+      - redis_data:/data
+    network_mode: nextcloud_network
 
 - name: Run Nextcloud container
   community.docker.docker_container:
@@ -43,3 +56,5 @@
       MYSQL_DATABASE: nextcloud
       MYSQL_USER: nextcloud
       MYSQL_HOST: mariadb
+      REDIS_HOST: redis
+      REDIS_HOST_PASSWORD: cZvxFJs6dJIyJNBJ
