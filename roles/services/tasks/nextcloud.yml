@@ -1,0 +1,45 @@
+---
+- name: Create a Nextcloud network
+  community.docker.docker_network:
+    name: nextcloud_network
+
+- name: Create Nextcloud volumes
+  community.docker.docker_volume:
+    state: present
+    name: "{{ item }}"
+  loop: 
+    - mariadb_data
+    - nextcloud_config
+
+- name: Run Mariadb container
+  community.docker.docker_container:
+    name: mariadb
+    image: docker.io/library/mariadb
+    state: started
+    restart_policy: always
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    network_mode: nextcloud_network
+    env:
+      MYSQL_RANDOM_ROOT_PASSWORD: true
+      MYSQL_PASSWORD: iI5tG6pThrrH8O7i
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+
+- name: Run Nextcloud container
+  community.docker.docker_container:
+    name: nextcloud
+    image: docker.io/library/nextcloud
+    state: started
+    restart_policy: always
+    ports:
+      - 11553:80
+    volumes:
+      - nextcloud_config:/var/www/html
+      - "{{ container_volumes.nextcloud }}:/var/www/html/data"
+    network_mode: nextcloud_network
+    env:
+      MYSQL_PASSWORD: iI5tG6pThrrH8O7i
+      MYSQL_DATABASE: nextcloud
+      MYSQL_USER: nextcloud
+      MYSQL_HOST: mariadb

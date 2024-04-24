@@ -2,5 +2,11 @@
 - ansible.builtin.import_tasks: syncthing.yml
   tags: services.syncthing
 
+- ansible.builtin.import_tasks: nextcloud.yml
+  tags: services.nextcloud
+
+- ansible.builtin.import_tasks: caddy.yml
+  tags: services.caddy
+
 - ansible.builtin.import_tasks: wireguard.yml
   tags: services.wireguard

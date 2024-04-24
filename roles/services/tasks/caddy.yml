@@ -1,0 +1,25 @@
+---
+- name: Create Caddy volumes
+  community.docker.docker_volume:
+    state: present
+    name: "{{ item }}"
+  loop: 
+    - caddy_data
+    - caddy_config
+
+- name: Run Caddy container
+  community.docker.docker_container:
+    name: caddy
+    image: docker.io/library/caddy
+    state: started
+    restart_policy: always
+    capabilities:
+      - NET_ADMIN
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+    volumes:
+      - "{{ container_volumes.caddy }}/Caddyfile:/etc/caddy/Caddyfile"
+      - caddy_data:/data
+      - caddy_config:/config
