@@ -8,7 +8,6 @@
         path: "{{ item.value }}"
         state: directory
       loop: "{{ container_volumes|dict2items }}"
-      become: false
       tags: always
 
     - name: Run services containers
@@ -20,14 +19,3 @@
       ansible.builtin.import_role:
         name: games
       tags: games
-
-#    - name: set permissions/ownership on podman volumes
-#      ansible.builtin.file:
-#        state: directory
-#        owner: "{{ ansible_user_id }}"
-#        group: "{{ ansible_user_id }}"
-#        path: "{{ item.value }}"
-#      loop: "{{ container_volumes|dict2items }}"
-#      become_method: containers.podman.podman_unshare
-#      become: true
-#      tags: always

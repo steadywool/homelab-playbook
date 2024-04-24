@@ -1,4 +1,3 @@
 ---
 - ansible.builtin.import_tasks: minecraft.yml
-  become: false
   tags: games.minecraft

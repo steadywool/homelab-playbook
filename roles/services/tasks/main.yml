@@ -1,12 +1,9 @@
 ---
 - ansible.builtin.import_tasks: syncthing.yml
-  become: false
   tags: services.syncthing
 
 - ansible.builtin.import_tasks: nextcloud.yml
-  become: false
   tags: services.nextcloud
 
 - ansible.builtin.import_tasks: wireguard.yml
-  become: true
   tags: services.wireguard

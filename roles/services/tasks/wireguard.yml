@@ -1,19 +1,19 @@
 ---
 - name: Run Wireguard container
-  containers.podman.podman_container:
+  community.docker.docker_container:
     name: wireguard
     image: docker.io/linuxserver/wireguard:latest
     state: started
     restart_policy: always
-    network: bridge
+    network_mode: bridge
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
     sysctl:
       - net.ipv4.conf.all.src_valid_mark=1
-    publish:
+    ports:
       - 51820:51820/udp
-    volume:
+    volumes:
       - "{{ container_volumes.wireguard }}:/config"
       - /lib/modules:/lib/modules
     env:

@@ -1,6 +1,6 @@
 ---
 # Containers directories
-container_root: "/home/{{ ansible_user_id }}/podman_root"
+container_root: "/home/{{ ansible_user_id }}/container_root"
 
 container_volumes:
     nextcloud: "{{ container_root }}/nextcloud"

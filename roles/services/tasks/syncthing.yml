@@ -1,14 +1,14 @@
 ---
 - name: Run Syncthing container
-  containers.podman.podman_container:
+  community.docker.docker_container:
     name: syncthing
     image: docker.io/syncthing/syncthing
     state: started
     restart_policy: always
-    publish:
+    ports:
       - 8384:8384
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
-    volume:
+    volumes:
       - "{{ container_volumes.syncthing }}:/var/syncthing"
