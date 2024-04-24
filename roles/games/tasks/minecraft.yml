@@ -1,6 +1,6 @@
 ---
 - name: Run minecraft server
-  community.docker.docker_container:
+  containers.podman.podman_container:
     name: minecraft
     image: docker.io/itzg/minecraft-server
     state: started
@@ -8,7 +8,7 @@
     publish:
       - 38819:38819
     volume:
-      - "{{ container_data.minecraft }}:/data"
+      - "{{ container_volumes.minecraft }}:/data"
     env:
       # Appearance
       SERVER_NAME: "minecraft-survival"

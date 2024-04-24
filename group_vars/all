@@ -1,9 +1,9 @@
 ---
 # Containers directories
-container_directory: "/mnt"
+container_root: "/home/{{ ansible_user_id }}/podman_root"
 
-container_data:
-    nextcloud: "{{ container_directory }}/nextcloud/"
-    syncthing: "{{ container_directory }}/syncthing"
-    wireguard: "{{ container_directory }}/wireguard"
-    minecraft: "{{ container_directory }}/minecraft"
+container_volumes:
+    nextcloud: "{{ container_root }}/nextcloud"
+    syncthing: "{{ container_root }}/syncthing"
+    wireguard: "{{ container_root }}/wireguard"
+    minecraft: "{{ container_root }}/minecraft"

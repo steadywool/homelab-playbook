@@ -30,5 +30,6 @@ $ ansible-playbook playbook.yml -K
 - services
 - services.wireguard
 - services.syncthing
+- services.nextcloud
 - games
 - games.minecraft

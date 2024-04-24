@@ -1,6 +1,6 @@
 ---
 - name: Run Syncthing container
-  community.docker.docker_container:
+  containers.podman.podman_container:
     name: syncthing
     image: docker.io/syncthing/syncthing
     state: started
@@ -11,4 +11,4 @@
       - 22000:22000/udp
       - 21027:21027/udp
     volume:
-      - "{{ container_data.syncthing }}:/var/syncthing"
+      - "{{ container_volumes.syncthing }}:/var/syncthing"
