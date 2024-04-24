@@ -1,6 +1,6 @@
 ---
 - name: Run minecraft server
-  containers.podman.podman_container:
+  community.docker.docker_container:
     name: minecraft
     image: docker.io/itzg/minecraft-server
     state: started

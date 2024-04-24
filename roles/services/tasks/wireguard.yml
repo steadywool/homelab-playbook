@@ -1,6 +1,6 @@
 ---
 - name: Run Wireguard container
-  containers.podman.podman_container:
+  community.docker.docker_container:
     name: wireguard
     image: docker.io/linuxserver/wireguard:latest
     state: started
@@ -14,8 +14,8 @@
     publish:
       - 51820:51820/udp
     volume:
-      - "{{ container_data.wireguard }}:/config:Z"
-      - /lib/modules:/lib/modules:Z
+      - "{{ container_data.wireguard }}:/config"
+      - /lib/modules:/lib/modules
     env:
       TZ: Europe/Paris
       SERVERURL: wireguard.endlessazurite.fr

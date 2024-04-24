@@ -7,7 +7,6 @@
       ansible.builtin.file:
         path: "{{ item.value }}"
         state: directory
-      become: false
       loop: "{{ container_data|dict2items }}"
       tags: always
 
