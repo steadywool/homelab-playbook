@@ -1,9 +1,8 @@
 ---
 # Containers directories
-container_root: "/home/{{ ansible_user_id }}/container_root"
+container_root: "{{ lookup('env','HOME') }}/container_root"
 
 container_volumes:
-    nextcloud: "{{ container_root }}/nextcloud"
     syncthing: "{{ container_root }}/syncthing"
     wireguard: "{{ container_root }}/wireguard"
     minecraft: "{{ container_root }}/minecraft"
