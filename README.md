@@ -27,8 +27,9 @@ $ ansible-playbook playbook.yml -K
 ## 🔧 Configuration
 
 ✨ You can perform partially run of playbook using tags:
-- services
-- services.wireguard
-- services.syncthing
+- network
+- network.wireguard
+- media
+- media.syncthing
 - games
 - games.minecraft

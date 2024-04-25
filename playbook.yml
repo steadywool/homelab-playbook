@@ -21,10 +21,10 @@
         name: network
       tags: network
 
-    - name: Run services containers
+    - name: Run media containers
       ansible.builtin.import_role:
-        name: services
-      tags: services
+        name: medias
+      tags: media
 
     - name: Run games containers
       ansible.builtin.import_role:
