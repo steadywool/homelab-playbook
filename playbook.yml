@@ -3,12 +3,23 @@
   gather_facts: yes
 
   tasks:
+    - name: Enable linger
+      ansible.builtin.command: loginctl enable-linger
+      become: false
+      tags: always
+
     - name: Create container directory
       ansible.builtin.file:
         path: "{{ item.value }}"
         state: directory
       loop: "{{ container_volumes|dict2items }}"
+      become: false
       tags: always
+
+    - name: Run network containers
+      ansible.builtin.import_role:
+        name: network
+      tags: network
 
     - name: Run services containers
       ansible.builtin.import_role:

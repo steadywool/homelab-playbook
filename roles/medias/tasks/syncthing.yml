@@ -1,6 +1,6 @@
 ---
 - name: Run Syncthing container
-  community.docker.docker_container:
+  containers.podman.podman_container:
     name: syncthing
     image: docker.io/syncthing/syncthing
     state: started

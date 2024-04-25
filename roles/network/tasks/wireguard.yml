@@ -1,6 +1,6 @@
 ---
 - name: Run Wireguard container
-  community.docker.docker_container:
+  containers.podman.podman_container:
     name: wireguard
     image: ghcr.io/wg-easy/wg-easy
     state: started
@@ -8,6 +8,7 @@
     capabilities:
       - NET_ADMIN
       - SYS_MODULE
+      - NET_RAW
     sysctls:
       net.ipv4.conf.all.src_valid_mark: 1
       net.ipv4.ip_forward: 1
@@ -16,7 +17,6 @@
       - 51821:51821/tcp
     volumes:
       - "{{ container_volumes.wireguard }}:/etc/wireguard"
-      - /lib/modules:/lib/modules
     env:
       WG_HOST: home.endlessazurite.fr
       PASSWORD: kPThOMOOZmSlvj6y1

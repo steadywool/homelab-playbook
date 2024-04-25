@@ -1,6 +1,4 @@
 ---
-- ansible.builtin.import_tasks: syncthing.yml
-  tags: services.syncthing
-
 - ansible.builtin.import_tasks: wireguard.yml
+  become: true
   tags: services.wireguard
