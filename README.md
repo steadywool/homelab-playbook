@@ -29,8 +29,6 @@ $ ansible-playbook playbook.yml -K
 ✨ You can perform partially run of playbook using tags:
 - services
 - services.wireguard
-- services.nextcloud
-- services.nginx
 - services.syncthing
 - games
 - games.minecraft
