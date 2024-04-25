@@ -16,7 +16,7 @@
       - 51820:51820/udp
       - 51821:51821/tcp
     volumes:
-      - "{{ container_volumes.wireguard }}:/etc/wireguard"
+      - "{{ container_volumes.wireguard }}:/etc/wireguard:Z"
     env:
       WG_HOST: home.endlessazurite.fr
       PASSWORD: kPThOMOOZmSlvj6y1

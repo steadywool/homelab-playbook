@@ -23,7 +23,7 @@
 
     - name: Run media containers
       ansible.builtin.import_role:
-        name: medias
+        name: media
       tags: media
 
     - name: Run games containers

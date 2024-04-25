@@ -8,7 +8,7 @@
     ports:
       - 38819:38819
     volumes:
-      - "{{ container_volumes.minecraft }}:/data"
+      - "{{ container_volumes.minecraft }}:/data:Z"
     env:
       # Appearance
       SERVER_NAME: "minecraft-survival"
