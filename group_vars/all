@@ -5,5 +5,4 @@ container_root: "{{ lookup('env','HOME') }}/container_root"
 container_volumes:
     syncthing: "{{ container_root }}/syncthing"
     wireguard: "{{ container_root }}/wireguard"
-    nextcloud: "{{ container_root }}/nextcloud"
     minecraft: "{{ container_root }}/minecraft"
