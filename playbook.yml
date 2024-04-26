@@ -16,6 +16,11 @@
       become: false
       tags: always
 
+    - name: Run tools containers
+      ansible.builtin.import_role:
+        name: network
+      tags: tools
+
     - name: Run network containers
       ansible.builtin.import_role:
         name: network
