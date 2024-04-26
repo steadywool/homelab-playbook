@@ -5,9 +5,9 @@
     image: docker.io/itzg/minecraft-server
     state: started
     restart_policy: always
-    ports:
+    publish:
       - 38819:38819
-    volumes:
+    volume:
       - "{{ container_volumes.minecraft }}:/data:Z"
     env:
       # Appearance

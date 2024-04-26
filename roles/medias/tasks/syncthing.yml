@@ -5,10 +5,10 @@
     image: docker.io/syncthing/syncthing
     state: started
     restart_policy: always
-    ports:
+    publish:
       - 8384:8384
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
-    volumes:
+    volume:
       - "{{ container_volumes.syncthing }}:/var/syncthing:Z"

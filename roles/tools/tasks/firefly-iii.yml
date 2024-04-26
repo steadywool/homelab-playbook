@@ -12,14 +12,14 @@
     - mariadb_data
 
 - name: Run Mariadb container
-  community.docker.docker_container:
+  containers.podman.podman_container:
     name: mariadb
     image: docker.io/library/mariadb
     state: started
     restart_policy: always
-    volumes:
+    volume:
       - mariadb_data:/var/lib/mysql
-    network_mode: firefly_network
+    network: firefly_network
     env:
       MYSQL_RANDOM_ROOT_PASSWORD: "true"
       MYSQL_PASSWORD: iI5tG6pThrrH8O7i
@@ -32,11 +32,11 @@
     image: docker.io/fireflyiii/core
     state: started
     restart_policy: always
-    ports:
+    publish:
       - 9319:8080
-    volumes:
+    volume:
       - firefly_data:/var/www/html/storage/upload:Z
-    network_mode: firefly_network
+    network: firefly_network
     env:
       APP_ENV: production
       APP_KEY: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb

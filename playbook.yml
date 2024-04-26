@@ -18,7 +18,7 @@
 
     - name: Run tools containers
       ansible.builtin.import_role:
-        name: network
+        name: tools
       tags: tools
 
     - name: Run network containers
