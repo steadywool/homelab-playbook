@@ -1,0 +1,48 @@
+---
+- name: Create a Firefly-iii network
+  containers.podman.podman_network:
+    name: firefly_network
+
+- name: Create Firefly-iii volumes
+  containers.podman.podman_volume:
+    state: present
+    name: "{{ item }}"
+  loop: 
+    - firefly_data
+    - mariadb_data
+
+- name: Run Mariadb container
+  community.docker.docker_container:
+    name: mariadb
+    image: docker.io/library/mariadb
+    state: started
+    restart_policy: always
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    network_mode: firefly_network
+    env:
+      MYSQL_RANDOM_ROOT_PASSWORD: "true"
+      MYSQL_PASSWORD: iI5tG6pThrrH8O7i
+      MYSQL_DATABASE: firefly
+      MYSQL_USER: firefly
+
+- name: Run Firefly-iii container
+  containers.podman.podman_container:
+    name: firefly
+    image: docker.io/fireflyiii/core
+    state: started
+    restart_policy: always
+    ports:
+      - 9319:8080
+    volumes:
+      - firefly_data:/var/www/html/storage/upload:Z
+    network_mode: firefly_network
+    env:
+      APP_ENV: production
+      APP_KEY: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
+      TZ: Europe/Paris
+      DB_CONNECTION: mysql
+      DB_HOST: mariadb
+      DB_DATABASE: firefly
+      DB_USERNAME: firefly
+      DB_PASSWORD: iI5tG6pThrrH8O7i

@@ -1,4 +1,4 @@
 ---
 - ansible.builtin.import_tasks: wireguard.yml
   become: true
-  tags: services.wireguard
+  tags: network.wireguard

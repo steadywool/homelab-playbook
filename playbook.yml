@@ -5,7 +5,7 @@
   tasks:
     - name: Enable linger
       ansible.builtin.command: loginctl enable-linger
-      become: false
+      become: true
       tags: always
 
     - name: Create container directory
@@ -21,10 +21,10 @@
         name: network
       tags: network
 
-    - name: Run media containers
+    - name: Run medias containers
       ansible.builtin.import_role:
-        name: media
-      tags: media
+        name: medias
+      tags: medias
 
     - name: Run games containers
       ansible.builtin.import_role:
