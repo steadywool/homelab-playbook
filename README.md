@@ -19,7 +19,7 @@ $ git clone https://github.com/steadywool/selfhosted-playbook.git
 $ cd selfhosted-playbook
 ```
 
-Edit the `inventory` & `playbook.yml` file.
+**Edit the `inventory` and `playbook.yml` file.**
 
 Start the playbook and configure your system with this command:
 ```

@@ -1,0 +1,4 @@
+---
+server_password: OufVfdrsYdR31IiW
+server_volumes:
+    minecraft: "/home/{{ ansible_user }}/container_root/minecraft"

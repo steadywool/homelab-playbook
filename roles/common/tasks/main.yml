@@ -8,3 +8,18 @@
     name: podman
     state: present
   become: true
+
+- name: Change user password
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    password: "{{ server_password|password_hash('sha512') }}"
+  when: server_password is defined
+  become: true
+
+- name: Create container directory
+  ansible.builtin.file:
+    path: "{{ item.value }}"
+    state: directory
+  loop: "{{ server_volumes|dict2items }}"
+  when: server_volumes is defined
+  become: true
