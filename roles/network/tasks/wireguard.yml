@@ -1,4 +1,9 @@
 ---
+- name: Create Wireguard volume
+  containers.podman.podman_volume:
+    state: present
+    name: wireguard_data
+
 - name: Run Wireguard container
   containers.podman.podman_container:
     name: wireguard
@@ -16,7 +21,7 @@
       - 51820:51820/udp
       - 51821:51821/tcp
     volume:
-      - "{{ container_volumes.wireguard }}:/etc/wireguard:Z"
+      - wireguard_data:/etc/wireguard:Z
     env:
-      WG_HOST: home.endlessazurite.fr
-      PASSWORD: kPThOMOOZmSlvj6y1
+      WG_HOST: home.dizzytopaz.fr
+      PASSWORD: "{{ network.password }}"

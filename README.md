@@ -24,14 +24,13 @@ Start the playbook and configure your system with this command:
 $ ansible-playbook playbook.yml -K
 ```
 
-## 🔧 Configuration
+## ✨ Configuration
 
-✨ You can perform partially run of playbook using tags:
-- tools
-- tools.firefly
-- network
-- network.wireguard
-- medias
-- medias.syncthing
-- games
-- games.minecraft
+You can perform partially run of playbook using tags.
+
+You can list them with this command:
+```
+$ ansible-playbook playbook.yml --list-tags
+```
+
+Then use them with the `-t ROLE` parameter.

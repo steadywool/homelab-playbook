@@ -8,17 +8,17 @@
     state: present
     name: "{{ item }}"
   loop: 
-    - firefly_data
-    - mariadb_data
+    - firefly_upload
+    - firefly_db
 
 - name: Run Mariadb container
   containers.podman.podman_container:
-    name: mariadb
+    name: firefly_db
     image: docker.io/library/mariadb
     state: started
     restart_policy: always
     volume:
-      - mariadb_data:/var/lib/mysql
+      - firefly_db:/var/lib/mysql
     network: firefly_network
     env:
       MYSQL_RANDOM_ROOT_PASSWORD: "true"
@@ -28,21 +28,20 @@
 
 - name: Run Firefly-iii container
   containers.podman.podman_container:
-    name: firefly
+    name: firefly_app
     image: docker.io/fireflyiii/core
     state: started
     restart_policy: always
     publish:
-      - 9319:8080
+      - 9319:8080/tcp
     volume:
-      - firefly_data:/var/www/html/storage/upload:Z
+      - firefly_upload:/var/www/html/storage/upload:Z
     network: firefly_network
     env:
-      APP_ENV: production
+      APP_ENV: local
       APP_KEY: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
       TZ: Europe/Paris
-      DB_CONNECTION: mysql
-      DB_HOST: mariadb
+      DB_HOST: firefly_db
       DB_DATABASE: firefly
       DB_USERNAME: firefly
       DB_PASSWORD: iI5tG6pThrrH8O7i

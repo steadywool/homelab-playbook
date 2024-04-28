@@ -1,8 +1,12 @@
 ---
-# Containers directories
-container_root: "{{ lookup('env','HOME') }}/container_root"
+network:
+    password: kPThOMOOZmSlvj6y1
 
-container_volumes:
-    syncthing: "{{ container_root }}/syncthing"
-    wireguard: "{{ container_root }}/wireguard"
-    minecraft: "{{ container_root }}/minecraft"
+services:
+    password: fSZzv823xvA1nBgk
+    volumes:
+        syncthing: "/home/{{ ansible_user }}/container_root/syncthing"
+
+games:
+    volumes:
+        minecraft: "/home/{{ ansible_user }}/container_root/minecraft"

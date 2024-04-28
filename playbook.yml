@@ -1,37 +1,24 @@
 ---
-- hosts: localhost
-  gather_facts: yes
+- hosts: network
+  gather_facts: true
+  ignore_unreachable: true
+  roles:
+    - common
+    - network
+  tags: network
 
-  tasks:
-    - name: Enable linger
-      ansible.builtin.command: loginctl enable-linger
-      become: true
-      tags: always
+- hosts: services
+  gather_facts: true
+  ignore_unreachable: true
+  roles:
+    - common
+    - services
+  tags: services
 
-    - name: Create container directory
-      ansible.builtin.file:
-        path: "{{ item.value }}"
-        state: directory
-      loop: "{{ container_volumes|dict2items }}"
-      become: false
-      tags: always
-
-    - name: Run tools containers
-      ansible.builtin.import_role:
-        name: tools
-      tags: tools
-
-    - name: Run network containers
-      ansible.builtin.import_role:
-        name: network
-      tags: network
-
-    - name: Run medias containers
-      ansible.builtin.import_role:
-        name: medias
-      tags: medias
-
-    - name: Run games containers
-      ansible.builtin.import_role:
-        name: games
-      tags: games
+- hosts: games
+  gather_facts: true
+  ignore_unreachable: true
+  roles:
+    - common
+    - games
+  tags: games

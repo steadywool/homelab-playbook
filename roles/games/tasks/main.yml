@@ -1,4 +1,10 @@
 ---
+- name: Create container directory
+  ansible.builtin.file:
+    path: "{{ item.value }}"
+    state: directory
+  loop: "{{ games.volumes|dict2items }}"
+  become: false
+
 - ansible.builtin.import_tasks: minecraft.yml
   become: false
-  tags: games.minecraft

@@ -1,4 +1,10 @@
 ---
+- name: Create container directory
+  ansible.builtin.file:
+    path: "{{ item.value }}"
+    state: directory
+  loop: "{{ network.volumes|dict2items }}"
+  become: true
+
 - ansible.builtin.import_tasks: wireguard.yml
   become: true
-  tags: network.wireguard

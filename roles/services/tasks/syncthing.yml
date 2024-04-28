@@ -11,4 +11,4 @@
       - 22000:22000/udp
       - 21027:21027/udp
     volume:
-      - "{{ container_volumes.syncthing }}:/var/syncthing:Z"
+      - "{{ services.volumes.syncthing }}:/var/syncthing:Z"

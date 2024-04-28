@@ -1,4 +1,0 @@
----
-- ansible.builtin.import_tasks: firefly-iii.yml
-  become: false
-  tags: tools.firefly

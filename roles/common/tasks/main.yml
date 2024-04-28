@@ -1,0 +1,10 @@
+---
+- name: Enable linger
+  ansible.builtin.command: "loginctl enable-linger {{ ansible_user }}"
+  become: true
+
+- name: Install Podman
+  ansible.builtin.package:
+    name: podman
+    state: present
+  become: true
