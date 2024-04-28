@@ -1,3 +1,4 @@
 ---
 - ansible.builtin.import_tasks: wireguard.yml
   become: true
+  tags: wireguard

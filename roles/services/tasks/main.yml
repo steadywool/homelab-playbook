@@ -1,6 +1,12 @@
 ---
 - ansible.builtin.import_tasks: syncthing.yml
   become: false
+  tags: syncthing
+
+- ansible.builtin.import_tasks: nextcloud.yml
+  become: false
+  tags: nextcloud
 
 - ansible.builtin.import_tasks: firefly-iii.yml
   become: false
+  tags: firefy

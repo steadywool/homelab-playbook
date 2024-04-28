@@ -22,7 +22,7 @@
     network: firefly_network
     env:
       MYSQL_RANDOM_ROOT_PASSWORD: "true"
-      MYSQL_PASSWORD: iI5tG6pThrrH8O7i
+      MYSQL_PASSWORD: "{{ server_password }}"
       MYSQL_DATABASE: firefly
       MYSQL_USER: firefly
 
@@ -44,4 +44,4 @@
       DB_HOST: firefly_db
       DB_DATABASE: firefly
       DB_USERNAME: firefly
-      DB_PASSWORD: iI5tG6pThrrH8O7i
+      DB_PASSWORD: "{{ server_password }}"

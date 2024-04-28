@@ -12,7 +12,7 @@
 - name: Change user password
   ansible.builtin.user:
     name: "{{ ansible_user }}"
-    password: "{{ server_password|password_hash('sha512') }}"
+    password: "{{ server_password|password_hash }}"
   when: server_password is defined
   become: true
 
