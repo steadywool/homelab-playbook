@@ -8,7 +8,7 @@
     publish:
       - 38819:38819
     volume:
-      - "{{ volumes.minecraft }}:/data:Z"
+      - "{{ games.volumes.minecraft }}:/data:Z"
     env:
       # Appearance
       SERVER_NAME: "minecraft-survival"

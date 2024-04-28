@@ -1,3 +1,9 @@
 ---
 - ansible.builtin.import_tasks: wireguard.yml
   become: true
+
+- name: Change user password
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    password: "{{ network.password|password_hash('sha512') }}"
+  become: true

@@ -8,5 +8,6 @@ services:
         syncthing: "/home/{{ ansible_user }}/container_root/syncthing"
 
 games:
+    password: OufVfdrsYdR31IiW
     volumes:
         minecraft: "/home/{{ ansible_user }}/container_root/minecraft"

@@ -11,3 +11,9 @@
 
 - ansible.builtin.import_tasks: firefly-iii.yml
   become: false
+
+- name: Change user password
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    password: "{{ services.password|password_hash('sha512') }}"
+  become: true
