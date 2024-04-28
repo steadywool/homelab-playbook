@@ -19,9 +19,11 @@ $ git clone https://github.com/steadywool/selfhosted-playbook.git
 $ cd selfhosted-playbook
 ```
 
+Edit the `inventory` & `playbook.yml` file.
+
 Start the playbook and configure your system with this command:
 ```
-$ ansible-playbook playbook.yml -K
+$ ansible-playbook playbook.yml -K -u USER
 ```
 
 ## ✨ Configuration
