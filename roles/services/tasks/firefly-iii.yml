@@ -23,14 +23,6 @@
       MYSQL_DATABASE: firefly
       MYSQL_USER: firefly
 
-- name: Run Redis container
-  containers.podman.podman_container:
-    name: firefly_cache
-    image: docker.io/library/redis
-    state: started
-    restart_policy: always
-    network: firefly_network
-
 - name: Run Firefly-iii container
   containers.podman.podman_container:
     name: firefly_app
@@ -43,13 +35,11 @@
       - "{{ rootless_volumes.firefly }}:/var/www/html/storage/upload:Z"
     network: firefly_network
     env:
-      APP_ENV: production
-      APP_KEY: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
+      APP_ENV: local
+      APP_KEY: "{{ firefly_token }}"
       TZ: Europe/Paris
       DB_CONNECTION: mysql
       DB_PASSWORD: "{{ password }}"
       DB_DATABASE: firefly
       DB_USERNAME: firefly
       DB_HOST: firefly_db
-      CACHE_DRIVER: redis
-      REDIS_HOST: firefly_cache

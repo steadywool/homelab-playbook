@@ -4,7 +4,7 @@
   ignore_unreachable: true
   roles:
     - pre_tasks
-    - network_containers
+    - network
     - post_tasks
   tags: network
 
@@ -13,7 +13,7 @@
   ignore_unreachable: true
   roles:
     - pre_tasks
-    - services_containers
+    - services
     - post_tasks
   tags: services
 
@@ -22,6 +22,6 @@
   ignore_unreachable: true
   roles:
     - pre_tasks
-    - games_containers
+    - games
     - post_tasks
   tags: games

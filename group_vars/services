@@ -1,5 +1,7 @@
 ---
 password: fSZzv823xvA1nBgk
 rootless_volumes:
-    syncthing: "/home/{{ ansible_user }}/container_root/syncthing"
-    firefly: "/home/{{ ansible_user }}/container_root/firefly"
+    syncthing: "/home/{{ ansible_user }}/containers/syncthing"
+    firefly: "/home/{{ ansible_user }}/containers/firefly"
+
+firefly_token: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
