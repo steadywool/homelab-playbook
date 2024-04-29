@@ -6,10 +6,7 @@
 - name: Create Firefly-iii volumes
   containers.podman.podman_volume:
     state: present
-    name: "{{ item }}"
-  loop: 
-    - firefly_upload
-    - firefly_db
+    name: firefly_db
 
 - name: Run Mariadb container
   containers.podman.podman_container:
@@ -22,9 +19,17 @@
     network: firefly_network
     env:
       MYSQL_RANDOM_ROOT_PASSWORD: "true"
-      MYSQL_PASSWORD: "{{ server_password }}"
+      MYSQL_PASSWORD: "{{ password }}"
       MYSQL_DATABASE: firefly
       MYSQL_USER: firefly
+
+- name: Run Redis container
+  containers.podman.podman_container:
+    name: firefly_cache
+    image: docker.io/library/redis
+    state: started
+    restart_policy: always
+    network: firefly_network
 
 - name: Run Firefly-iii container
   containers.podman.podman_container:
@@ -35,13 +40,16 @@
     publish:
       - 9319:8080/tcp
     volume:
-      - firefly_upload:/var/www/html/storage/upload:Z
+      - "{{ rootless_volumes.firefly }}:/var/www/html/storage/upload:Z"
     network: firefly_network
     env:
-      APP_ENV: local
+      APP_ENV: production
       APP_KEY: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
       TZ: Europe/Paris
-      DB_HOST: firefly_db
+      DB_CONNECTION: mysql
+      DB_PASSWORD: "{{ password }}"
       DB_DATABASE: firefly
       DB_USERNAME: firefly
-      DB_PASSWORD: "{{ server_password }}"
+      DB_HOST: firefly_db
+      CACHE_DRIVER: redis
+      REDIS_HOST: firefly_cache

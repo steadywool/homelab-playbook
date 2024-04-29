@@ -1,0 +1,7 @@
+---
+- name: Change user password
+  ansible.builtin.user:
+    name: "{{ ansible_user }}"
+    password: "{{ password|password_hash }}"
+  when: password is defined
+  become: true

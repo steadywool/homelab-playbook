@@ -23,7 +23,7 @@ $ cd selfhosted-playbook
 
 Start the playbook and configure your system with this command:
 ```
-$ ansible-playbook playbook.yml -K -u USER
+$ ansible-playbook playbook.yml -K
 ```
 
 ## ✨ Configuration

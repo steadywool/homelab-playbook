@@ -1,4 +1,5 @@
 ---
-server_password: fSZzv823xvA1nBgk
-server_volumes:
+password: fSZzv823xvA1nBgk
+rootless_volumes:
     syncthing: "/home/{{ ansible_user }}/container_root/syncthing"
+    firefly: "/home/{{ ansible_user }}/container_root/firefly"
