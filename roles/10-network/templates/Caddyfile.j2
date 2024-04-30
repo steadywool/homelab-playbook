@@ -6,7 +6,6 @@ proxmox.dizzytopaz.fr:80 {
     reverse_proxy 192.168.1.9:{{ ports.proxmox }} {
         # Transport http needed because Proxmox use a self-signed certificate
         transport http {
-            tls
             tls_insecure_skip_verify
         }
     }
