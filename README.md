@@ -1,4 +1,4 @@
-# 🕹️ Selfhosted Playbook
+# 🕹️ Homelab Playbook
 
 Create Podman containers with Ansible.
 
@@ -15,8 +15,8 @@ Firstly, install Ansible:
 
 You can then clone this repository and enter it:
 ```
-$ git clone https://github.com/steadywool/selfhosted-playbook.git
-$ cd selfhosted-playbook
+$ git clone https://github.com/steadywool/homelab-playbook.git
+$ cd homelab-playbook
 ```
 
 **Edit the `inventory` and `playbook.yml` file.**
