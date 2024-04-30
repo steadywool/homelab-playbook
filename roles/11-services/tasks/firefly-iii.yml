@@ -21,7 +21,7 @@
     state: started
     restart_policy: always
     publish:
-      - 9319:8080/tcp
+      - "{{ ports.firefly }}:8080/tcp"
     volume:
       - firefly_upload:/var/www/html/storage/upload:Z
       - firefly_db:/var/www/html/storage/database:Z

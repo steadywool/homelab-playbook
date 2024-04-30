@@ -5,7 +5,9 @@
 
 - name: Install Podman
   ansible.builtin.package:
-    name: podman
+    name:
+      - podman
+      - rclone
     state: present
   become: true
 

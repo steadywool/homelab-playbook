@@ -19,7 +19,7 @@
       net.ipv4.ip_forward: 1
     publish:
       - 51820:51820/udp
-      - 51821:51821/tcp
+      - "{{ ports.wireguard }}:51821/tcp"
     volume:
       - wireguard_data:/etc/wireguard:Z
     env:

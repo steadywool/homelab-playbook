@@ -14,7 +14,7 @@
     state: started
     restart_policy: always
     publish:
-      - 3482:80
+      - "{{ ports.freshrss }}:80"
     volume:
       - freshrss_extensions:/var/www/FreshRSS/extensions:Z
       - freshrss_data:/var/www/FreshRSS/data:Z

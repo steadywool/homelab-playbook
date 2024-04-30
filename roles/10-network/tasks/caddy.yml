@@ -1,0 +1,27 @@
+---
+- name: Template Caddy configuration
+  ansible.builtin.template:
+    src: Caddyfile.j2
+    dest: "{{ rootfull_volumes.caddy }}/Caddyfile"
+
+- name: Create Caddy volumes
+  containers.podman.podman_volume:
+    state: present
+    name: "{{ item }}"
+  loop: 
+    - caddy_data
+    - caddy_config
+
+- name: Run Caddy container
+  containers.podman.podman_container:
+    name: caddy
+    image: docker.io/library/caddy:alpine
+    state: started
+    restart_policy: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "{{ rootfull_volumes.caddy }}/Caddyfile:/etc/caddy/Caddyfile"
+      - caddy_data:/data
+      - caddy_config:/config

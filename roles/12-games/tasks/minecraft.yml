@@ -6,7 +6,7 @@
     state: started
     restart_policy: always
     publish:
-      - 38819:38819
+      - "{{ ports.minecraft }}:25565"
     volume:
       - "{{ rootless_volumes.minecraft }}:/data:Z"
     userns: keep-id
@@ -41,4 +41,3 @@
       SNOOPER_ENABLED: false
       USE_AIKAR_FLAGS: true
       MEMORY: "2G"
-      SERVER_PORT: 38819

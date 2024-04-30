@@ -1,0 +1,33 @@
+{
+    auto_https off
+}
+
+proxmox.dizzytopaz.fr:80 {
+    reverse_proxy 192.168.1.9:{{ ports.proxmox }} {
+        # Transport http needed because Proxmox use a self-signed certificate
+        transport http {
+            tls
+            tls_insecure_skip_verify
+        }
+    }
+}
+
+wireguard.dizzytopaz.fr:80 {
+    reverse_proxy 192.168.1.10:{{ ports.wireguard }}
+}
+
+syncthing.dizzytopaz.fr:80 {
+    reverse_proxy 192.168.1.11:{{ ports.syncthing }}
+}
+
+freshrss.dizzytopaz.fr:80 {
+    reverse_proxy 192.168.1.11:{{ ports.freshrss }}
+}
+
+firefly.dizzytopaz.fr:80 {
+    reverse_proxy 192.168.1.11:{{ ports.firefly }}
+}
+
+baikal.dizzytopaz.fr:80 {
+    reverse_proxy 192.168.1.11:{{ ports.baikal }}
+}
