@@ -1,7 +1,3 @@
-{
-    auto_https off
-}
-
 proxmox.dizzytopaz.fr:80 {
     reverse_proxy 192.168.1.9:{{ ports.proxmox }} {
         # Transport http needed because Proxmox use a self-signed certificate
