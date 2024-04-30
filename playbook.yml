@@ -3,25 +3,25 @@
   gather_facts: true
   ignore_unreachable: true
   roles:
-    - pre_tasks
-    - network
-    - post_tasks
+    - 00-pre_tasks
+    - 10-network
+    - 99-post_tasks
   tags: network
 
 - hosts: services
   gather_facts: true
   ignore_unreachable: true
   roles:
-    - pre_tasks
-    - services
-    - post_tasks
+    - 00-pre_tasks
+    - 11-services
+    - 99-post_tasks
   tags: services
 
 - hosts: games
   gather_facts: true
   ignore_unreachable: true
   roles:
-    - pre_tasks
-    - games
-    - post_tasks
+    - 00-pre_tasks
+    - 12-games
+    - 99-post_tasks
   tags: games

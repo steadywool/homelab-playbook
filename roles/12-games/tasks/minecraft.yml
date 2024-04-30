@@ -9,6 +9,7 @@
       - 38819:38819
     volume:
       - "{{ rootless_volumes.minecraft }}:/data:Z"
+    userns: keep-id
     env:
       # Appearance
       SERVER_NAME: "minecraft-survival"

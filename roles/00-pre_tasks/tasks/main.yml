@@ -1,0 +1,44 @@
+---
+- name: Enable linger
+  ansible.builtin.command: "loginctl enable-linger {{ ansible_user }}"
+  become: true
+
+- name: Install Podman
+  ansible.builtin.package:
+    name: podman
+    state: present
+  become: true
+
+# Directories
+- name: Create container directory
+  ansible.builtin.file:
+    path: "{{ item.value }}"
+    state: directory
+  loop: "{{ rootfull_volumes|dict2items }}"
+  when: rootfull_volumes is defined
+  become: true
+
+- name: Create container directory
+  ansible.builtin.file:
+    path: "{{ item.value }}"
+    state: directory
+  loop: "{{ rootless_volumes|dict2items }}"
+  when: rootless_volumes is defined
+  become: false
+
+# Services
+- name: Enable system services
+  ansible.builtin.systemd:
+    name: podman-restart.service
+    state: started
+    enabled: true
+    scope: system
+  become: true
+
+- name: Enable user services
+  ansible.builtin.systemd:
+    name: podman-restart.service
+    state: started
+    enabled: true
+    scope: user
+  become: false

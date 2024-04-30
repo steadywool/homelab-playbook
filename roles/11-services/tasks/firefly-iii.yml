@@ -1,0 +1,33 @@
+---
+- name: Create Firefly-iii volumes
+  containers.podman.podman_volume:
+    state: present
+    name: "{{ item }}"
+  loop: 
+    - firefly_db
+    - firefly_upload
+
+- name: Add Firefly-iii cron job
+  ansible.builtin.cron:
+    name: Firefly-iii Cron Job
+    job: "wget -qO- http://localhost:9319/api/v1/cron/{{ firefly_token }}"
+    minute: "0"
+    hour: "3"
+
+- name: Run Firefly-iii container
+  containers.podman.podman_container:
+    name: firefly
+    image: docker.io/fireflyiii/core
+    state: started
+    restart_policy: always
+    publish:
+      - 9319:8080/tcp
+    volume:
+      - firefly_upload:/var/www/html/storage/upload:Z
+      - firefly_db:/var/www/html/storage/database:Z
+    env:
+      APP_ENV: local
+      APP_KEY: "{{ firefly_token }}"
+      TZ: Europe/Paris
+      DB_CONNECTION: sqlite
+      STATIC_CRON_TOKEN: "{{ firefly_token }}"
