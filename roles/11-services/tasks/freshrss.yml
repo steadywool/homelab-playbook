@@ -10,11 +10,11 @@
 - name: Run FreshRSS container
   containers.podman.podman_container:
     name: freshrss
-    image: docker.io/freshrss/freshrss
+    image: docker.io/freshrss/freshrss:alpine
     state: started
     restart_policy: always
     publish:
-      - 3482:8080
+      - 3482:80
     volume:
       - freshrss_extensions:/var/www/FreshRSS/extensions:Z
       - freshrss_data:/var/www/FreshRSS/data:Z
