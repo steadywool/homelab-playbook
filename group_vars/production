@@ -1,5 +1,9 @@
 ---
-password: fSZzv823xvA1nBgk
+password: kPThOMOOZmSlvj6y1
+
+rootfull_volumes:
+    caddy: /root/containers/caddy
+
 rootless_volumes:
     syncthing: "/home/{{ ansible_user }}/containers/syncthing"
 

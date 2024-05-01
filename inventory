@@ -1,8 +1,5 @@
-[network]
+[production]
 192.168.1.10 ansible_user=debian
 
-[services]
-192.168.1.11 ansible_user=debian
-
 [games]
-192.168.1.12 ansible_user=debian
+192.168.1.11 ansible_user=debian

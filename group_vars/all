@@ -2,8 +2,8 @@
 ports:
     proxmox: 8006
     wireguard: 51821
-    baikal: 12331
-    firefly: 9319
-    freshrss: 3482
     syncthing: 8384
+    baikal: 44010
+    firefly: 44020
+    freshrss: 44030
     minecraft: 38819

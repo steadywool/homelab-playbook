@@ -1,27 +1,18 @@
 ---
-- hosts: network
+- hosts: production
   gather_facts: true
   ignore_unreachable: true
   roles:
     - 00-pre_tasks
-    - 10-network
+    - 10-production
     - 99-post_tasks
-  tags: network
-
-- hosts: services
-  gather_facts: true
-  ignore_unreachable: true
-  roles:
-    - 00-pre_tasks
-    - 11-services
-    - 99-post_tasks
-  tags: services
+  tags: production
 
 - hosts: games
   gather_facts: true
   ignore_unreachable: true
   roles:
     - 00-pre_tasks
-    - 12-games
+    - 11-games
     - 99-post_tasks
   tags: games
