@@ -19,8 +19,8 @@
     state: started
     restart_policy: always
     ports:
-      - "80:80"
-      - "443:443"
+      - 80:80
+      - 443:443
     volumes:
       - "{{ rootfull_volumes.caddy }}/Caddyfile:/etc/caddy/Caddyfile"
       - caddy_data:/data

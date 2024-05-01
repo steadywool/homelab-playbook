@@ -21,7 +21,7 @@
       - 51820:51820/udp
       - "{{ ports.wireguard }}:51821/tcp"
     volume:
-      - wireguard_data:/etc/wireguard:Z
+      - wireguard_data:/etc/wireguard
     env:
       WG_HOST: home.dizzytopaz.fr
       PASSWORD: "{{ password }}"

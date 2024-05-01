@@ -16,5 +16,5 @@
     publish:
       - "{{ ports.baikal }}:80"
     volume:
-      - baikal_config:/var/www/baikal/config:Z
-      - baikal_specific:/var/www/baikal/Specific:Z
+      - baikal_config:/var/www/baikal/config
+      - baikal_specific:/var/www/baikal/Specific
