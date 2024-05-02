@@ -11,6 +11,6 @@
   gather_facts: true
   roles:
     - 00-pre_tasks
-    - 11-games
+    - 20-games
     - 99-post_tasks
   tags: games
