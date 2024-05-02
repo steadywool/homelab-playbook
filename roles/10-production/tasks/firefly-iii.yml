@@ -20,7 +20,6 @@
     image: docker.io/fireflyiii/core
     state: started
     restart_policy: always
-    recreate: true
     publish:
       - "{{ ports.firefly }}:8080/tcp"
     volume:

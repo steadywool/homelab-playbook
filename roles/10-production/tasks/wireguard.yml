@@ -10,7 +10,6 @@
     image: ghcr.io/wg-easy/wg-easy
     state: started
     restart_policy: always
-    recreate: true
     cap_add:
       - NET_ADMIN
       - SYS_MODULE

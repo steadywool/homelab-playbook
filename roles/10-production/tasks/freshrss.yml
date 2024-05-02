@@ -13,7 +13,6 @@
     image: docker.io/freshrss/freshrss:alpine
     state: started
     restart_policy: always
-    recreate: true
     publish:
       - "{{ ports.freshrss }}:80"
     volume:

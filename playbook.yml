@@ -1,7 +1,6 @@
 ---
 - hosts: production
   gather_facts: true
-  ignore_unreachable: true
   roles:
     - 00-pre_tasks
     - 10-production
@@ -10,7 +9,6 @@
 
 - hosts: games
   gather_facts: true
-  ignore_unreachable: true
   roles:
     - 00-pre_tasks
     - 11-games

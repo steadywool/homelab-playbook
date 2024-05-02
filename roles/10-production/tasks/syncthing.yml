@@ -5,7 +5,6 @@
     image: docker.io/syncthing/syncthing
     state: started
     restart_policy: always
-    recreate: true
     publish:
       - "{{ ports.syncthing }}:8384"
       - 22000:22000/tcp
