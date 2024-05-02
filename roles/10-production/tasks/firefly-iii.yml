@@ -10,7 +10,7 @@
 - name: Add Firefly-iii cron job
   ansible.builtin.cron:
     name: Firefly-iii Cron Job
-    job: "wget -qO- http://localhost:9319/api/v1/cron/{{ firefly_token }}"
+    job: "wget -qO- http://localhost:{{ ports.firefly }}/api/v1/cron/{{ firefly_token }}"
     minute: "0"
     hour: "3"
 
