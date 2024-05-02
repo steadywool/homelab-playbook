@@ -9,6 +9,7 @@
       - podman
       - cockpit
       - cockpit-podman
+      - qemu-guest-agent
     state: present
   become: true
 

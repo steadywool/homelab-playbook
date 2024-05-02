@@ -1,5 +1,5 @@
 ---
-password: pKlY33QP3kxQo0k4
+password: Jasmine-Twice-Retype20
 
 volumes:
     syncthing: "/home/{{ ansible_user }}/containers/syncthing"

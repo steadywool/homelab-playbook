@@ -5,6 +5,9 @@
     state: started
     enabled: true
     scope: system
+  loop:
+    - podman-restart.service
+    - qemu-guest-agent
   become: true
 
 - name: Enable user services
