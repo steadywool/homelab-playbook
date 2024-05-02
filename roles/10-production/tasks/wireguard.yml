@@ -25,4 +25,4 @@
       - wireguard_data:/etc/wireguard:Z
     env:
       WG_HOST: home.dizzytopaz.fr
-      PASSWORD: "{{ password }}"
+      PASSWORD: "{{ wg_password }}"

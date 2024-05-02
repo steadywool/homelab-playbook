@@ -1,8 +1,8 @@
 ---
-password: Jasmine-Twice-Retype20
+user_password: Jasmine-Twice-Retype20
+wg_password: "{{ user_password }}"
+firefly_token: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
 
 volumes:
     syncthing: "/home/{{ ansible_user }}/containers/syncthing"
     caddy: "/home/{{ ansible_user }}/containers/caddy"
-
-firefly_token: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
