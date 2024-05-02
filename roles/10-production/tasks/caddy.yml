@@ -2,7 +2,7 @@
 - name: Template Caddy configuration
   ansible.builtin.template:
     src: Caddyfile.j2
-    dest: "{{ rootfull_volumes.caddy }}/Caddyfile"
+    dest: "{{ volumes.caddy }}/Caddyfile"
 
 - name: Create Caddy volumes
   containers.podman.podman_volume:
@@ -22,6 +22,6 @@
       - 80:80
       - 443:443
     volumes:
-      - "{{ rootfull_volumes.caddy }}/Caddyfile:/etc/caddy/Caddyfile"
-      - caddy_data:/data
-      - caddy_config:/config
+      - "{{ volumes.caddy }}/Caddyfile:/etc/caddy/Caddyfile:Z"
+      - caddy_data:/data:Z
+      - caddy_config:/config:Z

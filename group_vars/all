@@ -1,6 +1,7 @@
 ---
 ports:
     proxmox: 8006
+    cockpit: 9090
     wireguard: 51821
     syncthing: 8384
     baikal: 44010

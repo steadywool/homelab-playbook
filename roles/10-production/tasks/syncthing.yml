@@ -11,5 +11,5 @@
       - 22000:22000/udp
       - 21027:21027/udp
     volume:
-      - "{{ rootless_volumes.syncthing }}:/var/syncthing"
+      - "{{ volumes.syncthing }}:/var/syncthing:Z"
     userns: keep-id

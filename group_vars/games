@@ -1,5 +1,5 @@
 ---
 password: OufVfdrsYdR31IiW
 
-rootless_volumes:
+volumes:
     minecraft: "/home/{{ ansible_user }}/container_root/minecraft"

@@ -8,7 +8,7 @@
     publish:
       - "{{ ports.minecraft }}:25565"
     volume:
-      - "{{ rootless_volumes.minecraft }}:/data"
+      - "{{ volumes.minecraft }}:/data:Z"
     userns: keep-id
     env:
       # Appearance

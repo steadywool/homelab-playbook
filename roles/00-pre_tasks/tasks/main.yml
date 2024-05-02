@@ -3,12 +3,21 @@
   ansible.builtin.command: "loginctl enable-linger {{ ansible_user }}"
   become: true
 
-- name: Install Podman
+- name: Install Packages
   ansible.builtin.package:
     name:
       - podman
+      - cockpit
+      - cockpit-podman
     state: present
   become: true
 
-- ansible.builtin.import_tasks: volumes.yml
+- name: Create volumes
+  ansible.builtin.file:
+    path: "{{ item.value }}"
+    state: directory
+  loop: "{{ volumes|dict2items }}"
+  when: volumes is defined
+  become: false
+
 - ansible.builtin.import_tasks: services.yml

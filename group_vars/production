@@ -1,10 +1,8 @@
 ---
-password: kPThOMOOZmSlvj6y1
+password: pKlY33QP3kxQo0k4
 
-rootfull_volumes:
-    caddy: /root/containers/caddy
-
-rootless_volumes:
+volumes:
     syncthing: "/home/{{ ansible_user }}/containers/syncthing"
+    caddy: "/home/{{ ansible_user }}/containers/caddy"
 
 firefly_token: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb

@@ -23,8 +23,8 @@
     publish:
       - "{{ ports.firefly }}:8080/tcp"
     volume:
-      - firefly_upload:/var/www/html/storage/upload
-      - firefly_db:/var/www/html/storage/database
+      - firefly_upload:/var/www/html/storage/upload:Z
+      - firefly_db:/var/www/html/storage/database:Z
     env:
       APP_ENV: local
       APP_KEY: "{{ firefly_token }}"

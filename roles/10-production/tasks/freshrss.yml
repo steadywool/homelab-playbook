@@ -16,8 +16,8 @@
     publish:
       - "{{ ports.freshrss }}:80"
     volume:
-      - freshrss_extensions:/var/www/FreshRSS/extensions
-      - freshrss_data:/var/www/FreshRSS/data
+      - freshrss_extensions:/var/www/FreshRSS/extensions:Z
+      - freshrss_data:/var/www/FreshRSS/data:Z
     env:
       TZ: Europe/Paris
       CRON_MIN: "1,31"
