@@ -5,6 +5,7 @@
     image: docker.io/itzg/minecraft-server
     state: started
     restart_policy: always
+    recreate: true
     publish:
       - "{{ ports.minecraft }}:25565"
     volume:
