@@ -1,0 +1,7 @@
+---
+- hosts: vpn
+  gather_facts: true
+  roles:
+    - 00-pre_tasks
+    - 05-vpn_containers
+    - 99-post_tasks
