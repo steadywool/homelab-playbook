@@ -1,17 +1,11 @@
 ---
-- name: Enable linger
-  ansible.builtin.command: "loginctl enable-linger {{ ansible_user }}"
-  become: true
-
 - name: Install Packages
   ansible.builtin.package:
-    name:
-      - podman
-      - cockpit
-      - cockpit-podman
-      - qemu-guest-agent
+    name: "{{ packages }}"
     state: present
+  when: packages is defined
   become: true
+  tags: packages
 
 - name: Create volumes
   ansible.builtin.file:
@@ -20,5 +14,7 @@
   loop: "{{ volumes|dict2items }}"
   when: volumes is defined
   become: false
+  tags: volumes
 
-- ansible.builtin.import_tasks: services.yml
+- ansible.builtin.import_tasks: systemd.yml
+  tags: systemd

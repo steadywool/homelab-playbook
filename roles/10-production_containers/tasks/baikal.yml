@@ -13,8 +13,8 @@
     image: docker.io/ckulka/baikal:nginx
     state: started
     restart_policy: always
-    publish:
+    ports:
       - "{{ ports.baikal }}:80"
-    volume:
+    volumes:
       - baikal_config:/var/www/baikal/config:Z
       - baikal_specific:/var/www/baikal/Specific:Z

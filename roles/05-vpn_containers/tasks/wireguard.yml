@@ -1,26 +1,26 @@
 ---
 - name: Create Wireguard volume
-  containers.podman.podman_volume:
+  community.docker.docker_volume:
     state: present
     name: wireguard_data
 
 - name: Run Wireguard container
-  containers.podman.podman_container:
+  community.docker.docker_container:
     name: wireguard
     image: ghcr.io/wg-easy/wg-easy
     state: started
     restart_policy: always
-    cap_add:
+    capabilities:
       - NET_ADMIN
       - SYS_MODULE
       - NET_RAW
-    sysctl:
+    sysctls:
       net.ipv4.conf.all.src_valid_mark: 1
       net.ipv4.ip_forward: 1
-    publish:
+    ports:
       - 51820:51820/udp
       - "{{ ports.wireguard }}:51821/tcp"
-    volume:
+    volumes:
       - wireguard_data:/etc/wireguard:Z
     env:
       WG_HOST: home.dizzytopaz.fr

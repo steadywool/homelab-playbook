@@ -20,9 +20,9 @@
     image: docker.io/fireflyiii/core
     state: started
     restart_policy: always
-    publish:
+    ports:
       - "{{ ports.firefly }}:8080/tcp"
-    volume:
+    volumes:
       - firefly_upload:/var/www/html/storage/upload:Z
       - firefly_db:/var/www/html/storage/database:Z
     env:

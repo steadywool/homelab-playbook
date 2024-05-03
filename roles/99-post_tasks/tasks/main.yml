@@ -5,3 +5,4 @@
     password: "{{ user_password|password_hash }}"
   when: user_password is defined
   become: true
+  tags: password

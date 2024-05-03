@@ -7,36 +7,36 @@ proxmox.dizzytopaz.fr {
     }
 }
 
+wireguard.dizzytopaz.fr {
+    tls internal
+    reverse_proxy 192.168.1.10:{{ ports.wireguard }}
+}
+
 cockpit.dizzytopaz.fr {
     tls internal
-    reverse_proxy 192.168.1.11:{{ ports.cockpit }} {
+    reverse_proxy localhost:{{ ports.cockpit }} {
         transport http {
             tls_insecure_skip_verify
         }
     }
 }
 
-wireguard.dizzytopaz.fr {
-    tls internal
-    reverse_proxy 192.168.1.11:{{ ports.wireguard }}
-}
-
 syncthing.dizzytopaz.fr {
     tls internal
-    reverse_proxy 192.168.1.11:{{ ports.syncthing }}
+    reverse_proxy localhost:{{ ports.syncthing }}
 }
 
 freshrss.dizzytopaz.fr {
     tls internal
-    reverse_proxy 192.168.1.11:{{ ports.freshrss }}
+    reverse_proxy localhost:{{ ports.freshrss }}
 }
 
 baikal.dizzytopaz.fr {
     tls internal
-    reverse_proxy 192.168.1.11:{{ ports.baikal }}
+    reverse_proxy localhost:{{ ports.baikal }}
 }
 
 firefly.dizzytopaz.fr {
     tls internal
-    reverse_proxy 192.168.1.11:{{ ports.firefly }}
+    reverse_proxy localhost:{{ ports.firefly }}
 }

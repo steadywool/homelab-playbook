@@ -1,7 +1,19 @@
 ---
-user_password: Jasmine-Twice-Retype20
-wg_password: "{{ user_password }}"
 firefly_token: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
+
+packages:
+    - podman
+    - cockpit
+    - cockpit-podman
+    - qemu-guest-agent
+
+services:
+    system:
+        - podman-restart.service
+        - cockpit.socket
+        - qemu-guest-agent.service
+    user:
+        - podman-restart.service
 
 volumes:
     syncthing: "/home/{{ ansible_user }}/containers/syncthing"

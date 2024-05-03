@@ -1,3 +1,6 @@
+[vpn]
+192.168.1.10 ansible_user=root
+
 [production]
 192.168.1.11 ansible_user=debian
 

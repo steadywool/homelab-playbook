@@ -1,0 +1,10 @@
+---
+packages:
+    - docker.io
+    - cockpit-system
+
+services:
+    system:
+        - docker.service
+
+wg_password: "{{ user_password }}"

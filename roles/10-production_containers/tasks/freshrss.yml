@@ -13,9 +13,9 @@
     image: docker.io/freshrss/freshrss:alpine
     state: started
     restart_policy: always
-    publish:
+    ports:
       - "{{ ports.freshrss }}:80"
-    volume:
+    volumes:
       - freshrss_extensions:/var/www/FreshRSS/extensions:Z
       - freshrss_data:/var/www/FreshRSS/data:Z
     env:

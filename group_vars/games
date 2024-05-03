@@ -1,5 +1,14 @@
 ---
-user_password: OufVfdrsYdR31IiW
+packages:
+    - podman
+    - qemu-guest-agent
+    - cockpit-system
+
+services:
+    system:
+        - qemu-guest-agent.service
+    user:
+        - podman-restart.service
 
 volumes:
     minecraft: "/home/{{ ansible_user }}/container_root/minecraft"

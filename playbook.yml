@@ -1,9 +1,17 @@
 ---
+- hosts: vpn
+  gather_facts: true
+  roles:
+    - 00-pre_tasks
+    - 05-vpn_containers
+    - 99-post_tasks
+  tags: vpn
+
 - hosts: production
   gather_facts: true
   roles:
     - 00-pre_tasks
-    - 10-production
+    - 10-production_containers
     - 99-post_tasks
   tags: production
 
@@ -11,6 +19,6 @@
   gather_facts: true
   roles:
     - 00-pre_tasks
-    - 20-games
+    - 20-games_containers
     - 99-post_tasks
   tags: games
