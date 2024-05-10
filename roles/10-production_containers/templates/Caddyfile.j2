@@ -31,12 +31,10 @@ freshrss.dizzytopaz.fr {
     reverse_proxy localhost:{{ ports.freshrss }}
 }
 
-baikal.dizzytopaz.fr {
-    tls internal
+baikal.dizzytopaz.fr:80 {
     reverse_proxy localhost:{{ ports.baikal }}
 }
 
-firefly.dizzytopaz.fr {
-    tls internal
+firefly.dizzytopaz.fr:80 {
     reverse_proxy localhost:{{ ports.firefly }}
 }
