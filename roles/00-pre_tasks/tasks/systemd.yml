@@ -17,8 +17,6 @@
     scope: user
   loop: "{{ services.user }}"
   when: services.user is defined
-  become: false
 
 - name: Enable linger
   ansible.builtin.command: "loginctl enable-linger {{ ansible_user }}"
-  become: false

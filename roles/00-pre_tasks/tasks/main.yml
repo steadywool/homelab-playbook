@@ -13,7 +13,6 @@
     state: directory
   loop: "{{ volumes|dict2items }}"
   when: volumes is defined
-  become: false
   tags: volumes
 
 - ansible.builtin.import_tasks: systemd.yml

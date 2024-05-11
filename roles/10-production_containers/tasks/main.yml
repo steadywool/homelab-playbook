@@ -1,20 +1,15 @@
 ---
 - ansible.builtin.import_tasks: caddy.yml
-  become: true
   tags: caddy
 
 - ansible.builtin.import_tasks: syncthing.yml
-  become: false
   tags: syncthing
 
 - ansible.builtin.import_tasks: firefly-iii.yml
-  become: false
   tags: firefly
 
 - ansible.builtin.import_tasks: baikal.yml
-  become: false
   tags: baikal
 
 - ansible.builtin.import_tasks: freshrss.yml
-  become: false
   tags: freshrss
