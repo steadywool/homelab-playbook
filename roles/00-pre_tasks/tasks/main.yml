@@ -15,5 +15,24 @@
   when: volumes is defined
   tags: volumes
 
-- ansible.builtin.import_tasks: systemd.yml
-  tags: systemd
+- name: Enable system services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+    scope: system
+  loop: "{{ services.system }}"
+  when: services.system is defined
+  become: true
+
+- name: Enable user services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+    scope: user
+  loop: "{{ services.user }}"
+  when: services.user is defined
+
+- name: Enable linger
+  ansible.builtin.command: "loginctl enable-linger {{ ansible_user }}"
