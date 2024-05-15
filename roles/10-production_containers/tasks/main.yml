@@ -13,3 +13,6 @@
 
 - ansible.builtin.import_tasks: freshrss.yml
   tags: freshrss
+
+- ansible.builtin.import_tasks: nextcloud.yml
+  tags: nextcloud

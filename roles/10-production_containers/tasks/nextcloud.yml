@@ -1,0 +1,58 @@
+---
+- name: Create a Nextcloud network
+  containers.podman.podman_network:
+    name: nextcloud_network
+
+- name: Create Nextcloud volumes
+  containers.podman.podman_volume:
+    state: present
+    name: "{{ item }}"
+  loop: 
+    - nextcloud_db
+    - nextcloud_cache
+
+- name: Run PostgreSQL container
+  containers.podman.podman_container:
+    name: nextcloud_postgres
+    image: docker.io/library/postgres:alpine
+    state: started
+    restart_policy: always
+    volumes:
+      - nextcloud_db:/var/lib/postgresql/data
+    network_mode: nextcloud_network
+    env:
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: "{{ nextcloud_password }}"
+
+- name: Run Redis container
+  containers.podman.podman_container:
+    name: nextcloud_redis
+    image: docker.io/library/redis:alpine
+    state: started
+    restart_policy: always
+    command: "redis-server --requirepass {{ nextcloud_password }}"
+    volumes:
+      - nextcloud_cache:/data
+    network_mode: nextcloud_network
+
+- name: Run Nextcloud container
+  containers.podman.podman_container:
+    name: nextcloud
+    image: docker.io/library/nextcloud
+    state: started
+    restart_policy: always
+    ports:
+      - "{{ ports.nextcloud }}:80"
+    volumes:
+      - "{{ volumes.nextcloud }}:/var/www/html:Z"
+    network_mode: nextcloud_network
+    sysctl:
+      net.ipv4.ip_unprivileged_port_start: 80
+    env:
+      POSTGRES_HOST: nextcloud_postgres
+      POSTGRES_DB: nextcloud
+      POSTGRES_USER: nextcloud
+      POSTGRES_PASSWORD: "{{ nextcloud_password }}"
+      REDIS_HOST: nextcloud_redis
+      REDIS_HOST_PASSWORD: "{{ nextcloud_password }}"

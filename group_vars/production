@@ -1,20 +1,19 @@
 ---
-firefly_token: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
-
 packages:
     - podman
-    - cockpit
-    - cockpit-podman
     - qemu-guest-agent
 
 services:
     system:
         - podman-restart.service
-        - cockpit.socket
         - qemu-guest-agent.service
     user:
         - podman-restart.service
 
 volumes:
     syncthing: "/home/{{ ansible_user }}/containers/syncthing"
+    nextcloud: "/home/{{ ansible_user }}/containers/nextcloud"
     caddy: "/home/{{ ansible_user }}/containers/caddy"
+
+firefly_token: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
+nextcloud_password: "{{ user_password }}"

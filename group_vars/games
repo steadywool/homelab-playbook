@@ -2,9 +2,6 @@
 packages:
     - podman
     - qemu-guest-agent
-    - cockpit-system
-    - cockpit-packagekit
-    - cockpit-podman
 
 services:
     system:
