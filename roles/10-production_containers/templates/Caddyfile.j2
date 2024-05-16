@@ -22,11 +22,6 @@ freshrss.dizzytopaz.fr {
     reverse_proxy 192.168.1.11:{{ ports.freshrss }}
 }
 
-nextcloud.dizzytopaz.fr {
-    tls internal
-    reverse_proxy 192.168.1.11:{{ ports.nextcloud }}
-}
-
 http://baikal.dizzytopaz.fr {
     reverse_proxy 192.168.1.11:{{ ports.baikal }}
 }

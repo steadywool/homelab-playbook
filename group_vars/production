@@ -12,8 +12,6 @@ services:
 
 volumes:
     syncthing: "/home/{{ ansible_user }}/containers/syncthing"
-    nextcloud: "/home/{{ ansible_user }}/containers/nextcloud"
     caddy: "/home/{{ ansible_user }}/containers/caddy"
 
 firefly_token: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
-nextcloud_password: "{{ user_password }}"
