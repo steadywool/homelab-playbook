@@ -1,10 +1,9 @@
 ---
-user_password: Jasmine-Twice-Retype20
-
 ports:
     proxmox: 8006
     wireguard: 51821
-    nextcloud: 44010
-    freshrss: 44020
-    firefly: 44030
+    syncthing: 44000
+    baikal: 44010
+    firefly: 44020
+    freshrss: 44030
     minecraft: 38819

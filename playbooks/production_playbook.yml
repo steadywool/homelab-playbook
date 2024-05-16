@@ -4,4 +4,3 @@
   roles:
     - 00-pre_tasks
     - 10-production_containers
-    - 99-post_tasks
