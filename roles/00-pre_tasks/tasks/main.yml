@@ -36,3 +36,4 @@
 
 - name: Enable linger
   ansible.builtin.command: "loginctl enable-linger {{ ansible_user }}"
+  become: true
