@@ -2,7 +2,7 @@
 - name: Run minecraft server
   containers.podman.podman_container:
     name: minecraft
-    image: docker.io/itzg/minecraft-server
+    image: docker.io/itzg/minecraft-server:latest
     state: started
     restart_policy: always
     ports:

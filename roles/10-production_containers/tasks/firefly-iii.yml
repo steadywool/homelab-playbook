@@ -17,7 +17,7 @@
 - name: Run Firefly-iii container
   containers.podman.podman_container:
     name: firefly
-    image: docker.io/fireflyiii/core
+    image: docker.io/fireflyiii/core:latest
     state: started
     restart_policy: always
     ports:

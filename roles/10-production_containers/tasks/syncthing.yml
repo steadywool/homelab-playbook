@@ -2,7 +2,7 @@
 - name: Run Syncthing container
   containers.podman.podman_container:
     name: syncthing
-    image: docker.io/syncthing/syncthing
+    image: docker.io/syncthing/syncthing:latest
     state: started
     restart_policy: always
     ports:

@@ -7,7 +7,7 @@
 - name: Run Wireguard container
   community.docker.docker_container:
     name: wireguard
-    image: ghcr.io/wg-easy/wg-easy
+    image: ghcr.io/wg-easy/wg-easy:latest
     state: started
     restart_policy: always
     capabilities:
