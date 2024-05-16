@@ -44,7 +44,6 @@
         volumes:
           - "{{ volumes.nextcloud }}:/var/www/html:Z"
         network_mode: nextcloud_network
-        user: root
         env:
           POSTGRES_HOST: nextcloud_postgres
           POSTGRES_DB: nextcloud
