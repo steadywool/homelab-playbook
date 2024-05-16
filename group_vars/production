@@ -11,7 +11,8 @@ services:
         - podman-restart.service
 
 volumes:
-    syncthing: "/home/{{ ansible_user }}/containers/syncthing"
     caddy: "/home/{{ ansible_user }}/containers/caddy"
+    nextcloud: "/home/{{ ansible_user }}/containers/nextcloud"
 
 firefly_token: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
+nextcloud_password: "{{ user_password }}"

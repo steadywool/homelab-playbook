@@ -12,18 +12,13 @@ wireguard.dizzytopaz.fr {
     reverse_proxy 192.168.1.10:{{ ports.wireguard }}
 }
 
-syncthing.dizzytopaz.fr {
-    tls internal
-    reverse_proxy 192.168.1.11:{{ ports.syncthing }}
+http://nextcloud.dizzytopaz.fr {
+    reverse_proxy 192.168.1.11:{{ ports.nextcloud }}
 }
 
 freshrss.dizzytopaz.fr {
     tls internal
     reverse_proxy 192.168.1.11:{{ ports.freshrss }}
-}
-
-http://baikal.dizzytopaz.fr {
-    reverse_proxy 192.168.1.11:{{ ports.baikal }}
 }
 
 http://firefly.dizzytopaz.fr {
