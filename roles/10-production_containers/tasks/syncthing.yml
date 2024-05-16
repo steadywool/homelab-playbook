@@ -12,4 +12,3 @@
       - 21027:21027/udp
     volumes:
       - "{{ volumes.syncthing }}:/var/syncthing:Z"
-    userns: keep-id
