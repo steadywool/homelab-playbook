@@ -7,7 +7,7 @@
   become: true
   tags: packages
 
-- name: Create volumes
+- name: Create volumes directories
   ansible.builtin.file:
     path: "{{ item.value }}"
     state: directory
