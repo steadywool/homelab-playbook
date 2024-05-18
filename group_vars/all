@@ -2,6 +2,7 @@
 ports:
     proxmox: 8006
     wireguard: 51821
+    cockpit: 9090
     syncthing: 44000
     baikal: 44010
     firefly: 44020

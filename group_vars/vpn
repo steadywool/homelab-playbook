@@ -1,6 +1,8 @@
 ---
 packages:
     - docker.io
+    - cockpit-system
+    - cockpit-packagekit
 
 services:
     system:

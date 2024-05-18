@@ -12,6 +12,15 @@ wireguard.dizzytopaz.fr {
     reverse_proxy 192.168.1.10:{{ ports.wireguard }}
 }
 
+cockpit.dizzytopaz.fr {
+    tls internal
+    reverse_proxy 192.168.1.11:{{ ports.cockpit }} {
+        transport http {
+            tls_insecure_skip_verify
+        }
+    }
+}
+
 syncthing.dizzytopaz.fr {
     tls internal
     reverse_proxy 192.168.1.11:{{ ports.syncthing }}
