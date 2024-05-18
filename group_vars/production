@@ -3,11 +3,13 @@ packages:
     - podman
     - qemu-guest-agent
     - cockpit
+    - cockpit-podman
 
 services:
     system:
         - podman-restart.service
         - qemu-guest-agent.service
+        - cockpit.service
     user:
         - podman-restart.service
 

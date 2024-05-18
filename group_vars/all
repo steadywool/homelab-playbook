@@ -1,4 +1,6 @@
 ---
+user_password: Jasmine-Twice-Retype20
+
 ports:
     proxmox: 8006
     wireguard: 51821
