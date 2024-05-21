@@ -1,6 +1,6 @@
 ---
 - name: Create FreshRSS volumes
-  containers.podman.podman_volume:
+  community.docker.docker_volume:
     state: present
     name: "{{ item }}"
   loop: 
@@ -8,7 +8,7 @@
     - freshrss_data
 
 - name: Run FreshRSS container
-  containers.podman.podman_container:
+  community.docker.docker_container:
     name: freshrss
     image: docker.io/freshrss/freshrss:alpine
     state: started
@@ -16,8 +16,8 @@
     ports:
       - "{{ ports.freshrss }}:80"
     volumes:
-      - freshrss_extensions:/var/www/FreshRSS/extensions:Z
-      - freshrss_data:/var/www/FreshRSS/data:Z
+      - freshrss_extensions:/var/www/FreshRSS/extensions
+      - freshrss_data:/var/www/FreshRSS/data
     env:
       TZ: Europe/Paris
       CRON_MIN: "1,31"

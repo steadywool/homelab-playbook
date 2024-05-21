@@ -1,6 +1,6 @@
 # 🕹️ Homelab Playbook
 
-Create Podman containers with Ansible.
+Create containers with Ansible.
 
 ## 🚀 Installation
 

@@ -2,14 +2,17 @@
 - ansible.builtin.import_tasks: caddy.yml
   tags: caddy
 
-- ansible.builtin.import_tasks: syncthing.yml
-  tags: syncthing
-
-- ansible.builtin.import_tasks: baikal.yml
-  tags: baikal
-
 - ansible.builtin.import_tasks: firefly-iii.yml
   tags: firefly
 
+- ansible.builtin.import_tasks: syncthing.yml
+  become: true
+  tags: syncthing
+
+- ansible.builtin.import_tasks: baikal.yml
+  become: true
+  tags: baikal
+
 - ansible.builtin.import_tasks: freshrss.yml
+  become: true
   tags: freshrss

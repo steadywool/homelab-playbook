@@ -15,25 +15,13 @@
   when: volumes is defined
   tags: volumes
 
-- name: Enable system services
+- name: Enable Systemd services
   ansible.builtin.systemd:
     name: "{{ item }}"
     state: started
     enabled: true
     scope: system
-  loop: "{{ services.system }}"
-  when: services.system is defined
+  loop: "{{ services }}"
+  when: services is defined
   become: true
-
-- name: Enable user services
-  ansible.builtin.systemd:
-    name: "{{ item }}"
-    state: started
-    enabled: true
-    scope: user
-  loop: "{{ services.user }}"
-  when: services.user is defined
-
-- name: Enable linger
-  ansible.builtin.command: "loginctl enable-linger {{ ansible_user }}"
-  become: true
+  tags: services

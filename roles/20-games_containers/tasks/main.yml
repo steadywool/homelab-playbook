@@ -1,3 +1,4 @@
 ---
 - ansible.builtin.import_tasks: minecraft.yml
+  become: true
   tags: minecraft

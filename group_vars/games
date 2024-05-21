@@ -1,16 +1,11 @@
 ---
 packages:
-    - podman
+    - docker.io
     - qemu-guest-agent
-    - cockpit-system
-    - cockpit-packagekit
-    - cockpit-podman
 
 services:
-    system:
-        - qemu-guest-agent.service
-    user:
-        - podman-restart.service
+    - docker.service
+    - qemu-guest-agent.service
 
 volumes:
-    minecraft: "/home/{{ ansible_user }}/container_root/minecraft"
+    minecraft: "/home/{{ ansible_user }}/containers/minecraft"

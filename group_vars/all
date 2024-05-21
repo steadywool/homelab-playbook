@@ -1,12 +1,11 @@
 ---
-user_password: Jasmine-Twice-Retype20
+password: CHANGEME
 
 ports:
     proxmox: 8006
     wireguard: 51821
-    cockpit: 9090
+    firefly: 44020
     syncthing: 44000
     baikal: 44010
-    firefly: 44020
     freshrss: 44030
     minecraft: 38819

@@ -12,13 +12,8 @@ wireguard.dizzytopaz.fr {
     reverse_proxy 192.168.1.10:{{ ports.wireguard }}
 }
 
-cockpit.dizzytopaz.fr {
-    tls internal
-    reverse_proxy 192.168.1.11:{{ ports.cockpit }} {
-        transport http {
-            tls_insecure_skip_verify
-        }
-    }
+http://firefly.dizzytopaz.fr {
+    reverse_proxy 192.168.1.11:{{ ports.firefly }}
 }
 
 syncthing.dizzytopaz.fr {
@@ -28,10 +23,6 @@ syncthing.dizzytopaz.fr {
 
 http://baikal.dizzytopaz.fr {
     reverse_proxy 192.168.1.11:{{ ports.baikal }}
-}
-
-http://firefly.dizzytopaz.fr {
-    reverse_proxy 192.168.1.11:{{ ports.firefly }}
 }
 
 freshrss.dizzytopaz.fr {

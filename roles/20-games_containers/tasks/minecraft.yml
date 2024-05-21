@@ -8,8 +8,7 @@
     ports:
       - "{{ ports.minecraft }}:25565"
     volumes:
-      - "{{ volumes.minecraft }}:/data:Z"
-    userns: keep-id
+      - "{{ volumes.minecraft }}:/data"
     env:
       # Appearance
       SERVER_NAME: "minecraft-survival"

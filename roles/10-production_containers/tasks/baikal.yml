@@ -1,6 +1,6 @@
 ---
 - name: Create Baikal volumes
-  containers.podman.podman_volume:
+  community.docker.docker_volume:
     state: present
     name: "{{ item }}"
   loop: 
@@ -8,7 +8,7 @@
     - baikal_specific
 
 - name: Run Baikal container
-  containers.podman.podman_container:
+  community.docker.docker_container:
     name: baikal
     image: docker.io/ckulka/baikal:nginx
     state: started
@@ -16,5 +16,5 @@
     ports:
       - "{{ ports.baikal }}:80"
     volumes:
-      - baikal_config:/var/www/baikal/config:Z
-      - baikal_specific:/var/www/baikal/Specific:Z
+      - baikal_config:/var/www/baikal/config
+      - baikal_specific:/var/www/baikal/Specific

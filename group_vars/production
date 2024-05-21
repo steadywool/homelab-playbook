@@ -1,17 +1,11 @@
 ---
 packages:
-    - podman
+    - docker.io
     - qemu-guest-agent
-    - cockpit
-    - cockpit-podman
 
 services:
-    system:
-        - podman-restart.service
-        - qemu-guest-agent.service
-        - cockpit.service
-    user:
-        - podman-restart.service
+    - docker.service
+    - qemu-guest-agent.service
 
 volumes:
     caddy: "/home/{{ ansible_user }}/containers/caddy"

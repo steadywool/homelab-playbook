@@ -1,11 +1,8 @@
 ---
 packages:
     - docker.io
-    - cockpit-system
-    - cockpit-packagekit
 
 services:
-    system:
-        - docker.service
+    - docker.service
 
-wg_password: "{{ user_password }}"
+wg_password: "{{ password }}"
