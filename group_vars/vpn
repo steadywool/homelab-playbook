@@ -5,4 +5,5 @@ packages:
 services:
     - docker.service
 
-wg_password: "{{ password }}"
+# WG-Easy password
+wg_password: CHANGEME

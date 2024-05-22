@@ -1,6 +1,0 @@
----
-- hosts: production
-  gather_facts: true
-  roles:
-    - 00-pre_tasks
-    - 10-production_containers

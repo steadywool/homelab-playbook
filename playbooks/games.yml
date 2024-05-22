@@ -1,0 +1,11 @@
+---
+- hosts: games
+  gather_facts: true
+  become: true
+
+  tasks:
+    - name: Configure server
+      ansible.builtin.include_tasks: tasks/common.yml
+
+    - name: Deploy Docker apps
+      ansible.builtin.include_tasks: tasks/minecraft.yml

@@ -11,4 +11,5 @@ volumes:
     caddy: "/home/{{ ansible_user }}/containers/caddy"
     syncthing: "/home/{{ ansible_user }}/containers/syncthing"
 
-firefly_token: rRJtexvy3m3NpZnfOSy1dWPCeLIsYbRb
+# Firefly III token
+firefly_token: CHANGEME32CHAR

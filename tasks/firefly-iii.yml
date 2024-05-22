@@ -5,6 +5,7 @@
     job: "wget -qO- http://localhost:{{ ports.firefly }}/api/v1/cron/{{ firefly_token }}"
     minute: "0"
     hour: "3"
+    user: "{{ ansible_user }}"
 
 - name: Create Firefly-iii volumes
   community.docker.docker_volume:
@@ -13,7 +14,6 @@
   loop: 
     - firefly_db
     - firefly_upload
-  become: true
 
 - name: Run Firefly-iii container
   community.docker.docker_container:
@@ -33,4 +33,3 @@
       DB_CONNECTION: sqlite
       STATIC_CRON_TOKEN: "{{ firefly_token }}"
       TRUSTED_PROXIES: "**"
-  become: true

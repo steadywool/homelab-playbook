@@ -1,6 +1,0 @@
----
-- hosts: games
-  gather_facts: true
-  roles:
-    - 00-pre_tasks
-    - 20-games_containers
