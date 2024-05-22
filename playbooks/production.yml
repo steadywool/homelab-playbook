@@ -4,14 +4,26 @@
   become: true
 
   tasks:
-    - name: Configure server
+    - name: Execute common tasks
       ansible.builtin.import_tasks: tasks/common.yml
+      tags: common
 
-    - name: Deploy Docker apps
-      ansible.builtin.import_tasks: "tasks/{{ item }}.yml"
-      loop:
-        - caddy
-        - baikal
-        - firefly-iii
-        - freshrss
-        - syncthing
+    - name: Deploy Caddy app
+      ansible.builtin.import_tasks: tasks/caddy.yml
+      tags: caddy
+
+    - name: Deploy Baikal app
+      ansible.builtin.import_tasks: tasks/baikal.yml
+      tags: baikal
+
+    - name: Deploy Firefly III app
+      ansible.builtin.import_tasks: tasks/firefly-iii.yml
+      tags: firefly-iii
+
+    - name: Deploy FreshRSS app
+      ansible.builtin.import_tasks: tasks/freshrss.yml
+      tags: freshrss
+
+    - name: Deploy Syncthing app
+      ansible.builtin.import_tasks: tasks/syncthing.yml
+      tags: syncthing

@@ -4,8 +4,10 @@
   become: true
 
   tasks:
-    - name: Configure server
+    - name: Execute common tasks
       ansible.builtin.import_tasks: tasks/common.yml
+      tags: common
 
-    - name: Deploy Docker apps
+    - name: Deploy Minecraft server
       ansible.builtin.import_tasks: tasks/minecraft.yml
+      tags: minecraft

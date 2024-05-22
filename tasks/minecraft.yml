@@ -1,5 +1,5 @@
 ---
-- name: Run minecraft server
+- name: Run Minecraft server
   containers.podman.podman_container:
     name: minecraft
     image: docker.io/itzg/minecraft-server:latest

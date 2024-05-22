@@ -4,8 +4,10 @@
   become: true
 
   tasks:
-    - name: Configure server
+    - name: Execute common tasks
       ansible.builtin.import_tasks: tasks/common.yml
+      tags: common
 
-    - name: Deploy Docker apps
-      ansible.builtin.import_tasks: tasks/wireguard.yml
+    - name: Deploy WG-easy app
+      ansible.builtin.import_tasks: tasks/wg-easy.yml
+      tags: wg-easy
