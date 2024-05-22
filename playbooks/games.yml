@@ -5,7 +5,7 @@
 
   tasks:
     - name: Configure server
-      ansible.builtin.include_tasks: tasks/common.yml
+      ansible.builtin.import_tasks: tasks/common.yml
 
     - name: Deploy Docker apps
-      ansible.builtin.include_tasks: tasks/minecraft.yml
+      ansible.builtin.import_tasks: tasks/minecraft.yml

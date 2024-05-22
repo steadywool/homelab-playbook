@@ -5,10 +5,10 @@
 
   tasks:
     - name: Configure server
-      ansible.builtin.include_tasks: tasks/common.yml
+      ansible.builtin.import_tasks: tasks/common.yml
 
     - name: Deploy Docker apps
-      ansible.builtin.include_tasks: "tasks/{{ item }}.yml"
+      ansible.builtin.import_tasks: "tasks/{{ item }}.yml"
       loop:
         - caddy
         - baikal
