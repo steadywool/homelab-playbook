@@ -8,4 +8,4 @@ services:
     - qemu-guest-agent.service
 
 volumes:
-    minecraft: "/home/{{ ansible_user }}/containers/minecraft"
+    minecraft: "/home/{{ remote_user }}/containers/minecraft"

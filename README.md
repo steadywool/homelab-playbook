@@ -20,9 +20,10 @@ $ cd homelab-playbook
 ```
 
 > [!IMPORTANT]
-> Never run this playbook with `sudo` or as root. If you need privileges, use the `-K` argument.
+> Never run this playbook with `sudo` or as root. If you need privileges, use the `-K` (upper-case) argument.
+> If you don't use SSH keys, add the `-k` (lower-case) argument.
 
-Start the playbook and configure your system with this command (replace PLAYBOOK_FILE with an existing one):
+Start the playbook and configure your system with this command (replace `PLAYBOOK_FILE` & `USER`):
 ```
 $ ansible-playbook playbooks/PLAYBOOK_FILE -u USER -K
 ```

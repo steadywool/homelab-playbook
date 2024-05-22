@@ -24,7 +24,7 @@
   ansible.builtin.file:
     path: "{{ item.value }}"
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ remote_user }}"
+    group: "{{ remote_user }}"
   loop: "{{ volumes|dict2items }}"
   when: volumes is defined

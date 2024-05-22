@@ -8,8 +8,8 @@ services:
     - qemu-guest-agent.service
 
 volumes:
-    caddy: "/home/{{ ansible_user }}/containers/caddy"
-    syncthing: "/home/{{ ansible_user }}/containers/syncthing"
+    caddy: "/home/{{ remote_user }}/containers/caddy"
+    syncthing: "/home/{{ remote_user }}/containers/syncthing"
 
 # Firefly III token
 firefly_token: CHANGEME32CHAR
