@@ -8,6 +8,9 @@
       ansible.builtin.import_tasks: tasks/common.yml
       tags: common
 
-    - name: Deploy Minecraft server
-      ansible.builtin.import_tasks: tasks/minecraft.yml
-      tags: minecraft
+    - name: Deploy containers
+      ansible.builtin.import_tasks: "tasks/{{ item }}.yml"
+      loop:
+        - minecraft
+        - watchtower
+      tags: containers

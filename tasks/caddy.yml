@@ -13,7 +13,6 @@
   loop: 
     - caddy_data
     - caddy_config
-  become: true
 
 - name: Run Caddy container
   community.docker.docker_container:

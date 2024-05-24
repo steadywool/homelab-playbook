@@ -1,9 +1,14 @@
 ---
+domain_name: dizzytopaz.fr
+
 ports:
     proxmox: 8006
     wireguard: 51821
-    syncthing: 44000
+    syncthing: 8384
+    portainer: 9443
+    uptimekuma: 3001
     baikal: 44010
-    firefly: 44020
+    fireflyiii: 44020
     freshrss: 44030
+    filebrower: 44040
     minecraft: 38819

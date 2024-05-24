@@ -1,0 +1,23 @@
+---
+- name: Create Filebrowser files
+  ansible.builtin.file:
+    path: "{{ volumes.filebrowser }}/{{ item }}"
+    state: touch
+    owner: "{{ remote_user }}"
+    group: "{{ remote_user }}"
+  loop:
+    - database.db
+    - filebrowser.json
+
+- name: Run Filebrowser container
+  community.docker.docker_container:
+    name: filebrowser
+    image: docker.io/filebrowser/filebrowser:latest
+    state: started
+    restart_policy: always
+    ports:
+      - "{{ ports.filebrowser }}:80"
+    volumes:
+      - "{{ volumes.syncthing }}:/srv"
+      - "{{ volumes.filebrowser }}/database.db:/database.db"
+      - "{{ volumes.filebrowser }}/filebrowser.json:/filebrowser.json"

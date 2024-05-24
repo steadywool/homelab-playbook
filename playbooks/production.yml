@@ -8,22 +8,16 @@
       ansible.builtin.import_tasks: tasks/common.yml
       tags: common
 
-    - name: Deploy Caddy app
-      ansible.builtin.import_tasks: tasks/caddy.yml
-      tags: caddy
-
-    - name: Deploy Baikal app
-      ansible.builtin.import_tasks: tasks/baikal.yml
-      tags: baikal
-
-    - name: Deploy Firefly III app
-      ansible.builtin.import_tasks: tasks/firefly-iii.yml
-      tags: firefly-iii
-
-    - name: Deploy FreshRSS app
-      ansible.builtin.import_tasks: tasks/freshrss.yml
-      tags: freshrss
-
-    - name: Deploy Syncthing app
-      ansible.builtin.import_tasks: tasks/syncthing.yml
-      tags: syncthing
+    - name: Deploy containers
+      ansible.builtin.import_tasks: "tasks/{{ item }}.yml"
+      loop:
+        - baikal
+        - caddy
+        - firefly-iii
+        - freshrss
+        - syncthing
+        - watchtower
+        - portainer
+        - filebrowser
+        - uptime-kuma
+      tags: containers

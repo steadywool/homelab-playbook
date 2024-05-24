@@ -8,6 +8,9 @@
       ansible.builtin.import_tasks: tasks/common.yml
       tags: common
 
-    - name: Deploy WG-easy app
-      ansible.builtin.import_tasks: tasks/wg-easy.yml
-      tags: wg-easy
+    - name: Deploy containers
+      ansible.builtin.import_tasks: "tasks/{{ item }}.yml"
+      loop:
+        - wireguard
+        - watchtower
+      tags: containers
