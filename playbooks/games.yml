@@ -5,12 +5,10 @@
 
   tasks:
     - name: Execute common tasks
-      ansible.builtin.import_tasks: tasks/common.yml
-      tags: common
+      ansible.builtin.include_tasks: ../tasks/common.yml
 
     - name: Deploy containers
-      ansible.builtin.import_tasks: "tasks/{{ item }}.yml"
+      ansible.builtin.include_tasks: "../tasks/{{ item }}.yml"
       loop:
         - minecraft
         - watchtower
-      tags: containers
