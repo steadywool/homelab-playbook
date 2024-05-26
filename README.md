@@ -20,21 +20,11 @@ $ cd homelab-playbook
 ```
 
 > [!IMPORTANT]
-> Never run this playbook with `sudo` or as root. If you need privileges, use the `-K` (upper-case) argument.
-> If you don't use SSH keys, add the `-k` (lower-case) argument.
+> Never run this playbook with `sudo` or as root. If you need privileges, use the `-K` (upper-case) argument. </br></br>
+> If you don't use SSH keys, add the `-k` (lower-case) argument. </br></br>
+> If you use an Ansible Vault, add the `-J` argument to ask the vault password.
 
 Start the playbook and configure your system with this command (replace `PLAYBOOK_FILE` & `USER`):
 ```
-$ ansible-playbook playbooks/PLAYBOOK_FILE -u USER -K
+$ ansible-playbook playbooks/PLAYBOOK_FILE -u USER -K -J
 ```
-
-## ✨ Configuration
-
-You can perform partially run of playbook using tags.
-
-You can list them with this command:
-```
-$ ansible-playbook playbooks/production.yml --list-tags
-```
-
-Then use them with the `-t ROLE` parameter.
