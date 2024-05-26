@@ -4,6 +4,3 @@ packages:
 
 services:
     - docker.service
-
-# WG-Easy password
-wg_password: CHANGEME

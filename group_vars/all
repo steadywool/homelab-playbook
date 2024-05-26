@@ -12,3 +12,9 @@ ports:
     freshrss: 44030
     filebrower: 44040
     minecraft: 38819
+
+# Firefly III token
+fireflyiii_token: CHANGEME32CHAR
+
+# WG-Easy password
+wg_password: CHANGEME
