@@ -1,5 +1,5 @@
 ---
-domain_name: dizzytopaz.fr
+domain_name: local.dizzytopaz.fr
 
 ports:
     proxmox: 8006
