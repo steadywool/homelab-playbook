@@ -1,12 +1,4 @@
 ---
-- name: Add Firefly-iii cron job
-  ansible.builtin.cron:
-    name: Firefly-iii Cron Job
-    job: "wget -qO- http://localhost:{{ ports.fireflyiii }}/api/v1/cron/{{ fireflyiii_token }}"
-    minute: "0"
-    hour: "3"
-    user: "{{ remote_user }}"
-
 - name: Create Firefly-iii volumes
   community.docker.docker_volume:
     state: present
@@ -14,6 +6,16 @@
   loop: 
     - fireflyiii_db
     - fireflyiii_upload
+  tags: firefly-iii
+
+- name: Run Cron container
+  community.docker.docker_container:
+    name: firefly-iii_cron
+    image: alpine:latest
+    state: started
+    restart_policy: always
+    command: sh -c "echo \"0 3 * * * wget -qO- http://firefly-iii:8080/api/v1/cron/{{ fireflyiii_token }}\" | crontab - && crond -f -L /dev/stdout"
+  tags: firefly-iii
 
 - name: Run Firefly-iii container
   community.docker.docker_container:
@@ -21,8 +23,7 @@
     image: docker.io/fireflyiii/core:latest
     state: started
     restart_policy: always
-    ports:
-      - "{{ ports.fireflyiii }}:8080/tcp"
+    network_mode: overlay_network
     volumes:
       - fireflyiii_upload:/var/www/html/storage/upload
       - fireflyiii_db:/var/www/html/storage/database
@@ -33,3 +34,4 @@
       DB_CONNECTION: sqlite
       STATIC_CRON_TOKEN: "{{ fireflyiii_token }}"
       TRUSTED_PROXIES: "**"
+  tags: firefly-iii

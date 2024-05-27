@@ -3,6 +3,7 @@
   community.docker.docker_volume:
     state: present
     name: portainer_data
+  tags: portainer
 
 - name: Run Portainer container
   community.docker.docker_container:
@@ -10,8 +11,8 @@
     image: docker.io/portainer/portainer-ce:latest
     state: started
     restart_policy: always
-    ports:
-      - "{{ ports.portainer }}:9443"
+    network_mode: overlay_network
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+  tags: portainer

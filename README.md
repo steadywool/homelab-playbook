@@ -1,6 +1,8 @@
-# 🕹️ Homelab Playbook
+# 🐋 Homelab Playbook
 
 Create containers with Ansible.
+
+This playbook use Docker Swarm to create an overlay network across differents hosts.
 
 ## 🚀 Installation
 
@@ -24,7 +26,20 @@ $ cd homelab-playbook
 > If you don't use SSH keys, add the `-k` (lower-case) argument. </br></br>
 > If you use an Ansible Vault, add the `-J` argument to ask the vault password.
 
-Start the playbook and configure your system with this command (replace `PLAYBOOK_FILE` & `USER`):
+Start the playbook and configure your system with this command (replace `PLAYBOOK_FILE`):
 ```
-$ ansible-playbook playbooks/PLAYBOOK_FILE -u USER -K -J
+$ ansible-playbook playbooks/PLAYBOOK_FILE -K -J
 ```
+
+**You should start with the `swarm.yml` playbook. It initialize the mandatory Docker network.**
+
+## ✨ Configuration
+
+You can perform partially run of playbook using tags.
+
+You can list them with this command:
+```
+$ ansible-playbook playbooks/production.yml --list-tags
+```
+
+Then use them with the `-t ROLE` parameter.

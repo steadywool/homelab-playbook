@@ -6,3 +6,9 @@
 
 [games]
 192.168.1.12
+
+# The first address is the master node
+[swarm:children]
+production
+vpn
+games

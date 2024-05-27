@@ -8,6 +8,7 @@
   loop:
     - database.db
     - filebrowser.json
+  tags: filebrowser
 
 - name: Run Filebrowser container
   community.docker.docker_container:
@@ -15,9 +16,9 @@
     image: docker.io/filebrowser/filebrowser:latest
     state: started
     restart_policy: always
-    ports:
-      - "{{ ports.filebrowser }}:80"
+    network_mode: overlay_network
     volumes:
       - "{{ volumes.syncthing }}:/srv"
       - "{{ volumes.filebrowser }}/database.db:/database.db"
       - "{{ volumes.filebrowser }}/filebrowser.json:/filebrowser.json"
+  tags: filebrowser

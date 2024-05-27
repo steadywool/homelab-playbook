@@ -6,6 +6,7 @@
   loop: 
     - baikal_config
     - baikal_specific
+  tags: baikal
 
 - name: Run Baikal container
   community.docker.docker_container:
@@ -13,8 +14,8 @@
     image: docker.io/ckulka/baikal:nginx
     state: started
     restart_policy: always
-    ports:
-      - "{{ ports.baikal }}:80"
+    network_mode: overlay_network
     volumes:
       - baikal_config:/var/www/baikal/config
       - baikal_specific:/var/www/baikal/Specific
+  tags: baikal

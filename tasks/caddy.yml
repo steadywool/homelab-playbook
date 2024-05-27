@@ -5,6 +5,7 @@
     dest: "{{ volumes.caddy }}/Caddyfile"
     owner: "{{ remote_user }}"
     group: "{{ remote_user }}"
+  tags: caddy
 
 - name: Create Caddy volumes
   community.docker.docker_volume:
@@ -13,6 +14,7 @@
   loop: 
     - caddy_data
     - caddy_config
+  tags: caddy
 
 - name: Run Caddy container
   community.docker.docker_container:
@@ -20,6 +22,7 @@
     image: docker.io/library/caddy:alpine
     state: started
     restart_policy: always
+    network_mode: overlay_network
     ports:
       - 80:80
       - 443:443
@@ -27,3 +30,4 @@
       - "{{ volumes.caddy }}/Caddyfile:/etc/caddy/Caddyfile"
       - caddy_data:/data
       - caddy_config:/config
+  tags: caddy

@@ -3,6 +3,7 @@
   community.docker.docker_volume:
     state: present
     name: wireguard_data
+  tags: wireguard
 
 - name: Run Wg-easy container
   community.docker.docker_container:
@@ -17,11 +18,12 @@
     sysctls:
       net.ipv4.conf.all.src_valid_mark: 1
       net.ipv4.ip_forward: 1
+    network_mode: overlay_network
     ports:
       - 51820:51820/udp
-      - "{{ ports.wireguard }}:51821/tcp"
     volumes:
       - wireguard_data:/etc/wireguard:Z
     env:
       WG_HOST: home.dizzytopaz.fr
       PASSWORD: "{{ wg_password }}"
+  tags: wireguard

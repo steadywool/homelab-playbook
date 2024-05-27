@@ -1,6 +1,9 @@
 ---
 packages:
-    - docker.io
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - python3-docker
     - qemu-guest-agent
 
 services:
@@ -12,7 +15,6 @@ volumes:
     syncthing: "/home/{{ remote_user }}/containers/syncthing"
     filebrowser: "/home/{{ remote_user }}/containers/filebrowser"
 
-# Firefly III token
 fireflyiii_token: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           65323937316465353561363063316536633535333462303339306164643832383539623935366638

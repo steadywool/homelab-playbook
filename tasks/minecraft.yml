@@ -6,7 +6,7 @@
     state: started
     restart_policy: always
     ports:
-      - "{{ ports.minecraft }}:25565"
+      - 38819:25565
     volumes:
       - "{{ volumes.minecraft }}:/data"
     env:
@@ -40,3 +40,4 @@
       SNOOPER_ENABLED: false
       USE_AIKAR_FLAGS: true
       MEMORY: "2G"
+  tags: minecraft

@@ -1,50 +1,50 @@
-proxmox.{{ domain_name }}.fr {
+proxmox.local.dizzytopaz.fr {
     tls internal
-    reverse_proxy 192.168.1.9:{{ ports.proxmox }} {
+    reverse_proxy 192.168.1.9:8006 {
         transport http {
             tls_insecure_skip_verify
         }
     }
 }
 
-wireguard.{{ domain_name }} {
+wireguard.local.dizzytopaz {
     tls internal
-    reverse_proxy 192.168.1.10:{{ ports.wireguard }}
+    reverse_proxy wireguard:51821
 }
 
-http://baikal.{{ domain_name }} {
-    reverse_proxy 192.168.1.11:{{ ports.baikal }}
+http://baikal.local.dizzytopaz {
+    reverse_proxy baikal:80
 }
 
-filebrowser.{{ domain_name }} {
+filebrowser.local.dizzytopaz {
     tls internal
-    reverse_proxy 192.168.1.11:{{ ports.filebrowser }}
+    reverse_proxy filebrowser:80
 }
 
-http://firefly.{{ domain_name }} {
-    reverse_proxy 192.168.1.11:{{ ports.fireflyiii }}
+http://firefly-iii.local.dizzytopaz {
+    reverse_proxy firefly-iii:8080
 }
 
-freshrss.{{ domain_name }} {
+freshrss.local.dizzytopaz {
     tls internal
-    reverse_proxy 192.168.1.11:{{ ports.freshrss }}
+    reverse_proxy freshrss:80
 }
 
-portainer.{{ domain_name }} {
+portainer.local.dizzytopaz {
     tls internal
-    reverse_proxy 192.168.1.11:{{ ports.portainer }} {
+    reverse_proxy portainer:9443 {
         transport http {
             tls_insecure_skip_verify
         }
     }
 }
 
-syncthing.{{ domain_name }} {
+syncthing.local.dizzytopaz {
     tls internal
-    reverse_proxy 192.168.1.11:{{ ports.syncthing }}
+    reverse_proxy syncthing:8384
 }
 
-uptime.{{ domain_name }} {
+uptime-kuma.local.dizzytopaz {
     tls internal
-    reverse_proxy 192.168.1.11:{{ ports.uptimekuma }}
+    reverse_proxy uptime-kuma:3001
 }

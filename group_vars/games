@@ -1,6 +1,9 @@
 ---
 packages:
-    - docker.io
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - python3-docker
     - qemu-guest-agent
 
 services:
