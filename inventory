@@ -1,11 +1,11 @@
 [vpn]
-192.168.1.10
+192.168.1.10 ansible_user=root
 
 [production]
-192.168.1.11
+192.168.1.11 ansible_user=user
 
 [games]
-192.168.1.12
+192.168.1.12 ansible_user=user
 
 # The first address is the master node
 [swarm:children]
