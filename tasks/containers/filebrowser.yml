@@ -8,7 +8,6 @@
   loop:
     - database.db
     - filebrowser.json
-  tags: filebrowser
 
 - name: Run Filebrowser container
   community.docker.docker_container:
@@ -21,4 +20,3 @@
       - "{{ volumes.syncthing }}:/srv"
       - "{{ volumes.filebrowser }}/database.db:/database.db"
       - "{{ volumes.filebrowser }}/filebrowser.json:/filebrowser.json"
-  tags: filebrowser

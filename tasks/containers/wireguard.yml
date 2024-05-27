@@ -3,7 +3,6 @@
   community.docker.docker_volume:
     state: present
     name: wireguard_data
-  tags: wireguard
 
 - name: Run Wg-easy container
   community.docker.docker_container:
@@ -26,4 +25,3 @@
     env:
       WG_HOST: home.dizzytopaz.fr
       PASSWORD: "{{ wg_password }}"
-  tags: wireguard

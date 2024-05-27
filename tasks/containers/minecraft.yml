@@ -40,4 +40,3 @@
       SNOOPER_ENABLED: false
       USE_AIKAR_FLAGS: true
       MEMORY: "2G"
-  tags: minecraft

@@ -5,7 +5,13 @@
 
   tasks:
     - name: Install Docker
-      ansible.builtin.include_tasks: ../tasks/docker.yml
+      ansible.builtin.include_tasks:
+        file: ../tasks/docker.yml
+        apply:
+          tags: docker
 
     - name: Create Docker Swarm cluster
-      ansible.builtin.include_tasks: ../tasks/swarm.yml
+      ansible.builtin.include_tasks:
+        file: ../tasks/swarm.yml
+        apply:
+          tags: swarm

@@ -3,7 +3,6 @@
   community.docker.docker_volume:
     state: present
     name: portainer_data
-  tags: portainer
 
 - name: Run Portainer container
   community.docker.docker_container:
@@ -15,4 +14,3 @@
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
-  tags: portainer

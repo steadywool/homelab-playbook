@@ -6,7 +6,6 @@
   loop: 
     - freshrss_extensions
     - freshrss_data
-  tags: freshrss
 
 - name: Run FreshRSS container
   community.docker.docker_container:
@@ -21,4 +20,3 @@
     env:
       TZ: Europe/Paris
       CRON_MIN: "1,31"
-  tags: freshrss

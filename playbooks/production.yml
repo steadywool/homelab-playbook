@@ -5,10 +5,16 @@
 
   tasks:
     - name: Execute common tasks
-      ansible.builtin.include_tasks: ../tasks/common.yml
+      ansible.builtin.include_tasks: 
+        file: ../tasks/common.yml
+        apply:
+          tags: common
 
     - name: Deploy containers
-      ansible.builtin.include_tasks: "../tasks/containers/{{ task_item }}.yml"
+      ansible.builtin.include_tasks:
+        file: "../tasks/containers/{{ item }}.yml"
+        apply:
+          tags: "{{ item }}"
       loop:
         - baikal
         - caddy
@@ -19,5 +25,3 @@
         - portainer
         - filebrowser
         - uptime-kuma
-      loop_control:
-        loop_var: task_item

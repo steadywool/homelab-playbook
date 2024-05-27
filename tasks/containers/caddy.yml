@@ -5,7 +5,6 @@
     dest: "{{ volumes.caddy }}/Caddyfile"
     owner: "{{ remote_user }}"
     group: "{{ remote_user }}"
-  tags: caddy
 
 - name: Create Caddy volumes
   community.docker.docker_volume:
@@ -14,7 +13,6 @@
   loop: 
     - caddy_data
     - caddy_config
-  tags: caddy
 
 - name: Run Caddy container
   community.docker.docker_container:
@@ -30,4 +28,3 @@
       - "{{ volumes.caddy }}/Caddyfile:/etc/caddy/Caddyfile"
       - caddy_data:/data
       - caddy_config:/config
-  tags: caddy

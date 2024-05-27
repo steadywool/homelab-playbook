@@ -3,7 +3,6 @@
   community.docker.docker_volume:
     state: present
     name: uptimekuma_data
-  tags: uptime-kuma
 
 - name: Run Uptime-kuma container
   community.docker.docker_container:
@@ -14,4 +13,3 @@
     network_mode: overlay_network
     volumes:
       - uptimekuma_data:/app/data
-  tags: uptime-kuma

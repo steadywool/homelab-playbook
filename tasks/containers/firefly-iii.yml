@@ -6,7 +6,6 @@
   loop: 
     - fireflyiii_db
     - fireflyiii_upload
-  tags: firefly-iii
 
 - name: Run Cron container
   community.docker.docker_container:
@@ -15,7 +14,6 @@
     state: started
     restart_policy: always
     command: sh -c "echo \"0 3 * * * wget -qO- http://firefly-iii:8080/api/v1/cron/{{ fireflyiii_token }}\" | crontab - && crond -f -L /dev/stdout"
-  tags: firefly-iii
 
 - name: Run Firefly-iii container
   community.docker.docker_container:
@@ -34,4 +32,3 @@
       DB_CONNECTION: sqlite
       STATIC_CRON_TOKEN: "{{ fireflyiii_token }}"
       TRUSTED_PROXIES: "**"
-  tags: firefly-iii

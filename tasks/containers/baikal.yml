@@ -6,7 +6,6 @@
   loop: 
     - baikal_config
     - baikal_specific
-  tags: baikal
 
 - name: Run Baikal container
   community.docker.docker_container:
@@ -18,4 +17,3 @@
     volumes:
       - baikal_config:/var/www/baikal/config
       - baikal_specific:/var/www/baikal/Specific
-  tags: baikal
