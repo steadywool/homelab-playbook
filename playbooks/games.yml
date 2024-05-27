@@ -8,7 +8,7 @@
       ansible.builtin.include_tasks: ../tasks/common.yml
 
     - name: Deploy containers
-      ansible.builtin.include_tasks: "../tasks/{{ task_item }}.yml"
+      ansible.builtin.include_tasks: "../tasks/containers/{{ task_item }}.yml"
       loop:
         - minecraft
         - watchtower
