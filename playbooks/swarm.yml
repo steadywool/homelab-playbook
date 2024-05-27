@@ -4,5 +4,8 @@
   become: true
 
   tasks:
+    - name: Install Docker
+      ansible.builtin.include_tasks: ../tasks/docker.yml
+
     - name: Create Docker Swarm cluster
       ansible.builtin.include_tasks: ../tasks/swarm.yml

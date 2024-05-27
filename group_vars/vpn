@@ -1,13 +1,4 @@
 ---
-packages:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
-    - python3-docker
-
-services:
-    - docker.service
-
 wg_password: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           66643966393734313436356365643631396431353461336639613136616133363666333535663435
