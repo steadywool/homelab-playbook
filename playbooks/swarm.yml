@@ -2,16 +2,6 @@
 - hosts: swarm
   gather_facts: true
   become: true
-
-  tasks:
-    - name: Install Docker
-      ansible.builtin.include_tasks:
-        file: ../tasks/docker.yml
-        apply:
-          tags: docker
-
-    - name: Create Docker Swarm cluster
-      ansible.builtin.include_tasks:
-        file: ../tasks/swarm.yml
-        apply:
-          tags: swarm
+  roles:
+    - common
+    - swarm

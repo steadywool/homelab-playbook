@@ -1,0 +1,12 @@
+---
+- name: Run Watchtower container
+  community.docker.docker_container:
+    name: watchtower
+    image: docker.io/containrrr/watchtower:latest
+    state: started
+    restart_policy: always
+    network_mode: overlay_network
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    env:
+      WATCHTOWER_CLEANUP: "true"

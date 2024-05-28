@@ -2,19 +2,6 @@
 - hosts: vpn
   gather_facts: true
   become: true
-
-  tasks:
-    - name: Execute common tasks
-      ansible.builtin.include_tasks: 
-        file: ../tasks/common.yml
-        apply:
-          tags: common
-
-    - name: Deploy containers
-      ansible.builtin.include_tasks:
-        file: "../tasks/containers/{{ item }}.yml"
-        apply:
-          tags: "{{ item }}"
-      loop:
-        - wireguard
-        - watchtower
+  roles:
+    - common
+    - vpn

@@ -1,5 +1,6 @@
 ---
 packages:
+    - ca-certificates
     - qemu-guest-agent
 
 services:

@@ -1,0 +1,13 @@
+email: CHANGEME
+
+private_domain: CHANGEME # Used by Traefik
+public_domain: CHANGEME # Used by Wireguard
+
+ovh_endpoint: CHANGME
+ovh_application_key: CHANGEME
+ovh_application_secret: CHANGEME
+ovh_consumer_key: CHANGME
+
+wg_password: CHANGEME
+
+fireflyiii_token: CHANGEME32CHAR

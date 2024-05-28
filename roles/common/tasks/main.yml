@@ -18,7 +18,10 @@
   ansible.builtin.file:
     path: "{{ item.value }}"
     state: directory
-    owner: "{{ remote_user }}"
-    group: "{{ remote_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
   loop: "{{ volumes|dict2items }}"
   when: volumes is defined
+
+- ansible.builtin.import_tasks: docker.yml
+  tags: docker

@@ -2,26 +2,6 @@
 - hosts: production
   gather_facts: true
   become: true
-
-  tasks:
-    - name: Execute common tasks
-      ansible.builtin.include_tasks: 
-        file: ../tasks/common.yml
-        apply:
-          tags: common
-
-    - name: Deploy containers
-      ansible.builtin.include_tasks:
-        file: "../tasks/containers/{{ item }}.yml"
-        apply:
-          tags: "{{ item }}"
-      loop:
-        - baikal
-        - caddy
-        - firefly-iii
-        - freshrss
-        - syncthing
-        - watchtower
-        - portainer
-        - filebrowser
-        - uptime-kuma
+  roles:
+    - common
+    - production
