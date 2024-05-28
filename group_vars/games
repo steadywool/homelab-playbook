@@ -1,6 +1,7 @@
 ---
 packages:
     - ca-certificates
+    - gnupg
     - qemu-guest-agent
 
 services:
