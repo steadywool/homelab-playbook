@@ -21,3 +21,4 @@
       traefik.http.routers.portainer.tls.certresolver: "ovh"
       traefik.http.routers.portainer.service: "portainer"
       traefik.http.services.portainer.loadbalancer.server.port: "9443"
+      traefik.http.services.portainer.loadbalancer.server.scheme: "https"

@@ -1,9 +1,8 @@
 api:
-  debug: false # Enable this to debug Traefik
+  debug: true # Enable this to debug Traefik
   dashboard: true # Enable the web dashboard
 
 entryPoints:
-  # Redirect HTTP resquest to HTTPS
   http:
     address: ":80"
     http:
@@ -11,20 +10,8 @@ entryPoints:
         entryPoint:
           to: "https"
           scheme: "https"
-  # HTTPS port
   https:
     address: ":443"
-  # Reverse-proxy Proxmox
-  routers:
-    proxmox:
-      rule: Host(`proxmox.{{ private_domain }}`)
-      entryPoints: "https"
-      tls:
-        certresolver: "ovh"
-      service: "proxmox"
-      loadbalancer:
-        server:
-          port: "8006"
 
 # Allow reverse-proxy on self-signed web app
 serversTransport:
@@ -32,7 +19,8 @@ serversTransport:
 
 providers:
   docker:
-    network: overlay_network # Docker network
+    endpoint: "unix:///var/run/docker.sock"
+    network: "overlay_network" # Docker network
     exposedbydefault: false # Must use traefik.enable to expose service
 
 # HTTPS configuration
@@ -43,3 +31,19 @@ certificatesResolvers:
       storage: "acme.json"
       dnsChallenge:
         provider: "ovh"
+
+# Reverse-proxy Proxmox
+http:
+  routers:
+    proxmox:
+      rule: "Host(`proxmox.{{ private_domain }}`)"
+      entryPoints:
+        - "https"
+      tls:
+        certResolver: "ovh"
+      service: "proxmox"
+  services:
+    proxmox:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.1.9:8006"
