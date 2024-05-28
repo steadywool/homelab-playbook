@@ -1,0 +1,15 @@
+---
+# Reverse-proxy Proxmox
+http:
+  routers:
+    proxmox:
+      rule: "Host(`pve.{{ private_domain }}`)"
+      entryPoints: 
+        - "https"
+      tls: {}
+      service: "proxmox"
+  services:
+    proxmox:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.1.9:8006"

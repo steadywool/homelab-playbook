@@ -24,6 +24,6 @@
       traefik.enable: "true"
       traefik.http.routers.filebrower.rule: Host(`filebrowser.{{ private_domain }}`)
       traefik.http.routers.filebrower.entrypoints: "https"
-      traefik.http.routers.filebrower.tls.certresolver: "ovh"
+      traefik.http.routers.filebrowser.tls: "true"
       traefik.http.routers.filebrower.service: "filebrowser"
       traefik.http.services.filebrower.loadbalancer.server.port: "80"

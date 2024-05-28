@@ -1,7 +1,17 @@
 api:
-  debug: true # Enable this to debug Traefik
+  debug: false # Enable this to debug Traefik
   dashboard: true # Enable the web dashboard
 
+# HTTPS certificate
+certificatesResolvers:
+  ovh:
+    acme:
+      email: "{{ email }}"
+      storage: "/acme.json"
+      dnsChallenge:
+        provider: "ovh"  
+
+# HTTP/HTTPS configuration
 entryPoints:
   http:
     address: ":80"
@@ -12,38 +22,17 @@ entryPoints:
           scheme: "https"
   https:
     address: ":443"
-
+ 
 # Allow reverse-proxy on self-signed web app
 serversTransport:
   insecureSkipVerify: true
 
 providers:
+  # Reverse proxy docker services
   docker:
-    endpoint: "unix:///var/run/docker.sock"
+    endpoint: "unix:///var/run/docker.sock" # Docker socket
     network: "overlay_network" # Docker network
     exposedbydefault: false # Must use traefik.enable to expose service
-
-# HTTPS configuration
-certificatesResolvers:
-  ovh:
-    acme:
-      email: "{{ email }}"
-      storage: "acme.json"
-      dnsChallenge:
-        provider: "ovh"
-
-# Reverse-proxy Proxmox
-http:
-  routers:
-    proxmox:
-      rule: "Host(`proxmox.{{ private_domain }}`)"
-      entryPoints:
-        - "https"
-      tls:
-        certResolver: "ovh"
-      service: "proxmox"
-  services:
-    proxmox:
-      loadBalancer:
-        servers:
-          - url: "https://192.168.1.9:8006"
+  # Reverse proxy external services
+  file:
+    filename: "/config.yml"

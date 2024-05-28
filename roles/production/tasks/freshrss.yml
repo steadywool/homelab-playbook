@@ -24,6 +24,6 @@
       traefik.enable: "true"
       traefik.http.routers.freshrss.rule: Host(`freshrss.{{ private_domain }}`)
       traefik.http.routers.freshrss.entrypoints: "https"
-      traefik.http.routers.freshrss.tls.certresolver: "ovh"
+      traefik.http.routers.freshrss.tls: "true"
       traefik.http.routers.freshrss.service: "freshrss"
       traefik.http.services.freshrss.loadbalancer.server.port: "80"

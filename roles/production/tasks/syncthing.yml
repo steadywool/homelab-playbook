@@ -16,6 +16,6 @@
       traefik.enable: "true"
       traefik.http.routers.syncthing.rule: Host(`syncthing.{{ private_domain }}`)
       traefik.http.routers.syncthing.entrypoints: "https"
-      traefik.http.routers.syncthing.tls.certresolver: "ovh"
+      traefik.http.routers.syncthing.tls: "true"
       traefik.http.routers.syncthing.service: "syncthing"
       traefik.http.services.syncthing.loadbalancer.server.port: "8384"

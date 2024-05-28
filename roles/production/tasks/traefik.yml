@@ -1,10 +1,13 @@
 ---
 - name: Template Traefik configuration
   ansible.builtin.template:
-    src: traefik.yml.j2
-    dest: "{{ volumes.traefik }}/traefik.yml"
+    src: "{{ item }}.j2"
+    dest: "{{ volumes.traefik }}/{{ item }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+  loop:
+    - traefik.yml
+    - config.yml
 
 - name: Create acme.json file
   ansible.builtin.file:
@@ -21,6 +24,7 @@
     state: started
     restart_policy: always
     network_mode: overlay_network
+    restart: true
     ports:
       - 80:80
       - 443:443
@@ -28,6 +32,7 @@
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - "{{ volumes.traefik }}/acme.json:/acme.json"
       - "{{ volumes.traefik }}/traefik.yml:/traefik.yml"
+      - "{{ volumes.traefik }}/config.yml:/config.yml"
     env:
       OVH_ENDPOINT: "{{ ovh_endpoint }}"
       OVH_APPLICATION_KEY: "{{ ovh_application_key }}"
@@ -38,4 +43,6 @@
       traefik.http.routers.traefik.rule: Host(`traefik.{{ private_domain }}`)
       traefik.http.routers.traefik.entrypoints: "https"
       traefik.http.routers.traefik.tls.certresolver: "ovh"
+      traefik.http.routers.traefik.tls.domains[0].main: "{{ private_domain }}"
+      traefik.http.routers.traefik.tls.domains[0].sans: "*.{{ private_domain }}"
       traefik.http.routers.traefik.service: "api@internal"
