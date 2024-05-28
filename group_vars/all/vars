@@ -1,13 +1,15 @@
-email: CHANGEME
+---
+email: CHANGEME # Used for DNS Challenge
 
 private_domain: CHANGEME # Used by Traefik
 public_domain: CHANGEME # Used by Wireguard
 
+# You should change these vars & the traefik.yml file if you are using a different DNS provider
 ovh_endpoint: CHANGME
 ovh_application_key: CHANGEME
 ovh_application_secret: CHANGEME
 ovh_consumer_key: CHANGME
 
-wg_password: CHANGEME
+wg_password: CHANGEME # WG-Easy UI password
 
-fireflyiii_token: CHANGEME32CHAR
+fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
