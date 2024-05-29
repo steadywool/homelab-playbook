@@ -2,5 +2,10 @@
 - ansible.builtin.import_tasks: minecraft.yml
   tags: minecraft
 
-- ansible.builtin.import_tasks: watchtower.yml
+- name: Run Watchtower
+  ansible.builtin.include_role:
+    name: production
+    tasks_from: watchtower
+    apply:
+      tags: watchtower
   tags: watchtower

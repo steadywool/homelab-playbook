@@ -6,8 +6,3 @@ packages:
 
 services:
     - qemu-guest-agent.service
-
-volumes:
-    traefik: "/home/{{ ansible_user }}/containers/traefik"
-    syncthing: "/home/{{ ansible_user }}/containers/syncthing"
-    filebrowser: "/home/{{ ansible_user }}/containers/filebrowser"

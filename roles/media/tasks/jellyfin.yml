@@ -1,0 +1,22 @@
+---
+- name: Create Jellyfin volume
+  community.docker.docker_volume:
+    state: present
+    name: jellyfin_config
+
+- name: Run Jellyfin container
+  community.docker.docker_container:
+    name: jellyfin
+    image: lscr.io/linuxserver/jellyfin:latest
+    state: started
+    restart_policy: unless-stopped
+    volumes:
+      - jellyfin_config:/config
+      - "{{ starr.path }}:/data"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.freshrss.rule: Host(`jellyfin.{{ private_domain }}`)
+      traefik.http.routers.freshrss.entrypoints: "https"
+      traefik.http.routers.freshrss.tls: "true"
+      traefik.http.routers.freshrss.service: "jellyfin"
+      traefik.http.services.freshrss.loadbalancer.server.port: "8096"

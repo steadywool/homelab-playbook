@@ -1,0 +1,22 @@
+---
+- name: Create Jellyseerr volume
+  community.docker.docker_volume:
+    state: present
+    name: jellyseerr_config
+
+- name: Run Jellyseerr container
+  community.docker.docker_container:
+    name: jellyseerr
+    image: docker.io/fallenbagel/jellyseerr:latest
+    state: started
+    restart_policy: always
+    network_mode: overlay_network
+    volumes:
+      - jellyseerr_config:/config
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.freshrss.rule: Host(`jellyseerr.{{ private_domain }}`)
+      traefik.http.routers.freshrss.entrypoints: "https"
+      traefik.http.routers.freshrss.tls: "true"
+      traefik.http.routers.freshrss.service: "jellyseerr"
+      traefik.http.services.freshrss.loadbalancer.server.port: "5055"

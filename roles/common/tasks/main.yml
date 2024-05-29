@@ -16,15 +16,5 @@
   when: services is defined
   tags: common
 
-- name: Create volumes directories
-  ansible.builtin.file:
-    path: "{{ item.value }}"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-  loop: "{{ volumes|dict2items }}"
-  when: volumes is defined
-  tags: common
-
 - ansible.builtin.import_tasks: docker.yml
   tags: docker

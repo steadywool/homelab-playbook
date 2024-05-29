@@ -11,26 +11,18 @@
       tags: traefik
   tags: traefik
 
-- name: Run Uptime-kuma
+- name: Run Syncthing
   ansible.builtin.include_role:
     name: production
-    tasks_from: uptime-kuma
+    tasks_from: syncthing
     apply:
-      tags: uptime-kuma
-  tags: uptime-kuma
+      tags: syncthing
+  tags: syncthing
 
-- name: Run portainer
+- name: Run filebrowser
   ansible.builtin.include_role:
     name: production
-    tasks_from: portainer
+    tasks_from: filebrowser
     apply:
-      tags: portainer
-  tags: portainer
-
-- name: Run Watchtower
-  ansible.builtin.include_role:
-    name: production
-    tasks_from: watchtower
-    apply:
-      tags: watchtower
-  tags: watchtower
+      tags: filebrowser
+  tags: filebrowser

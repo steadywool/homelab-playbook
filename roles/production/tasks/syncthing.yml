@@ -1,4 +1,12 @@
 ---
+- name: Create Syncthing directory
+  ansible.builtin.file:
+    path: "{{ directories.container }}/syncthing"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  register: syncthing
+
 - name: Run Syncthing container
   community.docker.docker_container:
     name: syncthing
@@ -11,7 +19,7 @@
       - 22000:22000/udp
       - 21027:21027/udp
     volumes:
-      - "{{ volumes.syncthing }}:/var/syncthing"
+      - "{{ syncthing.path }}:/var/syncthing"
     labels:
       traefik.enable: "true"
       traefik.http.routers.syncthing.rule: Host(`sync.{{ private_domain }}`)

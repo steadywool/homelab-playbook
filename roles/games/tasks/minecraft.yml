@@ -1,4 +1,12 @@
 ---
+- name: Create Minecraft directory
+  ansible.builtin.file:
+    path: "{{ directories.container }}/minecraft"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  register: minecraft
+
 - name: Run Minecraft server
   containers.podman.podman_container:
     name: minecraft
@@ -8,7 +16,7 @@
     ports:
       - 38819:25565
     volumes:
-      - "{{ volumes.minecraft }}:/data"
+      - "{{ minecraft.path }}:/data"
     env:
       # Appearance
       SERVER_NAME: "minecraft-survival"

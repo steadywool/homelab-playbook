@@ -1,0 +1,25 @@
+- name: Create Qbittorrent volume
+  community.docker.docker_volume:
+    state: present
+    name: qbittorrent_config
+
+- name: Run Qbittorrent container
+  community.docker.docker_container:
+    name: qbittorrent
+    image: lscr.io/linuxserver/qbittorrent:latest
+    state: started
+    restart_policy: always
+    network_mode: overlay_network
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+    volumes:
+      - qbittorrent_config:/config
+      - "{{ starr.path }}:/data"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.freshrss.rule: Host(`torrent.{{ private_domain }}`)
+      traefik.http.routers.freshrss.entrypoints: "https"
+      traefik.http.routers.freshrss.tls: "true"
+      traefik.http.routers.freshrss.service: "qbittorrent"
+      traefik.http.services.freshrss.loadbalancer.server.port: "8080"
