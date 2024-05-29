@@ -1,9 +1,0 @@
-{
-    "yaml.schemas": {
-        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json": [
-            "file:///home/steadywool/Documents/Dep%C3%B4ts/homelab-playbook/roles/production/tasks/traefik.yml",
-            "file:///home/steadywool/Documents/Dep%C3%B4ts/homelab-playbook/roles/staging/tasks/traefik.yml"
-        ],
-        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": "file:///home/steadywool/Documents/Dep%C3%B4ts/homelab-playbook/tasks/containers/traefik.yml"
-    }
-}
