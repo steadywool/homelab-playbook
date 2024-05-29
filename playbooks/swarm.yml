@@ -2,6 +2,15 @@
 - hosts: swarm
   gather_facts: true
   become: true
-  roles:
-    - common
-    - swarm
+  tasks:
+    - name: Execute common tasks
+      ansible.builtin.include_tasks:
+        file: ../tasks/common.yml
+        apply: { tags: common }
+      tags: always
+
+    - name: Setup Docker Swarm
+      ansible.builtin.include_tasks:
+        file: ../tasks/swarm.yml
+        apply: { tags: swarm }
+      tags: always
