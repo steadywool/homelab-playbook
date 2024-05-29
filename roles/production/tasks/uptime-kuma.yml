@@ -12,6 +12,7 @@
     restart_policy: always
     network_mode: overlay_network
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
       - uptimekuma_data:/app/data
     labels:
       traefik.enable: "true"

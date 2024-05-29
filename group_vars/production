@@ -9,5 +9,5 @@ services:
 
 volumes:
     traefik: "/home/{{ ansible_user }}/containers/traefik"
-    syncthing: "/home/{{ remote_user }}/containers/syncthing"
-    filebrowser: "/home/{{ remote_user }}/containers/filebrowser"
+    syncthing: "/home/{{ ansible_user }}/containers/syncthing"
+    filebrowser: "/home/{{ ansible_user }}/containers/filebrowser"

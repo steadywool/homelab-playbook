@@ -24,7 +24,6 @@
     state: started
     restart_policy: always
     network_mode: overlay_network
-    restart: true
     ports:
       - 80:80
       - 443:443

@@ -14,7 +14,7 @@
       - "{{ volumes.syncthing }}:/var/syncthing"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.syncthing.rule: Host(`syncthing.{{ private_domain }}`)
+      traefik.http.routers.syncthing.rule: Host(`sync.{{ private_domain }}`)
       traefik.http.routers.syncthing.entrypoints: "https"
       traefik.http.routers.syncthing.tls: "true"
       traefik.http.routers.syncthing.service: "syncthing"

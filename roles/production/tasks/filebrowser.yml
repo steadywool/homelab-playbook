@@ -1,13 +1,10 @@
 ---
-- name: Create Filebrowser files
+- name: Create Filebrowser database
   ansible.builtin.file:
-    path: "{{ volumes.filebrowser }}/{{ item }}"
+    path: "{{ volumes.filebrowser }}/database.db"
     state: touch
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  loop:
-    - database.db
-    - filebrowser.json
 
 - name: Run Filebrowser container
   community.docker.docker_container:
@@ -19,10 +16,9 @@
     volumes:
       - "{{ volumes.syncthing }}:/srv"
       - "{{ volumes.filebrowser }}/database.db:/database.db"
-      - "{{ volumes.filebrowser }}/filebrowser.json:/filebrowser.json"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.filebrower.rule: Host(`filebrowser.{{ private_domain }}`)
+      traefik.http.routers.filebrower.rule: Host(`files.{{ private_domain }}`)
       traefik.http.routers.filebrower.entrypoints: "https"
       traefik.http.routers.filebrowser.tls: "true"
       traefik.http.routers.filebrower.service: "filebrowser"

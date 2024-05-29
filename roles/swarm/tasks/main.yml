@@ -4,6 +4,7 @@
     state: present
   register: output_swarm
   when: inventory_hostname in groups['swarm'][0]
+  tags: swarm
 
 - name: Add manager nodes
   community.docker.docker_swarm:
@@ -11,6 +12,7 @@
     join_token: "{{ hostvars[groups['swarm'][0]]['output_swarm']['swarm_facts']['JoinTokens']['Manager'] }}"
     remote_addrs: "{{ groups['swarm'][0] }}"
   when: inventory_hostname in groups['swarm'] and inventory_hostname not in groups['swarm'][0]
+  tags: swarm
 
 - name: Create overlay network
   community.docker.docker_network:
@@ -18,3 +20,4 @@
     driver: overlay
     attachable: true
   when: inventory_hostname in groups['swarm'][0]
+  tags: swarm

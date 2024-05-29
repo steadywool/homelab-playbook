@@ -1,28 +1,36 @@
 ---
-#- name: Create overlay network
-#  community.docker.docker_network:
-#    name: overlay_network
-#
-#- name: Run Traefik
-#  ansible.builtin.include_role:
-#    name: production
-#    tasks_from: traefik
-#    apply:
-#      tags: traefik
-#  tags: traefik
-#
-#- name: Run Uptime-kuma
-#  ansible.builtin.include_role:
-#    name: production
-#    tasks_from: uptime-kuma
-#    apply:
-#      tags: uptime-kuma
-#  tags: uptime-kuma
-#
-#- name: Run portainer
-#  ansible.builtin.include_role:
-#    name: production
-#    tasks_from: portainer
-#    apply:
-#      tags: portainer
-#  tags: portainer
+- name: Create overlay network
+  community.docker.docker_network:
+    name: overlay_network
+
+- name: Run Traefik
+  ansible.builtin.include_role:
+    name: production
+    tasks_from: traefik
+    apply:
+      tags: traefik
+  tags: traefik
+
+- name: Run Uptime-kuma
+  ansible.builtin.include_role:
+    name: production
+    tasks_from: uptime-kuma
+    apply:
+      tags: uptime-kuma
+  tags: uptime-kuma
+
+- name: Run portainer
+  ansible.builtin.include_role:
+    name: production
+    tasks_from: portainer
+    apply:
+      tags: portainer
+  tags: portainer
+
+- name: Run Watchtower
+  ansible.builtin.include_role:
+    name: production
+    tasks_from: watchtower
+    apply:
+      tags: watchtower
+  tags: watchtower

@@ -27,7 +27,7 @@
       PASSWORD: "{{ wg_password }}"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.wireguard.rule: Host(`wireguard.{{ private_domain }}`)
+      traefik.http.routers.wireguard.rule: Host(`wg.{{ private_domain }}`)
       traefik.http.routers.wireguard.entrypoints: "https"
       traefik.http.routers.wireguard.tls: "true"
       traefik.http.routers.wireguard.service: "wireguard"
