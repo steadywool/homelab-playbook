@@ -1,3 +1,12 @@
+---
+- name: Create Starr directory
+  ansible.builtin.file:
+    path: "{{ directories.data }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  register: data
+
 - name: Create Qbittorrent volume
   community.docker.docker_volume:
     state: present

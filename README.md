@@ -33,13 +33,30 @@ $ ansible-playbook playbooks/PLAYBOOK_FILE -K -J
 
 **You should start with the `swarm.yml` playbook. It initialize the mandatory Docker network.**
 
-## ✨ Configuration
+## 🔧 Configuration
 
-You can perform partially run of playbook using tags.
-
-You can list them with this command:
-```
-$ ansible-playbook playbooks/production.yml --list-tags
-```
-
-Then use them with the `-t ROLE` parameter.
+<details open>
+    <summary>✨ You can perform partially run of playbook using tags:</summary>
+    <ul>
+        <li>common</li>
+        <li>docker</li>
+        <li>swarm</li>
+        <li>baikal</li>
+        <li>filebrowser</li>
+        <li>firefly-iii</li>
+        <li>freshrss</li>
+        <li>jellyfin</li>
+        <li>jellyseerr</li>
+        <li>lidarr</li>
+        <li>minecraft</li>
+        <li>portainer</li>
+        <li>prowlarr</li>
+        <li>qbittorrent</li>
+        <li>radarr</li>
+        <li>syncthing</li>
+        <li>traefik</li>
+        <li>uptime-kuma</li>
+        <li>watchtower</li>
+        <li>wireguard</li>
+    </ul>
+</details>

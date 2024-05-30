@@ -9,6 +9,12 @@
         apply: { tags: common }
       tags: always
 
+    - name: Install Docker
+      ansible.builtin.include_tasks:
+        file: ../tasks/docker.yml
+        apply: { tags: docker }
+      tags: always
+
     - name: Deploy containers
       ansible.builtin.include_tasks: 
         file: "../tasks/containers/{{ task_item }}.yml"

@@ -4,7 +4,6 @@
     name: "{{ packages }}"
     state: present
   when: packages is defined
-  tags: common
 
 - name: Enable Systemd services
   ansible.builtin.systemd:
@@ -14,7 +13,3 @@
     scope: system
   loop: "{{ services }}"
   when: services is defined
-  tags: common
-
-- ansible.builtin.import_tasks: docker.yml
-  tags: docker
