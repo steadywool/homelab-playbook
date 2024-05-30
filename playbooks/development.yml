@@ -3,12 +3,6 @@
   gather_facts: true
   become: true
   tasks:
-    - name: Execute common tasks
-      ansible.builtin.include_tasks:
-        file: ../tasks/common.yml
-        apply: { tags: common }
-      tags: always
-
     - name: Install Docker
       ansible.builtin.include_tasks:
         file: ../tasks/docker.yml

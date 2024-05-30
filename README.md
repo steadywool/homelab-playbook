@@ -38,7 +38,7 @@ $ ansible-playbook playbooks/PLAYBOOK_FILE -K -J
 <details open>
     <summary>✨ You can perform partially run of playbook using tags:</summary>
     <ul>
-        <li>common</li>
+        <li>qemu</li>
         <li>docker</li>
         <li>swarm</li>
         <li>baikal</li>

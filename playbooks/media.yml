@@ -3,10 +3,10 @@
   gather_facts: true
   become: true
   tasks:
-    - name: Execute common tasks
+    - name: Install Qemu Guest Agent
       ansible.builtin.include_tasks:
-        file: ../tasks/common.yml
-        apply: { tags: common }
+        file: ../tasks/qemu.yml
+        apply: { tags: qemu }
       tags: always
 
     - name: Install Docker
