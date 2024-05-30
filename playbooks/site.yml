@@ -1,12 +1,18 @@
 ---
-- name: Import vpn playbook
-  ansible.builtin.import_playbook: vpn.yml
+- name: Configure Swarm
+  ansible.builtin.import_playbook: configure_swarm.yml
 
-- name: Import production playbook
-  ansible.builtin.import_playbook: production.yml
+- name: Configure Zabbix
+  ansible.builtin.import_playbook: configure_zabbix.yml
 
-- name: Import media playbook
-  ansible.builtin.import_playbook: media.yml
+- name: Deploy apps
+  ansible.builtin.import_playbook: deploy_apps.yml
 
-- name: Import games playbook
-  ansible.builtin.import_playbook: games.yml
+- name: Deploy vpn
+  ansible.builtin.import_playbook: deploy_vpn.yml
+
+- name: Deploy media
+  ansible.builtin.import_playbook: deploy_media.yml
+
+- name: Deploy games
+  ansible.builtin.import_playbook: deploy_games.yml

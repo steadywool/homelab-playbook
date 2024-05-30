@@ -1,0 +1,8 @@
+---
+- ansible.builtin.import_tasks: minecraft.yml
+  tags: minecraft
+
+- ansible.builtin.include_role:
+    name: apps
+    tasks_from: watchtower
+  tags: watchtower

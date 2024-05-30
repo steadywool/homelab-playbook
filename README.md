@@ -24,57 +24,39 @@ $ cd homelab-playbook
 > [!IMPORTANT]
 > If you need a "sudo" password, use the `-K` (upper-case) argument. </br></br>
 > If you don't use SSH keys, add the `-k` (lower-case) argument. </br></br>
-> If you use an Ansible Vault, add the `-J` argument to ask the vault password.
+> If you use an Ansible Vault, add the `-J` argument.
 
-Start the playbook and configure your system with this command:
+All playbooks are in the `playbooks` directory. Choose one and execute it:
 ```
-$ ansible-playbook playbooks/swarm.yml
-$ ansible-playbook playbooks/site.yml
+$ ansible-playbook playbooks/PLAYBOOK_FILE.yml
 ```
 
-## 🔧 Configuration
+## ✨ Configuration
 
-<details open>
-    <summary>✨ You can perform partially run of playbook using tags:</summary>
-    <ul>
-        <li>qemu</li>
-        <li>docker</li>
-        <li>swarm</li>
-        <li>baikal</li>
-        <li>filebrowser</li>
-        <li>firefly-iii</li>
-        <li>freshrss</li>
-        <li>jellyfin</li>
-        <li>jellyseerr</li>
-        <li>lidarr</li>
-        <li>minecraft</li>
-        <li>portainer</li>
-        <li>prowlarr</li>
-        <li>qbittorrent</li>
-        <li>radarr</li>
-        <li>syncthing</li>
-        <li>traefik</li>
-        <li>uptime-kuma</li>
-        <li>watchtower</li>
-        <li>wireguard</li>
-    </ul>
-</details>
+You can perform partially run of playbook using tags.
+
+You can list them with this command:
+```
+$ ansible-playbook playbooks/site.yml --list-tags
+```
+
+Then use them with the `-t ROLE` parameter.
 
 ## 📕 Exemples
 
-Only install syncthing & filebrowser on the production hosts :
+Only install syncthing & filebrowser on the "apps" host :
 ```
-$ ansible-playbook playbooks/production.yml -t syncthing,filebrowser
+$ ansible-playbook playbooks/deploy_apps.yml -t syncthing,filebrowser
 ```
 
 Install Qemu Guest Agent & Docker on every hosts that need them :
 ```
-$ ansible-playbook playbooks/site.yml -t qemu,docker
+$ ansible-playbook playbooks/site.yml -t qemu-agent,docker
 ```
 
 Execute the entire vpn playbook but skip the watchtower installation :
 ```
-$ ansible-playbook playbooks/vpn.yml --skip-tags watchtower
+$ ansible-playbook playbooks/deploy_vpn.yml --skip-tags watchtower
 ```
 
 For more arguments, check the man page with the command `man ansible-playbook`.

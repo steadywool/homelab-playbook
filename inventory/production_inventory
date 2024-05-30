@@ -1,0 +1,20 @@
+[vpn]
+192.168.1.10 ansible_user=root
+
+[apps]
+192.168.1.11 ansible_user=user
+
+[games]
+192.168.1.12 ansible_user=user
+
+# The first host is the master node
+[swarm:children]
+apps
+vpn
+games
+
+# The first host is the Zabbix server
+[zabbix:children]
+apps
+vpn
+games

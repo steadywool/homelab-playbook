@@ -1,0 +1,6 @@
+---
+- ansible.builtin.import_tasks: zabbix-server.yml
+  tags: zabbix-server
+
+- ansible.builtin.import_tasks: zabbix-agent.yml
+  tags: zabbix-agent

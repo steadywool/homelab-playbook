@@ -1,0 +1,7 @@
+---
+- hosts: zabbix
+  gather_facts: true
+  become: true
+  roles:
+    - common
+    - zabbix

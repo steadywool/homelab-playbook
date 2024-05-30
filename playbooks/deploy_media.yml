@@ -1,0 +1,7 @@
+---
+- hosts: media
+  gather_facts: true
+  become: true
+  roles:
+    - common
+    - media
