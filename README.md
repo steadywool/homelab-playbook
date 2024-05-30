@@ -28,8 +28,8 @@ $ cd homelab-playbook
 
 Start the playbook and configure your system with this command:
 ```
-$ ansible-playbook playbooks/swarm.yml -K -J
-$ ansible-playbook playbooks/site.yml -K -J
+$ ansible-playbook playbooks/swarm.yml
+$ ansible-playbook playbooks/site.yml
 ```
 
 ## 🔧 Configuration
@@ -64,17 +64,17 @@ $ ansible-playbook playbooks/site.yml -K -J
 
 Only install syncthing & filebrowser on the production hosts :
 ```
-$ ansible-playbook playbooks/production.yml -K -J -t syncthing,filebrowser
+$ ansible-playbook playbooks/production.yml -t syncthing,filebrowser
 ```
 
 Install Qemu Guest Agent & Docker on every hosts that need them :
 ```
-$ ansible-playbook playbooks/site.yml -K -J -t qemu,docker
+$ ansible-playbook playbooks/site.yml -t qemu,docker
 ```
 
 Execute the entire vpn playbook but skip the watchtower installation :
 ```
-$ ansible-playbook playbooks/vpn.yml -K -J --skip-tags watchtower
+$ ansible-playbook playbooks/vpn.yml --skip-tags watchtower
 ```
 
 For more arguments, check the man page with the command `man ansible-playbook`.
