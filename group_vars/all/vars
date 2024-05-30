@@ -14,8 +14,5 @@ wg_password: CHANGEME # WG-Easy UI password
 
 fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
 
-postgres_password: CHANGEME # Postgresql password used by Zabbix
-
 directories:
   container: "/home/{{ ansible_user }}/container"
-  data: "/home/{{ansible_user }}/data"

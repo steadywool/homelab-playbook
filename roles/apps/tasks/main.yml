@@ -14,9 +14,6 @@
 - ansible.builtin.import_tasks: freshrss.yml
   tags: freshrss
 
-- ansible.builtin.import_tasks: portainer.yml
-  tags: portainer
-
 - ansible.builtin.import_tasks: traefik.yml
   tags: traefik
 
