@@ -22,16 +22,15 @@ $ cd homelab-playbook
 ```
 
 > [!IMPORTANT]
-> Never run this playbook with `sudo` or as root. If you need privileges, use the `-K` (upper-case) argument. </br></br>
+> If you need a "sudo" password, use the `-K` (upper-case) argument. </br></br>
 > If you don't use SSH keys, add the `-k` (lower-case) argument. </br></br>
 > If you use an Ansible Vault, add the `-J` argument to ask the vault password.
 
-Start the playbook and configure your system with this command (replace `PLAYBOOK_FILE`):
+Start the playbook and configure your system with this command:
 ```
-$ ansible-playbook playbooks/PLAYBOOK_FILE -K -J
+$ ansible-playbook playbooks/swarm.yml -K -J
+$ ansible-playbook playbooks/site.yml -K -J
 ```
-
-**You should start with the `swarm.yml` playbook. It initialize the mandatory Docker network.**
 
 ## 🔧 Configuration
 
@@ -60,3 +59,22 @@ $ ansible-playbook playbooks/PLAYBOOK_FILE -K -J
         <li>wireguard</li>
     </ul>
 </details>
+
+## 📕 Exemples
+
+Only install syncthing & filebrowser on the production hosts :
+```
+$ ansible-playbook playbooks/production.yml -K -J -t syncthing,filebrowser
+```
+
+Install Qemu Guest Agent & Docker on every hosts that need them :
+```
+$ ansible-playbook playbooks/site.yml -K -J -t qemu,docker
+```
+
+Execute the entire vpn playbook but skip the watchtower installation :
+```
+$ ansible-playbook playbooks/vpn.yml -K -J --skip-tags watchtower
+```
+
+For more arguments, check the man page with the command `man ansible-playbook`.

@@ -1,0 +1,12 @@
+---
+- name: Import vpn playbook
+  ansible.builtin.import_playbook: vpn.yml
+
+- name: Import production playbook
+  ansible.builtin.import_playbook: production.yml
+
+- name: Import media playbook
+  ansible.builtin.import_playbook: media.yml
+
+- name: Import games playbook
+  ansible.builtin.import_playbook: games.yml
