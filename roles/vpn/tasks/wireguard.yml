@@ -17,18 +17,11 @@
     sysctls:
       net.ipv4.conf.all.src_valid_mark: 1
       net.ipv4.ip_forward: 1
-    network_mode: overlay_network
     ports:
       - 51820:51820/udp
+      - 51821:51821
     volumes:
-      - wireguard_data:/etc/wireguard:Z
+      - wireguard_data:/etc/wireguard
     env:
       WG_HOST: "{{ public_domain }}"
       PASSWORD: "{{ wg_password }}"
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.wireguard.rule: Host(`wg.{{ private_domain }}`)
-      traefik.http.routers.wireguard.entrypoints: "https"
-      traefik.http.routers.wireguard.tls: "true"
-      traefik.http.routers.wireguard.service: "wireguard"
-      traefik.http.services.wireguard.loadbalancer.server.port: "51821"
