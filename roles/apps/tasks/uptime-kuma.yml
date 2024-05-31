@@ -10,7 +10,7 @@
     image: docker.io/louislam/uptime-kuma:latest
     state: started
     restart_policy: always
-    network_mode: overlay_network
+    network_mode: "{{ docker.network }}"
     volumes:
       - uptimekuma_data:/app/data
     labels:

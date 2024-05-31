@@ -14,7 +14,7 @@
 
 - name: Create overlay network
   community.docker.docker_network:
-    name: overlay_network
+    name: "{{ docker.network }}"
     driver: overlay
     attachable: true
   when: inventory_hostname in groups['swarm'][0]

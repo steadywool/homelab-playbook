@@ -13,7 +13,7 @@
     image: docker.io/ckulka/baikal:nginx
     state: started
     restart_policy: always
-    network_mode: overlay_network
+    network_mode: "{{ docker.network }}"
     volumes:
       - baikal_config:/var/www/baikal/config
       - baikal_specific:/var/www/baikal/Specific

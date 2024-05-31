@@ -13,7 +13,7 @@
     image: docker.io/freshrss/freshrss:alpine
     state: started
     restart_policy: always
-    network_mode: overlay_network
+    network_mode: "{{ docker.network }}"
     volumes:
       - freshrss_extensions:/var/www/FreshRSS/extensions
       - freshrss_data:/var/www/FreshRSS/data

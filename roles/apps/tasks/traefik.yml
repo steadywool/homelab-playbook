@@ -1,7 +1,7 @@
 ---
 - name: Create Traefik directory
   ansible.builtin.file:
-    path: "{{ directories.container }}/traefik"
+    path: "{{ docker.directory }}/traefik"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -31,7 +31,7 @@
     image: docker.io/library/traefik:latest
     state: started
     restart_policy: always
-    network_mode: overlay_network
+    network_mode: "{{ docker.network }}"
     ports:
       - 80:80
       - 443:443

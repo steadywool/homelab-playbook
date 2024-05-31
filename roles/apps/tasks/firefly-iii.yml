@@ -13,7 +13,7 @@
     image: docker.io/library/alpine:latest
     state: started
     restart_policy: always
-    network_mode: overlay_network
+    network_mode: "{{ docker.network }}"
     command: sh -c "echo \"0 3 * * * wget -qO- http://firefly-iii:8080/api/v1/cron/{{ fireflyiii_token }}\" | crontab - && crond -f -L /dev/stdout"
 
 - name: Run Firefly-iii container
@@ -22,7 +22,7 @@
     image: docker.io/fireflyiii/core:latest
     state: started
     restart_policy: always
-    network_mode: overlay_network
+    network_mode: "{{ docker.network }}"
     volumes:
       - fireflyiii_upload:/var/www/html/storage/upload
       - fireflyiii_db:/var/www/html/storage/database

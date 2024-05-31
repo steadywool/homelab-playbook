@@ -1,7 +1,7 @@
 ---
 - name: Create Syncthing directory
   ansible.builtin.file:
-    path: "{{ directories.container }}/syncthing"
+    path: "{{ docker.directory }}/syncthing"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -13,7 +13,7 @@
     image: docker.io/syncthing/syncthing:latest
     state: started
     restart_policy: always
-    network_mode: overlay_network
+    network_mode: "{{ docker.network }}"
     ports:
       - 22000:22000/tcp
       - 22000:22000/udp
