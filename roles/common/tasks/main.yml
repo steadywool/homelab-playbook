@@ -4,4 +4,3 @@
 
 - ansible.builtin.import_tasks: qemu-agent.yml
   tags: qemu-agent
-  when: inventory_hostname in groups['apps'] or inventory_hostname in groups['games']

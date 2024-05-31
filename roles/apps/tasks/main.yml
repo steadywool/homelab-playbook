@@ -1,8 +1,4 @@
 ---
-- name: Create a network
-  community.docker.docker_network:
-    name: overlay_network
-
 - ansible.builtin.import_tasks: baikal.yml
   tags: baikal
 

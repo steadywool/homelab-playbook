@@ -3,6 +3,7 @@
   ansible.builtin.package:
     name: qemu-guest-agent
     state: present
+  when: inventory_hostname in groups['kvm']
 
 - name: Enable Qemu Guest Agent service
   ansible.builtin.systemd:
@@ -10,3 +11,4 @@
     state: started
     enabled: true
     scope: system
+  when: inventory_hostname in groups['kvm']

@@ -8,6 +8,7 @@ http:
         - "https"
       tls: {}
       service: "proxmox"
+
     wireguard:
       rule: "Host(`wg.{{ private_domain }}`)"
       entryPoints: 
@@ -20,7 +21,8 @@ http:
       loadBalancer:
         servers:
           - url: "https://192.168.1.9:8006"
+
     wireguard:
       loadBalancer:
         servers:
-          - url: "https://192.168.1.10:51821"
+          - url: "wireguard:51821"
