@@ -10,9 +10,9 @@
     image: ghcr.io/wg-easy/wg-easy:latest
     state: started
     restart_policy: always
-    network_mode: "{{ docker.network }}"
     ports:
       - 51820:51820/udp
+      - 51821:51821/tcp
     volumes:
       - wireguard_data:/etc/wireguard
     capabilities:
