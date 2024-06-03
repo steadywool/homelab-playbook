@@ -5,7 +5,6 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  register: sftpgo
 
 - name: Create Sftpgo volume
   community.docker.docker_volume:
@@ -22,7 +21,8 @@
     ports:
       - 2022:2022
     volumes:
-      - "{{ sftpgo.path }}:/srv/sftpgo"
+      - "{{ docker.directory }}/sftpgo:/srv/sftpgo"
+      - "{{ docker.directory }}/syncthing:/srv/syncthing"
       - sftpgo_home:/var/lib/sftpgo
     labels:
       traefik.enable: "true"

@@ -5,7 +5,6 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  register: traefik
 
 - name: Template Traefik configuration
   ansible.builtin.template:
@@ -37,9 +36,9 @@
       - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - "{{ traefik.path }}/acme.json:/acme.json"
-      - "{{ traefik.path }}/traefik.yml:/traefik.yml"
-      - "{{ traefik.path }}/config.yml:/config.yml"
+      - "{{ docker.directory }}/traefik/acme.json:/acme.json"
+      - "{{ docker.directory }}/traefik/traefik.yml:/traefik.yml"
+      - "{{ docker.directory }}/traefik/config.yml:/config.yml"
     env:
       OVH_ENDPOINT: "{{ ovh_endpoint }}"
       OVH_APPLICATION_KEY: "{{ ovh_application_key }}"
