@@ -19,7 +19,7 @@
 - name: Run Firefly-iii container
   community.docker.docker_container:
     name: firefly_core
-    image: docker.io/fireflyiii/core:latest
+    image: docker.io/fireflyiii/core:develop
     state: started
     restart_policy: always
     network_mode: "{{ docker.network }}"
@@ -40,22 +40,3 @@
       traefik.http.routers.firefly.tls: "true"
       traefik.http.routers.firefly.service: "firefly"
       traefik.http.services.firefly.loadbalancer.server.port: "8080"
-
-- name: Run Firefly-iii importer
-  community.docker.docker_container:
-    name: firefly_importer
-    image: docker.io/fireflyiii/data-importer:latest
-    state: started
-    restart_policy: always
-    network_mode: "{{ docker.network }}"
-    restart: true
-    env:
-      TZ: Europe/Paris
-      TRUSTED_PROXIES: "**"
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.firefly_importer.rule: Host(`importer.{{ private_domain }}`)
-      traefik.http.routers.firefly_importer.entrypoints: "https"
-      traefik.http.routers.firefly_importer.tls: "true"
-      traefik.http.routers.firefly_importer.service: "firefly_importer"
-      traefik.http.services.firefly_importer.loadbalancer.server.port: "8080"
