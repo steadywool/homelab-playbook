@@ -1,0 +1,33 @@
+---
+- name: Create Sftpgo directory
+  ansible.builtin.file:
+    path: "{{ docker.directory }}/sftpgo"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  register: sftpgo
+
+- name: Create Sftpgo volume
+  community.docker.docker_volume:
+    state: present
+    name: sftpgo_home
+
+- name: Run Sftpgo container
+  community.docker.docker_container:
+    name: sftpgo
+    image: docker.io/drakkan/sftpgo:alpine
+    state: started
+    restart_policy: always
+    network_mode: "{{ docker.network }}"
+    ports:
+      - 2022:2022
+    volumes:
+      - "{{ sftpgo.path }}:/srv/sftpgo"
+      - sftpgo_home:/var/lib/sftpgo
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.sftpgo.rule: Host(`ftp.{{ private_domain }}`)
+      traefik.http.routers.sftpgo.entrypoints: "https"
+      traefik.http.routers.sftpgo.tls: "true"
+      traefik.http.routers.sftpgo.service: "sftpgo"
+      traefik.http.services.sftpgo.loadbalancer.server.port: "8080"
