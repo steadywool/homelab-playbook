@@ -17,3 +17,13 @@ fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
 docker:
   network: overlay_network
   directory: "/home/{{ ansible_user }}/data"
+
+minecraft_mods: |
+  fabric-api,lithium,
+  terrablender,terralith,nullscape,incendium,
+  yungs-api,cloth-config,yungs-better-mineshafts,yungs-better-dungeons,
+  yungs-better-ocean-monuments,yungs-better-nether-fortresses,yungs-better-strongholds,
+  yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
+  yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
+  cristel-lib,towns-and-towers,
+  blossomlib,blossomtpa,blossomback,blossomhomes,easywhitelist
