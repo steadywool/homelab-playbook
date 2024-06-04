@@ -12,14 +12,13 @@
     image: docker.io/itzg/minecraft-server:latest
     state: started
     restart_policy: always
-    restart: true
     ports:
       - 38819:25565
     volumes:
       - "{{ docker.directory }}/minecraft:/data"
     env:
       # General
-      MEMORY: "2G"
+      MEMORY: "3G"
       USE_AIKAR_FLAGS: "true"
       EULA: "true"
       ONLINE_MODE: "false"
@@ -33,8 +32,8 @@
       MODE: "survival"
       # World
       SPAWN_PROTECTION: "0"
-      VIEW_DISTANCE: "10"
-      SIMULATION_DISTANCE: "10"
+      VIEW_DISTANCE: "8"
+      SIMULATION_DISTANCE: "8"
       # Players
       MAX_PLAYERS: "8"
       FORCE_GAMEMODE: "true"
