@@ -17,6 +17,9 @@
 - ansible.builtin.import_tasks: uptime-kuma.yml
   tags: uptime-kuma
 
+- ansible.builtin.import_tasks: gotify.yml
+  tags: gotify
+
 - ansible.builtin.import_tasks: sftpgo.yml
   tags: sftpgo
 
