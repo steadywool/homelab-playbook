@@ -14,6 +14,8 @@ wg_password: CHANGEME # WG-Easy UI password
 
 fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
 
+gotify_password: CHANGEME # Gotify admin password
+
 docker:
   network: overlay_network
   directory: "/home/{{ ansible_user }}/data"

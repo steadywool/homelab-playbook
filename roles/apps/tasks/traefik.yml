@@ -9,7 +9,7 @@
 - name: Template Traefik configuration
   ansible.builtin.template:
     src: "{{ item }}.j2"
-    dest: "{{ traefik.path }}/{{ item }}"
+    dest: "{{ docker.directory }}/traefik/{{ item }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
   loop:
@@ -18,7 +18,7 @@
 
 - name: Create acme.json file
   ansible.builtin.file:
-    path: "{{ traefik.path }}/acme.json"
+    path: "{{ docker.directory }}/traefik/acme.json"
     state: touch
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
