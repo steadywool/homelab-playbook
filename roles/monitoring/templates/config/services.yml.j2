@@ -1,0 +1,37 @@
+---
+http:
+  services:
+    proxmox:
+      loadBalancer:
+        servers:
+          - url: "https://192.168.1.9:8006"
+
+    wireguard:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.1.10:51821"
+
+    baikal:
+      loadBalancer:
+        servers:
+          - url: "http://baikal:80"
+
+    firefly:
+      loadBalancer:
+        servers:
+          - url: "http://firefly_core:8080"
+
+    freshrss:
+      loadBalancer:
+        servers:
+          - url: "http://freshrss:80"
+
+    sftpgo:
+      loadBalancer:
+        servers:
+          - url: "http://sftpgo:8080"
+
+    syncthing:
+      loadBalancer:
+        servers:
+          - url: "http://syncthing:8384"

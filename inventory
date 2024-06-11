@@ -1,5 +1,5 @@
 [guardian]
-192.168.1.10 ansible_user=root
+192.168.1.10 ansible_user=container
 
 [production]
 192.168.1.11 ansible_user=container
@@ -9,9 +9,5 @@
 
 [swarm:children]
 guardian
-production
-arcade
-
-[kvm:children]
 production
 arcade

@@ -1,7 +1,7 @@
 ---
 - name: Create Traefik directory
   ansible.builtin.file:
-    path: "{{ docker.directory }}/traefik"
+    path: "{{ docker.directory }}/traefik/config"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -14,7 +14,8 @@
     group: "{{ ansible_user }}"
   loop:
     - traefik.yml
-    - config.yml
+    - config/routers.yml
+    - config/services.yml
 
 - name: Create acme.json file
   ansible.builtin.file:
@@ -38,7 +39,8 @@
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - "{{ docker.directory }}/traefik/acme.json:/acme.json"
       - "{{ docker.directory }}/traefik/traefik.yml:/traefik.yml"
-      - "{{ docker.directory }}/traefik/config.yml:/config.yml"
+      - "{{ docker.directory }}/traefik/config/routers.yml:/config/routers.yml"
+      - "{{ docker.directory }}/traefik/config/services.yml:/config/services.yml"
     env:
       OVH_ENDPOINT: "{{ ovh_endpoint }}"
       OVH_APPLICATION_KEY: "{{ ovh_application_key }}"

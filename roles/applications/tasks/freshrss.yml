@@ -20,10 +20,3 @@
     env:
       TZ: Europe/Paris
       CRON_MIN: "1,31"
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.freshrss.rule: Host(`rss.{{ private_domain }}`)
-      traefik.http.routers.freshrss.entrypoints: "https"
-      traefik.http.routers.freshrss.tls: "true"
-      traefik.http.routers.freshrss.service: "freshrss"
-      traefik.http.services.freshrss.loadbalancer.server.port: "80"
