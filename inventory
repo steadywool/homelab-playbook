@@ -1,17 +1,17 @@
-[vpn]
+[guardian]
 192.168.1.10 ansible_user=root
 
-[apps]
+[production]
 192.168.1.11 ansible_user=container
 
-[games]
+[arcade]
 192.168.1.12 ansible_user=container
 
 [swarm:children]
-vpn
-apps
-games
+guardian
+production
+arcade
 
 [kvm:children]
-apps
-games
+production
+arcade

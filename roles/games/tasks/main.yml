@@ -3,6 +3,6 @@
   tags: minecraft
 
 - ansible.builtin.include_role:
-    name: apps
+    name: monitoring
     tasks_from: watchtower
   tags: watchtower

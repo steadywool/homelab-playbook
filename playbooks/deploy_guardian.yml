@@ -1,7 +1,8 @@
 ---
-- hosts: games
+- hosts: guardian
   gather_facts: true
   become: true
   roles:
     - common
-    - games
+    - monitoring
+    - vpn

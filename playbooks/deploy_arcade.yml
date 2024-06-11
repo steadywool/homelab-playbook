@@ -1,7 +1,7 @@
 ---
-- hosts: vpn
+- hosts: arcade
   gather_facts: true
   become: true
   roles:
     - common
-    - vpn
+    - games
