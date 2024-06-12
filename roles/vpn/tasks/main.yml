@@ -3,6 +3,6 @@
   tags: wireguard
 
 - ansible.builtin.include_role:
-    name: monitoring
+    name: administration
     tasks_from: watchtower
   tags: watchtower
