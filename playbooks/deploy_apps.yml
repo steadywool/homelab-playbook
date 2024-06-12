@@ -1,8 +1,7 @@
 ---
-- hosts: guardian
+- hosts: apps
   gather_facts: true
   become: true
   roles:
     - common
-    - administration
-    - vpn
+    - application

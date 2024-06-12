@@ -1,7 +1,7 @@
 ---
-- hosts: production
+- hosts: admin
   gather_facts: true
   become: true
   roles:
     - common
-    - applications
+    - administration

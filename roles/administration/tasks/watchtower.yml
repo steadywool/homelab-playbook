@@ -7,3 +7,6 @@
     restart_policy: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    env:
+      WATCHTOWER_SCHEDULE: "0 0 3 * * *"
+      WATCHTOWER_CLEANUP: "true"

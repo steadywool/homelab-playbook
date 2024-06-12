@@ -8,5 +8,8 @@
 - ansible.builtin.import_tasks: gotify.yml
   tags: gotify
 
+- ansible.builtin.import_tasks: wireguard.yml
+  tags: wireguard
+
 - ansible.builtin.import_tasks: watchtower.yml
   tags: watchtower

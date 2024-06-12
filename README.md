@@ -54,9 +54,9 @@ Install Qemu Guest Agent & Docker on every hosts that need them :
 $ ansible-playbook playbooks/site.yml -t qemu-agent,docker
 ```
 
-Execute the entire vpn playbook but skip the watchtower installation :
+Execute the entire admin playbook but skip the watchtower installation :
 ```
-$ ansible-playbook playbooks/deploy_vpn.yml --skip-tags watchtower
+$ ansible-playbook playbooks/deploy_admin.yml --skip-tags watchtower
 ```
 
 For more arguments, check the man page with the command `man ansible-playbook`.
