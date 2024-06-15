@@ -20,12 +20,9 @@ gotify_password: CHANGEME # Gotify admin password
 common:
   packages:
     - qemu-guest-agent
-    - rclone
-    - cron
 
   services:
     - qemu-guest-agent.service
-    - cron.service
 
 # Docker informations
 docker:
