@@ -1,6 +1,21 @@
 ---
-- ansible.builtin.import_tasks: docker.yml
-  tags: docker
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ common.packages }}"
+    state: present
+  tags: common
 
-- ansible.builtin.import_tasks: qemu-agent.yml
-  tags: qemu-agent
+- name: Enable services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+    scope: system
+  loop: "{{ common.services }}"
+  tags: common
+
+- name: Remove dependencies
+  ansible.builtin.apt:
+    autoremove: yes
+    purge: true
+  tags: common

@@ -16,10 +16,23 @@ fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
 
 gotify_password: CHANGEME # Gotify admin password
 
+# Packages & services that will be installed on every hosts
+common:
+  packages:
+    - qemu-guest-agent
+    - rclone
+    - cron
+
+  services:
+    - qemu-guest-agent.service
+    - cron.service
+
+# Docker informations
 docker:
   network: overlay_network
   directory: "/home/{{ ansible_user }}/data"
 
+# Mods that will be installed on minecraft server
 minecraft_mods: |
   fabric-api,lithium,
   terrablender,terralith,nullscape,incendium,
