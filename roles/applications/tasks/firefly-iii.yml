@@ -22,6 +22,7 @@
     image: docker.io/fireflyiii/core:develop
     state: started
     restart_policy: always
+    restart: true
     network_mode: "{{ docker.network }}"
     volumes:
       - firefly_upload:/var/www/html/storage/upload
@@ -31,5 +32,7 @@
       APP_KEY: "{{ fireflyiii_token }}"
       TZ: Europe/Paris
       DB_CONNECTION: sqlite
+      MAIL_MAILER: log
+      #APP_LOG_LEVEL: debug
       STATIC_CRON_TOKEN: "{{ fireflyiii_token }}"
       TRUSTED_PROXIES: "**"
