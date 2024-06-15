@@ -22,7 +22,6 @@
     image: docker.io/fireflyiii/core:develop
     state: started
     restart_policy: always
-    restart: true
     network_mode: "{{ docker.network }}"
     volumes:
       - firefly_upload:/var/www/html/storage/upload
