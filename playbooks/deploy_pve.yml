@@ -1,0 +1,6 @@
+---
+- hosts: pve
+  gather_facts: true
+  become: true
+  roles:
+    - backup

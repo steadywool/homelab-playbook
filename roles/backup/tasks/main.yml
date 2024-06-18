@@ -1,0 +1,31 @@
+---
+- name: Install backup packages
+  ansible.builtin.package:
+    name:
+      - rclone
+      - cron
+    state: present
+  tags: backup
+
+- name: Enable cron service
+  ansible.builtin.systemd:
+    name: cron.service
+    state: started
+    enabled: true
+    scope: system
+  tags: backup
+
+- name: Create daily backup with Rclone
+  ansible.builtin.cron:
+    name: "Send backup to remote storage"
+    state: present
+    minute: "0"
+    hour: "3"
+    user: "{{ ansible_user }}"
+    job: "rclone sync --progress {{ backup.directory }} {{ backup.remote }}"
+  tags: backup
+
+- name: Warn user about the remote storage
+  ansible.builtin.debug:
+    msg: "You should create the remote storage {{ backup.remote }}."
+  tags: backup

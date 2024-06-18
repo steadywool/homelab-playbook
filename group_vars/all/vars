@@ -21,10 +21,13 @@ common:
   services:
     - qemu-guest-agent.service
 
-# Docker informations
 docker:
-  network: overlay_network
-  directory: "/home/{{ ansible_user }}/data"
+  network: overlay_network # Docker network used by containers
+  directory: "/home/{{ ansible_user }}/data" # Where data are bind-mounted
+
+backup:
+  remote: "BackupStorage:/" # Where backup are sent with Rclone
+  directory: "/var/lib/vz/dump" # Which directory to backup
 
 # Mods that will be installed on minecraft server
 minecraft_mods: |

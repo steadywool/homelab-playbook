@@ -10,3 +10,6 @@
 
 - name: Deploy games
   ansible.builtin.import_playbook: deploy_games.yml
+
+- name: Deploy pve
+  ansible.builtin.import_playbook: deploy_pve.yml

@@ -5,4 +5,7 @@
 - ansible.builtin.include_role:
     name: administration
     tasks_from: watchtower
-  tags: watchtower
+    apply:
+      tags:
+        - watchtower
+  tags: always

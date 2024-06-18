@@ -1,3 +1,6 @@
+[pve]
+192.168.1.9 ansible_user=root
+
 [admin]
 192.168.1.10 ansible_user=container
 
