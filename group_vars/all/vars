@@ -26,7 +26,7 @@ docker:
   directory: "/home/{{ ansible_user }}/data" # Where data are bind-mounted
 
 backup:
-  remote: "BackupStorage:/" # Where backup are sent with Rclone
+  remote: "CryptStorage:/" # Where backup are sent with Rclone
   directory: "/var/lib/vz/dump" # Which directory to backup
 
 # Mods that will be installed on minecraft server
