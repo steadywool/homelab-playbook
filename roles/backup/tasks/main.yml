@@ -22,7 +22,7 @@
     minute: "0"
     hour: "3"
     user: "{{ ansible_user }}"
-    job: "rclone sync --progress {{ backup.directory }} {{ backup.remote }}"
+    job: "rclone -v sync {{ backup.directory }} {{ backup.remote }}"
   tags: backup
 
 - name: Warn user about the remote storage
