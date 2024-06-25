@@ -1,0 +1,20 @@
+---
+- name: Create Terraria directory
+  ansible.builtin.file:
+    path: "{{ docker.directory }}/terraria/world"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Run Terraria server
+  community.docker.docker_container:
+    name: terraria
+    image: docker.io/ryshe/terraria:latest
+    state: started
+    restart_policy: always
+    restart: true
+    command: "-autocreate 3 -world /root/.local/share/Terraria/Worlds/world.wld -maxplayers 8 -difficulty 0 -password {{ terraria_password }}"
+    ports:
+      - 39920:7777
+    volumes:
+      - "{{ docker.directory }}/terraria/world:/root/.local/share/Terraria/Worlds"
