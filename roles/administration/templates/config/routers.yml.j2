@@ -49,3 +49,10 @@ http:
         - "https"
       tls: {}
       service: "syncthing"
+
+    jellyfin:
+      rule: "Host(`media.{{ private_domain }}`)"
+      entryPoints: 
+        - "https"
+      tls: {}
+      service: "jellyfin"
