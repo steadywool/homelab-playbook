@@ -42,9 +42,9 @@ Then use them with the `-t ROLE` parameter.
 
 ## 📕 Exemples
 
-Only install syncthing & filebrowser on the "apps" host :
+Only install syncthing & sftpgo on the "apps" host :
 ```
-$ ansible-playbook playbooks/deploy_apps.yml -t syncthing,filebrowser
+$ ansible-playbook playbooks/deploy_apps.yml -t syncthing,sftpgo
 ```
 
 Install Docker on every hosts that need it :
