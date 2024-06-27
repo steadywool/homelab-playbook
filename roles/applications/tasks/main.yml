@@ -17,10 +17,17 @@
 - ansible.builtin.import_tasks: sftpgo.yml
   tags: sftpgo
 
-- ansible.builtin.include_role:
-    name: administration
-    tasks_from: watchtower
-    apply:
-      tags:
-        - watchtower
-  tags: always
+- ansible.builtin.import_tasks: traefik.yml
+  tags: traefik
+
+- ansible.builtin.import_tasks: uptime-kuma.yml
+  tags: uptime-kuma
+
+- ansible.builtin.import_tasks: gotify.yml
+  tags: gotify
+
+- ansible.builtin.import_tasks: wireguard.yml
+  tags: wireguard
+
+- ansible.builtin.import_tasks: watchtower.yml
+  tags: watchtower

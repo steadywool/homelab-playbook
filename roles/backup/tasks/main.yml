@@ -24,8 +24,3 @@
     user: "{{ ansible_user }}"
     job: "rclone -v sync {{ backup.directory }} {{ backup.remote }}"
   tags: backup
-
-- name: Warn user about the remote storage
-  ansible.builtin.debug:
-    msg: "You should create the remote storage {{ backup.remote }}."
-  tags: backup

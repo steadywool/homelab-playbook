@@ -6,7 +6,7 @@
   tags: terraria
 
 - ansible.builtin.include_role:
-    name: administration
+    name: applications
     tasks_from: watchtower
     apply:
       tags:

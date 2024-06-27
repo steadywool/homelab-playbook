@@ -27,3 +27,10 @@
       - "{{ docker.directory }}:/srv/sftpgo/data"
       - sftpgo_home:/var/lib/sftpgo
       - sftpgo_backup:/srv/sftpgo/backup
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.sftpgo.rule: Host(`ftp.{{ private_domain }}`)
+      traefik.http.routers.sftpgo.entrypoints: "https"
+      traefik.http.routers.sftpgo.tls: "true"
+      traefik.http.routers.sftpgo.service: "sftpgo"
+      traefik.http.services.sftpgo.loadbalancer.server.port: "8080"

@@ -1,10 +1,4 @@
 ---
-- name: Init swarm
-  ansible.builtin.import_playbook: init_swarm.yml
-
-- name: Deploy admin
-  ansible.builtin.import_playbook: deploy_admin.yml
-
 - name: Deploy apps
   ansible.builtin.import_playbook: deploy_apps.yml
 
@@ -13,3 +7,6 @@
 
 - name: Deploy pve
   ansible.builtin.import_playbook: deploy_pve.yml
+
+- name: Deploy vpn
+  ansible.builtin.import_playbook: deploy_vpn.yml

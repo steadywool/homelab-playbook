@@ -4,5 +4,4 @@
   become: true
   roles:
     - common
-    - docker
     - games

@@ -35,3 +35,10 @@
       #APP_LOG_LEVEL: debug
       STATIC_CRON_TOKEN: "{{ fireflyiii_token }}"
       TRUSTED_PROXIES: "**"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.firefly.rule: Host(`firefly.{{ private_domain }}`)
+      traefik.http.routers.firefly.entrypoints: "https"
+      traefik.http.routers.firefly.tls: "true"
+      traefik.http.routers.firefly.service: "firefly"
+      traefik.http.services.firefly.loadbalancer.server.port: "8080"

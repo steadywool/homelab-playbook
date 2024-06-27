@@ -2,8 +2,6 @@
 
 Create containers with Ansible.
 
-This playbook use Docker Swarm to create an overlay network across differents hosts.
-
 ## 🚀 Installation
 
 > [!IMPORTANT]
@@ -49,14 +47,14 @@ Only install syncthing & filebrowser on the "apps" host :
 $ ansible-playbook playbooks/deploy_apps.yml -t syncthing,filebrowser
 ```
 
-Install Qemu Guest Agent & Docker on every hosts that need them :
+Install Docker on every hosts that need it :
 ```
-$ ansible-playbook playbooks/site.yml -t qemu-agent,docker
+$ ansible-playbook playbooks/site.yml -t docker
 ```
 
-Execute the entire admin playbook but skip the watchtower installation :
+Execute the entire vpn playbook but skip the watchtower installation :
 ```
-$ ansible-playbook playbooks/deploy_admin.yml --skip-tags watchtower
+$ ansible-playbook playbooks/deploy_vpn.yml --skip-tags watchtower
 ```
 
 For more arguments, check the man page with the command `man ansible-playbook`.

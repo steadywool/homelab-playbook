@@ -1,16 +1,11 @@
 [pve]
 192.168.1.9 ansible_user=root
 
-[admin]
-192.168.1.10 ansible_user=container
+[vpn]
+192.168.1.10 ansible_user=root
 
 [apps]
 192.168.1.11 ansible_user=container
 
 [games]
 192.168.1.12 ansible_user=container
-
-[swarm:children]
-admin
-apps
-games
