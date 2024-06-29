@@ -1,6 +1,20 @@
 ---
-- ansible.builtin.import_tasks: system.yml
-  tags: common,system
+- name: Install packages
+  ansible.builtin.package:
+    name: "{{ common.packages }}"
+    state: present
+  when: common.packages is defined
+  tags: common,packages
+
+- name: Enable services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+    scope: system
+  loop: "{{ common.services }}"
+  when: common.services is defined
+  tags: common,services
 
 - ansible.builtin.import_tasks: docker.yml
   tags: common,docker

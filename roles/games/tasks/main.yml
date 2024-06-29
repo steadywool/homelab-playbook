@@ -1,9 +1,9 @@
 ---
 - ansible.builtin.import_tasks: minecraft.yml
-  tags: minecraft
+  tags: minecraft,container
 
 - ansible.builtin.import_tasks: terraria.yml
-  tags: terraria
+  tags: terraria,container
 
 - ansible.builtin.include_role:
     name: applications
@@ -11,4 +11,5 @@
     apply:
       tags:
         - watchtower
+        - container
   tags: always

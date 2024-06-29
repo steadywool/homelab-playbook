@@ -3,7 +3,7 @@
   community.docker.docker_volume:
     state: present
     name: wireguard_data
-  tags: wireguard
+  tags: wireguard,container
 
 - name: Run Wg-easy container
   community.docker.docker_container:
@@ -26,7 +26,7 @@
     env:
       WG_HOST: "{{ public_domain }}"
       PASSWORD: "{{ wg_password }}"
-  tags: wireguard
+  tags: wireguard,container
 
 - ansible.builtin.include_role:
     name: applications
@@ -34,4 +34,5 @@
     apply:
       tags:
         - watchtower
+        - container
   tags: always

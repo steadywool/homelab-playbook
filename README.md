@@ -44,7 +44,7 @@ Then use them with the `-t ROLE` parameter.
 
 Only install syncthing & sftpgo on the "apps" host :
 ```
-$ ansible-playbook playbooks/deploy_apps.yml -t syncthing,sftpgo
+$ ansible-playbook playbooks/playbook_apps.yml -t syncthing,sftpgo
 ```
 
 Install Docker on every hosts that need it :
@@ -54,7 +54,7 @@ $ ansible-playbook playbooks/site.yml -t docker
 
 Execute the entire vpn playbook but skip the watchtower installation :
 ```
-$ ansible-playbook playbooks/deploy_vpn.yml --skip-tags watchtower
+$ ansible-playbook playbooks/playbook_vpn.yml --skip-tags watchtower
 ```
 
 For more arguments, check the man page with the command `man ansible-playbook`.

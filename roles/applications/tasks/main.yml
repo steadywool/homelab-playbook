@@ -1,27 +1,24 @@
 ---
 - ansible.builtin.import_tasks: baikal.yml
-  tags: baikal
+  tags: baikal,container
 
 - ansible.builtin.import_tasks: syncthing.yml
-  tags: syncthing
+  tags: syncthing,container
 
 - ansible.builtin.import_tasks: firefly-iii.yml
-  tags: firefly-iii
+  tags: firefly-iii,container
 
 - ansible.builtin.import_tasks: freshrss.yml
-  tags: freshrss
+  tags: freshrss,container
 
 - ansible.builtin.import_tasks: sftpgo.yml
-  tags: sftpgo
+  tags: sftpgo,container
 
 - ansible.builtin.import_tasks: traefik.yml
-  tags: traefik
+  tags: traefik,container
 
 - ansible.builtin.import_tasks: uptime-kuma.yml
-  tags: uptime-kuma
-
-- ansible.builtin.import_tasks: wireguard.yml
-  tags: wireguard
+  tags: uptime-kuma,container
 
 - ansible.builtin.import_tasks: watchtower.yml
-  tags: watchtower
+  tags: watchtower,container

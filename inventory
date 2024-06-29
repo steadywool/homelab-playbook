@@ -5,7 +5,7 @@
 192.168.1.10 ansible_user=root
 
 [apps]
-192.168.1.11 ansible_user=user
+192.168.1.11 ansible_user=container
 
 [games]
-192.168.1.12 ansible_user=user
+192.168.1.12 ansible_user=container

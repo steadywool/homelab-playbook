@@ -1,12 +1,15 @@
 ---
-- name: Deploy apps
-  ansible.builtin.import_playbook: deploy_apps.yml
+- name: Install apps
+  ansible.builtin.import_playbook: playbook_apps.yml
 
-- name: Deploy games
-  ansible.builtin.import_playbook: deploy_games.yml
+- name: Install games
+  ansible.builtin.import_playbook: playbook_games.yml
 
-- name: Deploy pve
-  ansible.builtin.import_playbook: deploy_pve.yml
+- name: Deploy backup
+  ansible.builtin.import_playbook: playbook_backup.yml
 
-- name: Deploy vpn
-  ansible.builtin.import_playbook: deploy_vpn.yml
+- name: Install VPN
+  ansible.builtin.import_playbook: playbook_vpn.yml
+
+- name: Deploy maintenance
+  ansible.builtin.import_playbook: playbook_maintenance.yml
