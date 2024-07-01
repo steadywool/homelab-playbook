@@ -11,6 +11,7 @@ ovh_consumer_key: CHANGME
 
 wg_password: CHANGEME # WG-Easy UI password
 fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
+gotify_password: CHANGEME # Gotify admin password
 terraria_password: CHANGEME # Terraria password
 
 docker:

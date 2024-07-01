@@ -6,7 +6,7 @@
   tags: syncthing,container
 
 - ansible.builtin.import_tasks: firefly-iii.yml
-  tags: firefly-iii,container
+  tags: firefly-iii,firefly,container
 
 - ansible.builtin.import_tasks: freshrss.yml
   tags: freshrss,container
@@ -18,7 +18,10 @@
   tags: traefik,container
 
 - ansible.builtin.import_tasks: uptime-kuma.yml
-  tags: uptime-kuma,container
+  tags: uptime-kuma,uptime,container
+
+- ansible.builtin.import_tasks: gotify.yml
+  tags: gotify,container
 
 - ansible.builtin.import_tasks: watchtower.yml
   tags: watchtower,container
