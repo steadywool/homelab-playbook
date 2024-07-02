@@ -20,7 +20,7 @@
     name: "Send backup to remote storage"
     state: present
     minute: "0"
-    hour: "3"
+    hour: "2"
     user: "{{ ansible_user }}"
     job: "rclone -v sync {{ backup.source }} {{ backup.remote }}"
   tags: backup
