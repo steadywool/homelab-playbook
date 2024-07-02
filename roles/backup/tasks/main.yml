@@ -22,5 +22,5 @@
     minute: "0"
     hour: "3"
     user: "{{ ansible_user }}"
-    job: "rclone -v sync {{ backup.directory }} {{ backup.remote }}"
+    job: "rclone -v sync {{ backup.source }} {{ backup.remote }}"
   tags: backup

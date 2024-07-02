@@ -16,11 +16,11 @@ terraria_password: CHANGEME # Terraria password
 
 docker:
   network: custom_network # Docker network used by containers
-  directory: "/home/{{ ansible_user }}/data" # Where data are bind-mounted
+  data: "/home/{{ ansible_user }}/data" # Where data are bind-mounted
 
 backup:
   remote: "CryptStorage:/" # Where backup are sent with Rclone
-  directory: "/var/lib/vz/dump" # Which directory to backup
+  source: "/var/lib/vz/dump" # Which directory to backup
 
 # Mods that will be installed on minecraft server
 minecraft_mods: |
