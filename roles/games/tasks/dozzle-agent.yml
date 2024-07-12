@@ -1,0 +1,12 @@
+---
+- name: Run Dozzle Agent container
+  community.docker.docker_container:
+    name: dozzle-agent
+    image: docker.io/amir20/dozzle:latest
+    state: started
+    restart_policy: always
+    command: agent
+    ports:
+      - 7007:7007
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro

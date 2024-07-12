@@ -5,6 +5,9 @@
 - ansible.builtin.import_tasks: terraria.yml
   tags: terraria,container
 
+- ansible.builtin.import_tasks: dozzle-agent.yml
+  tags: dozzle-agent,container
+
 - ansible.builtin.include_role:
     name: applications
     tasks_from: watchtower

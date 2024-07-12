@@ -1,7 +1,7 @@
 ---
 - name: Create archive directory
   ansible.builtin.file:
-    path: "{{ docker.directory }}/archive"
+    path: "{{ docker.data }}/archive"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -24,7 +24,7 @@
     ports:
       - 2022:2022
     volumes:
-      - "{{ docker.directory }}:/srv/sftpgo/data"
+      - "{{ docker.data }}:/srv/sftpgo/data"
       - sftpgo_home:/var/lib/sftpgo
       - sftpgo_backup:/srv/sftpgo/backup
     labels:

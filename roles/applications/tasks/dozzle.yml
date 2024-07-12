@@ -1,0 +1,19 @@
+---
+- name: Run Dozzle container
+  community.docker.docker_container:
+    name: dozzle
+    image: docker.io/amir20/dozzle:latest
+    state: started
+    restart_policy: always
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    env:
+      DOZZLE_REMOTE_AGENT: "{{ groups['games'][0] }}:7007"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.dozzle.rule: Host(`logs.{{ private_domain }}`)
+      traefik.http.routers.dozzle.entrypoints: "https"
+      traefik.http.routers.dozzle.tls: "true"
+      traefik.http.routers.dozzle.service: "dozzle"
+      traefik.http.services.dozzle.loadbalancer.server.port: "8080"
