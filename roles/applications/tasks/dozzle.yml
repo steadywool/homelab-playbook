@@ -1,4 +1,18 @@
 ---
+- name: Create Dozzle directory
+  ansible.builtin.file:
+    path: "{{ docker.data }}/dozzle"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Template Dozzle configuration
+  ansible.builtin.template:
+    src: "dozzle/users.yml.j2"
+    dest: "{{ docker.data }}/dozzle/users.yml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
 - name: Run Dozzle container
   community.docker.docker_container:
     name: dozzle
@@ -8,8 +22,11 @@
     network_mode: "{{ docker.network }}"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - "{{ docker.data }}/dozzle:/data"
     env:
+      DOZZLE_AUTH_PROVIDER: "simple"
       DOZZLE_REMOTE_AGENT: "{{ groups['games'][0] }}:7007"
+      DOZZLE_ENABLE_ACTIONS: "true"
     labels:
       traefik.enable: "true"
       traefik.http.routers.dozzle.rule: Host(`logs.{{ private_domain }}`)

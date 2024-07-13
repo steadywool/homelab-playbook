@@ -1,5 +1,5 @@
 ---
-- name: Create Uptime-kuma volumes
+- name: Create Uptime-kuma volume
   community.docker.docker_volume:
     state: present
     name: uptimekuma_data

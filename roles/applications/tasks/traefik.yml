@@ -8,7 +8,7 @@
 
 - name: Template Traefik configuration
   ansible.builtin.template:
-    src: "{{ item }}.j2"
+    src: "traefik/{{ item }}.j2"
     dest: "{{ docker.data }}/traefik/{{ item }}"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
