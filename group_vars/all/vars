@@ -23,6 +23,8 @@ backup:
   remote: "CryptStorage:/" # Where backup are sent with Rclone
   source: "/var/lib/vz/dump" # Which directory to backup
 
+fail2ban_gotify_url: https://GOTIFYURL/message?token=GOTIFYTOKEN # Gotify URL to send notification
+
 # Mods that will be installed on minecraft server
 minecraft_mods: |
   fabric-api,lithium,

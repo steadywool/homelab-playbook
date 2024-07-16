@@ -18,3 +18,6 @@
 
 - ansible.builtin.import_tasks: docker.yml
   tags: common,docker
+
+- ansible.builtin.import_tasks: ssh.yml
+  tags: common,ssh

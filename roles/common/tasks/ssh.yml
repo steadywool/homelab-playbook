@@ -1,0 +1,30 @@
+---
+- name: Edit SSHD configuration
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    state: present
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  loop:
+    - { regexp: '^PermitRootLogin', line: 'PermitRootLogin prohibit-password' }
+    - { regexp: '^PasswordAuthentication', line: 'PasswordAuthentication no' }
+    - { regexp: '^PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
+
+- name: Template Fail2Ban configuration
+  ansible.builtin.template:
+    src: "jail.local.j2"
+    dest: "/etc/fail2ban/jail.local"
+
+- name: Install Fail2Ban
+  ansible.builtin.package:
+    name: fail2ban
+    state: present
+  tags: packages
+
+- name: Enable Fail2Ban service
+  ansible.builtin.systemd:
+    name: fail2ban.service
+    state: started
+    enabled: true
+    scope: system
+  tags: services
