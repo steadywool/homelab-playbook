@@ -23,8 +23,8 @@
 - ansible.builtin.import_tasks: gotify.yml
   tags: gotify,container
 
-- ansible.builtin.import_tasks: dozzle.yml
-  tags: dozzle,container
+- ansible.builtin.import_tasks: portainer.yml
+  tags: portainer,container
 
 - ansible.builtin.import_tasks: watchtower.yml
   tags: watchtower,container

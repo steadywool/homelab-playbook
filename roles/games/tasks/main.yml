@@ -5,8 +5,8 @@
 - ansible.builtin.import_tasks: terraria.yml
   tags: terraria,container
 
-- ansible.builtin.import_tasks: dozzle-agent.yml
-  tags: dozzle-agent,container
+- ansible.builtin.import_tasks: portainer-agent.yml
+  tags: portainer-agent,container
 
 - ansible.builtin.include_role:
     name: applications
