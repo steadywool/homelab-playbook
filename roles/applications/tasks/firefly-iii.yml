@@ -27,7 +27,7 @@
       - firefly_upload:/var/www/html/storage/upload
       - firefly_db:/var/www/html/storage/database
     env:
-      APP_ENV: local
+      APP_ENV: production
       APP_KEY: "{{ fireflyiii_token }}"
       TZ: Europe/Paris
       DB_CONNECTION: sqlite
