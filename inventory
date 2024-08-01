@@ -1,11 +1,11 @@
 [pve]
-192.168.1.9 ansible_user=root
+192.168.10.9 ansible_user=root
 
 [vpn]
-192.168.1.10 ansible_user=root
+192.168.10.10 ansible_user=root
 
 [apps]
-192.168.1.11 ansible_user=container
+192.168.10.11 ansible_user=container
 
 [games]
-192.168.1.12 ansible_user=container
+192.168.10.12 ansible_user=container

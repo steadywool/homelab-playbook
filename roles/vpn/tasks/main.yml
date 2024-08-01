@@ -27,7 +27,7 @@
     env:
       WG_HOST: "{{ public_domain }}"
       PASSWORD: "{{ wg_password }}"
-      WG_ALLOWED_IPS: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['network'] }}"
+      WG_ALLOWED_IPS: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['network'] }}/{{ hostvars[inventory_hostname]['ansible_default_ipv4']['prefix'] }}"
       UI_TRAFFIC_STATS: "true"
   tags: wireguard,container
 
