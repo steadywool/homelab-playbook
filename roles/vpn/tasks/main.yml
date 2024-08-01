@@ -11,6 +11,7 @@
     image: ghcr.io/wg-easy/wg-easy:latest
     state: started
     restart_policy: always
+    restart: true
     ports:
       - 51820:51820/udp
       - 51821:51821/tcp
@@ -26,6 +27,8 @@
     env:
       WG_HOST: "{{ public_domain }}"
       PASSWORD: "{{ wg_password }}"
+      WG_ALLOWED_IPS: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['network'] }}"
+      UI_TRAFFIC_STATS: "true"
   tags: wireguard,container
 
 - ansible.builtin.include_role:
@@ -34,5 +37,14 @@
     apply:
       tags:
         - watchtower
+        - container
+  tags: always
+
+- ansible.builtin.include_role:
+    name: games
+    tasks_from: portainer-agent
+    apply:
+      tags:
+        - portainer-agent
         - container
   tags: always
