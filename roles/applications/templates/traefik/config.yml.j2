@@ -19,9 +19,9 @@ http:
     proxmox:
       loadBalancer:
         servers:
-          - url: "https://192.168.1.9:8006"
+          - url: "https://{{ groups['pve'][0] }}:8006"
 
     wireguard:
       loadBalancer:
         servers:
-          - url: "http://192.168.1.10:51821"
+          - url: "http://{{ groups['vpn'][0] }}:51821"

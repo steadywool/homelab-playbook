@@ -14,12 +14,12 @@
     state: started
     restart_policy: always
     network_mode: "{{ docker.network }}"
-    command: sh -c "echo \"0 3 * * * wget -qO- http://firefly:8080/api/v1/cron/{{ fireflyiii_token }}\" | crontab - && crond -f -L /dev/stdout"
+    command: sh -c "echo \"0 6 * * * wget -qO- http://firefly:8080/api/v1/cron/{{ fireflyiii_token }}\" | crontab - && crond -f -L /dev/stdout"
 
 - name: Run Firefly-iii container
   community.docker.docker_container:
     name: firefly
-    image: docker.io/fireflyiii/core:develop
+    image: docker.io/fireflyiii/core:latest
     state: started
     restart_policy: always
     network_mode: "{{ docker.network }}"
