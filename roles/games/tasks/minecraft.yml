@@ -12,6 +12,7 @@
     image: docker.io/itzg/minecraft-server:latest
     state: started
     restart_policy: always
+    restart: true
     ports:
       - 38819:25565
     volumes:

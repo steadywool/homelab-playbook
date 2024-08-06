@@ -20,6 +20,7 @@
     image: docker.io/drakkan/sftpgo:alpine
     state: started
     restart_policy: always
+    restart: true
     network_mode: "{{ docker.network }}"
     ports:
       - 2022:2022

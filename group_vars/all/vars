@@ -14,6 +14,8 @@ fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
 gotify_password: CHANGEME # Gotify admin password
 terraria_password: CHANGEME # Terraria password
 
+watchtower_gotify_token: CHANGEME # Watchtower Gotify Token
+
 docker:
   network: custom_network # Docker network used by containers
   data: "/home/{{ ansible_user }}/data" # Where data are bind-mounted

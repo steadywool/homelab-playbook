@@ -12,3 +12,6 @@
     env:
       WATCHTOWER_SCHEDULE: "0 0 3 * * *"
       WATCHTOWER_CLEANUP: "true"
+      WATCHTOWER_NOTIFICATIONS: "gotify"
+      WATCHTOWER_NOTIFICATION_GOTIFY_URL: "https://gotify.{{ private_domain }}"
+      WATCHTOWER_NOTIFICATION_GOTIFY_TOKEN: "{{ watchtower_gotify_token }}"
