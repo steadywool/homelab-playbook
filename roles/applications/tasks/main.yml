@@ -26,5 +26,8 @@
 - ansible.builtin.import_tasks: portainer.yml
   tags: portainer,container
 
+- ansible.builtin.import_tasks: influxdb.yml
+  tags: influxdb,container
+
 - ansible.builtin.import_tasks: watchtower.yml
   tags: watchtower,container

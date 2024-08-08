@@ -1,0 +1,35 @@
+---
+- name: Create Influxdb volumes
+  community.docker.docker_volume:
+    state: present
+    name: "{{ item }}"
+  loop:
+    - influxdb_data
+    - influxdb_config
+
+- name: Run InfluxDB container
+  community.docker.docker_container:
+    name: influxdb
+    image: docker.io/library/influxdb:latest
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - influxdb_config:/etc/influxdb2
+    env:
+      DOCKER_INFLUXDB_INIT_MODE: "setup"
+      DOCKER_INFLUXDB_INIT_USERNAME: "admin"
+      DOCKER_INFLUXDB_INIT_PASSWORD: "{{ influxdb_password }}"
+      DOCKER_INFLUXDB_INIT_ORG: "homelab"
+      DOCKER_INFLUXDB_INIT_BUCKET: "telegraf"
+      DOCKER_INFLUXDB_INIT_RETENTION: "1w"
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: "{{ influxdb_token }}"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.influxdb.rule: Host(`influxdb.{{ private_domain }}`)
+      traefik.http.routers.influxdb.entrypoints: "https"
+      traefik.http.routers.influxdb.tls: "true"
+      traefik.http.routers.influxdb.service: "influxdb"
+      traefik.http.services.influxdb.loadbalancer.server.port: "8086"
