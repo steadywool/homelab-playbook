@@ -1,7 +1,7 @@
 ---
 - name: Create Terraria directory
   ansible.builtin.file:
-    path: "{{ docker.data }}/terraria/world"
+    path: "{{ docker.data_dir }}/terraria/world"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -17,4 +17,4 @@
     ports:
       - 39920:7777
     volumes:
-      - "{{ docker.data }}/terraria/world:/root/.local/share/Terraria/Worlds"
+      - "{{ docker.data_dir }}/terraria/world:/root/.local/share/Terraria/Worlds"

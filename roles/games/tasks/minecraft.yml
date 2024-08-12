@@ -1,7 +1,7 @@
 ---
 - name: Create Minecraft directory
   ansible.builtin.file:
-    path: "{{ docker.data }}/minecraft"
+    path: "{{ docker.data_dir }}/minecraft"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -16,7 +16,7 @@
     ports:
       - 38819:25565
     volumes:
-      - "{{ docker.data }}/minecraft:/data"
+      - "{{ docker.data_dir }}/minecraft:/data"
     env:
       # General
       MEMORY: "3G"

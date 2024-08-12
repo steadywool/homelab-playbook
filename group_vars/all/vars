@@ -20,7 +20,8 @@ watchtower_gotify_token: CHANGEME # Watchtower Gotify Token
 
 docker:
   network: custom_network # Docker network used by containers
-  data: "/home/{{ ansible_user }}/data" # Where data are bind-mounted
+  data_dir: "/home/{{ ansible_user }}/data" # Where data are bind-mounted
+  config_dir: "/home/{{ ansible_user }}/config" # Where configurations are bind-mounted
 
 backup:
   remote: "CryptStorage:/" # Where backup are sent with Rclone

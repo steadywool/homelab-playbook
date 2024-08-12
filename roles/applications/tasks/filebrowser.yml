@@ -1,14 +1,14 @@
 ---
 - name: Create Archive directory
   ansible.builtin.file:
-    path: "{{ docker.data }}/archive"
+    path: "{{ docker.data_dir }}/archive"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
 
-- name: Create Filebrowser file
+- name: Create Filebrowser config
   ansible.builtin.file:
-    path: "{{ docker.data }}/filebrowser.db"
+    path: "{{ docker.config_dir }}/filebrowser.db"
     state: touch
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -24,8 +24,8 @@
     network_mode: "{{ docker.network }}"
     user: 1000:1000
     volumes:
-      - "{{ docker.data }}/filebrowser.db:/database.db"
-      - "{{ docker.data }}:/srv"
+      - "{{ docker.config_dir }}/filebrowser.db:/database.db"
+      - "{{ docker.data_dir }}:/srv"
     labels:
       traefik.enable: "true"
       traefik.http.routers.filebrowser.rule: Host(`files.{{ private_domain }}`)
