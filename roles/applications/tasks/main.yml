@@ -11,9 +11,6 @@
 - ansible.builtin.import_tasks: freshrss.yml
   tags: freshrss,container
 
-- ansible.builtin.import_tasks: sftpgo.yml
-  tags: sftpgo,container
-
 - ansible.builtin.import_tasks: traefik.yml
   tags: traefik,container
 
@@ -25,6 +22,9 @@
 
 - ansible.builtin.import_tasks: portainer.yml
   tags: portainer,container
+
+- ansible.builtin.import_tasks: filebrowser.yml
+  tags: filebrowser,container
 
 - ansible.builtin.import_tasks: influxdb.yml
   tags: influxdb,container
