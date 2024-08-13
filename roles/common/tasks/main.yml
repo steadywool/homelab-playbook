@@ -1,13 +1,10 @@
 ---
-- name: Create data & config directories
+- name: Create data directory
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: "{{ docker.data }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  loop:
-    - "{{ docker.data }}"
-    - "{{ docker.config }}"
   tags: common,dir
 
 - name: Install packages
