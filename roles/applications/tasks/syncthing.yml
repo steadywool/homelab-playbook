@@ -19,7 +19,7 @@
       - 22000:22000/udp
       - 21027:21027/udp
     volumes:
-      - "{{ docker.data }}/syncthing:/var/syncthing/data"
+      - "{{ docker.data }}/syncthing:/var/syncthing"
     labels:
       traefik.enable: "true"
       traefik.http.routers.syncthing.rule: Host(`sync.{{ private_domain }}`)
