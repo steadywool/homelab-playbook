@@ -45,8 +45,8 @@
       PAPERLESS_REDIS: redis://paperless-redis:6379
       PAPERLESS_TIME_ZONE: Europe/Paris
       PAPERLESS_OCR_LANGUAGE: "fra"
-      PAPERLESS_ADMIN_USER: admin
-      PAPERLESS_ADMIN_PASSWORD: "{{ paperless_password }}"
+      #PAPERLESS_ADMIN_USER: admin # Only use this var when starting for the first time this container
+      #PAPERLESS_ADMIN_PASSWORD: admin # Only use this var when starting for the first time this container
       #PAPERLESS_DEBUG: "true"
       USERMAP_UID: "1000"
       USERMAP_GID: "1000"
