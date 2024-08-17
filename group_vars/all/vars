@@ -11,11 +11,13 @@ ovh_consumer_key: CHANGME
 
 wg_password: CHANGEME # WG-Easy UI password
 gotify_password: CHANGEME # Gotify admin password
-terraria_password: CHANGEME # Terraria password
 influxdb_password: CHANGEME # Influxdb password
+paperless_password: CHANGEME # Paperless NGX password
+terraria_password: CHANGEME # Terraria password
 
 fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
 influxdb_token: CHANGEME # Influxdb Admin token
+paperless_token: CHANGEME # Paperless NGX secret key
 watchtower_gotify_token: CHANGEME # Watchtower Gotify Token
 
 docker:

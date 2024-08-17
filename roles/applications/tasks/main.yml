@@ -20,6 +20,9 @@
 - ansible.builtin.import_tasks: gotify.yml
   tags: gotify,container
 
+- ansible.builtin.import_tasks: paperless.yml
+  tags: paperless,paperless-ngx,container
+
 - ansible.builtin.import_tasks: snapdrop.yml
   tags: snapdrop,container
 

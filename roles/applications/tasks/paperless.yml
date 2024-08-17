@@ -1,0 +1,59 @@
+---
+- name: Create Paperless volumes
+  community.docker.docker_volume:
+    state: present
+    name: "{{ item }}"
+  loop:
+    - paperless_cache
+    - paperless_data
+    - paperless_media
+
+- name: Create Paperless NGX directory
+  ansible.builtin.file:
+    path: "{{ docker.data }}/paperless"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Run Redis container
+  community.docker.docker_container:
+    name: paperless-redis
+    image: docker.io/library/redis:latest
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - paperless_cache:/data
+
+- name: Run Paperless NGX container
+  community.docker.docker_container:
+    name: paperless
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - paperless_data:/usr/src/paperless/data
+      - paperless_media:/usr/src/paperless/media
+      - "{{ docker.data }}/paperless/export:/usr/src/paperless/export"
+      - "{{ docker.data }}/paperless/consume:/usr/src/paperless/consume"
+    env:
+      PAPERLESS_URL: "https://paper.{{ private_domain }}"
+      PAPERLESS_SECRET_KEY: "{{ paperless_token }}"
+      PAPERLESS_REDIS: redis://paperless-redis:6379
+      PAPERLESS_TIME_ZONE: Europe/Paris
+      PAPERLESS_OCR_LANGUAGE: "fra"
+      PAPERLESS_ADMIN_USER: admin
+      PAPERLESS_ADMIN_PASSWORD: "{{ paperless_password }}"
+      #PAPERLESS_DEBUG: "true"
+      USERMAP_UID: "1000"
+      USERMAP_GID: "1000"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.paperless.rule: Host(`paper.{{ private_domain }}`)
+      traefik.http.routers.paperless.entrypoints: "https"
+      traefik.http.routers.paperless.tls: "true"
+      traefik.http.routers.paperless.service: "paperless"
+      traefik.http.services.paperless.loadbalancer.server.port: "8000"
