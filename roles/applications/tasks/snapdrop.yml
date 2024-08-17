@@ -1,0 +1,27 @@
+---
+- name: Create Snapdrop volume
+  community.docker.docker_volume:
+    state: present
+    name: snapdrop_config
+
+- name: Run Snapdrop container
+  community.docker.docker_container:
+    name: snapdrop
+    image: lscr.io/linuxserver/snapdrop:latest
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - snapdrop_config:/config
+    env:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: Europe/Paris
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.snapdrop.rule: Host(`snap.{{ private_domain }}`)
+      traefik.http.routers.snapdrop.entrypoints: "https"
+      traefik.http.routers.snapdrop.tls: "true"
+      traefik.http.routers.snapdrop.service: "snapdrop"
+      traefik.http.services.snapdrop.loadbalancer.server.port: "80"
