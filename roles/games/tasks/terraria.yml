@@ -15,6 +15,6 @@
     restart: true
     command: "-autocreate 3 -world /root/.local/share/Terraria/Worlds/world.wld -maxplayers 8 -difficulty 0 -password {{ terraria_password }}"
     ports:
-      - 39920:7777
+      - 7777:7777
     volumes:
       - "{{ docker.data }}/terraria/world:/root/.local/share/Terraria/Worlds"

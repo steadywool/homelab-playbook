@@ -14,7 +14,7 @@
     restart_policy: always
     restart: true
     ports:
-      - 38819:25565
+      - 25565:25565
     volumes:
       - "{{ docker.data }}/minecraft:/data"
     env:

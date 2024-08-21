@@ -1,0 +1,5 @@
+---
+# Packages that will be installed
+common:
+  packages:
+    - python3-passlib

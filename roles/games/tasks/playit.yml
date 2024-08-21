@@ -1,0 +1,25 @@
+---
+- name: Add Playit.gg GPG key
+  ansible.builtin.apt_key:
+    url: "https://playit-cloud.github.io/ppa/key.gpg"
+    state: present
+  tags: packages
+
+- name: Add Playit.gg repo
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/trusted.gpg] https://playit-cloud.github.io/ppa/data ./"
+  tags: packages
+
+- name: Install Playit.gg
+  ansible.builtin.package:
+    name: playit
+    state: present
+  tags: packages
+
+- name: Enable Playit.gg service
+  ansible.builtin.systemd:
+    name: playit.service
+    state: started
+    enabled: true
+    scope: system
+  tags: services
