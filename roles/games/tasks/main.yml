@@ -1,6 +1,6 @@
 ---
 - ansible.builtin.import_tasks: playit.yml
-  tags: playit,container
+  tags: playit
 
 - ansible.builtin.import_tasks: minecraft.yml
   tags: minecraft,container
