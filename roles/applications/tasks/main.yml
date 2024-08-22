@@ -26,9 +26,6 @@
 - ansible.builtin.import_tasks: paperless.yml
   tags: paperless,paperless-ngx,container
 
-- ansible.builtin.import_tasks: portainer.yml
-  tags: portainer,container
-
 - ansible.builtin.import_tasks: sftpgo.yml
   tags: sftpgo,container
 

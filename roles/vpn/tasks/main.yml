@@ -3,15 +3,6 @@
   tags: wireguard,container
 
 - ansible.builtin.include_role:
-    name: games
-    tasks_from: portainer-agent
-    apply:
-      tags:
-        - portainer-agent
-        - container
-  tags: always
-
-- ansible.builtin.include_role:
     name: applications
     tasks_from: watchtower
     apply:
