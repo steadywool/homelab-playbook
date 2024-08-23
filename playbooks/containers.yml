@@ -1,0 +1,21 @@
+---
+- hosts: apps
+  gather_facts: true
+  become: true
+  roles:
+    - common
+    - containers/applications
+
+- hosts: games
+  gather_facts: true
+  become: true
+  roles:
+    - common
+    - containers/games
+
+- hosts: vpn
+  gather_facts: true
+  become: true
+  roles:
+    - common
+    - containers/vpn

@@ -24,6 +24,10 @@
   when: common.services is defined
   tags: common,services
 
+- ansible.builtin.import_tasks: playit.yml
+  tags: common,playit,playit.gg
+  when: enable_playit is defined and enable_playit
+
 - ansible.builtin.import_tasks: docker.yml
   tags: common,docker
 

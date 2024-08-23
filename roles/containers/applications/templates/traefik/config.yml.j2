@@ -19,9 +19,9 @@ http:
     proxmox:
       loadBalancer:
         servers:
-          - url: "https://{{ groups['pve'][0] }}:8006"
+          - url: "https://{{ hostvars['node'].ansible_host }}:8006"
 
     wireguard:
       loadBalancer:
         servers:
-          - url: "http://{{ groups['vpn'][0] }}:51821"
+          - url: "http://{{ hostvars['vpn'].ansible_host }}:51821"
