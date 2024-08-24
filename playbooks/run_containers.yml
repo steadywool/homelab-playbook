@@ -1,18 +1,16 @@
 ---
-- hosts: apps
+- hosts: prod
   gather_facts: true
   become: true
   roles:
     - common
-    - containers/all
-    - containers/applications
+    - containers/production
 
 - hosts: games
   gather_facts: true
   become: true
   roles:
     - common
-    - containers/all
     - containers/games
 
 - hosts: vpn
@@ -20,5 +18,4 @@
   become: true
   roles:
     - common
-    - containers/all
     - containers/vpn

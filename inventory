@@ -1,19 +1,11 @@
----
-pve:
-  hosts:
-    node:
-      ansible_host: 192.168.1.5
-      ansible_user: root
-ct:
-  hosts:
-    vpn:
-      ansible_host: 192.168.1.6
-      ansible_user: root
-vm:
-  hosts:
-    apps:
-      ansible_host: 192.168.1.7
-      ansible_user: container
-    games:
-      ansible_host: 192.168.1.8
-      ansible_user: container
+[pve]
+192.168.1.5 ansible_user=root
+
+[vpn]
+192.168.1.6 ansible_user=root
+
+[prod]
+192.168.1.7 ansible_user=container
+
+[games]
+192.168.1.8 ansible_user=container

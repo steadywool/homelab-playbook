@@ -1,4 +1,11 @@
 ---
+- name: Create data directory
+  ansible.builtin.file:
+    path: "{{ docker.data }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
 - name: Install packages
   ansible.builtin.package:
     name: "{{ common.packages }}"
@@ -18,3 +25,6 @@
 
 - ansible.builtin.import_tasks: ssh.yml
   tags: common,ssh
+
+- ansible.builtin.import_tasks: docker.yml
+  tags: common,docker

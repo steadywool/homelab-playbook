@@ -1,5 +1,0 @@
-- ansible.builtin.import_tasks: docker.yml
-  tags: all,docker
-
-- ansible.builtin.import_tasks: watchtower.yml
-  tags: all,watchtower,container

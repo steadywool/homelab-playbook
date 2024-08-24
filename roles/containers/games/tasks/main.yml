@@ -7,3 +7,12 @@
 
 - ansible.builtin.import_tasks: playit.yml
   tags: playit,playit.gg
+
+- ansible.builtin.include_role:
+    name: containers/production
+    tasks_from: watchtower
+    apply:
+      tags:
+        - watchtower
+        - container
+  tags: always

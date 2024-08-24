@@ -35,26 +35,26 @@ You can perform partially run of playbook using tags.
 
 You can list them with this command:
 ```
-$ ansible-playbook playbooks/site.yml --list-tags
+$ ansible-playbook playbooks/PLAYBOOK_FILE.yml --list-tags
 ```
 
 Then use them with the `-t ROLE` parameter.
 
 ## 📕 Exemples
 
-Only install syncthing & sftpgo on the "apps" host :
+Only install syncthing & sftpgo :
 ```
-$ ansible-playbook playbooks/playbook_apps.yml -t syncthing,sftpgo
-```
-
-Install Docker on every hosts that need it :
-```
-$ ansible-playbook playbooks/site.yml -t docker
+$ ansible-playbook playbooks/containers.yml -t syncthing,sftpgo
 ```
 
-Execute the entire vpn playbook but skip the watchtower installation :
+Do some maintenance on every hosts :
 ```
-$ ansible-playbook playbooks/playbook_vpn.yml --skip-tags watchtower
+$ ansible-playbook playbooks/maintenance.yml
+```
+
+Execute the entire containers playbook but skip the watchtower installation :
+```
+$ ansible-playbook playbooks/containers.yml --skip-tags watchtower
 ```
 
 For more arguments, check the man page with the command `man ansible-playbook`.
