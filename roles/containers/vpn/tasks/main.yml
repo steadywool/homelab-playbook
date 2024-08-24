@@ -2,20 +2,8 @@
 - ansible.builtin.import_tasks: wireguard.yml
   tags: wireguard,container
 
-- ansible.builtin.include_role:
-    name: containers/applications
-    tasks_from: watchtower
-    apply:
-      tags:
-        - watchtower
-        - container
-  tags: always
+- ansible.builtin.import_tasks: portainer-agent.yml
+  tags: portainer-agent,container
 
-- ansible.builtin.include_role:
-    name: containers/games
-    tasks_from: portainer-agent
-    apply:
-      tags:
-        - portainer-agent
-        - container
-  tags: always
+- ansible.builtin.import_tasks: watchtower.yml
+  tags: watchtower,container

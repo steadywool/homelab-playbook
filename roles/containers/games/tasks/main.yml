@@ -8,14 +8,8 @@
 - ansible.builtin.import_tasks: portainer-agent.yml
   tags: portainer-agent,container
 
+- ansible.builtin.import_tasks: watchtower.yml
+  tags: watchtower,container
+
 - ansible.builtin.import_tasks: playit.yml
   tags: playit,playit.gg
-
-- ansible.builtin.include_role:
-    name: containers/applications
-    tasks_from: watchtower
-    apply:
-      tags:
-        - watchtower
-        - container
-  tags: always
