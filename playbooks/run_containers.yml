@@ -1,6 +1,7 @@
 ---
 - hosts: apps
   gather_facts: true
+  ignore_unreachable: true
   become: true
   roles:
     - common
@@ -8,6 +9,7 @@
 
 - hosts: games
   gather_facts: true
+  ignore_unreachable: true
   become: true
   roles:
     - common
@@ -15,6 +17,7 @@
 
 - hosts: vpn
   gather_facts: true
+  ignore_unreachable: true
   become: true
   roles:
     - common
