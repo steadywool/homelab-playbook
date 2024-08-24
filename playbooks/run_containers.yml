@@ -4,7 +4,7 @@
   become: true
   roles:
     - common
-    - containers/production
+    - containers/applications
 
 - hosts: games
   gather_facts: true
