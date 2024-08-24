@@ -1,12 +1,4 @@
 ---
-- name: Create data directory
-  ansible.builtin.file:
-    path: "{{ docker.data }}"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-  tags: common,dir
-
 - name: Install packages
   ansible.builtin.package:
     name: "{{ common.packages }}"
@@ -23,13 +15,6 @@
   loop: "{{ common.services }}"
   when: common.services is defined
   tags: common,services
-
-- ansible.builtin.import_tasks: playit.yml
-  tags: common,playit,playit.gg
-  when: enable_playit is defined and enable_playit
-
-- ansible.builtin.import_tasks: docker.yml
-  tags: common,docker
 
 - ansible.builtin.import_tasks: ssh.yml
   tags: common,ssh

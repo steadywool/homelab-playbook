@@ -5,6 +5,3 @@ common:
     - qemu-guest-agent
   services:
     - qemu-guest-agent.service
-
-# If set to true, install Playit.gg
-enable_playit: true

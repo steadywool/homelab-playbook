@@ -4,6 +4,7 @@
   become: true
   roles:
     - common
+    - containers/all
     - containers/applications
 
 - hosts: games
@@ -11,6 +12,7 @@
   become: true
   roles:
     - common
+    - containers/all
     - containers/games
 
 - hosts: vpn
@@ -18,4 +20,5 @@
   become: true
   roles:
     - common
+    - containers/all
     - containers/vpn

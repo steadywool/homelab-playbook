@@ -39,3 +39,10 @@
 - name: Create Docker network
   community.docker.docker_network:
     name: "{{ docker.network }}"
+
+- name: Create data directory
+  ansible.builtin.file:
+    path: "{{ docker.data }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"

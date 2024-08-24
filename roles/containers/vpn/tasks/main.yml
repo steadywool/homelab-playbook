@@ -1,12 +1,3 @@
 ---
 - ansible.builtin.import_tasks: wireguard.yml
   tags: wireguard,container
-
-- ansible.builtin.include_role:
-    name: containers/applications
-    tasks_from: watchtower
-    apply:
-      tags:
-        - watchtower
-        - container
-  tags: always

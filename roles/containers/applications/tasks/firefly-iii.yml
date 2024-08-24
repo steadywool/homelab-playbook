@@ -37,6 +37,7 @@
       #APP_LOG_LEVEL: debug
       STATIC_CRON_TOKEN: "{{ fireflyiii_token }}"
       TRUSTED_PROXIES: "**"
+      APP_URL: "https://firefly.{{ private_domain }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.firefly.rule: Host(`firefly.{{ private_domain }}`)
