@@ -10,3 +10,12 @@
         - watchtower
         - container
   tags: always
+
+- ansible.builtin.include_role:
+    name: containers/games
+    tasks_from: portainer-agent
+    apply:
+      tags:
+        - portainer-agent
+        - container
+  tags: always

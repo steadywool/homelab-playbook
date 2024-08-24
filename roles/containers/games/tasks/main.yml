@@ -5,6 +5,9 @@
 - ansible.builtin.import_tasks: terraria.yml
   tags: terraria,container
 
+- ansible.builtin.import_tasks: portainer-agent.yml
+  tags: portainer-agent,container
+
 - ansible.builtin.import_tasks: playit.yml
   tags: playit,playit.gg
 
