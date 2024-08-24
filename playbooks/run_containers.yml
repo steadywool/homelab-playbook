@@ -1,5 +1,5 @@
 ---
-- hosts: prod
+- hosts: apps
   gather_facts: true
   become: true
   roles:

@@ -3,7 +3,7 @@
   tags: wireguard,container
 
 - ansible.builtin.include_role:
-    name: containers/production
+    name: containers/applications
     tasks_from: watchtower
     apply:
       tags:
