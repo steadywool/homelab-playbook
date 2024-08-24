@@ -8,9 +8,6 @@
 - ansible.builtin.import_tasks: firefly-iii.yml
   tags: firefly-iii,firefly,container
 
-- ansible.builtin.import_tasks: actualbudget.yml
-  tags: actual,actualbudget,container
-
 - ansible.builtin.import_tasks: freshrss.yml
   tags: freshrss,container
 
