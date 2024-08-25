@@ -40,6 +40,8 @@ $ ansible-playbook playbooks/PLAYBOOK_FILE.yml --list-tags
 
 Then use them with the `-t ROLE` parameter.
 
+You can also run playbooks on hosts of your choice with the `--limit HOST` argument.
+
 ## 📕 Exemples
 
 Only install syncthing & sftpgo :
@@ -47,9 +49,9 @@ Only install syncthing & sftpgo :
 $ ansible-playbook playbooks/containers.yml -t syncthing,sftpgo
 ```
 
-Do some maintenance on every hosts :
+Do some maintenance on the PVE host only :
 ```
-$ ansible-playbook playbooks/maintenance.yml
+$ ansible-playbook playbooks/maintenance.yml --limit pve
 ```
 
 Execute the entire containers playbook but skip the watchtower installation :
