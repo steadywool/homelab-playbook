@@ -20,7 +20,7 @@
       - baikal_specific:/var/www/baikal/Specific
     labels:
       traefik.enable: "true"
-      traefik.http.routers.baikal.rule: Host(`baikal.{{ private_domain }}`)
+      traefik.http.routers.baikal.rule: Host(`dav.{{ private_domain }}`)
       traefik.http.routers.baikal.entrypoints: "https"
       traefik.http.routers.baikal.tls: "true"
       traefik.http.routers.baikal.service: "baikal"

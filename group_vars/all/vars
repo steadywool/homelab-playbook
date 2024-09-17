@@ -34,4 +34,5 @@ minecraft_mods: |
   yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
   yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
   cristel-lib,towns-and-towers,
-  blossomlib,blossomtpa,blossomback,blossomhomes,easywhitelist
+  blossomlib,blossomtpa,blossomback,blossomhomes,easywhitelist,
+  discord-statusbot
