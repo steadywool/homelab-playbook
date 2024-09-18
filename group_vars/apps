@@ -3,5 +3,6 @@
 common:
   packages:
     - qemu-guest-agent
+    - python3-passlib
   services:
     - qemu-guest-agent.service

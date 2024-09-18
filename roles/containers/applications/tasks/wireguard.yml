@@ -26,5 +26,12 @@
       WG_HOST: "{{ public_domain }}"
       PASSWORD_HASH: "{{ wg_password | password_hash('bcrypt') }}"
       WG_DEFAULT_DNS: ""
-      WG_ALLOWED_IPS: "{{ groups['pve'][0] }}/32, {{ groups['vpn'][0] }}/32, {{ groups['apps'][0] }}/32, {{ groups['games'][0] }}/32"
+      WG_ALLOWED_IPS: "{{ groups['pve'][0] }}/32, {{ groups['apps'][0] }}/32, {{ groups['games'][0] }}/32"
       UI_TRAFFIC_STATS: "true"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.wireguard.rule: Host(`wg.{{ private_domain }}`)
+      traefik.http.routers.wireguard.entrypoints: "https"
+      traefik.http.routers.wireguard.tls: "true"
+      traefik.http.routers.wireguard.service: "wireguard"
+      traefik.http.services.wireguard.loadbalancer.server.port: "51821"

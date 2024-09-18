@@ -1,9 +1,0 @@
----
-- ansible.builtin.import_tasks: wireguard.yml
-  tags: wireguard,container
-
-- ansible.builtin.import_tasks: portainer-agent.yml
-  tags: portainer-agent,container
-
-- ansible.builtin.import_tasks: watchtower.yml
-  tags: watchtower,container

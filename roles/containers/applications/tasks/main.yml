@@ -1,4 +1,7 @@
 ---
+- ansible.builtin.import_tasks: wireguard.yml
+  tags: wireguard,container
+
 - ansible.builtin.import_tasks: baikal.yml
   tags: baikal,container
 
