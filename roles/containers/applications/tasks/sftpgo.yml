@@ -1,11 +1,8 @@
 ---
-- name: Create Sftpgo volumes
+- name: Create Sftpgo volume
   community.docker.docker_volume:
     state: present
-    name: "{{ item }}"
-  loop:
-    - sftpgo_config
-    - sftpgo_backup
+    name: sftpgo_config
 
 - name: Run Sftpgo container
   community.docker.docker_container:
@@ -19,11 +16,11 @@
       - 2022:2022
     volumes:
       - "{{ docker.data }}:/srv/sftpgo/data"
-      - sftpgo_backup:/srv/sftpgo/backup
+      - "{{ docker.backup }}:/srv/sftpgo/backup"
       - sftpgo_config:/var/lib/sftpgo
     labels:
       traefik.enable: "true"
-      traefik.http.routers.sftpgo.rule: Host(`sftp.{{ private_domain }}`)
+      traefik.http.routers.sftpgo.rule: Host(`files.{{ private_domain }}`)
       traefik.http.routers.sftpgo.entrypoints: "https"
       traefik.http.routers.sftpgo.tls: "true"
       traefik.http.routers.sftpgo.service: "sftpgo"
