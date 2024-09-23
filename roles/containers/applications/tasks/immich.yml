@@ -1,0 +1,62 @@
+---
+- name: Create Immich volumes
+  community.docker.docker_volume:
+    state: present
+    name: "{{ item }}"
+  loop: 
+    - immich_data
+    - immich_cache
+    - immich_db
+
+- name: Run Redis container
+  community.docker.docker_container:
+    name: immich-redis
+    image: docker.io/library/redis:latest
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - immich_cache:/data
+
+- name: Run Postgresql container
+  community.docker.docker_container:
+    name: immich-postgres
+    image: docker.io/tensorchord/pgvecto-rs:pg14-v0.2.0
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: "{{ docker.network }}"
+    command: ["postgres", "-c", "shared_preload_libraries=vectors.so", "-c", 'search_path="$$user", public, vectors', "-c", "logging_collector=on", "-c", "max_wal_size=2GB", "-c", "shared_buffers=512MB", "-c", "wal_compression=on"]
+    volumes:
+      - immich_db:/var/lib/postgresql/data
+    env:
+      POSTGRES_DB: immich
+      POSTGRES_USER: immich
+      POSTGRES_PASSWORD: "{{ immich_postgres_password }}"
+      POSTGRES_INITDB_ARGS: '--data-checksums'
+
+- name: Run Immich container
+  community.docker.docker_container:
+    name: immich
+    image: ghcr.io/immich-app/immich-server:release
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - immich_data:/usr/src/app/upload
+    env:
+      TZ: Europe/Paris
+      REDIS_HOSTNAME: immich-redis
+      DB_HOSTNAME: immich-postgres
+      DB_USERNAME: immich
+      DB_DATABASE_NAME: immich
+      DB_PASSWORD: "{{ immich_postgres_password }}"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.immich.rule: Host(`immich.{{ private_domain }}`)
+      traefik.http.routers.immich.entrypoints: "https"
+      traefik.http.routers.immich.tls: "true"
+      traefik.http.routers.immich.service: "immich"
+      traefik.http.services.immich.loadbalancer.server.port: "3001"
