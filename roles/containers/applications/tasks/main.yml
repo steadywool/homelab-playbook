@@ -29,9 +29,6 @@
 - ansible.builtin.import_tasks: sftpgo.yml
   tags: sftpgo,container
 
-- ansible.builtin.import_tasks: immich.yml
-  tags: immich,container
-
 - ansible.builtin.import_tasks: portainer.yml
   tags: portainer,container
 
