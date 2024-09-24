@@ -17,6 +17,12 @@ fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
 paperless_token: CHANGEME # Paperless NGX secret key
 watchtower_gotify_token: CHANGEME # Watchtower Gotify Token
 
+# https://www.navidrome.org/docs/usage/external-integrations
+navidrome_spotify_client_id: CHANGEME
+navidrome_spotify_client_secret: CHANGEME
+navidrome_lastfm_api_key: CHANGEME
+navidrome_lastfm_api_sharedkey: CHANGEME
+
 docker:
   network: custom_network # Docker network used by containers
   data: "/home/{{ ansible_user }}/data" # Where data are bind-mounted
