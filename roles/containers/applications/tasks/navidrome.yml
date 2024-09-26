@@ -25,11 +25,8 @@
     env:
       ND_ENABLESHARING: "true"
       ND_BASEURL: "https://music.{{ private_domain }}"
-      ND_SCANSCHEDULE: "@every 30m"
       ND_SPOTIFY_ID: "{{ navidrome_spotify_client_id }}"
       ND_SPOTIFY_SECRET: "{{ navidrome_spotify_client_secret }}"
-      ND_LASTFM_APIKEY: "{{ navidrome_lastfm_api_key }}"
-      ND_LASTFM_SECRET: "{{ navidrome_lastfm_api_sharedkey }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.navidrome.rule: Host(`music.{{ private_domain }}`)

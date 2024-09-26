@@ -20,8 +20,6 @@ watchtower_gotify_token: CHANGEME # Watchtower Gotify Token
 # https://www.navidrome.org/docs/usage/external-integrations
 navidrome_spotify_client_id: CHANGEME
 navidrome_spotify_client_secret: CHANGEME
-navidrome_lastfm_api_key: CHANGEME
-navidrome_lastfm_api_sharedkey: CHANGEME
 
 docker:
   network: custom_network # Docker network used by containers
