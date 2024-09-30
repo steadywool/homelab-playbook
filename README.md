@@ -46,17 +46,17 @@ You can also run playbooks on hosts of your choice with the `--limit HOST` argum
 
 Only install syncthing & sftpgo :
 ```
-$ ansible-playbook playbooks/containers.yml -t syncthing,sftpgo
+$ ansible-playbook playbooks/run_containers.yml -t syncthing,sftpgo
 ```
 
 Do some maintenance on the PVE host only :
 ```
-$ ansible-playbook playbooks/maintenance.yml --limit pve
+$ ansible-playbook playbooks/start_maintenance.yml --limit pve
 ```
 
 Execute the entire containers playbook but skip the watchtower installation :
 ```
-$ ansible-playbook playbooks/containers.yml --skip-tags watchtower
+$ ansible-playbook playbooks/run_containers.yml --skip-tags watchtower
 ```
 
 For more arguments, check the man page with the command `man ansible-playbook`.
