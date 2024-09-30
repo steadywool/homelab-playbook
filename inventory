@@ -6,6 +6,3 @@
 
 [games]
 192.168.1.7 ansible_user=container
-
-[code]
-192.168.1.8 ansible_user=dev
