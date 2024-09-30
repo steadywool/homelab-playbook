@@ -10,7 +10,7 @@
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
     env:
-      WATCHTOWER_SCHEDULE: "0 0 3 * * *"
+      WATCHTOWER_SCHEDULE: "0 0 3 * * FRI"
       WATCHTOWER_CLEANUP: "true"
       WATCHTOWER_NOTIFICATIONS: "gotify"
       WATCHTOWER_NOTIFICATION_GOTIFY_URL: "https://gotify.{{ private_domain }}"

@@ -5,18 +5,18 @@
       - ca-certificates
       - gnupg
     state: present
-  tags: packages
+  tags: docker,packages
 
 - name: Add Docker GPG key
   ansible.builtin.apt_key:
     url: "https://download.docker.com/linux/{{ ansible_distribution|lower }}/gpg"
     state: present
-  tags: packages
+  tags: docker,packages
 
 - name: Add Docker repo
   ansible.builtin.apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
-  tags: packages
+  tags: docker,packages
 
 - name: Install Docker
   ansible.builtin.package:
@@ -26,7 +26,7 @@
       - containerd.io
       - python3-docker
     state: present
-  tags: packages
+  tags: docker,packages
 
 - name: Enable Docker service
   ansible.builtin.systemd:
@@ -34,8 +34,20 @@
     state: started
     enabled: true
     scope: system
-  tags: services
+  tags: docker,services
 
 - name: Create Docker network
   community.docker.docker_network:
     name: "{{ docker.network }}"
+  tags: docker
+
+- name: Create docker directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  loop:
+    - "{{ docker.data }}"
+    - "{{ docker.backup }}"
+  tags: docker
