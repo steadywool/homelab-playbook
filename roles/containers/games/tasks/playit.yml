@@ -1,13 +1,14 @@
 ---
 - name: Add Playit.gg GPG key
-  ansible.builtin.apt_key:
+  ansible.builtin.get_url:
     url: "https://playit-cloud.github.io/ppa/key.gpg"
-    state: present
+    dest: /etc/apt/keyrings/playit.asc
+    mode: '0644'
   tags: packages
 
 - name: Add Playit.gg repo
   ansible.builtin.apt_repository:
-    repo: "deb [signed-by=/etc/apt/trusted.gpg] https://playit-cloud.github.io/ppa/data ./"
+    repo: "deb [signed-by=/etc/apt/keyrings/playit.asc] https://playit-cloud.github.io/ppa/data ./"
   tags: packages
 
 - name: Install Playit.gg

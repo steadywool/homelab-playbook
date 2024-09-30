@@ -1,0 +1,6 @@
+---
+# Packages & services that will be installed
+common:
+  packages:
+    - ansible
+    - git
