@@ -19,16 +19,17 @@
       - "{{ docker.data }}/minecraft:/data"
     env:
       # General
-      MEMORY: "3G"
+      MEMORY: "4G"
       USE_AIKAR_FLAGS: "true"
       EULA: "true"
       ONLINE_MODE: "false"
       SNOOPER_ENABLED: "false"
+      ENABLE_AUTOPAUSE: "true"
       # Gameplay
       TYPE: "FABRIC"
       VERSION: "1.20.4"
       SERVER_NAME: "minecraft-survival"
-      MOTD: "Serveur Poulet"
+      MOTD: "Welcome to Steadywool's Minecraft server"
       DIFFICULTY: "normal"
       MODE: "survival"
       # World
@@ -36,7 +37,7 @@
       VIEW_DISTANCE: "8"
       SIMULATION_DISTANCE: "8"
       # Players
-      MAX_PLAYERS: "8"
+      MAX_PLAYERS: "6"
       FORCE_GAMEMODE: "true"
       ENABLE_WHITELIST: "true"
       # Mods
