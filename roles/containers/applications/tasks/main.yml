@@ -35,5 +35,8 @@
 - ansible.builtin.import_tasks: navidrome.yml
   tags: navidrome,container
 
+- ansible.builtin.import_tasks: nextcloud.yml
+  tags: nextcloud,container
+
 - ansible.builtin.import_tasks: watchtower.yml
   tags: watchtower,container

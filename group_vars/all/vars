@@ -12,6 +12,7 @@ ovh_consumer_key: CHANGME
 wg_password: CHANGEME # WG-Easy UI password
 gotify_password: CHANGEME # Gotify admin password
 terraria_password: CHANGEME # Terraria password
+nextcloud_postgres_password: CHANGEME # Mariadb password for Nextcloud
 
 fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
 paperless_token: CHANGEME # Paperless NGX secret key
@@ -32,12 +33,9 @@ backup:
 
 # Mods that will be installed on minecraft server
 minecraft_mods: |
-  fabric-api,lithium,
-  terrablender,terralith,nullscape,incendium,
-  yungs-api,cloth-config,yungs-better-mineshafts,yungs-better-dungeons,
-  yungs-better-ocean-monuments,yungs-better-nether-fortresses,yungs-better-strongholds,
+  terralith,nullscape,incendium,towns-and-towers,
+  yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
+  yungs-better-ocean-monuments,yungs-better-nether-fortresses,
   yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
   yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
-  cristel-lib,towns-and-towers,
-  blossomlib,blossomtpa,blossomback,blossomhomes,easywhitelist,
-  discord-statusbot
+  blossomtpa,blossomback,blossomhomes,easywhitelist,lithium

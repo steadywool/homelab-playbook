@@ -1,0 +1,54 @@
+---
+- name: Create Nextcloud volume
+  community.docker.docker_volume:
+    state: present
+    name: "{{ item }}"
+  loop:
+    - nextcloud_config
+    - nextcloud_db
+
+- name: Create Nextcloud directories
+  ansible.builtin.file:
+    path: "{{ docker.data }}/nextcloud"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Run Nextcloud container
+  community.docker.docker_container:
+    name: nextcloud
+    image: lscr.io/linuxserver/nextcloud:latest
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - nextcloud_config:/config
+      - "{{ docker.data }}/nextcloud:/data"
+    env:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: "Europe/Paris"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.nextcloud.rule: Host(`cloud.{{ private_domain }}`)
+      traefik.http.routers.nextcloud.entrypoints: "https"
+      traefik.http.routers.nextcloud.tls: "true"
+      traefik.http.routers.nextcloud.service: "nextcloud"
+      traefik.http.services.nextcloud.loadbalancer.server.port: "443"
+      traefik.http.services.nextcloud.loadbalancer.server.scheme: "https"
+
+- name: Run Postgresql container
+  community.docker.docker_container:
+    name: nextcloud-postgres
+    image: docker.io/library/postgres:alpine
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - nextcloud_db:/var/lib/postgresql/data
+    env:
+       POSTGRES_DB: nextcloud
+       POSTGRES_USER: nextcloud
+       POSTGRES_PASSWORD: "{{ nextcloud_postgres_password }}"

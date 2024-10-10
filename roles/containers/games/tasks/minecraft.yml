@@ -35,10 +35,11 @@
       # World
       SPAWN_PROTECTION: "0"
       VIEW_DISTANCE: "8"
-      SIMULATION_DISTANCE: "8"
+      SIMULATION_DISTANCE: "6"
       # Players
       MAX_PLAYERS: "6"
       FORCE_GAMEMODE: "true"
       ENABLE_WHITELIST: "true"
       # Mods
       MODRINTH_PROJECTS: "{{ minecraft_mods }}"
+      MODRINTH_DOWNLOAD_DEPENDENCIES: "required"
