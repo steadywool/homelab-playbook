@@ -1,0 +1,6 @@
+---
+# Packages that will be installed
+common:
+  packages:
+    - python3-passlib
+    - python3-docker

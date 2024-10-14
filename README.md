@@ -5,8 +5,7 @@ Create containers with Ansible.
 ## 🚀 Installation
 
 > [!IMPORTANT]
-> Important variables are present in the `group_vars` directory. You need to edit them to customize your installation. </br></br>
-> You must also edit the `inventory` and Playbooks file.
+> Important variables are present in `group_vars` and `host_vars`. You need to edit them to customize your installation.
 
 Firstly, install Ansible:
 ```
@@ -18,6 +17,8 @@ You can then clone this repository and enter it:
 $ git clone https://github.com/steadywool/homelab-playbook.git
 $ cd homelab-playbook
 ```
+
+Create an `inventory` file and edit playbooks and other files using hosts.
 
 > [!IMPORTANT]
 > If you need a "sudo" password, use the `-K` (upper-case) argument. </br></br>
@@ -38,25 +39,8 @@ You can list them with this command:
 $ ansible-playbook playbooks/PLAYBOOK_FILE.yml --list-tags
 ```
 
-Then use them with the `-t ROLE` parameter.
+Then use them with the `-t TAG` parameter.
+
+You can skip some tags using `--skip-tags TAG`.
 
 You can also run playbooks on hosts of your choice with the `--limit HOST` argument.
-
-## 📕 Exemples
-
-Only install syncthing & sftpgo :
-```
-$ ansible-playbook playbooks/run_containers.yml -t syncthing,sftpgo
-```
-
-Do some maintenance on the PVE host only :
-```
-$ ansible-playbook playbooks/start_maintenance.yml --limit pve
-```
-
-Execute the entire containers playbook but skip the watchtower installation :
-```
-$ ansible-playbook playbooks/run_containers.yml --skip-tags watchtower
-```
-
-For more arguments, check the man page with the command `man ansible-playbook`.

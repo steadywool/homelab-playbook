@@ -1,54 +1,51 @@
 ---
-- name: Install Docker dependencies
-  ansible.builtin.package:
-    name:
-      - ca-certificates
-      - gnupg
-    state: present
-  tags: docker,packages
+- ansible.builtin.import_tasks: baikal.yml
+  tags: baikal
+  when: inventory_hostname == apps
 
-- name: Add Docker GPG key
-  ansible.builtin.get_url:
-    url: "https://download.docker.com/linux/{{ ansible_distribution|lower }}/gpg"
-    dest: /etc/apt/keyrings/docker.asc
-    mode: '0644'
-  tags: docker,packages
+- ansible.builtin.import_tasks: syncthing.yml
+  tags: syncthing
+  when: inventory_hostname == apps
 
-- name: Add Docker repo
-  ansible.builtin.apt_repository:
-    repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
-  tags: docker,packages
+- ansible.builtin.import_tasks: firefly-iii.yml
+  tags: firefly-iii,firefly
+  when: inventory_hostname == apps
 
-- name: Install Docker
-  ansible.builtin.package:
-    name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - python3-docker
-    state: present
-  tags: docker,packages
+- ansible.builtin.import_tasks: freshrss.yml
+  tags: freshrss
+  when: inventory_hostname == apps
 
-- name: Enable Docker service
-  ansible.builtin.systemd:
-    name: docker.service
-    state: started
-    enabled: true
-    scope: system
-  tags: docker,services
+- ansible.builtin.import_tasks: traefik.yml
+  tags: traefik
+  when: inventory_hostname == apps
 
-- name: Create Docker network
-  community.docker.docker_network:
-    name: "{{ docker.network }}"
-  tags: docker
+- ansible.builtin.import_tasks: uptime-kuma.yml
+  tags: uptime-kuma,uptime
+  when: inventory_hostname == apps
 
-- name: Create docker directories
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-  loop:
-    - "{{ docker.data }}"
-    - "{{ docker.backup }}"
-  tags: docker
+- ansible.builtin.import_tasks: gotify.yml
+  tags: gotify
+  when: inventory_hostname == apps
+
+- ansible.builtin.import_tasks: paperless.yml
+  tags: paperless,paperless-ngx
+  when: inventory_hostname == apps
+
+- ansible.builtin.import_tasks: navidrome.yml
+  tags: navidrome
+  when: inventory_hostname == apps
+
+- ansible.builtin.import_tasks: filebrowser.yml
+  tags: filebrowser
+  when: inventory_hostname == apps
+
+- ansible.builtin.import_tasks: minecraft.yml
+  tags: minecraft
+  when: inventory_hostname == games
+
+- ansible.builtin.import_tasks: wireguard.yml
+  tags: wireguard
+  when: inventory_hostname == vpn
+
+- ansible.builtin.import_tasks: watchtower.yml
+  tags: watchtower

@@ -4,18 +4,15 @@
     url: "https://playit-cloud.github.io/ppa/key.gpg"
     dest: /etc/apt/keyrings/playit.asc
     mode: '0644'
-  tags: packages
 
 - name: Add Playit.gg repo
   ansible.builtin.apt_repository:
     repo: "deb [signed-by=/etc/apt/keyrings/playit.asc] https://playit-cloud.github.io/ppa/data ./"
-  tags: packages
 
 - name: Install Playit.gg
   ansible.builtin.package:
     name: playit
     state: present
-  tags: packages
 
 - name: Enable Playit.gg service
   ansible.builtin.systemd:
@@ -23,4 +20,3 @@
     state: started
     enabled: true
     scope: system
-  tags: services

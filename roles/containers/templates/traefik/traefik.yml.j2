@@ -8,7 +8,7 @@ certificatesResolvers:
   ovh:
     acme:
       email: "{{ email }}"
-      storage: "/acme.json"
+      storage: "/etc/traefik/acme.json"
       dnsChallenge:
         provider: "ovh"  
 
@@ -32,8 +32,8 @@ providers:
   # Reverse proxy docker services
   docker:
     endpoint: "unix:///var/run/docker.sock" # Docker socket
-    network: "overlay_network" # Docker network
+    network: "{{ docker.network }}" # Docker network
     exposedbydefault: false # Must use traefik.enable to expose service
   # Reverse proxy external services
   file:
-    filename: "/config.yml" # Config directory
+    filename: "/etc/traefik/config.yml" # Config directory

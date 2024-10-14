@@ -3,7 +3,7 @@
   community.docker.docker_volume:
     state: present
     name: "{{ item }}"
-  loop: 
+  loop:
     - baikal_config
     - baikal_specific
 

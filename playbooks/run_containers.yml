@@ -5,8 +5,8 @@
   become: true
   roles:
     - common
+    - docker
     - containers
-    - containers/applications
 
 - hosts: games
   gather_facts: true
@@ -14,5 +14,15 @@
   become: true
   roles:
     - common
+    - docker
+    - playit
     - containers
-    - containers/games
+
+- hosts: vpn
+  gather_facts: true
+  ignore_unreachable: true
+  become: true
+  roles:
+    - common
+    - docker
+    - containers

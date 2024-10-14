@@ -1,0 +1,25 @@
+---
+http:
+  routers:
+    proxmox:
+      rule: "Host(`pve.{{ private_domain }}`)"
+      entryPoints: 
+        - "https"
+      tls: {}
+      service: "proxmox"
+    wireguard:
+      rule: "Host(`wg.{{ private_domain }}`)"
+      entryPoints: 
+        - "https"
+      tls: {}
+      service: "wireguard"
+
+  services:
+    proxmox:
+      loadBalancer:
+        servers:
+          - url: "https://"{{ hostvars['pve']['ansible_host'] }}":8006"
+    wireguard:
+      loadBalancer:
+        servers:
+          - url: "https://"{{ hostvars['vpn']['ansible_host'] }}":51821"

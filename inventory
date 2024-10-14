@@ -1,8 +1,11 @@
-[pve]
-192.168.1.5 ansible_user=root
+# Proxmox
+pbe ansible_host=192.168.1.5 ansible_user=root
+pve ansible_host=192.168.1.6 ansible_user=root
 
-[apps]
-192.168.1.6 ansible_user=container
+# OpenMediaVault
+nas ansible_host=192.168.1.7 ansible_user=adminuser
 
-[games]
-192.168.1.7 ansible_user=container
+# Containers
+vpn ansible_host=192.168.1.8 ansible_user=root
+apps ansible_host=192.168.1.9 ansible_user=adminuser
+games ansible_host=192.168.1.10 ansible_user=adminuser

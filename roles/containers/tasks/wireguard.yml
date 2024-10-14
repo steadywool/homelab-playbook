@@ -26,7 +26,7 @@
       WG_HOST: "{{ public_domain }}"
       PASSWORD_HASH: "{{ wg_password | password_hash('bcrypt') }}"
       WG_DEFAULT_DNS: ""
-      WG_ALLOWED_IPS: "{{ groups['pve'][0] }}/32, {{ groups['apps'][0] }}/32, {{ groups['games'][0] }}/32"
+      WG_ALLOWED_IPS: "{{ groups['all'] | map('extract', hostvars, 'ansible_host') | map('regex_replace', '(/32)?$', '/32') | join(',') }}"
       UI_TRAFFIC_STATS: "true"
     labels:
       traefik.enable: "true"

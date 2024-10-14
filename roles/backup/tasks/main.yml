@@ -5,7 +5,6 @@
       - rclone
       - cron
     state: present
-  tags: packages
 
 - name: Enable cron service
   ansible.builtin.systemd:
@@ -13,7 +12,6 @@
     state: started
     enabled: true
     scope: system
-  tags: services
 
 - name: Create daily backup with Rclone
   ansible.builtin.cron:

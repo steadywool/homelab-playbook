@@ -1,0 +1,35 @@
+---
+- name: Create filebrowser DB
+  ansible.builtin.file:
+    path: "{{ docker.data }}/filebrowser.db"
+    state: touch
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+
+- name: NFS volume mount
+  community.docker.docker_volume:
+    driver_options:
+      type: nfs
+      o: "addr={{ hostvars['nas']['ansible_host'] }},rw"
+      device: :/UserData
+    volume_name: user_data
+
+- name: Run Filebrowser container
+  community.docker.docker_container:
+    name: filebrowser
+    image: docker.io/filebrowser/filebrowser:latest
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - user_data:/srv
+      - "{{ docker.data }}/filebrowser.db:/database.db"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.filebrowser.rule: Host(`files.{{ private_domain }}`)
+      traefik.http.routers.filebrowser.entrypoints: "https"
+      traefik.http.routers.filebrowser.tls: "true"
+      traefik.http.routers.filebrowser.service: "filebrowser"
+      traefik.http.services.filebrowser.loadbalancer.server.port: "80"

@@ -3,6 +3,7 @@
 common:
   packages:
     - qemu-guest-agent
-    - python3-passlib
+    - nfs-common
+    - python3-docker
   services:
     - qemu-guest-agent.service

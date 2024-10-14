@@ -3,7 +3,7 @@
   community.docker.docker_volume:
     state: present
     name: "{{ item }}"
-  loop: 
+  loop:
     - freshrss_extensions
     - freshrss_data
 

@@ -1,11 +1,11 @@
 ---
-- name: Create Firefly-iii volumes
+- name: Create Firefly III volumes
   community.docker.docker_volume:
     state: present
     name: "{{ item }}"
-  loop: 
-    - firefly_db
+  loop:
     - firefly_upload
+    - firefly_database
 
 - name: Run Cron container
   community.docker.docker_container:
@@ -27,7 +27,7 @@
     network_mode: "{{ docker.network }}"
     volumes:
       - firefly_upload:/var/www/html/storage/upload
-      - firefly_db:/var/www/html/storage/database
+      - firefly_database:/var/www/html/storage/database
     env:
       APP_ENV: production
       APP_KEY: "{{ fireflyiii_token }}"

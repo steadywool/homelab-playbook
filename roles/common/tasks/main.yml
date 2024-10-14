@@ -4,7 +4,6 @@
     name: "{{ common.packages }}"
     state: present
   when: common.packages is defined
-  tags: common,packages
 
 - name: Enable services
   ansible.builtin.systemd:
@@ -14,7 +13,6 @@
     scope: system
   loop: "{{ common.services }}"
   when: common.services is defined
-  tags: common,services
 
 - ansible.builtin.import_tasks: ssh.yml
-  tags: common,ssh
+  tags: ssh

@@ -37,9 +37,7 @@
       - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - "{{ docker.data }}/traefik/acme.json:/acme.json"
-      - "{{ docker.data }}/traefik/traefik.yml:/traefik.yml"
-      - "{{ docker.data }}/traefik/config.yml:/config.yml"
+      - "{{ docker.data }}/traefik:/etc/traefik"
     env:
       OVH_ENDPOINT: "{{ ovh_endpoint }}"
       OVH_APPLICATION_KEY: "{{ ovh_application_key }}"
