@@ -1,11 +1,11 @@
 # Proxmox
-pbe ansible_host=192.168.1.5 ansible_user=root
-pve ansible_host=192.168.1.6 ansible_user=root
+pbe ansible_host="{{ inventory.pbe.host }}" ansible_user="{{ inventory.pbe.user }}"
+pve ansible_host="{{ inventory.pve.host }}" ansible_user="{{ inventory.pve.user }}"
 
 # OpenMediaVault
-nas ansible_host=192.168.1.7 ansible_user=adminuser
+nas ansible_host="{{ inventory.nas.host }}" ansible_user="{{ inventory.nas.user }}"
 
 # Containers
-vpn ansible_host=192.168.1.8 ansible_user=root
-apps ansible_host=192.168.1.9 ansible_user=adminuser
-games ansible_host=192.168.1.10 ansible_user=adminuser
+vpn ansible_host="{{ inventory.vpn.host }}" ansible_user="{{ inventory.vpn.user }}"
+apps ansible_host="{{ inventory.apps.host }}" ansible_user="{{ inventory.apps.user }}"
+games ansible_host="{{ inventory.games.host }}" ansible_user="{{ inventory.games.user }}"

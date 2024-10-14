@@ -35,3 +35,24 @@ minecraft_mods: |
   yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
   yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
   blossomtpa,blossomback,blossomhomes,easywhitelist,lithium
+
+# Inventory settings
+inventory:
+  pbe:
+    host: X.X.X.X
+    user: USER
+  pve:
+    host: X.X.X.X
+    user: USER
+  nas:
+    host: X.X.X.X
+    user: USER
+  vpn:
+    host: X.X.X.X
+    user: USER
+  apps:
+    host: X.X.X.X
+    user: USER
+  games:
+    host: X.X.X.X
+    user: USER
