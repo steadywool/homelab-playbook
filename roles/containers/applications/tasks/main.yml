@@ -29,5 +29,8 @@
 - ansible.builtin.import_tasks: filebrowser.yml
   tags: filebrowser
 
+- ansible.builtin.import_tasks: stirling-pdf.yml
+  tags: stirling,stirling-pdf
+
 - ansible.builtin.import_tasks: watchtower.yml
   tags: watchtower
