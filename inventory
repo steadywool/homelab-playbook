@@ -9,3 +9,7 @@ pve ansible_host="{{ inventory.pve.host }}" ansible_user="{{ inventory.pve.user 
 vpn ansible_host="{{ inventory.vpn.host }}" ansible_user="{{ inventory.vpn.user }}"
 apps ansible_host="{{ inventory.apps.host }}" ansible_user="{{ inventory.apps.user }}"
 games ansible_host="{{ inventory.games.host }}" ansible_user="{{ inventory.games.user }}"
+
+[vm]
+apps
+games

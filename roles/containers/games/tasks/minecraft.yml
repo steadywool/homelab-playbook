@@ -25,6 +25,7 @@
       ONLINE_MODE: "false"
       SNOOPER_ENABLED: "false"
       ENABLE_AUTOPAUSE: "true"
+      ENABLE_ROLLING_LOGS: "true"
       # Gameplay
       TYPE: "FABRIC"
       VERSION: "1.20.4"

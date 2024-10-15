@@ -5,7 +5,8 @@ Create containers with Ansible.
 ## 🚀 Installation
 
 > [!IMPORTANT]
-> Important variables are present in `group_vars` and `host_vars`. You need to edit them to customize your installation.
+> Important variables are present in `group_vars` and `host_vars`. You need to edit them to customize your installation.</br></br>
+> You must also edit the `inventory` file, playbooks and other files using hosts.
 
 Firstly, install Ansible:
 ```
@@ -17,8 +18,6 @@ You can then clone this repository and enter it:
 $ git clone https://github.com/steadywool/homelab-playbook.git
 $ cd homelab-playbook
 ```
-
-Create an `inventory` file and edit playbooks and other files using hosts.
 
 > [!IMPORTANT]
 > If you need a "sudo" password, use the `-K` (upper-case) argument. </br></br>
@@ -41,6 +40,6 @@ $ ansible-playbook playbooks/PLAYBOOK_FILE.yml --list-tags
 
 Then use them with the `-t TAG` parameter.
 
-You can skip some tags using `--skip-tags TAG`.
+You can skip some tags using the `--skip-tags TAG` parameter.
 
 You can also run playbooks on hosts of your choice with the `--limit HOST` argument.
