@@ -8,13 +8,6 @@
     - paperless_data
     - paperless_media
 
-- name: Create Paperless NGX directory
-  ansible.builtin.file:
-    path: "{{ docker.data }}/paperless"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-
 - name: Run Redis container
   community.docker.docker_container:
     name: paperless-redis

@@ -5,6 +5,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
+    mode: '0755'
 
 - name: Template Traefik configuration
   ansible.builtin.template:
@@ -42,7 +43,7 @@
       OVH_ENDPOINT: "{{ ovh_endpoint }}"
       OVH_APPLICATION_KEY: "{{ ovh_application_key }}"
       OVH_APPLICATION_SECRET: "{{ ovh_application_secret }}"
-      OVH_CONSUMER_KEY: "{{ ovh_consumer_key}}"
+      OVH_CONSUMER_KEY: "{{ ovh_consumer_key }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.traefik.rule: Host(`traefik.{{ private_domain }}`)
