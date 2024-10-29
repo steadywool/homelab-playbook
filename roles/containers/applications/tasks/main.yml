@@ -20,6 +20,9 @@
 - ansible.builtin.import_tasks: navidrome.yml
   tags: navidrome
 
+- ansible.builtin.import_tasks: gotify.yml
+  tags: gotify
+
 - ansible.builtin.import_tasks: filebrowser.yml
   tags: filebrowser
 
