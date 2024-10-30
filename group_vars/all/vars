@@ -33,7 +33,7 @@ minecraft_mods: |
   yungs-better-ocean-monuments,yungs-better-nether-fortresses,
   yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
   yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
-  blossomtpa,blossomback,blossomhomes,easywhitelist,lithium
+  blossomtpa,blossomback,blossomhomes,easywhitelist,lithium,ferrite-core
 
 # Inventory settings
 inventory:
