@@ -26,5 +26,8 @@
 - ansible.builtin.import_tasks: filebrowser.yml
   tags: filebrowser
 
+- ansible.builtin.import_tasks: portainer.yml
+  tags: portainer
+
 - ansible.builtin.import_tasks: watchtower.yml
   tags: watchtower

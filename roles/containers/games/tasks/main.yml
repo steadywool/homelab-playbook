@@ -2,5 +2,8 @@
 - ansible.builtin.import_tasks: minecraft.yml
   tags: minecraft
 
+- ansible.builtin.import_tasks: portainer-agent.yml
+  tags: portainer-agent,portainer
+
 - ansible.builtin.import_tasks: watchtower.yml
   tags: watchtower
