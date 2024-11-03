@@ -1,33 +1,55 @@
 ---
 - ansible.builtin.import_tasks: baikal.yml
+  when: inventory_hostname == apps
   tags: baikal
 
 - ansible.builtin.import_tasks: syncthing.yml
+  when: inventory_hostname == apps
   tags: syncthing
 
 - ansible.builtin.import_tasks: firefly-iii.yml
+  when: inventory_hostname == apps
   tags: firefly-iii,firefly
 
 - ansible.builtin.import_tasks: freshrss.yml
+  when: inventory_hostname == apps
   tags: freshrss
 
 - ansible.builtin.import_tasks: traefik.yml
+  when: inventory_hostname == apps
   tags: traefik
 
 - ansible.builtin.import_tasks: uptime-kuma.yml
+  when: inventory_hostname == apps
   tags: uptime-kuma,uptime
 
 - ansible.builtin.import_tasks: navidrome.yml
+  when: inventory_hostname == apps
   tags: navidrome
 
 - ansible.builtin.import_tasks: gotify.yml
+  when: inventory_hostname == apps
   tags: gotify
 
 - ansible.builtin.import_tasks: filebrowser.yml
+  when: inventory_hostname == apps
   tags: filebrowser
 
 - ansible.builtin.import_tasks: portainer.yml
+  when: inventory_hostname == apps
   tags: portainer
+
+- ansible.builtin.import_tasks: portainer-agent.yml
+  when: inventory_hostname != apps
+  tags: portainer-agent
+
+- ansible.builtin.import_tasks: minecraft.yml
+  when: inventory_hostname == games
+  tags: minecraft
+
+- ansible.builtin.import_tasks: wireguard.yml
+  when: inventory_hostname == vpn
+  tags: wireguard
 
 - ansible.builtin.import_tasks: watchtower.yml
   tags: watchtower

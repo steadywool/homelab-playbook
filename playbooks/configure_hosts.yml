@@ -1,5 +1,5 @@
 ---
-- hosts: nas
+- hosts: all
   gather_facts: true
   ignore_unreachable: true
   become: true
@@ -11,5 +11,11 @@
   ignore_unreachable: true
   become: true
   roles:
-    - common
     - backup
+
+- hosts: games
+  gather_facts: true
+  ignore_unreachable: true
+  become: true
+  roles:
+    - playit

@@ -1,22 +1,40 @@
 ---
-email: CHANGEME # Used for DNS Challenge
-private_domain: CHANGEME # Used by Traefik
-public_domain: CHANGEME # Used by Wireguard
+email: "{{ vault_email }}" # Used for DNS Challenge
+private_domain: "{{ vault_private_domain }}" # Used by Traefik
+public_domain: "{{ vault_public_domain }}" # Used by Wireguard
 
 # You should change these vars & the traefik.yml file if you are using a different DNS provider
-ovh_endpoint: CHANGME
-ovh_application_key: CHANGEME
-ovh_application_secret: CHANGEME
-ovh_consumer_key: CHANGME
+ovh_endpoint: "{{ vault_ovh_endpoint }}"
+ovh_application_key: "{{ vault_application_key }}"
+ovh_application_secret: "{{ vault_application_secret }}"
+ovh_consumer_key: "{{ vault_ovh_consumer_key }}"
 
-wg_password: CHANGEME # WG-Easy UI password
-gotify_password: CHANGEME # Gotify admin password
-fireflyiii_token: CHANGEME32CHAR # Firefly token, must be 32 chars long
-watchtower_gotify_token: CHANGEME # Watchtower Gotify Token
+wg_password: "{{ vault_wg_password }}" # WG-Easy UI password
+gotify_password: "{{ vault_gotify_password }}" # Gotify admin password
+firefly_token: "{{ vault_firefly_token }}" # Firefly token, must be 32 chars long
+watchtower_gotify_token: "{{ vault_watchtower_gotify_token }}" # Watchtower Gotify Token
 
 # https://www.navidrome.org/docs/usage/external-integrations
-navidrome_spotify_client_id: CHANGEME
-navidrome_spotify_client_secret: CHANGEME
+navidrome_spotify_client_id: "{{ vault_navidrome_spotify_client_id }}"
+navidrome_spotify_client_secret: "{{ vault_navidrome_spotify_client_secret }}"
+
+# Inventory settings
+inventory:
+  pve:
+    host: "{{ vault_inventory.pve.host }}"
+    user: "{{ vault_inventory.pve.user }}"
+  nas:
+    host: "{{ vault_inventory.nas.host }}"
+    user: "{{ vault_inventory.nas.user }}"
+  vpn:
+    host: "{{ vault_inventory.vpn.host }}"
+    user: "{{ vault_inventory.vpn.user }}"
+  apps:
+    host: "{{ vault_inventory.apps.host }}"
+    user: "{{ vault_inventory.apps.user }}"
+  games:
+    host: "{{ vault_inventory.games.host }}"
+    user: "{{ vault_inventory.games.user }}"
 
 docker:
   network: custom_network # Docker network used by containers
@@ -34,21 +52,3 @@ minecraft_mods: |
   yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
   yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
   blossomtpa,blossomback,blossomhomes,easywhitelist,lithium,ferrite-core
-
-# Inventory settings
-inventory:
-  pve:
-    host: X.X.X.X
-    user: USER
-  nas:
-    host: X.X.X.X
-    user: USER
-  vpn:
-    host: X.X.X.X
-    user: USER
-  apps:
-    host: X.X.X.X
-    user: USER
-  games:
-    host: X.X.X.X
-    user: USER
