@@ -47,6 +47,10 @@
   when: inventory_hostname == games
   tags: minecraft
 
+- ansible.builtin.import_tasks: playit-agent.yml
+  when: inventory_hostname == games
+  tags: playit,playit-agent
+
 - ansible.builtin.import_tasks: wireguard.yml
   when: inventory_hostname == vpn
   tags: wireguard

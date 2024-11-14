@@ -12,10 +12,3 @@
   become: true
   roles:
     - backup
-
-- hosts: games
-  gather_facts: true
-  ignore_unreachable: true
-  become: true
-  roles:
-    - playit

@@ -1,0 +1,11 @@
+---
+- name: Run Playit Agent
+  community.docker.docker_container:
+    name: playit-agent
+    image: ghcr.io/playit-cloud/playit-agent:latest
+    state: started
+    restart_policy: always
+    restart: true
+    network_mode: host
+    env:
+        SECRET_KEY: "{{ playit_secret_key }}"
