@@ -34,7 +34,7 @@
       TZ: Europe/Paris
       DB_CONNECTION: sqlite
       MAIL_MAILER: log
-      #APP_LOG_LEVEL: debug
+      APP_LOG_LEVEL: debug
       STATIC_CRON_TOKEN: "{{ firefly_token }}"
       TRUSTED_PROXIES: "**"
       APP_URL: "https://firefly.{{ private_domain }}"

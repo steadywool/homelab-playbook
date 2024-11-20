@@ -5,8 +5,8 @@ public_domain: "{{ vault_public_domain }}" # Used by Wireguard
 
 # You should change these vars & the traefik.yml file if you are using a different DNS provider
 ovh_endpoint: "{{ vault_ovh_endpoint }}"
-ovh_application_key: "{{ vault_application_key }}"
-ovh_application_secret: "{{ vault_application_secret }}"
+ovh_application_key: "{{ vault_ovh_application_key }}"
+ovh_application_secret: "{{ vault_ovh_application_secret }}"
 ovh_consumer_key: "{{ vault_ovh_consumer_key }}"
 
 wg_password: "{{ vault_wg_password }}" # WG-Easy UI password

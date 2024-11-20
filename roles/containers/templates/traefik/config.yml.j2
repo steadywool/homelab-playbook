@@ -13,13 +13,23 @@ http:
         - "https"
       tls: {}
       service: "wireguard"
+    openmediavault:
+      rule: "Host(`nas.{{ private_domain }}`)"
+      entryPoints: 
+        - "https"
+      tls: {}
+      service: "openmediavault"
 
   services:
     proxmox:
       loadBalancer:
         servers:
-          - url: "https://"{{ hostvars['pve']['ansible_host'] }}":8006"
+          - url: "https://{{ hostvars['pve']['ansible_host'] }}:8006"
     wireguard:
       loadBalancer:
         servers:
-          - url: "https://"{{ hostvars['vpn']['ansible_host'] }}":51821"
+          - url: "http://{{ hostvars['vpn']['ansible_host'] }}:51821"
+    openmediavault:
+      loadBalancer:
+        servers:
+          - url: "http://{{ hostvars['nas']['ansible_host'] }}:80"

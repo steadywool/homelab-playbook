@@ -9,8 +9,3 @@ games ansible_host="{{ inventory.games.host }}" ansible_user="{{ inventory.games
 vpn
 apps
 games
-
-[vm]
-nas
-apps
-games

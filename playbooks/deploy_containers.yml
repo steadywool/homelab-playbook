@@ -4,5 +4,6 @@
   ignore_unreachable: true
   become: true
   roles:
+    - common
     - docker
     - containers
