@@ -1,7 +1,0 @@
----
-- hosts: apps
-  gather_facts: true
-  ignore_unreachable: true
-  become: true
-  roles:
-    - samba
