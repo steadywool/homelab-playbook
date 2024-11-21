@@ -1,12 +1,11 @@
 ---
-- name: Mount music NFS 
-  ansible.posix.mount:
-    src: "{{ hostvars['nas']['ansible_host'] }}:/music"
+- name: Create Navidrome directory
+  ansible.builtin.file:
     path: "{{ docker.data }}/navidrome"
-    opts: ro,hard,nfsvers=4
-    state: mounted
-    boot: true
-    fstype: nfs
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
 
 - name: Run Navidrome container
   community.docker.docker_container:

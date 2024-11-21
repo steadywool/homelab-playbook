@@ -37,6 +37,11 @@ inventory:
     host: "{{ vault_inventory.games.host }}"
     user: "{{ vault_inventory.games.user }}"
 
+samba:
+  home: "/srv/samba_home"
+  users: "{{ vault_samba.users }}" # Ansible dictionary "user: password"
+  shares: "{{ vault_samba.shares }}" # Ansible dictionary "name of share:" then "path" and "auth"
+
 docker:
   network: custom_network # Docker network used by containers
   data: "/srv/docker_data" # Where data are bind-mounted

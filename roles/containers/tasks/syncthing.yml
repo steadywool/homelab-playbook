@@ -1,12 +1,11 @@
 ---
-- name: Mount sync NFS 
-  ansible.posix.mount:
-    src: "{{ hostvars['nas']['ansible_host'] }}:/sync"
+- name: Create Syncthing directory
+  ansible.builtin.file:
     path: "{{ docker.data }}/syncthing"
-    opts: rw,hard,nfsvers=4
-    state: mounted
-    boot: true
-    fstype: nfs
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
 
 - name: Run Syncthing container
   community.docker.docker_container:

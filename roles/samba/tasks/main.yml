@@ -1,0 +1,39 @@
+---
+- name: Ensure Samba is Installed
+  ansible.builtin.package:
+    name:
+      - samba
+      - samba-vfs-modules
+    state: present
+
+- name: Create Samba home
+  ansible.builtin.file:
+    path: "{{ samba.home }}"
+    state: directory
+    mode: '0700'
+
+- name: Create Samba users
+  ansible.builtin.user:
+    name: "{{ item }}"
+    shell: /sbin/nologin
+    home: "{{ samba.home }}/{{ item }}"
+  loop: "{{ samba.users.keys() }}"
+
+- name: Template SMB configuration
+  ansible.builtin.template:
+    src: "smb.conf.j2"
+    dest: "/etc/samba/smb.conf"
+
+- name: Set Samba passwords
+  shell: "printf '{{ samba.users[item] }}\n{{ samba.users[item] }}\n' | smbpasswd -a -s {{ item }}"
+  loop: "{{ samba.users.keys() }}"
+
+- name: Enable Samba services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+    scope: system
+  loop:
+    - smbd.service
+    - nmbd.service
