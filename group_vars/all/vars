@@ -10,10 +10,10 @@ ovh_application_secret: "{{ vault_ovh_application_secret }}"
 ovh_consumer_key: "{{ vault_ovh_consumer_key }}"
 
 wg_password: "{{ vault_wg_password }}" # WG-Easy UI password
-gotify_password: "{{ vault_gotify_password }}" # Gotify admin password
 firefly_token: "{{ vault_firefly_token }}" # Firefly token, must be 32 chars long
+gotify_password: "{{ vault_gotify_password }}" # Gotify admin password
 watchtower_gotify_token: "{{ vault_watchtower_gotify_token }}" # Watchtower Gotify Token
-playit_secret_key: "{{ vault_playit_secret_key }}"
+playit_secret_key: "{{ vault_playit_secret_key }}" # Playit secret
 
 # https://www.navidrome.org/docs/usage/external-integrations
 navidrome_spotify_client_id: "{{ vault_navidrome_spotify_client_id }}"
