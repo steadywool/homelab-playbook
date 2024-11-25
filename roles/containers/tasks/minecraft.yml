@@ -20,7 +20,7 @@
       - "{{ docker.data }}/minecraft:/data"
     env:
       # General
-      MEMORY: "4G"
+      MEMORY: "2G"
       USE_AIKAR_FLAGS: "true"
       EULA: "true"
       ONLINE_MODE: "false"
@@ -36,8 +36,8 @@
       MODE: "survival"
       # World
       SPAWN_PROTECTION: "0"
-      VIEW_DISTANCE: "8"
-      SIMULATION_DISTANCE: "6"
+      VIEW_DISTANCE: "6"
+      SIMULATION_DISTANCE: "5"
       # Players
       MAX_PLAYERS: "6"
       FORCE_GAMEMODE: "true"

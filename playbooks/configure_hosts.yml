@@ -1,12 +1,12 @@
 ---
-- hosts: nas
+- hosts: nas,pve
   gather_facts: true
   ignore_unreachable: true
   become: true
   roles:
     - common
 
-- hosts: pve
+- hosts: pbe
   gather_facts: true
   ignore_unreachable: true
   become: true

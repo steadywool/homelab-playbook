@@ -1,4 +1,5 @@
 [ungrouped]
+pbe ansible_host="{{ inventory.pbe.host }}" ansible_user="{{ inventory.pbe.user }}"
 pve ansible_host="{{ inventory.pve.host }}" ansible_user="{{ inventory.pve.user }}"
 nas ansible_host="{{ inventory.nas.host }}" ansible_user="{{ inventory.nas.user }}"
 vpn ansible_host="{{ inventory.vpn.host }}" ansible_user="{{ inventory.vpn.user }}"
