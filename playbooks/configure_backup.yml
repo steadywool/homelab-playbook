@@ -1,8 +1,8 @@
 ---
-- hosts: docker
+- hosts: pbe
   gather_facts: true
   ignore_unreachable: true
   become: true
   roles:
     - common
-    - docker
+    - backup

@@ -1,6 +1,6 @@
 # 🐋 Homelab Playbook
 
-Create containers with Ansible.
+Manage my Homelab with Ansible.
 
 ## 🚀 Installation
 
@@ -11,6 +11,14 @@ Create containers with Ansible.
 Firstly, install Ansible:
 ```
 # apt install ansible
+```
+
+```
+# dnf install ansible
+```
+
+```
+# pacman -S ansible
 ```
 
 You can then clone this repository and enter it:

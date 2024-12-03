@@ -1,12 +1,18 @@
 ---
 http:
   routers:
-    proxmox:
+    pve:
       rule: "Host(`pve.{{ private_domain }}`)"
       entryPoints: 
         - "https"
       tls: {}
-      service: "proxmox"
+      service: "pve"
+    pbe:
+      rule: "Host(`pbe.{{ private_domain }}`)"
+      entryPoints: 
+        - "https"
+      tls: {}
+      service: "pbe"
     wireguard:
       rule: "Host(`wg.{{ private_domain }}`)"
       entryPoints: 
@@ -21,10 +27,14 @@ http:
       service: "openmediavault"
 
   services:
-    proxmox:
+    pve:
       loadBalancer:
         servers:
           - url: "https://{{ hostvars['pve']['ansible_host'] }}:8006"
+    pbe:
+      loadBalancer:
+        servers:
+          - url: "https://{{ hostvars['pbe']['ansible_host'] }}:8007"
     wireguard:
       loadBalancer:
         servers:
