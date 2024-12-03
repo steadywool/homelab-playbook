@@ -21,9 +21,9 @@ navidrome_spotify_client_secret: "{{ vault_navidrome_spotify_client_secret }}"
 
 # Inventory settings
 inventory:
-  pbe:
-    host: "{{ vault_inventory.pbe.host }}"
-    user: "{{ vault_inventory.pbe.user }}"
+  pbs:
+    host: "{{ vault_inventory.pbs.host }}"
+    user: "{{ vault_inventory.pbs.user }}"
   pve:
     host: "{{ vault_inventory.pve.host }}"
     user: "{{ vault_inventory.pve.user }}"

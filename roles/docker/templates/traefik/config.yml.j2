@@ -1,18 +1,18 @@
 ---
 http:
   routers:
+    pbs:
+      rule: "Host(`pbs.{{ private_domain }}`)"
+      entryPoints: 
+        - "https"
+      tls: {}
+      service: "pbs"
     pve:
       rule: "Host(`pve.{{ private_domain }}`)"
       entryPoints: 
         - "https"
       tls: {}
       service: "pve"
-    pbe:
-      rule: "Host(`pbe.{{ private_domain }}`)"
-      entryPoints: 
-        - "https"
-      tls: {}
-      service: "pbe"
     wireguard:
       rule: "Host(`wg.{{ private_domain }}`)"
       entryPoints: 
@@ -27,14 +27,14 @@ http:
       service: "openmediavault"
 
   services:
+    pbs:
+      loadBalancer:
+        servers:
+          - url: "https://{{ hostvars['pbs']['ansible_host'] }}:8007"
     pve:
       loadBalancer:
         servers:
           - url: "https://{{ hostvars['pve']['ansible_host'] }}:8006"
-    pbe:
-      loadBalancer:
-        servers:
-          - url: "https://{{ hostvars['pbe']['ansible_host'] }}:8007"
     wireguard:
       loadBalancer:
         servers:
