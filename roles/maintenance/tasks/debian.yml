@@ -1,0 +1,10 @@
+---
+- name: Update apt packages
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: dist
+
+- name: Remove dependencies
+  ansible.builtin.apt:
+    autoremove: yes
+    purge: true

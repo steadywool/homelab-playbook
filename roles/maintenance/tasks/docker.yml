@@ -1,0 +1,21 @@
+---
+- name: Get Docker informations
+  ansible.builtin.command: docker container ls --format "{{'{{'}}.Names{{'}}'}} {{'{{'}}.Image{{'}}'}}"
+  register: docker_facts
+
+- name: Update all containers
+  community.docker.docker_container:
+    name: "{{ item.split(' ')[0] }}"
+    image: "{{ item.split(' ')[1] }}"
+    state: started
+    pull: always
+    recreate: true
+  loop: "{{ docker_facts.stdout_lines }}"
+
+- name: Prune Docker objects
+  community.docker.docker_prune:
+    containers: true
+    images: true
+    networks: true
+    volumes: true
+    builder_cache: true

@@ -2,24 +2,12 @@
 - name: Gather the package facts
   ansible.builtin.package_facts:
     manager: auto
+  tags: system,docker
 
-- name: Update apt packages
-  ansible.builtin.apt:
-    update_cache: true
-    upgrade: full
+- ansible.builtin.import_tasks: debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
+  tags: debian
 
-- name: Remove dependencies
-  ansible.builtin.apt:
-    autoremove: yes
-    purge: true
-  when: ansible_distribution in ["Ubuntu", "Debian"]
-
-- name: Prune Docker objects
-  community.docker.docker_prune:
-    containers: true
-    images: true
-    networks: true
-    volumes: true
-    builder_cache: true
+- ansible.builtin.import_tasks: docker.yml
   when: "'docker-ce' in ansible_facts.packages"
+  tags: docker
