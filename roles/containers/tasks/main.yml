@@ -1,7 +1,4 @@
 ---
-- ansible.builtin.import_tasks: watchtower.yml
-  tags: watchtower
-
 - ansible.builtin.import_tasks: traefik.yml
   when: inventory_hostname == "apps"
   tags: traefik
