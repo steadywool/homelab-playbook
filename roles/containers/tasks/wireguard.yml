@@ -10,7 +10,7 @@
     image: ghcr.io/wg-easy/wg-easy:latest
     state: started
     restart_policy: always
-    restart: true
+    recreate: true
     network_mode: "{{ docker.network }}"
     ports:
       - 51820:51820/udp

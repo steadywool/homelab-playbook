@@ -31,7 +31,7 @@
     image: docker.io/library/traefik:latest
     state: started
     restart_policy: always
-    restart: true
+    recreate: true
     network_mode: "{{ docker.network }}"
     ports:
       - 80:80

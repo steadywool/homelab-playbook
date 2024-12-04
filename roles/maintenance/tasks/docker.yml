@@ -1,16 +1,17 @@
 ---
 - name: Get Docker informations
-  ansible.builtin.command: docker container ls --format "{{'{{'}}.Names{{'}}'}} {{'{{'}}.Image{{'}}'}}"
+  ansible.builtin.command: docker container ls --format "{{'{{'}}.Image{{'}}'}}"
   register: docker_facts
 
-- name: Update all containers
-  community.docker.docker_container:
-    name: "{{ item.split(' ')[0] }}"
-    image: "{{ item.split(' ')[1] }}"
-    state: started
+- name: Pull new images
+  community.docker.docker_image_pull:
+    name: "{{ item }}"
     pull: always
-    recreate: true
   loop: "{{ docker_facts.stdout_lines }}"
+
+- name: Recreate containers
+  ansible.builtin.include_role:
+    name: containers
 
 - name: Prune Docker objects
   community.docker.docker_prune:

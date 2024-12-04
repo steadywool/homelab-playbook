@@ -13,7 +13,7 @@
     image: docker.io/library/alpine:latest
     state: started
     restart_policy: always
-    restart: true
+    recreate: true
     network_mode: "{{ docker.network }}"
     command: sh -c "echo \"0 6 * * * wget -qO- http://firefly:8080/api/v1/cron/{{ firefly_token }}\" | crontab - && crond -f -L /dev/stdout"
 
@@ -23,7 +23,7 @@
     image: docker.io/fireflyiii/core:latest
     state: started
     restart_policy: always
-    restart: true
+    recreate: true
     network_mode: "{{ docker.network }}"
     volumes:
       - firefly_upload:/var/www/html/storage/upload

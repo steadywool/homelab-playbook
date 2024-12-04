@@ -14,7 +14,7 @@
     image: docker.io/syncthing/syncthing:latest
     state: started
     restart_policy: always
-    restart: true
+    recreate: true
     network_mode: "{{ docker.network }}"
     ports:
       - 22000:22000/tcp

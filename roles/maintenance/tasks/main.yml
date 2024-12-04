@@ -2,7 +2,7 @@
 - name: Gather the package facts
   ansible.builtin.package_facts:
     manager: auto
-  tags: system,docker
+  tags: always
 
 - ansible.builtin.import_tasks: debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
