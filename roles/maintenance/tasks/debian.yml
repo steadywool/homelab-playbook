@@ -4,7 +4,7 @@
     update_cache: true
     upgrade: dist
 
-- name: Remove dependencies
+- name: Remove unused dependencies
   ansible.builtin.apt:
     autoremove: yes
     purge: true
