@@ -1,8 +1,4 @@
 ---
-- ansible.builtin.import_tasks: traefik.yml
-  when: inventory_hostname == "apps"
-  tags: traefik
-
 - ansible.builtin.import_tasks: uptime-kuma.yml
   when: inventory_hostname == "apps"
   tags: uptime-kuma,uptime
@@ -30,6 +26,14 @@
 - ansible.builtin.import_tasks: syncthing.yml
   when: inventory_hostname == "apps"
   tags: syncthing
+
+- ansible.builtin.import_tasks: filestash.yml
+  when: inventory_hostname == "apps"
+  tags: filestash
+
+- ansible.builtin.import_tasks: traefik.yml
+  when: inventory_hostname == "apps"
+  tags: traefik
 
 - ansible.builtin.import_tasks: minecraft.yml
   when: inventory_hostname == "games"
