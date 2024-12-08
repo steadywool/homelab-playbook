@@ -1,7 +1,8 @@
 ---
-- hosts: nas,pve
+- hosts: all
   gather_facts: true
   ignore_unreachable: true
   become: true
   roles:
     - common
+    - crowdsec
