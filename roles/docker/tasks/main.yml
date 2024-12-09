@@ -1,7 +1,7 @@
 ---
 - ansible.builtin.import_tasks: debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
-  tags: docker
+  tags: docker,debian
 
 - name: Create Docker network
   community.docker.docker_network:
