@@ -1,0 +1,9 @@
+---
+- name: Install Traefik collection
+  ansible.builtin.command: cscli collections install crowdsecurity/traefik
+
+- name: Template Traefik data-source
+  ansible.builtin.template:
+    src: acquis.d/traefik.yaml.j2
+    dest: /etc/crowdsec/acquis.d/traefik.yaml
+    mode: 0644

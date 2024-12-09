@@ -3,6 +3,10 @@
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: crowdsec,debian
 
+- ansible.builtin.import_tasks: traefik.yml
+  when: inventory_hostname == "apps"
+  tags: crowdsec,traefik
+
 - name: Template Crowdsec configuration
   ansible.builtin.template:
     src: "{{ item.src }}"
@@ -10,12 +14,12 @@
     mode: "{{ item.mode }}"
   loop:
     - { src: 'notifications/gotify.yaml.j2', dest: '/etc/crowdsec/notifications/gotify.yaml', mode: '0600' }
-    - { src: 'profiles.yaml.j2', dest: '/etc/crowdsec/profiles.yaml', mode: '0640' }
+    - { src: 'profiles.yaml.j2', dest: '/etc/crowdsec/profiles.yaml', mode: '0644' }
   tags: crowdsec
 
-- name: Restart Crowdsec service
+- name: Reload Crowdsec service
   ansible.builtin.systemd_service:
-    name: sshd.service
-    state: restarted
+    name: crowdsec.service
+    state: reloaded
     scope: system
   tags: crowdsec

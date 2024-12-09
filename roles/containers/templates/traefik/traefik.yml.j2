@@ -37,3 +37,8 @@ providers:
   # Reverse proxy external services
   file:
     filename: "/etc/traefik/config.yml" # Config directory
+
+# Access log needed for Crowdsec
+accessLog:
+  filePath: "/etc/traefik/access.log"
+  format: "json"
