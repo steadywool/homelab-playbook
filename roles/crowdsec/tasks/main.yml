@@ -3,10 +3,6 @@
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: crowdsec,debian
 
-- ansible.builtin.import_tasks: traefik.yml
-  when: inventory_hostname == "apps"
-  tags: crowdsec,traefik
-
 - name: Template Crowdsec configuration
   ansible.builtin.template:
     src: "{{ item.src }}"
