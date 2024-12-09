@@ -9,7 +9,7 @@
     dest: "{{ item.dest }}"
     mode: "{{ item.mode }}"
   loop:
-    - { src: 'notifications/gotify.yaml.j2', dest: '/etc/crowdsec/notifications/gotify.yaml', mode: '0600' }
+    - { src: 'gotify.yaml.j2', dest: '/etc/crowdsec/notifications/gotify.yaml', mode: '0600' }
     - { src: 'profiles.yaml.j2', dest: '/etc/crowdsec/profiles.yaml', mode: '0644' }
   tags: crowdsec
 
