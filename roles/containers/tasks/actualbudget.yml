@@ -1,0 +1,23 @@
+---
+- name: Create Actual Budget volume
+  community.docker.docker_volume:
+    state: present
+    name: actual_data
+
+- name: Run Actual Budget container
+  community.docker.docker_container:
+    name: actualbudget
+    image: docker.io/actualbudget/actual-server:latest
+    state: started
+    restart_policy: always
+    recreate: true
+    network_mode: "{{ docker.network }}"
+    volumes:
+      - actual_data:/data
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.actual.rule: Host(`actual.{{ private_domain }}`)
+      traefik.http.routers.actual.entrypoints: "https"
+      traefik.http.routers.actual.tls: "true"
+      traefik.http.routers.actual.service: "actual"
+      traefik.http.services.actual.loadbalancer.server.port: "5006"
