@@ -3,10 +3,6 @@
   when: inventory_hostname == "apps"
   tags: uptime-kuma,uptime
 
-- ansible.builtin.import_tasks: checkmk.yml
-  when: inventory_hostname == "apps"
-  tags: checkmk
-
 - ansible.builtin.import_tasks: gotify.yml
   when: inventory_hostname == "apps"
   tags: gotify
