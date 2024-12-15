@@ -1,0 +1,28 @@
+---
+- name: Create Checkmk volume
+  community.docker.docker_volume:
+    state: present
+    name: checkmk_data
+
+- name: Run Checkmk container
+  community.docker.docker_container:
+    name: checkmk
+    image: docker.io/checkmk/check-mk-raw:latest
+    state: started
+    restart_policy: always
+    recreate: true
+    network_mode: "{{ docker.network }}"
+    ports:
+      - 8000:8000
+    volumes:
+      - checkmk_data:/omd/sites
+      - /etc/localtime:/etc/localtime:ro
+    tmpfs:
+      - /opt/omd/sites/cmk/tmp:uid=1000,gid=1000
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.checkmk.rule: Host(`checkmk.{{ private_domain }}`)
+      traefik.http.routers.checkmk.entrypoints: "https"
+      traefik.http.routers.checkmk.tls: "true"
+      traefik.http.routers.checkmk.service: "checkmk"
+      traefik.http.services.checkmk.loadbalancer.server.port: "5000"
