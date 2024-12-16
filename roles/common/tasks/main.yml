@@ -1,20 +1,21 @@
 ---
-- name: Install packages
+- name: Install common packages
   ansible.builtin.package:
-    name: "{{ common.packages }}"
+    name: "{{ common['packages'] }}"
     state: present
-  when: common.packages is defined
+  when: common['packages'] is defined
   tags: common
 
-- name: Enable services
+- name: Enable common services
   ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
     enabled: true
     scope: system
-  loop: "{{ common.services }}"
-  when: common.services is defined
+  loop: "{{ common['services'] }}"
+  when: common['services'] is defined
   tags: common
 
-- ansible.builtin.import_tasks: ssh.yml
+- name: Configure SSH
+  ansible.builtin.import_tasks: configure_ssh.yml
   tags: common,ssh

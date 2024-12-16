@@ -1,6 +1,6 @@
 ---
 - name: Install Docker dependencies
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name:
       - ca-certificates
       - curl
@@ -12,12 +12,12 @@
     dest: /etc/apt/keyrings/docker.asc
     mode: '0644'
 
-- name: Add Docker repo
+- name: Add Docker repo to Debian
   ansible.builtin.apt_repository:
     repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} stable"
 
 - name: Install Docker
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name:
       - docker-ce
       - docker-ce-cli

@@ -3,11 +3,10 @@
   ansible.builtin.lineinfile:
     path: /etc/ssh/sshd_config
     state: present
-    regexp: "{{ item.regexp }}"
-    line: "{{ item.line }}"
+    regexp: "{{ item['regexp'] }}"
+    line: "{{ item['line'] }}"
   loop:
     - { regexp: '^PermitRootLogin', line: 'PermitRootLogin prohibit-password' }
     - { regexp: '^PasswordAuthentication', line: 'PasswordAuthentication no' }
     - { regexp: '^PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
-  notify:
-    - Reload SSHD service
+  notify: Reload SSHD service

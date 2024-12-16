@@ -19,29 +19,6 @@ ansible_gotify_token: "{{ vault_ansible_gotify_token }}" # Gotify token for Ansi
 navidrome_spotify_client_id: "{{ vault_navidrome_spotify_client_id }}"
 navidrome_spotify_client_secret: "{{ vault_navidrome_spotify_client_secret }}"
 
-# Inventory settings
-inventory:
-  pbs:
-    host: "{{ vault_inventory.pbs.host }}"
-    user: "{{ vault_inventory.pbs.user }}"
-  pve:
-    host: "{{ vault_inventory.pve.host }}"
-    user: "{{ vault_inventory.pve.user }}"
-  nas:
-    host: "{{ vault_inventory.nas.host }}"
-    user: "{{ vault_inventory.nas.user }}"
-  vpn:
-    host: "{{ vault_inventory.vpn.host }}"
-    user: "{{ vault_inventory.vpn.user }}"
-  apps:
-    host: "{{ vault_inventory.apps.host }}"
-    user: "{{ vault_inventory.apps.user }}"
-    pass: "{{ vault_inventory.apps.pass }}"
-  games:
-    host: "{{ vault_inventory.games.host }}"
-    user: "{{ vault_inventory.games.user }}"
-    pass: "{{ vault_inventory.games.pass }}"
-
 docker:
   network: custom_network # Docker network used by containers
   data: "/srv/docker_data" # Where data are bind-mounted

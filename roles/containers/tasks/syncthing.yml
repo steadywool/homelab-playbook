@@ -2,7 +2,7 @@
 - name: Mount sync NFS 
   ansible.posix.mount:
     src: "{{ hostvars['nas']['ansible_host'] }}:/sync"
-    path: "{{ docker.data }}/syncthing"
+    path: "{{ docker['data'] }}/syncthing"
     opts: rw,hard,nfsvers=4
     state: mounted
     boot: true
@@ -15,13 +15,13 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker.network }}"
+    network_mode: "{{ docker['network'] }}"
     ports:
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
     volumes:
-      - "{{ docker.data }}/syncthing:/var/syncthing"
+      - "{{ docker['data'] }}/syncthing:/var/syncthing"
     labels:
       traefik.enable: "true"
       traefik.http.routers.syncthing.rule: Host(`sync.{{ private_domain }}`)

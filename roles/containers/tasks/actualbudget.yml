@@ -11,7 +11,7 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker.network }}"
+    network_mode: "{{ docker['network'] }}"
     volumes:
       - actual_data:/data
     labels:

@@ -5,4 +5,3 @@
   become: true
   roles:
     - maintenance
-    - notifications

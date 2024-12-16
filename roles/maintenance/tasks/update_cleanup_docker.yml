@@ -3,13 +3,13 @@
   ansible.builtin.command: docker container ls --format "{{'{{'}}.Image{{'}}'}}"
   register: docker_facts
 
-- name: Pull new images
+- name: Pull new Docker images
   community.docker.docker_image_pull:
     name: "{{ item }}"
     pull: always
-  loop: "{{ docker_facts.stdout_lines }}"
+  loop: "{{ docker_facts['stdout_lines'] }}"
 
-- name: Recreate containers
+- name: Recreate Docker containers
   ansible.builtin.include_role:
     name: containers
 

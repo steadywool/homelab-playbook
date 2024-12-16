@@ -1,16 +1,17 @@
 ---
-- ansible.builtin.import_tasks: debian.yml
+- name: Install Docker on Debian based OS
+  ansible.builtin.import_tasks: install_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: docker,debian
 
 - name: Create Docker network
   community.docker.docker_network:
-    name: "{{ docker.network }}"
+    name: "{{ docker['network'] }}"
   tags: docker
 
 - name: Create Docker directory
   ansible.builtin.file:
-    path: "{{ docker.data }}"
+    path: "{{ docker['data'] }}"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"

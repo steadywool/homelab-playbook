@@ -4,10 +4,12 @@
     manager: auto
   tags: always
 
-- ansible.builtin.import_tasks: debian.yml
+- name: Update & cleanup Debian based OS
+- ansible.builtin.import_tasks: update_cleanup_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: debian
 
-- ansible.builtin.import_tasks: docker.yml
+- name: Update & cleanup Docker
+  ansible.builtin.import_tasks: update_cleanup_docker.yml
   when: "'docker-ce' in ansible_facts.packages"
   tags: docker

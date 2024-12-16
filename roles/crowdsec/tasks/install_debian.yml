@@ -1,6 +1,6 @@
 ---
 - name: Install Crowdsec dependencies
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name:
       - ca-certificates
       - curl
@@ -20,7 +20,7 @@
     - "deb-src [signed-by=/etc/apt/keyrings/crowdsec.asc] https://packagecloud.io/crowdsec/crowdsec/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
 
 - name: Install Crowdsec
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name:
       - crowdsec
       - crowdsec-firewall-bouncer-nftables

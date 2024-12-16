@@ -1,12 +1,12 @@
 [ungrouped]
-pbs ansible_host="{{ inventory.pbs.host }}" ansible_user="{{ inventory.pbs.user }}"
-pve ansible_host="{{ inventory.pve.host }}" ansible_user="{{ inventory.pve.user }}"
-nas ansible_host="{{ inventory.nas.host }}" ansible_user="{{ inventory.nas.user }}"
-vpn ansible_host="{{ inventory.vpn.host }}" ansible_user="{{ inventory.vpn.user }}"
-apps ansible_host="{{ inventory.apps.host }}" ansible_user="{{ inventory.apps.user }}" ansible_become_password="{{ inventory.apps.pass }}"
-games ansible_host="{{ inventory.games.host }}" ansible_user="{{ inventory.games.user }}" ansible_become_password="{{ inventory.games.pass }}"
+srv-pbs-01
+srv-pve-01
+vm-nas-01
+vm-apps-01
+vm-games-01
+lxc-vpn-01
 
 [docker]
-vpn
-apps
-games
+vm-apps-01
+vm-games-01
+lxc-vpn-01

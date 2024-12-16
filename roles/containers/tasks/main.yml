@@ -1,48 +1,60 @@
 ---
-- ansible.builtin.import_tasks: uptime-kuma.yml
-  when: inventory_hostname == "apps"
+- name: Deploy Uptime-Kuma container
+  ansible.builtin.import_tasks: uptime_kuma.yml
+  when: inventory_hostname == "vm-apps-01"
   tags: uptime-kuma,uptime
 
-- ansible.builtin.import_tasks: gotify.yml
-  when: inventory_hostname == "apps"
+- name: Deploy Gotify container
+  ansible.builtin.import_tasks: gotify.yml
+  when: inventory_hostname == "vm-apps-01"
   tags: gotify
 
-- ansible.builtin.import_tasks: baikal.yml
-  when: inventory_hostname == "apps"
+- name: Deploy Baikal container
+  ansible.builtin.import_tasks: baikal.yml
+  when: inventory_hostname == "vm-apps-01"
   tags: baikal
 
-- ansible.builtin.import_tasks: actualbudget.yml
-  when: inventory_hostname == "apps"
+- name: Deploy Actual Budget container
+  ansible.builtin.import_tasks: actualbudget.yml
+  when: inventory_hostname == "vm-apps-01"
   tags: actualbudget,actual
 
-- ansible.builtin.import_tasks: freshrss.yml
-  when: inventory_hostname == "apps"
+- name: Deploy FreshRSS container
+  ansible.builtin.import_tasks: freshrss.yml
+  when: inventory_hostname == "vm-apps-01"
   tags: freshrss
 
-- ansible.builtin.import_tasks: navidrome.yml
-  when: inventory_hostname == "apps"
+- name: Deploy Navidrome container
+  ansible.builtin.import_tasks: navidrome.yml
+  when: inventory_hostname == "vm-apps-01"
   tags: navidrome
 
-- ansible.builtin.import_tasks: syncthing.yml
-  when: inventory_hostname == "apps"
+- name: Deploy Syncthing container
+  ansible.builtin.import_tasks: syncthing.yml
+  when: inventory_hostname == "vm-apps-01"
   tags: syncthing
 
-- ansible.builtin.import_tasks: filestash.yml
-  when: inventory_hostname == "apps"
+- name: Deploy Filestash container
+  ansible.builtin.import_tasks: filestash.yml
+  when: inventory_hostname == "vm-apps-01"
   tags: filestash
 
-- ansible.builtin.import_tasks: traefik.yml
-  when: inventory_hostname == "apps"
+- name: Deploy Traefik container
+  ansible.builtin.import_tasks: traefik.yml
+  when: inventory_hostname == "vm-apps-01"
   tags: traefik
 
-- ansible.builtin.import_tasks: minecraft.yml
-  when: inventory_hostname == "games"
+- name: Deploy Minecraft Server
+  ansible.builtin.import_tasks: minecraft.yml
+  when: inventory_hostname == "vm-games-01"
   tags: minecraft
 
-- ansible.builtin.import_tasks: playit-agent.yml
-  when: inventory_hostname == "games"
+- name: Deploy Playit Agent
+  ansible.builtin.import_tasks: playit_agent.yml
+  when: inventory_hostname == "vm-games-01"
   tags: playit,playit-agent
 
-- ansible.builtin.import_tasks: wireguard.yml
-  when: inventory_hostname == "vpn"
+- name: Deploy WG Easy container
+  ansible.builtin.import_tasks: wireguard.yml
+  when: inventory_hostname == "lxc-vpn-01"
   tags: wireguard

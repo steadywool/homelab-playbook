@@ -1,7 +1,0 @@
----
-# Packages & services that will be installed
-common:
-  packages:
-    - qemu-guest-agent
-  services:
-    - qemu-guest-agent.service

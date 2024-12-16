@@ -2,7 +2,7 @@
 - name: Mount music NFS 
   ansible.posix.mount:
     src: "{{ hostvars['nas']['ansible_host'] }}:/music"
-    path: "{{ docker.data }}/navidrome"
+    path: "{{ docker['data'] }}/navidrome"
     opts: ro,hard,nfsvers=4
     state: mounted
     boot: true
@@ -15,9 +15,9 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker.network }}"
+    network_mode: "{{ docker['network'] }}"
     volumes:
-      - "{{ docker.data }}/navidrome:/music:ro"
+      - "{{ docker['data'] }}/navidrome:/music:ro"
       - navidrome_data:/data
     env:
       ND_ENABLESHARING: "true"

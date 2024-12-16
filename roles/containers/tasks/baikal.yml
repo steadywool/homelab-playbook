@@ -14,7 +14,7 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker.network }}"
+    network_mode: "{{ docker['network'] }}"
     volumes:
       - baikal_config:/var/www/baikal/config
       - baikal_specific:/var/www/baikal/Specific

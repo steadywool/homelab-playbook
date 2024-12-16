@@ -1,9 +1,8 @@
 ---
-- hosts: pbs
+- hosts: srv-pbs-01
   gather_facts: true
   ignore_unreachable: true
   become: true
   roles:
     - common
     - backup
-    - notifications
