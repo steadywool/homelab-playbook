@@ -13,6 +13,7 @@ wg_password: "{{ vault_wg_password }}" # WG-Easy UI password
 gotify_password: "{{ vault_gotify_password }}" # Gotify admin password
 playit_secret_key: "{{ vault_playit_secret_key }}" # Playit secret
 crowdsec_gotify_token: "{{ vault_crowdsec_gotify_token }}" # Gotify token for Crowdsec
+ansible_gotify_token: "{{ vault_ansible_gotify_token }}" # Gotify token for Ansible
 
 # https://www.navidrome.org/docs/usage/external-integrations
 navidrome_spotify_client_id: "{{ vault_navidrome_spotify_client_id }}"
