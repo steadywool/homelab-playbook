@@ -30,16 +30,16 @@ http:
     pbs:
       loadBalancer:
         servers:
-          - url: "https://{{ hostvars['pbs']['ansible_host'] }}:8007"
+          - url: "https://{{ hostvars['srv-pbs-01']['ansible_host'] }}:8007"
     pve:
       loadBalancer:
         servers:
-          - url: "https://{{ hostvars['pve']['ansible_host'] }}:8006"
+          - url: "https://{{ hostvars['srv-pve-01']['ansible_host'] }}:8006"
     wireguard:
       loadBalancer:
         servers:
-          - url: "http://{{ hostvars['vpn']['ansible_host'] }}:51821"
+          - url: "http://{{ hostvars['lxc-vpn-01']['ansible_host'] }}:51821"
     openmediavault:
       loadBalancer:
         servers:
-          - url: "http://{{ hostvars['nas']['ansible_host'] }}:80"
+          - url: "http://{{ hostvars['vm-nas-01']['ansible_host'] }}:80"
