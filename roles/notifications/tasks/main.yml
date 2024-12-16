@@ -8,3 +8,4 @@
       title: "Ansible Execution"
       message: "{{ inventory_hostname }} reseeding complete"
       priority: "5"
+  tags: notifications
