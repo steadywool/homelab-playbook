@@ -1,0 +1,25 @@
+---
+- name: Create Adguard Home volumes
+  community.docker.docker_volume:
+    state: present
+    name: "{{ item }}"
+  loop:
+    - adguard_work
+    - adguard_config
+
+- name: Run Adguard Home container
+  community.docker.docker_container:
+    name: adguardhome
+    image: docker.io/adguard/adguardhome:latest
+    state: started
+    restart_policy: always
+    recreate: true
+    volumes:
+      - adguard_work:/opt/adguardhome/work
+      - adguard_config:/opt/adguardhome/conf
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 853:853/tcp
+      - 853:853/udp
+      - 3000:3000/tcp
