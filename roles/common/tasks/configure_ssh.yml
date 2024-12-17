@@ -9,7 +9,6 @@
     - { regexp: '^PermitRootLogin', line: 'PermitRootLogin prohibit-password' }
     - { regexp: '^PasswordAuthentication', line: 'PasswordAuthentication no' }
     - { regexp: '^PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
-  notify: Reload SSHD service
 
 - name: Reload SSHD service
   ansible.builtin.systemd_service:
