@@ -1,0 +1,20 @@
+---
+- name: Install Hashicorp dependencies
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+    state: present
+
+- name: Add Crowdsec GPG key
+  ansible.builtin.get_url:
+    url: "https://apt.releases.hashicorp.com/gpg"
+    dest: /etc/apt/keyrings/hashicorp.asc
+    mode: '0644'
+
+- name: Add Crowdsec repo
+  ansible.builtin.apt_repository:
+    repo: "{{ item }}"
+  loop: 
+    - "deb [signed-by=/etc/apt/keyrings/hashicorp.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+    - "deb-src [signed-by=/etc/apt/keyrings/hashicorp.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"

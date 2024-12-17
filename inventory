@@ -10,3 +10,7 @@ lxc-vpn-01
 vm-apps-01
 vm-games-01
 lxc-vpn-01
+
+[dev]
+lxc-test-01 ansible_host=192.168.1.10 ansible_user=root
+lxc-test-02 ansible_host=192.168.1.11 ansible_user=root

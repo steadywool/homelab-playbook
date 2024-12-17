@@ -1,0 +1,5 @@
+---
+- name: Install Hashicorp tools on Debian based OS
+  ansible.builtin.import_tasks: install_debian.yml
+  when: ansible_distribution in ["Ubuntu", "Debian"]
+  tags: hashicorp,debian
