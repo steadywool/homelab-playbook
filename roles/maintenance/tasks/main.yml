@@ -5,7 +5,7 @@
   tags: always
 
 - name: Update & cleanup Debian based OS
-- ansible.builtin.import_tasks: update_cleanup_debian.yml
+  ansible.builtin.import_tasks: update_cleanup_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: debian
 
