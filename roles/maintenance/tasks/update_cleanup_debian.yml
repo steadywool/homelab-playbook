@@ -8,3 +8,4 @@
   ansible.builtin.apt:
     autoremove: yes
     purge: true
+  tags: purge
