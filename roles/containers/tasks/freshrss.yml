@@ -19,7 +19,7 @@
       - freshrss_extensions:/var/www/FreshRSS/extensions
       - freshrss_data:/var/www/FreshRSS/data
     env:
-      TZ: Europe/Paris
+      TZ: "{{ timezone }}"
       CRON_MIN: "1,31"
     labels:
       traefik.enable: "true"
