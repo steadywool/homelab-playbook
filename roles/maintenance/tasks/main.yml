@@ -1,9 +1,4 @@
 ---
-- name: Gather the package facts
-  ansible.builtin.package_facts:
-    manager: auto
-  tags: always
-
 - name: Update & cleanup Debian based OS
   ansible.builtin.import_tasks: update_cleanup_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
@@ -11,5 +6,5 @@
 
 - name: Update & cleanup Docker
   ansible.builtin.import_tasks: update_cleanup_docker.yml
-  when: "'docker-ce' in ansible_facts.packages"
+  when: inventory_hostname in groups['docker']
   tags: docker
