@@ -2,7 +2,7 @@
 - name: Install Docker on Debian based OS
   ansible.builtin.import_tasks: install_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
-  tags: docker,install,debian
+  tags: docker,debian
 
 - name: Create Docker network
   community.docker.docker_network:
