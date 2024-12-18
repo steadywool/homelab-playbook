@@ -2,6 +2,8 @@
 
 Manage my Homelab with Ansible.
 
+![Homelab Schema](../homelab_schema.drawio.png?raw=true)
+
 > [!NOTE]
 >This Ansible project is designed to manage my infrastructure. Major changes are necessary to adapt to your needs.
 
