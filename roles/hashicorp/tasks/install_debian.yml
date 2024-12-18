@@ -19,14 +19,19 @@
     - "deb [signed-by=/etc/apt/keyrings/hashicorp.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     - "deb-src [signed-by=/etc/apt/keyrings/hashicorp.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
 
-- name: Install Consul
+- name: Install Hashicorp tools
   ansible.builtin.apt:
-    name: consul
+    name: 
+      - consul
+      - nomad
     state: present
 
-- name: Enable Consul service
+- name: Enable Hashicorp services
   ansible.builtin.systemd_service:
-    name: consul
+    name: "{{ item }}"
     state: started
     enabled: true
     scope: system
+  loop:
+    - consul
+    - nomad

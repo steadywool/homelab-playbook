@@ -1,0 +1,17 @@
+# Name of the datacenter
+datacenter = "homelab"
+
+# Name of each node
+name = "{{ inventory_hostname }}"
+
+# Data directory
+data_dir = "/var/lib/nomad"
+
+# The address that should be bound to for internal cluster communications
+bind_addr = "0.0.0.0"
+
+# Client Configuration
+client {
+  enabled = true
+  servers = [{% for host in groups['nomad_server'] %}"{{ hostvars[host]['ansible_host'] }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+}

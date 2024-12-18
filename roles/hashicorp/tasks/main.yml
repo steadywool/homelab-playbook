@@ -7,3 +7,7 @@
 - name: Configure Consul
   ansible.builtin.import_tasks: configure_consul.yml
   tags: hashicorp,consul
+
+- name: Configure Nomad
+  ansible.builtin.import_tasks: configure_nomad.yml
+  tags: hashicorp,nomad

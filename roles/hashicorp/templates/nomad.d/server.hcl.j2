@@ -1,0 +1,17 @@
+# Name of the datacenter
+datacenter = "homelab"
+
+# Name of each node
+name = "{{ inventory_hostname }}"
+
+# Data directory
+data_dir = "/var/lib/nomad"
+
+# The address that should be bound to for internal cluster communications
+bind_addr = "0.0.0.0"
+
+# Server Configuration
+server {
+  enabled = true
+  bootstrap_expect = {{ groups['nomad_client'] | length }}
+}

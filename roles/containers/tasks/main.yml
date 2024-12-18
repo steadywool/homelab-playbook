@@ -58,8 +58,3 @@
   ansible.builtin.import_tasks: wireguard.yml
   when: inventory_hostname == "lxc-vpn-01"
   tags: wireguard
-
-- name: Deploy Adguard Home container
-  ansible.builtin.import_tasks: adguardhome.yml
-  when: inventory_hostname == "lxc-vpn-01"
-  tags: adguard,adguardhome
