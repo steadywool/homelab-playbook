@@ -3,3 +3,7 @@
   ansible.builtin.import_tasks: install_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: hashicorp,debian
+
+- name: Configure Consul
+  ansible.builtin.import_tasks: configure_consul.yml
+  tags: hashicorp,consul

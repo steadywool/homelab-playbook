@@ -1,0 +1,22 @@
+data_dir = "/var/lib/nomad"
+bind_addr = "0.0.0.0"
+
+
+# Server Configuration
+server {
+  enabled = true
+  bootstrap_expect = {{ groups['nomad'] | length }}
+}
+
+# Client Configuration
+client {
+  enabled = true
+  servers = [{% for host in groups['nomad'] %}"{{ hostvars[host]['ansible_host'] }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+}
+
+# Network Configuration
+advertise {
+  http = "{{ ansible_host }}:4646"
+  rpc  = "{{ ansible_host }}:4647"
+  serf = "{{ ansible_host }}:4648"
+}

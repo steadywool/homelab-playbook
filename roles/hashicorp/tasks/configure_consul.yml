@@ -1,0 +1,22 @@
+---
+- name: Template Consul configuration
+  ansible.builtin.template:
+    src: consul.hcl.j2
+    dest: "/etc/consul.d/consul.hcl"
+    owner: consul
+    group: consul
+    mode: '0544'
+
+- name: Create Consul data directory
+  ansible.builtin.file:
+    path: "/var/lib/consul"
+    state: directory
+    owner: consul
+    group: consul
+    mode: '0750'
+
+- name: Reload Consul service
+  ansible.builtin.systemd_service:
+    name: nomad.service
+    state: reloaded
+    scope: system

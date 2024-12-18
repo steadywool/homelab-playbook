@@ -6,15 +6,27 @@
       - curl
     state: present
 
-- name: Add Crowdsec GPG key
+- name: Add Hashicorp GPG key
   ansible.builtin.get_url:
     url: "https://apt.releases.hashicorp.com/gpg"
     dest: /etc/apt/keyrings/hashicorp.asc
     mode: '0644'
 
-- name: Add Crowdsec repo
+- name: Add Hashicorp repo
   ansible.builtin.apt_repository:
     repo: "{{ item }}"
   loop: 
     - "deb [signed-by=/etc/apt/keyrings/hashicorp.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
     - "deb-src [signed-by=/etc/apt/keyrings/hashicorp.asc] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main"
+
+- name: Install Consul
+  ansible.builtin.apt:
+    name: consul
+    state: present
+
+- name: Enable Consul service
+  ansible.builtin.systemd_service:
+    name: consul
+    state: started
+    enabled: true
+    scope: system
