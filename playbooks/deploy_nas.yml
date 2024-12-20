@@ -1,8 +1,7 @@
 ---
-- hosts: docker
+- hosts: lxc-dev-02
   gather_facts: true
   ignore_unreachable: true
   become: true
   roles:
-    - docker
-    - containers
+    - nas

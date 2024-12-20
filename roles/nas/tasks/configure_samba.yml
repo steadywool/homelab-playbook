@@ -1,0 +1,44 @@
+---
+- name: Template Samba configuration
+  ansible.builtin.template:
+    src: smb.conf.j2
+    dest: "/etc/samba/smb.conf"
+
+- name: Create Samba group
+  ansible.builtin.group:
+    name: sambashare
+    state: present
+
+- name: Create Samba home
+  ansible.builtin.file:
+    path: "{{ samba_home }}"
+    state: directory
+    mode: '0700'
+
+- name: Create Samba directories
+  ansible.builtin.file:
+    path: "{{ item['path'] }}"
+    state: directory
+    owner: root
+    group: sambashare
+    mode: '0770'
+  loop: "{{ samba_shares }}"
+
+- name: Create Samba users
+  ansible.builtin.user:
+    name: "{{ item['name'] }}"
+    shell: /sbin/nologin
+    groups: sambashare
+    home: "{{ samba_home }}/{{ item['name'] }}"
+    append: true
+  loop: "{{ samba_users }}"
+
+- name: Set Samba passwords
+  shell: "printf '{{ item['password'] }}\n{{ item['password'] }}\n' | smbpasswd -a -s {{ item['name'] }}"
+  loop: "{{ samba_users }}"
+
+- name: Reload Samba service
+  ansible.builtin.systemd_service:
+    name: smbd.service
+    state: reloaded
+    scope: system

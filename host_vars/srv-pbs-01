@@ -1,4 +1,0 @@
----
-# Connection informations
-ansible_host: "{{ vault_inventory['srv-pbs-01']['host'] }}"
-ansible_user: "{{ vault_inventory['srv-pbs-01']['user'] }}"

@@ -1,0 +1,9 @@
+---
+- name: Install Docker on Debian based OS
+  ansible.builtin.import_tasks: install_debian.yml
+  when: ansible_distribution in ["Ubuntu", "Debian"]
+  tags: nas,debian
+
+- name: Configure Samba server
+  ansible.builtin.import_tasks: configure_samba.yml
+  tags: nas,samba

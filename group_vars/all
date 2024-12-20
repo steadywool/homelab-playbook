@@ -1,0 +1,23 @@
+samba_home: /srv/samba_home
+
+samba_users:
+  - name: steadywool
+    password: steadywool
+  - name: aendelgard
+    password: aendelgard
+
+samba_shares:
+  - name: sync
+    path: "{{ samba_home }}/sync"
+    allowed_users:
+      - steadywool
+      - aendelgard
+  - name: music
+    path: "{{ samba_home }}/music"
+    allowed_users:
+      - steadywool
+
+nfs_shares:
+  - name: sync
+    path: "{{ samba_home }}/sync"
+    allowed_ips: 192.168.1.11

@@ -1,0 +1,27 @@
+[global]
+workgroup = WORKGROUP
+server string = Samba Server Version %v
+log file = /var/log/samba/log.%m
+max log size = 1000
+load printers = no
+
+[homes]
+comment = Home Directories
+browseable = no
+writable = yes
+valid users = {{ samba_users | map(attribute='name') | join(', ') }}
+vfs objects = recycle
+recycle:repository = .recycle
+recycle:exclude_dir = .recycle
+recycle:keeptree = yes
+recycle:versions = yes
+
+{% for share in samba_shares %}
+[{{ share['name'] }}]
+comment = Samba share for {{ share['name'] }}
+path = {{ share['path'] }}
+browseable = yes
+writable = yes
+valid users = {{ share['allowed_users'] | join(', ') }}
+
+{% endfor %}
