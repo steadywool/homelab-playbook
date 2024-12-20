@@ -1,7 +1,3 @@
-[docker]
-lxc-dev-01
-lxc-dev-02
-
 [consul]
 lxc-dev-01
 lxc-dev-02
@@ -13,3 +9,8 @@ lxc-dev-02
 [nomad_client]
 lxc-dev-01
 lxc-dev-02
+
+[hashistack:children]
+consul
+nomad_server
+nomad_client
