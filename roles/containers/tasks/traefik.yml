@@ -1,21 +1,28 @@
 ---
-- name: Create Traefik volume
-  community.docker.docker_volume:
-    state: present
-    volume_name: traefik_data
+- name: Create Traefik directory
+  ansible.builtin.file:
+    path: "/srv/traefik_data"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0700'
 
-- name: Template Traefik configuration to /tmp
+- name: Template Traefik configuration
   ansible.builtin.template:
     src: "traefik/{{ item }}.j2"
-    dest: "/tmp/{{ item }}"
+    dest: "/srv/traefik_data/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
   loop:
     - traefik.yml
     - config.yml
 
-- name: Create acme.json file to /tmp
+- name: Create acme.json file
   ansible.builtin.file:
-    path: "/tmp/acme.json"
+    path: "/srv/traefik_data/acme.json"
     state: touch
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: '0600'
 
 - name: Run traefik container
@@ -31,7 +38,7 @@
       - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - traefik_data:/etc/traefik
+      - /srv/traefik_data:/etc/traefik
     env:
       OVH_ENDPOINT: "{{ ovh_endpoint }}"
       OVH_APPLICATION_KEY: "{{ ovh_application_key }}"
@@ -45,19 +52,3 @@
       traefik.http.routers.traefik.tls.domains[0].main: "{{ private_domain }}"
       traefik.http.routers.traefik.tls.domains[0].sans: "*.{{ private_domain }}"
       traefik.http.routers.traefik.service: "api@internal"
-
-- name: Copy Traefik config to the Traefik container
-  community.docker.docker_container_copy_into:
-    container: traefik
-    path: "/tmp/{{ item }}"
-    container_path: "/etc/traefik/{{ item }}"
-  loop:
-    - config.yml
-    - traefik.yml
-    - acme.json
-
-- name: Restart Traefik instance to use new configuration
-  community.docker.docker_container:
-    name: traefik
-    state: started
-    restart: true
