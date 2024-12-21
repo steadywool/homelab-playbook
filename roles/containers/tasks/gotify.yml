@@ -2,7 +2,7 @@
 - name: Create Gotify volume
   community.docker.docker_volume:
     state: present
-    name: gotify_data
+    volume_name: gotify_data
 
 - name: Run Gotify container
   community.docker.docker_container:
@@ -11,7 +11,7 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker['network'] }}"
+    network_mode: "{{ docker_network }}"
     volumes:
       - gotify_data:/app/data
     env:

@@ -20,10 +20,7 @@ navidrome_spotify_client_id: "{{ vault_navidrome_spotify_client_id }}"
 navidrome_spotify_client_secret: "{{ vault_navidrome_spotify_client_secret }}"
 
 timezone: Europe/Paris # Current timezone
-
-docker:
-  network: custom_network # Docker network used by containers
-  data: "/srv/docker_data" # Where data are bind-mounted
+docker_network: custom_network # Docker network used by containers
 
 backup:
   remote: "CryptStorage:/" # Where backup are sent with Rclone

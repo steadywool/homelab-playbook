@@ -1,12 +1,12 @@
 ---
-- name: Mount sync NFS 
-  ansible.posix.mount:
-    src: "{{ hostvars['vm-nas-01']['ansible_host'] }}:/sync"
-    path: "{{ docker['data'] }}/syncthing"
-    opts: rw,hard,nfsvers=4
-    state: mounted
-    boot: true
-    fstype: nfs
+- name: Create Docker NFS volume for Syncthing
+  community.docker.docker_volume:
+    state: present
+    volume_name: sync_nfs
+    driver_options:
+      type: "nfs"
+      o: "addr={{ hostvars['vm-nas-01']['ansible_host'] }},rw,nfsvers=4"
+      device: ":/sync"
 
 - name: Run Syncthing container
   community.docker.docker_container:
@@ -15,13 +15,13 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker['network'] }}"
+    network_mode: "{{ docker_network }}"
     ports:
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
     volumes:
-      - "{{ docker['data'] }}/syncthing:/var/syncthing"
+      - sync_nfs:/var/syncthing
     labels:
       traefik.enable: "true"
       traefik.http.routers.syncthing.rule: Host(`sync.{{ private_domain }}`)

@@ -2,7 +2,7 @@
 - name: Create Actual Budget volume
   community.docker.docker_volume:
     state: present
-    name: actual_data
+    volume_name: actual_data
 
 - name: Run Actual Budget container
   community.docker.docker_container:
@@ -11,7 +11,7 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker['network'] }}"
+    network_mode: "{{ docker_network }}"
     volumes:
       - actual_data:/data
     labels:

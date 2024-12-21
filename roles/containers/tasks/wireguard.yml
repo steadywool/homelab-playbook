@@ -2,7 +2,7 @@
 - name: Create Wg-easy volume
   community.docker.docker_volume:
     state: present
-    name: wireguard_data
+    volume_name: wireguard_data
 
 - name: Run Wg-easy container
   community.docker.docker_container:

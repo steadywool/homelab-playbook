@@ -1,12 +1,12 @@
 ---
-- name: Mount music NFS 
-  ansible.posix.mount:
-    src: "{{ hostvars['vm-nas-01']['ansible_host'] }}:/music"
-    path: "{{ docker['data'] }}/navidrome"
-    opts: ro,hard,nfsvers=4
-    state: mounted
-    boot: true
-    fstype: nfs
+- name: Create Docker NFS volume for Navidrome
+  community.docker.docker_volume:
+    state: present
+    volume_name: music_nfs
+    driver_options:
+      type: "nfs"
+      o: "addr={{ hostvars['vm-nas-01']['ansible_host'] }},ro,nfsvers=4"
+      device: ":/music"
 
 - name: Run Navidrome container
   community.docker.docker_container:
@@ -15,9 +15,9 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker['network'] }}"
+    network_mode: "{{ docker_network }}"
     volumes:
-      - "{{ docker['data'] }}/navidrome:/music:ro"
+      - music_nfs:/music
       - navidrome_data:/data
     env:
       ND_ENABLESHARING: "true"

@@ -2,7 +2,7 @@
 - name: Create FreshRSS volumes
   community.docker.docker_volume:
     state: present
-    name: "{{ item }}"
+    volume_name: "{{ item }}"
   loop:
     - freshrss_extensions
     - freshrss_data
@@ -14,7 +14,7 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker['network'] }}"
+    network_mode: "{{ docker_network }}"
     volumes:
       - freshrss_extensions:/var/www/FreshRSS/extensions
       - freshrss_data:/var/www/FreshRSS/data

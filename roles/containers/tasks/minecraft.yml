@@ -1,11 +1,11 @@
 ---
 - name: Create Minecraft directory
   ansible.builtin.file:
-    path: "{{ docker['data'] }}/minecraft"
+    path: "/srv/minecraft_data"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: '0755'
+    mode: '0700'
 
 - name: Run Minecraft server
   community.docker.docker_container:
@@ -17,7 +17,7 @@
     ports:
       - 25565:25565
     volumes:
-      - "{{ docker['data'] }}/minecraft:/data"
+      - "/srv/minecraft_data:/data"
     env:
       # General
       MEMORY: "2G"

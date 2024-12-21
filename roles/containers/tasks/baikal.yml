@@ -2,7 +2,7 @@
 - name: Create Baikal volumes
   community.docker.docker_volume:
     state: present
-    name: "{{ item }}"
+    volume_name: "{{ item }}"
   loop:
     - baikal_config
     - baikal_specific
@@ -14,7 +14,7 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker['network'] }}"
+    network_mode: "{{ docker_network }}"
     volumes:
       - baikal_config:/var/www/baikal/config
       - baikal_specific:/var/www/baikal/Specific

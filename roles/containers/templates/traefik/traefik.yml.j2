@@ -32,7 +32,7 @@ providers:
   # Reverse proxy docker services
   docker:
     endpoint: "unix:///var/run/docker.sock" # Docker socket
-    network: "{{ docker.network }}" # Docker network
+    network: "{{ docker_network }}" # Docker network
     exposedbydefault: false # Must use traefik.enable to expose service
   # Reverse proxy external services
   file:

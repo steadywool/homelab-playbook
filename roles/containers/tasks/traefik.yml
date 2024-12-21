@@ -1,28 +1,21 @@
 ---
-- name: Create Traefik directory
-  ansible.builtin.file:
-    path: "{{ docker['data'] }}/traefik"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0755'
+- name: Create Traefik volume
+  community.docker.docker_volume:
+    state: present
+    volume_name: traefik_data
 
-- name: Template Traefik configuration
+- name: Template Traefik configuration to /tmp
   ansible.builtin.template:
     src: "traefik/{{ item }}.j2"
-    dest: "{{ docker['data'] }}/traefik/{{ item }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    dest: "/tmp/{{ item }}"
   loop:
     - traefik.yml
     - config.yml
 
-- name: Create acme.json file
+- name: Create acme.json file to /tmp
   ansible.builtin.file:
-    path: "{{ docker['data'] }}/traefik/acme.json"
+    path: "/tmp/acme.json"
     state: touch
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
     mode: '0600'
 
 - name: Run traefik container
@@ -32,13 +25,13 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker['network'] }}"
+    network_mode: "{{ docker_network }}"
     ports:
       - 80:80
       - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - "{{ docker['data'] }}/traefik:/etc/traefik"
+      - traefik_data:/etc/traefik
     env:
       OVH_ENDPOINT: "{{ ovh_endpoint }}"
       OVH_APPLICATION_KEY: "{{ ovh_application_key }}"
@@ -52,3 +45,19 @@
       traefik.http.routers.traefik.tls.domains[0].main: "{{ private_domain }}"
       traefik.http.routers.traefik.tls.domains[0].sans: "*.{{ private_domain }}"
       traefik.http.routers.traefik.service: "api@internal"
+
+- name: Copy Traefik config to the Traefik container
+  community.docker.docker_container_copy_into:
+    container: traefik
+    path: "/tmp/{{ item }}"
+    container_path: "/etc/traefik/{{ item }}"
+  loop:
+    - config.yml
+    - traefik.yml
+    - acme.json
+
+- name: Restart Traefik instance to use new configuration
+  community.docker.docker_container:
+    name: traefik
+    state: started
+    restart: true

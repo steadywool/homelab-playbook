@@ -4,16 +4,7 @@
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: docker,debian
 
-- name: Create Docker network
+- name: Create custom Docker network
   community.docker.docker_network:
     name: "{{ docker['network'] }}"
-  tags: docker
-
-- name: Create Docker directory
-  ansible.builtin.file:
-    path: "{{ docker['data'] }}"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0700'
-  tags: docker
+  tags: docker,network
