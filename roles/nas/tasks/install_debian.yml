@@ -15,3 +15,16 @@
   loop:
     - smbd.service
     - nmbd.service
+
+- name: Install NFS packages
+  ansible.builtin.apt:
+    name:
+      - nfs-kernel-server
+    state: present
+
+- name: Enable NFS service
+  ansible.builtin.systemd_service:
+    name: nfs-server.service
+    state: started
+    enabled: true
+    scope: system

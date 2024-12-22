@@ -1,23 +1,31 @@
-samba_home: /srv/samba_home
+nas_disk_path: /srv/disk_0
 
 samba_users:
-  - name: steadywool
-    password: steadywool
-  - name: aendelgard
-    password: aendelgard
+  - username: user1
+    password: password
+    homedir: "{{ nas_disk_path }}/home/user1"
+  - username: user2
+    password: password
+    homedir: "{{ nas_disk_path }}/home/user2"
 
 samba_shares:
-  - name: sync
-    path: "{{ samba_home }}/sync"
-    allowed_users:
-      - steadywool
-      - aendelgard
-  - name: music
-    path: "{{ samba_home }}/music"
-    allowed_users:
-      - steadywool
+  - path: "{{ nas_disk_path }}/share1"
+    name: share1
+    valid_users:
+      - user1
+      - user2
+  - path: "{{ nas_disk_path }}/share2"
+    name: share2
+    valid_users:
+      - user2
 
 nfs_shares:
-  - name: sync
-    path: "{{ samba_home }}/sync"
-    allowed_ips: 192.168.1.11
+  - path: "{{ nas_disk_path }}/share1"
+    options: rw,all_squash,anonuid=0,anongid=100,subtree_check
+    allowed_ips:
+      - '192.168.1.10/24'
+  - path: "{{ nas_disk_path }}/share2"
+    options: rw,all_squash,anonuid=0,anongid=100,subtree_check
+    allowed_ips:
+      - '192.168.1.10/24'
+      - '192.168.1.11/24'

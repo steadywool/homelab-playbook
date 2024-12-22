@@ -1,0 +1,19 @@
+---
+- name: Create NFS directories
+  ansible.builtin.file:
+    path: "{{ item['path'] }}"
+    state: directory
+    group: users
+    mode: '0770'
+  loop: "{{ nfs_shares }}"
+
+- name: Template NFS configuration
+  ansible.builtin.template:
+    src: exports.j2
+    dest: "/etc/exports"
+
+- name: Reload NFS service
+  ansible.builtin.systemd_service:
+    name: nfs-server.service
+    state: reloaded
+    scope: system

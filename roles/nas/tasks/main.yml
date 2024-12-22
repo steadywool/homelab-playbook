@@ -7,3 +7,7 @@
 - name: Configure Samba server
   ansible.builtin.import_tasks: configure_samba.yml
   tags: nas,samba
+
+- name: Configure NFS server
+  ansible.builtin.import_tasks: configure_nfs.yml
+  tags: nas,nfs

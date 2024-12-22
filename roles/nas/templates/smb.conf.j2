@@ -9,7 +9,7 @@ load printers = no
 comment = Home Directories
 browseable = no
 writable = yes
-valid users = {{ samba_users | map(attribute='name') | join(', ') }}
+valid users = %S
 vfs objects = recycle
 recycle:repository = .recycle
 recycle:exclude_dir = .recycle
@@ -18,10 +18,10 @@ recycle:versions = yes
 
 {% for share in samba_shares %}
 [{{ share['name'] }}]
-comment = Samba share for {{ share['name'] }}
+comment = {{ share['name'] }} share
 path = {{ share['path'] }}
 browseable = yes
 writable = yes
-valid users = {{ share['allowed_users'] | join(', ') }}
+valid users = {{ share['valid_users'] | join(', ') }}
 
 {% endfor %}
