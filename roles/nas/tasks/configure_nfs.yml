@@ -5,7 +5,7 @@
     state: directory
     group: users
     mode: '0770'
-  loop: "{{ nfs_shares }}"
+  loop: "{{ nas['nfs_shares'] }}"
 
 - name: Template NFS configuration
   ansible.builtin.template:

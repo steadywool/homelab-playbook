@@ -5,6 +5,7 @@
       - samba
       - samba-vfs-modules
     state: present
+  tags: samba
 
 - name: Enable Samba services
   ansible.builtin.systemd_service:
@@ -15,12 +16,13 @@
   loop:
     - smbd.service
     - nmbd.service
+  tags: samba
 
-- name: Install NFS packages
+- name: Install NFS package
   ansible.builtin.apt:
-    name:
-      - nfs-kernel-server
+    name: nfs-kernel-server
     state: present
+  tags: nfs
 
 - name: Enable NFS service
   ansible.builtin.systemd_service:
@@ -28,3 +30,4 @@
     state: started
     enabled: true
     scope: system
+  tags: nfs

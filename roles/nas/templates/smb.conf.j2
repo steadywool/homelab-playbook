@@ -16,12 +16,12 @@ recycle:exclude_dir = .recycle
 recycle:keeptree = yes
 recycle:versions = yes
 
-{% for share in samba_shares %}
+{% for share in nas['samba_shares'] %}
 [{{ share['name'] }}]
 comment = {{ share['name'] }} share
 path = {{ share['path'] }}
 browseable = yes
 writable = yes
-valid users = {{ share['valid_users'] | join(', ') }}
+valid users = {{ share['allowed_users'] | join(', ') }}
 
 {% endfor %}

@@ -1,5 +1,5 @@
 # path_of_the_share allowed_host_ip(nfs_options)
-{% for share in nfs_shares %}
+{% for share in nas['nfs_shares'] %}
 {{ share['path'] }} {% for ip in share['allowed_ips'] %}{{ ip }}({{ share['options'] }}) {% endfor %}
 
 {% endfor %}

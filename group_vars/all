@@ -1,31 +1,16 @@
-nas_disk_path: /srv/disk_0
-
-samba_users:
-  - username: user1
-    password: password
-    homedir: "{{ nas_disk_path }}/home/user1"
-  - username: user2
-    password: password
-    homedir: "{{ nas_disk_path }}/home/user2"
-
-samba_shares:
-  - path: "{{ nas_disk_path }}/share1"
-    name: share1
-    valid_users:
-      - user1
-      - user2
-  - path: "{{ nas_disk_path }}/share2"
-    name: share2
-    valid_users:
-      - user2
-
-nfs_shares:
-  - path: "{{ nas_disk_path }}/share1"
-    options: rw,all_squash,anonuid=0,anongid=100,subtree_check
-    allowed_ips:
-      - '192.168.1.10/24'
-  - path: "{{ nas_disk_path }}/share2"
-    options: rw,all_squash,anonuid=0,anongid=100,subtree_check
-    allowed_ips:
-      - '192.168.1.10/24'
-      - '192.168.1.11/24'
+nas:
+  users:
+    - username: test
+      password: test
+      groups: users
+  home_directory: /mnt/home
+  samba_shares:
+    - path: /mnt/share
+      name: share
+      allowed_users:
+        - test
+  nfs_shares:
+    - path: /mnt/share
+      options: rw,all_squash,anonuid=0,anongid=100,subtree_check
+      allowed_ips:
+        - 192.168.1.10/24

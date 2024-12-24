@@ -1,23 +1,11 @@
 ---
-- name: Create Samba users
-  ansible.builtin.user:
-    name: "{{ item['username'] }}"
-    home: "{{ item['homedir'] }}"
-    group: users
-    shell: /sbin/nologin
-  loop: "{{ samba_users }}"
-
-- name: Set Samba passwords
-  shell: "printf '{{ item['password'] }}\n{{ item['password'] }}\n' | smbpasswd -a -s {{ item['username'] }}"
-  loop: "{{ samba_users }}"
-
 - name: Create Samba directories
   ansible.builtin.file:
     path: "{{ item['path'] }}"
     state: directory
     group: users
     mode: '0770'
-  loop: "{{ samba_shares }}"
+  loop: "{{ nas['samba_shares'] }}"
 
 - name: Template Samba configuration
   ansible.builtin.template:

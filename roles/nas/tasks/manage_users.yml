@@ -1,0 +1,16 @@
+---
+- name: Create NAS users
+  ansible.builtin.user:
+    name: "{{ item['username'] }}"
+    password: "{{ item['password'] }}"
+    groups: "{{ item['groups'] }}"
+    append: false
+    home: "{{ nas['home_directory'] }}/{{ item['username'] }}"
+    create_home: true
+    move_home: true
+    shell: /sbin/nologin
+  loop: "{{ nas['users'] }}"
+
+- name: Set Samba passwords
+  shell: "printf '{{ item['password'] }}\n{{ item['password'] }}\n' | smbpasswd -a -s {{ item['username'] }}"
+  loop: "{{ nas['users'] }}"

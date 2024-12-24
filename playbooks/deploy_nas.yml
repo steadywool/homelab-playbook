@@ -1,5 +1,5 @@
 ---
-- hosts: lxc-dev-02
+- hosts: nas
   gather_facts: true
   ignore_unreachable: true
   become: true

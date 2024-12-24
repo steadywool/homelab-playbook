@@ -4,6 +4,10 @@
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: nas,debian
 
+- name: Manage NAS users
+  ansible.builtin.import_tasks: manage_users.yml
+  tags: nas,users
+
 - name: Configure Samba server
   ansible.builtin.import_tasks: configure_samba.yml
   tags: nas,samba
