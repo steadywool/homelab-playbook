@@ -15,10 +15,10 @@
     volumes:
       - filestash_data:/app/data/state
     env:
-      APPLICATION_URL: "https://files.{{ private_domain }}"
+      APPLICATION_URL: "https://file.{{ private_domain }}"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.filestash.rule: Host(`files.{{ private_domain }}`)
+      traefik.http.routers.filestash.rule: Host(`file.{{ private_domain }}`)
       traefik.http.routers.filestash.entrypoints: "https"
       traefik.http.routers.filestash.tls: "true"
       traefik.http.routers.filestash.service: "filestash"

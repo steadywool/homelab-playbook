@@ -24,10 +24,10 @@
   when: inventory_hostname == "vm-apps-01"
   tags: freshrss
 
-- name: Deploy Navidrome container
-  ansible.builtin.import_tasks: navidrome.yml
+- name: Deploy Jellyfin container
+  ansible.builtin.import_tasks: jellyfin.yml
   when: inventory_hostname == "vm-apps-01"
-  tags: navidrome
+  tags: jellyfin
 
 - name: Deploy Syncthing container
   ansible.builtin.import_tasks: syncthing.yml

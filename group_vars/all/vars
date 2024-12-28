@@ -15,10 +15,6 @@ playit_secret_key: "{{ vault_playit_secret_key }}" # Playit secret
 crowdsec_gotify_token: "{{ vault_crowdsec_gotify_token }}" # Gotify token for Crowdsec
 crowdsec_enroll_token: "{{ vault_crowdsec_enroll_token }}" # Token for enrolling Crowdsec Security engines
 
-# https://www.navidrome.org/docs/usage/external-integrations
-navidrome_spotify_client_id: "{{ vault_navidrome_spotify_client_id }}"
-navidrome_spotify_client_secret: "{{ vault_navidrome_spotify_client_secret }}"
-
 timezone: Europe/Paris # Current timezone
 docker_network: custom_network # Docker network used by containers
 

@@ -3,6 +3,7 @@
 Manage my Homelab with Ansible.
 
 ![Homelab Schema](assets/homelab_schema.drawio.svg)
+*Made with [Drawio](https://www.drawio.com/).*
 
 > [!NOTE]
 >This Ansible project is designed to manage my infrastructure. Major changes are necessary to adapt to your needs.
