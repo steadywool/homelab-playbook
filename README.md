@@ -2,7 +2,7 @@
 
 Manage my Homelab with Ansible.
 
-![Homelab Schema](assets/homelab_schema.drawio.svg)
+![Homelab Schema](assets/homelab_schema.svg)
 *Made with [Drawio](https://www.drawio.com/).*
 
 > [!NOTE]
