@@ -2,31 +2,31 @@
 http:
   routers:
     pbs:
-      rule: "Host(`pbs.{{ private_domain }}`)"
+      rule: "Host(`pbs.{{ wildcard_domain }}`)"
       entryPoints: 
         - "https"
       tls: {}
       service: "pbs"
     pve:
-      rule: "Host(`pve.{{ private_domain }}`)"
+      rule: "Host(`pve.{{ wildcard_domain }}`)"
       entryPoints: 
         - "https"
       tls: {}
       service: "pve"
     wireguard:
-      rule: "Host(`wg.{{ private_domain }}`)"
+      rule: "Host(`wg.{{ wildcard_domain }}`)"
       entryPoints: 
         - "https"
       tls: {}
       service: "wireguard"
     adguardhome:
-      rule: "Host(`dns.{{ private_domain }}`)"
+      rule: "Host(`dns.{{ wildcard_domain }}`)"
       entryPoints: 
         - "https"
       tls: {}
       service: "adguardhome"
     openmediavault:
-      rule: "Host(`nas.{{ private_domain }}`)"
+      rule: "Host(`nas.{{ wildcard_domain }}`)"
       entryPoints: 
         - "https"
       tls: {}

@@ -16,7 +16,7 @@
       - actual_data:/data
     labels:
       traefik.enable: "true"
-      traefik.http.routers.actual.rule: Host(`actual.{{ private_domain }}`)
+      traefik.http.routers.actual.rule: Host(`actual.{{ wildcard_domain }}`)
       traefik.http.routers.actual.entrypoints: "https"
       traefik.http.routers.actual.tls: "true"
       traefik.http.routers.actual.service: "actual"

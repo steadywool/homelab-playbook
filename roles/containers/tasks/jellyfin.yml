@@ -30,7 +30,7 @@
       - music_nfs:/music
     labels:
       traefik.enable: "true"
-      traefik.http.routers.jellyfin.rule: Host(`media.{{ private_domain }}`)
+      traefik.http.routers.jellyfin.rule: Host(`media.{{ wildcard_domain }}`)
       traefik.http.routers.jellyfin.entrypoints: "https"
       traefik.http.routers.jellyfin.tls: "true"
       traefik.http.routers.jellyfin.service: "jellyfin"
