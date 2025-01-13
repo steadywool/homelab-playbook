@@ -1,7 +1,7 @@
 ---
 email: "{{ vault_email }}" # Used for DNS Challenge
-private_domain: "{{ vault_private_domain }}" # Used by Traefik
-public_domain: "{{ vault_public_domain }}" # Used by Wireguard
+wildcard_domain: "{{ vault_wildcard_domain }}" # Used by Traefik
+dynamic_domain: "{{ vault_dynamic_domain }}" # Used by Wireguard
 
 # You should change these vars & the traefik.yml file if you are using a different DNS provider
 ovh_endpoint: "{{ vault_ovh_endpoint }}"
