@@ -56,10 +56,5 @@
 
 - name: Deploy WG Easy container
   ansible.builtin.import_tasks: wireguard.yml
-  when: inventory_hostname == "lxc-vpn-01"
+  when: inventory_hostname == "pi-vpn-01"
   tags: wireguard
-
-- name: Deploy Adguardhome container
-  ansible.builtin.import_tasks: adguardhome.yml
-  when: inventory_hostname == "lxc-vpn-01"
-  tags: adguard,adguardhome

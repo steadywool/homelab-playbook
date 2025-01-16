@@ -19,12 +19,6 @@ http:
         - "https"
       tls: {}
       service: "wireguard"
-    adguardhome:
-      rule: "Host(`dns.{{ wildcard_domain }}`)"
-      entryPoints: 
-        - "https"
-      tls: {}
-      service: "adguardhome"
     openmediavault:
       rule: "Host(`nas.{{ wildcard_domain }}`)"
       entryPoints: 
@@ -44,11 +38,7 @@ http:
     wireguard:
       loadBalancer:
         servers:
-          - url: "http://{{ hostvars['lxc-vpn-01']['ansible_host'] }}:51821"
-    adguardhome:
-      loadBalancer:
-        servers:
-          - url: "http://{{ hostvars['lxc-vpn-01']['ansible_host'] }}:3000"
+          - url: "http://{{ hostvars['pi-vpn-01']['ansible_host'] }}:51821"
     openmediavault:
       loadBalancer:
         servers:
