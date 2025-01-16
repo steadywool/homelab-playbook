@@ -1,0 +1,9 @@
+---
+# Connection informations
+ansible_host: "{{ vault_inventory['pi-vpn-01']['host'] }}"
+ansible_user: "{{ vault_inventory['pi-vpn-01']['user'] }}"
+
+# Packages that will be installed
+common:
+  packages:
+    - python3-passlib

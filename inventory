@@ -4,9 +4,9 @@ srv-pve-01
 vm-nas-01
 vm-apps-01
 vm-games-01
-lxc-vpn-01
+pi-vpn-01
 
 [docker]
 vm-apps-01
 vm-games-01
-lxc-vpn-01
+pi-vpn-01
