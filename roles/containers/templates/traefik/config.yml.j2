@@ -38,7 +38,7 @@ http:
     wireguard:
       loadBalancer:
         servers:
-          - url: "http://{{ hostvars['pi-vpn-01']['ansible_host'] }}:51821"
+          - url: "http://{{ hostvars['lxc-vpn-01']['ansible_host'] }}:51821"
     openmediavault:
       loadBalancer:
         servers:
