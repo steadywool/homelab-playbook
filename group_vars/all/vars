@@ -17,16 +17,3 @@ crowdsec_enroll_token: "{{ vault_crowdsec_enroll_token }}" # Token for enrolling
 
 timezone: Europe/Paris # Current timezone
 docker_network: custom_network # Docker network used by containers
-
-backup:
-  remote: "CryptStorage:/" # Where backup are sent with Rclone
-  source: "/var/lib/vz/dump" # Which directory to backup
-
-# Mods that will be installed on minecraft server
-minecraft_mods: |
-  terralith,nullscape,incendium,towns-and-towers,
-  yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
-  yungs-better-ocean-monuments,yungs-better-nether-fortresses,
-  yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
-  yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
-  blossomtpa,blossomback,blossomhomes,easywhitelist,lithium,ferrite-core

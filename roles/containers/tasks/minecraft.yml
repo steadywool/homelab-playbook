@@ -43,5 +43,11 @@
       FORCE_GAMEMODE: "true"
       ENABLE_WHITELIST: "true"
       # Mods
-      MODRINTH_PROJECTS: "{{ minecraft_mods }}"
+      MODRINTH_PROJECTS: |
+        terralith,nullscape,incendium,towns-and-towers,
+        yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
+        yungs-better-ocean-monuments,yungs-better-nether-fortresses,
+        yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
+        yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
+        blossomtpa,blossomback,blossomhomes,easywhitelist,lithium,ferrite-core
       MODRINTH_DOWNLOAD_DEPENDENCIES: "required"
