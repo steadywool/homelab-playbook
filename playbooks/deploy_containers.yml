@@ -4,5 +4,5 @@
   ignore_unreachable: true
   become: true
   roles:
-    - docker
-    - containers
+    - docker_setup
+    - docker_containers

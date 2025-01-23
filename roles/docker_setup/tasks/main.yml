@@ -1,6 +1,6 @@
 ---
 - name: Install Docker on Debian based OS
-  ansible.builtin.import_tasks: install_debian.yml
+  ansible.builtin.import_tasks: install_docker_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: docker,debian
 
