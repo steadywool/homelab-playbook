@@ -11,7 +11,7 @@
 
 - name: Recreate Docker containers
   ansible.builtin.include_role:
-    name: containers
+    name: docker_containers
 
 - name: Prune Docker objects
   community.docker.docker_prune:

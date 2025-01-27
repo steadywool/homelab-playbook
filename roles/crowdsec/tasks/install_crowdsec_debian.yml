@@ -23,7 +23,7 @@
   ansible.builtin.apt:
     name:
       - crowdsec
-      - crowdsec-firewall-bouncer-nftables
+      - crowdsec-firewall-bouncer-iptables
     state: present
 
 - name: Enable Crowdsec service

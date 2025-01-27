@@ -6,5 +6,5 @@
 
 - name: Create custom Docker network
   community.docker.docker_network:
-    name: "{{ docker['network'] }}"
+    name: "{{ docker_network }}"
   tags: docker,network
