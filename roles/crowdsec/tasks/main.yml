@@ -20,8 +20,3 @@
     state: reloaded
     scope: system
   tags: crowdsec
-
-- name: Enroll Crowdsec Security Engine to the console
-  ansible.builtin.command: "cscli console enroll -e context {{ crowdsec_enroll_token }}"
-  when: crowdsec_enroll_token is defined
-  tags: crowdsec,enroll
