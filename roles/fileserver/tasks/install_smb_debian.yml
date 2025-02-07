@@ -1,0 +1,17 @@
+---
+- name: Install Samba packages
+  ansible.builtin.apt:
+    name:
+      - samba
+      - samba-vfs-modules
+    state: present
+
+- name: Enable Samba services
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+    scope: system
+  loop:
+    - smbd.service
+    - nmbd.service

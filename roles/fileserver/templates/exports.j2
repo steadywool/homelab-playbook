@@ -1,0 +1,5 @@
+# NFS shares to specific hosts
+{% for share in nfs_shares %}
+{{ share['path'] }} {% for host in share['allowed_hosts'] %}{{ host }}({{ share['options'] }}) {% endfor %}
+
+{% endfor %}

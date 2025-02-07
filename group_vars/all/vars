@@ -16,3 +16,18 @@ crowdsec_gotify_token: "{{ vault_crowdsec_gotify_token }}" # Gotify token for Cr
 
 timezone: Europe/Paris # Current timezone
 docker_network: custom_network # Docker network used by containers
+
+smb_shares: "{{ vault_smb_shares }}"
+# smb_shares:
+#   - name: share
+#     path: /path/share
+#     allowed_users:
+#       - @group
+#       - user
+
+nfs_shares: "{{ vault_nfs_shares }}"
+# nfs_shares:
+#   - path: /path/share
+#     options: rw
+#     allowed_hosts:
+#       - 192.168.1.10/24

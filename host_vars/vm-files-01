@@ -1,7 +1,7 @@
 ---
 # Connection informations
-ansible_host: "{{ vault_inventory['vm-nas-01']['host'] }}"
-ansible_user: "{{ vault_inventory['vm-nas-01']['user'] }}"
+ansible_host: "{{ vault_inventory['vm-files-01']['host'] }}"
+ansible_user: "{{ vault_inventory['vm-files-01']['user'] }}"
 
 # Packages & services that will be installed
 common:

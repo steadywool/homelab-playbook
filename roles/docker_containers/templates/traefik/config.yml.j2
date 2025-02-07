@@ -13,12 +13,6 @@ http:
         - "https"
       tls: {}
       service: "wireguard"
-    openmediavault:
-      rule: "Host(`nas.{{ wildcard_domain }}`)"
-      entryPoints: 
-        - "https"
-      tls: {}
-      service: "openmediavault"
 
   services:
     pve:
@@ -29,7 +23,3 @@ http:
       loadBalancer:
         servers:
           - url: "http://{{ hostvars['lxc-vpn-01']['ansible_host'] }}:51821"
-    openmediavault:
-      loadBalancer:
-        servers:
-          - url: "http://{{ hostvars['vm-nas-01']['ansible_host'] }}:80"

@@ -1,0 +1,21 @@
+[global]
+workgroup = WORKGROUP
+server string = Samba Server Version %v
+log file = /var/log/samba/log.%m
+max log size = 1000
+load printers = no
+write cache size = 2097152
+min receivefile size = 16384
+getwd cache = yes
+
+{% for share in smb_shares %}
+[{{ share['name'] }}]
+comment = {{ share['name'] }} share
+path = {{ share['path'] }}
+browseable = yes
+writable = yes
+valid users = {{ share['allowed_users'] | join(', ') }}
+create mask = 0660
+directory mask = 0770
+
+{% endfor %}

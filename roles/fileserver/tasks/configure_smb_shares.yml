@@ -1,0 +1,19 @@
+---
+- name: Create Samba directories
+  ansible.builtin.file:
+    path: "{{ item['path'] }}"
+    state: directory
+    group: users
+    mode: '0770'
+  loop: "{{ smb_shares }}"
+
+- name: Template Samba configuration
+  ansible.builtin.template:
+    src: smb.conf.j2
+    dest: "/etc/samba/smb.conf"
+
+- name: Reload Samba service
+  ansible.builtin.systemd_service:
+    name: smbd.service
+    state: reloaded
+    scope: system
