@@ -24,7 +24,7 @@
       net.ipv4.ip_forward: 1
     env:
       WG_HOST: "{{ wireguard_domain }}"
-      PASSWORD_HASH: "{{ wg_password | password_hash('bcrypt') }}"
+      PASSWORD_HASH: "{{ wireguard_password | password_hash('bcrypt') }}"
       WG_DEFAULT_DNS: ""
       WG_ALLOWED_IPS: "{{ groups['all'] | map('extract', hostvars, 'ansible_host') | map('regex_replace', '(/32)?$', '/32') | join(',') }}"
       UI_TRAFFIC_STATS: "true"
