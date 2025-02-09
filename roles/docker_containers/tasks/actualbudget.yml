@@ -11,12 +11,12 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker_network }}"
+    network_mode: traefik_network
     volumes:
       - actual_data:/data
     labels:
       traefik.enable: "true"
-      traefik.http.routers.actual.rule: Host(`actual.{{ wildcard_domain }}`)
+      traefik.http.routers.actual.rule: Host(`actual.{{ traefik_domain }}`)
       traefik.http.routers.actual.entrypoints: "https"
       traefik.http.routers.actual.tls: "true"
       traefik.http.routers.actual.service: "actual"

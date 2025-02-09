@@ -23,14 +23,14 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker_network }}"
+    network_mode: traefik_network
     volumes:
       - jellyfin_config:/config
       - jellyfin_cache:/cache
       - music_nfs:/music
     labels:
       traefik.enable: "true"
-      traefik.http.routers.jellyfin.rule: Host(`media.{{ wildcard_domain }}`)
+      traefik.http.routers.jellyfin.rule: Host(`media.{{ traefik_domain }}`)
       traefik.http.routers.jellyfin.entrypoints: "https"
       traefik.http.routers.jellyfin.tls: "true"
       traefik.http.routers.jellyfin.service: "jellyfin"

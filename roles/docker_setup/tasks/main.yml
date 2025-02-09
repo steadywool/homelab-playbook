@@ -4,7 +4,8 @@
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: docker,debian
 
-- name: Create custom Docker network
+- name: Create Traefik network
   community.docker.docker_network:
-    name: "{{ docker_network }}"
+    name: traefik_network
+  when: inventory_hostname == "vm-docker-01"
   tags: docker,network

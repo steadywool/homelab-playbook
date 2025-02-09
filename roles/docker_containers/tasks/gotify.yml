@@ -11,7 +11,7 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker_network }}"
+    network_mode: traefik_network
     volumes:
       - gotify_data:/app/data
     env:
@@ -19,7 +19,7 @@
       GOTIFY_DEFAULTUSER_PASS: "{{ gotify_password }}"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.gotify.rule: Host(`gotify.{{ wildcard_domain }}`)
+      traefik.http.routers.gotify.rule: Host(`gotify.{{ traefik_domain }}`)
       traefik.http.routers.gotify.entrypoints: "https"
       traefik.http.routers.gotify.tls: "true"
       traefik.http.routers.gotify.service: "gotify"

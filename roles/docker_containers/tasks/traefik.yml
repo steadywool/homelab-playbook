@@ -32,7 +32,7 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker_network }}"
+    network_mode: traefik_network
     ports:
       - 80:80
       - 443:443
@@ -46,9 +46,9 @@
       OVH_CONSUMER_KEY: "{{ ovh_consumer_key }}"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.traefik.rule: Host(`traefik.{{ wildcard_domain }}`)
+      traefik.http.routers.traefik.rule: Host(`traefik.{{ traefik_domain }}`)
       traefik.http.routers.traefik.entrypoints: "https"
       traefik.http.routers.traefik.tls.certresolver: "ovh"
-      traefik.http.routers.traefik.tls.domains[0].main: "{{ wildcard_domain }}"
-      traefik.http.routers.traefik.tls.domains[0].sans: "*.{{ wildcard_domain }}"
+      traefik.http.routers.traefik.tls.domains[0].main: "{{ traefik_domain }}"
+      traefik.http.routers.traefik.tls.domains[0].sans: "*.{{ traefik_domain }}"
       traefik.http.routers.traefik.service: "api@internal"

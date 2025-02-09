@@ -15,7 +15,7 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker_network }}"
+    network_mode: traefik_network
     ports:
       - 22000:22000/tcp
       - 22000:22000/udp
@@ -24,7 +24,7 @@
       - sync_nfs:/var/syncthing
     labels:
       traefik.enable: "true"
-      traefik.http.routers.syncthing.rule: Host(`sync.{{ wildcard_domain }}`)
+      traefik.http.routers.syncthing.rule: Host(`sync.{{ traefik_domain }}`)
       traefik.http.routers.syncthing.entrypoints: "https"
       traefik.http.routers.syncthing.tls: "true"
       traefik.http.routers.syncthing.service: "syncthing"

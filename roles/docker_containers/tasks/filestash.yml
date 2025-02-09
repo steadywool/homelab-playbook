@@ -11,14 +11,14 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker_network }}"
+    network_mode: traefik_network
     volumes:
       - filestash_data:/app/data/state
     env:
-      APPLICATION_URL: "https://file.{{ wildcard_domain }}"
+      APPLICATION_URL: "https://file.{{ traefik_domain }}"
     labels:
       traefik.enable: "true"
-      traefik.http.routers.filestash.rule: Host(`file.{{ wildcard_domain }}`)
+      traefik.http.routers.filestash.rule: Host(`file.{{ traefik_domain }}`)
       traefik.http.routers.filestash.entrypoints: "https"
       traefik.http.routers.filestash.tls: "true"
       traefik.http.routers.filestash.service: "filestash"

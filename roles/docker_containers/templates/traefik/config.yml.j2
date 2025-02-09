@@ -2,7 +2,7 @@
 http:
   routers:
     pve:
-      rule: "Host(`pve.{{ wildcard_domain }}`)"
+      rule: "Host(`pve.{{ traefik_domain }}`)"
       entryPoints: 
         - "https"
       tls: {}

@@ -34,7 +34,7 @@ format: |
 {% endraw %}
 
 # The plugin will make requests to this url, eg:  https://www.example.com/
-url: https://gotify.{{ wildcard_domain }}/message?token={{ crowdsec_gotify_token }}
+url: https://gotify.{{ traefik_domain }}/message?token={{ crowdsec_gotify_token }}
 
 # Any of the http verbs: "POST", "GET", "PUT"...
 method: POST

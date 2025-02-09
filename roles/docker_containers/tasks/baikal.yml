@@ -14,13 +14,13 @@
     state: started
     restart_policy: always
     recreate: true
-    network_mode: "{{ docker_network }}"
+    network_mode: traefik_network
     volumes:
       - baikal_config:/var/www/baikal/config
       - baikal_specific:/var/www/baikal/Specific
     labels:
       traefik.enable: "true"
-      traefik.http.routers.baikal.rule: Host(`dav.{{ wildcard_domain }}`)
+      traefik.http.routers.baikal.rule: Host(`dav.{{ traefik_domain }}`)
       traefik.http.routers.baikal.entrypoints: "https"
       traefik.http.routers.baikal.tls: "true"
       traefik.http.routers.baikal.service: "baikal"

@@ -1,7 +1,9 @@
 ---
-email: "{{ vault_email }}" # Used for DNS Challenge
-wildcard_domain: "{{ vault_wildcard_domain }}" # Used by Traefik
-dynamic_domain: "{{ vault_dynamic_domain }}" # Used by Wireguard
+timezone: Europe/Paris # Current timezone
+
+traefik_email: "{{ vault_traefik_email }}" # Used for DNS Challenge
+traefik_domain: "{{ vault_traefik_domain }}" # Used by Traefik as wildcard domain
+wireguard_domain: "{{ vault_wireguard_domain }}" # Used by wireguard as dynDNS to public IP
 
 # You should change these vars & the traefik.yml file if you are using a different DNS provider
 ovh_endpoint: "{{ vault_ovh_endpoint }}"
@@ -13,9 +15,6 @@ wg_password: "{{ vault_wg_password }}" # WG-Easy UI password
 gotify_password: "{{ vault_gotify_password }}" # Gotify admin password
 playit_secret_key: "{{ vault_playit_secret_key }}" # Playit secret
 crowdsec_gotify_token: "{{ vault_crowdsec_gotify_token }}" # Gotify token for Crowdsec
-
-timezone: Europe/Paris # Current timezone
-docker_network: traefik_network # Docker network used by Traefik
 
 smb_shares: "{{ vault_smb_shares }}"
 # smb_shares:

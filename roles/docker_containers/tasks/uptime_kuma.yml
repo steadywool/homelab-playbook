@@ -10,14 +10,14 @@
     image: docker.io/louislam/uptime-kuma:latest
     state: started
     restart_policy: always
-    network_mode: "{{ docker_network }}"
+    network_mode: traefik_network
     recreate: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - uptimekuma_data:/app/data
     labels:
       traefik.enable: "true"
-      traefik.http.routers.uptime.rule: Host(`uptime.{{ wildcard_domain }}`)
+      traefik.http.routers.uptime.rule: Host(`uptime.{{ traefik_domain }}`)
       traefik.http.routers.uptime.entrypoints: "https"
       traefik.http.routers.uptime.tls: "true"
       traefik.http.routers.uptime.service: "uptime"
