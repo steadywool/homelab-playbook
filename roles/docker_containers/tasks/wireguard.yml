@@ -11,9 +11,9 @@
     state: started
     restart_policy: always
     recreate: true
+    network_mode: "{{ docker_network }}"
     ports:
       - 51820:51820/udp
-      - 51821:51821/tcp
     volumes:
       - wireguard_data:/etc/wireguard
     capabilities:
@@ -28,3 +28,10 @@
       WG_DEFAULT_DNS: ""
       WG_ALLOWED_IPS: "{{ groups['all'] | map('extract', hostvars, 'ansible_host') | map('regex_replace', '(/32)?$', '/32') | join(',') }}"
       UI_TRAFFIC_STATS: "true"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.wireguard.rule: Host(`wg.{{ wildcard_domain }}`)
+      traefik.http.routers.wireguard.entrypoints: "https"
+      traefik.http.routers.wireguard.tls: "true"
+      traefik.http.routers.wireguard.service: "wireguard"
+      traefik.http.services.wireguard.loadbalancer.server.port: "51821"

@@ -7,19 +7,8 @@ http:
         - "https"
       tls: {}
       service: "pve"
-    wireguard:
-      rule: "Host(`wg.{{ wildcard_domain }}`)"
-      entryPoints: 
-        - "https"
-      tls: {}
-      service: "wireguard"
-
   services:
     pve:
       loadBalancer:
         servers:
           - url: "https://{{ hostvars['srv-pve-01']['ansible_host'] }}:8006"
-    wireguard:
-      loadBalancer:
-        servers:
-          - url: "http://{{ hostvars['lxc-vpn-01']['ansible_host'] }}:51821"

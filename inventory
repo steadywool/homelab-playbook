@@ -1,11 +1,9 @@
 [ungrouped]
 srv-pve-01
 vm-files-01
-vm-apps-01
+vm-docker-01
 vm-games-01
-lxc-vpn-01
 
 [docker]
-vm-apps-01
+vm-docker-01
 vm-games-01
-lxc-vpn-01

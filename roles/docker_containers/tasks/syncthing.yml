@@ -5,7 +5,7 @@
     volume_name: sync_nfs
     driver_options:
       type: "nfs"
-      o: "addr={{ hostvars['vm-nas-01']['ansible_host'] }},rw,nfsvers=4"
+      o: "addr={{ hostvars['vm-files-01']['ansible_host'] }},rw,nfsvers=4"
       device: ":/sync"
 
 - name: Run Syncthing container

@@ -5,7 +5,7 @@
     volume_name: music_nfs
     driver_options:
       type: "nfs"
-      o: "addr={{ hostvars['vm-nas-01']['ansible_host'] }},ro,nfsvers=4"
+      o: "addr={{ hostvars['vm-files-01']['ansible_host'] }},rw,nfsvers=4"
       device: ":/music"
 
 - name: Create Jellyfin volumes

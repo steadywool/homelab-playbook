@@ -15,7 +15,7 @@ playit_secret_key: "{{ vault_playit_secret_key }}" # Playit secret
 crowdsec_gotify_token: "{{ vault_crowdsec_gotify_token }}" # Gotify token for Crowdsec
 
 timezone: Europe/Paris # Current timezone
-docker_network: custom_network # Docker network used by containers
+docker_network: traefik_network # Docker network used by Traefik
 
 smb_shares: "{{ vault_smb_shares }}"
 # smb_shares:
