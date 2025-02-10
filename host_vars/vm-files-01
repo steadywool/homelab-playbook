@@ -6,6 +6,8 @@ ansible_user: "{{ vault_inventory['vm-files-01']['user'] }}"
 # Packages & services that will be installed
 common:
   packages:
+    - avahi-daemon
     - qemu-guest-agent
   services:
+    - avahi-daemon.service
     - qemu-guest-agent.service
