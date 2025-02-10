@@ -1,0 +1,13 @@
+---
+- name: Create UNIX users
+  ansible.builtin.user:
+    name: "{{ item['username'] }}"
+    password: "{{ item['password'] }}"
+    home: "{{ item['homedir'] }}"
+    group: users
+    shell: /sbin/nologin
+  loop: "{{ smb_users }}"
+
+- name: Set Samba passwords
+  shell: "printf '{{ item['password'] }}\n{{ item['password'] }}\n' | smbpasswd -a -s {{ item['username'] }}"
+  loop: "{{ smb_users }}"

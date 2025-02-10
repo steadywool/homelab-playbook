@@ -9,10 +9,14 @@
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: fileserver,smb,debian
 
+- name: Create users for Samba shares
+  ansible.builtin.import_tasks: create_smb_users.yml
+  tags: fileserver,smb,users
+
 - name: Configure Samba server
   ansible.builtin.import_tasks: configure_smb_shares.yml
-  tags: fileserver,smb
+  tags: fileserver,smb,shares
 
 - name: Configure NFS server
   ansible.builtin.import_tasks: configure_nfs_shares.yml
-  tags: fileserver,nfs
+  tags: fileserver,nfs,shares

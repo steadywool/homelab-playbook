@@ -16,12 +16,17 @@ gotify_password: "{{ vault_gotify_password }}" # Gotify admin password
 playit_secret_key: "{{ vault_playit_secret_key }}" # Playit secret
 crowdsec_gotify_token: "{{ vault_crowdsec_gotify_token }}" # Gotify token for Crowdsec
 
+smb_users: "{{ vault_smb_users }}"
+# smb_users:
+#   - username: user
+#     password: pass
+#     homedir: /path/home/user
+
 smb_shares: "{{ vault_smb_shares }}"
 # smb_shares:
 #   - name: share
 #     path: /path/share
 #     allowed_users:
-#       - @group
 #       - user
 
 nfs_shares: "{{ vault_nfs_shares }}"
