@@ -3,20 +3,3 @@
   ansible.builtin.import_tasks: install_crowdsec_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: crowdsec,debian
-
-- name: Template Crowdsec configuration
-  ansible.builtin.template:
-    src: "{{ item['src'] }}"
-    dest: "{{ item['dest'] }}"
-    mode: "{{ item['mode'] }}"
-  loop:
-    - { src: 'gotify.yaml.j2', dest: '/etc/crowdsec/notifications/gotify.yaml', mode: '0600' }
-    - { src: 'profiles.yaml.j2', dest: '/etc/crowdsec/profiles.yaml', mode: '0644' }
-  tags: crowdsec
-
-- name: Reload Crowdsec service
-  ansible.builtin.systemd_service:
-    name: crowdsec.service
-    state: reloaded
-    scope: system
-  tags: crowdsec

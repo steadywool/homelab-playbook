@@ -4,11 +4,6 @@
   when: inventory_hostname == "vm-docker-01"
   tags: uptime-kuma,uptime
 
-- name: Deploy Gotify container
-  ansible.builtin.import_tasks: gotify.yml
-  when: inventory_hostname == "vm-docker-01"
-  tags: gotify
-
 - name: Deploy Baikal container
   ansible.builtin.import_tasks: baikal.yml
   when: inventory_hostname == "vm-docker-01"
