@@ -1,16 +1,35 @@
 ---
-- name: Create NFS directories
+- name: Create NFS root directory
+  ansible.builtin.file:
+    path: /export
+    state: directory
+    mode: '0755'
+
+- name: Create NFS shares
   ansible.builtin.file:
     path: "{{ item['path'] }}"
     state: directory
+    owner: root
     group: users
     mode: '0770'
+  loop: "{{ nfs_shares }}"
+
+- name: Bind mount directories to the NFS root
+  ansible.posix.mount:
+    src: "{{ item['path'] }}"
+    path: "/export/{{ item['path'] | basename }}"
+    opts: bind
+    state: mounted
+    fstype: none
   loop: "{{ nfs_shares }}"
 
 - name: Template NFS configuration
   ansible.builtin.template:
     src: exports.j2
     dest: "/etc/exports"
+
+- name: Export the shares
+  ansible.builtin.command: exportfs -ar
 
 - name: Reload NFS service
   ansible.builtin.systemd_service:

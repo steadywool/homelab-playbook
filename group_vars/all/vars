@@ -22,8 +22,7 @@ smb_users: "{{ vault_smb_users }}"
 
 smb_shares: "{{ vault_smb_shares }}"
 # smb_shares:
-#   - name: share
-#     path: /path/share
+#   - path: /path/share
 #     allowed_users:
 #       - user
 

@@ -18,8 +18,8 @@ recycle:keeptree = yes
 recycle:versions = yes
 
 {% for share in smb_shares %}
-[{{ share['name'] }}]
-comment = {{ share['name'] }} share
+[{{ share['path'] | basename }}]
+comment = {{ share['path'] | basename }} share
 path = {{ share['path'] }}
 browseable = yes
 writable = yes
