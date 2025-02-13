@@ -1,18 +1,17 @@
 ---
-- name: Create NFS root directory
+- name: Create share directories for NFS
+  ansible.builtin.file:
+    path: "{{ item['path'] }}"
+    state: directory
+    group: users
+    mode: '0770'
+  loop: "{{ nfs_shares }}"
+
+- name: Create root mount point for NFS
   ansible.builtin.file:
     path: /export
     state: directory
     mode: '0755'
-
-- name: Create NFS shares
-  ansible.builtin.file:
-    path: "{{ item['path'] }}"
-    state: directory
-    owner: root
-    group: users
-    mode: '0770'
-  loop: "{{ nfs_shares }}"
 
 - name: Bind mount directories to the NFS root
   ansible.posix.mount:

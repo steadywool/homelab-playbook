@@ -1,18 +1,13 @@
 ---
-- name: Install NFS on Debian based OS
-  ansible.builtin.import_tasks: install_nfs_debian.yml
+- name: Install NFS & SMB on Debian based OS
+  ansible.builtin.import_tasks: install_nfs_smb_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
-  tags: files,nfs,debian
-
-- name: Install Samba on Debian based OS
-  ansible.builtin.import_tasks: install_smb_debian.yml
-  when: ansible_distribution in ["Ubuntu", "Debian"]
-  tags: files,smb,debian
+  tags: nfs,smb,debian
 
 - name: Configure Samba server
   ansible.builtin.import_tasks: configure_smb_shares.yml
-  tags: files,smb
+  tags: smb
 
 - name: Configure NFS server
   ansible.builtin.import_tasks: configure_nfs_shares.yml
-  tags: files,nfs
+  tags: nfs

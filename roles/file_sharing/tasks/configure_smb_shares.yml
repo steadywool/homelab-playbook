@@ -3,7 +3,7 @@
   ansible.builtin.user:
     name: "{{ item['username'] }}"
     home: "{{ item['homedir'] }}"
-    group: users
+    groups: users
     shell: /sbin/nologin
   loop: "{{ smb_users }}"
 
@@ -11,11 +11,10 @@
   shell: "printf '{{ item['password'] }}\n{{ item['password'] }}\n' | smbpasswd -a -s {{ item['username'] }}"
   loop: "{{ smb_users }}"
 
-- name: Create Samba directories
+- name: Create share directories for SMB
   ansible.builtin.file:
     path: "{{ item['path'] }}"
     state: directory
-    owner: root
     group: users
     mode: '0770'
   loop: "{{ smb_shares }}"
