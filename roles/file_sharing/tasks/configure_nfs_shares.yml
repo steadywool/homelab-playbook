@@ -15,7 +15,6 @@
     default: true
     recursive: true
     state: present
-  loop: "{{ nfs_shares }}"
   loop: "{{ nfs_shares | product([('user', 'rwX'), ('group', 'rwX'), ('other', '---')]) | list }}"
 
 - name: Create root mount point for NFS
