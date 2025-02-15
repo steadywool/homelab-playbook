@@ -11,7 +11,7 @@
   ansible.posix.acl:
     path: "{{ item['path'] }}"
     etype: group
-    permissions: rwx
+    permissions: rwX
     default: true
     recursive: true
     state: present
