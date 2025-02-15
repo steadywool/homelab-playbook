@@ -9,13 +9,14 @@
 
 - name: Set default ACL for shared directories
   ansible.posix.acl:
-    path: "{{ item['path'] }}"
-    etype: group
-    permissions: rwX
+    path: "{{ item[0]['path'] }}"
+    etype: "{{ item[1][0] }}"
+    permissions: "{{ item[1][1] }}"
     default: true
     recursive: true
     state: present
   loop: "{{ nfs_shares }}"
+  loop: "{{ nfs_shares | product([('user', 'rwX'), ('group', 'rwX'), ('other', '---')]) | list }}"
 
 - name: Create root mount point for NFS
   ansible.builtin.file:
