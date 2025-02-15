@@ -27,6 +27,6 @@ writable = yes
 valid users = {{ share['allowed_users'] | join(', ') }}
 force group = users
 create mask = 0660
-directory mask = 0770
+directory mask = 2770
 
 {% endfor %}

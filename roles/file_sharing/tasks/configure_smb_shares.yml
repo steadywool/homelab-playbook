@@ -1,4 +1,12 @@
 ---
+- name: Create share directories
+  ansible.builtin.file:
+    path: "{{ item['path'] }}"
+    state: directory
+    group: users
+    mode: '2770'
+  loop: "{{ smb_shares }}"
+
 - name: Create UNIX users
   ansible.builtin.user:
     name: "{{ item['username'] }}"
@@ -10,14 +18,6 @@
 - name: Set Samba passwords
   shell: "printf '{{ item['password'] }}\n{{ item['password'] }}\n' | smbpasswd -a -s {{ item['username'] }}"
   loop: "{{ smb_users }}"
-
-- name: Create share directories for SMB
-  ansible.builtin.file:
-    path: "{{ item['path'] }}"
-    state: directory
-    group: users
-    mode: '0770'
-  loop: "{{ smb_shares }}"
 
 - name: Template Samba configuration
   ansible.builtin.template:
