@@ -6,9 +6,9 @@
     regexp: "{{ item['regexp'] }}"
     line: "{{ item['line'] }}"
   loop:
-    - { regexp: '^PermitRootLogin', line: 'PermitRootLogin prohibit-password' }
-    - { regexp: '^PasswordAuthentication', line: 'PasswordAuthentication no' }
-    - { regexp: '^PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
+    - { regexp: '^#?\s*PermitRootLogin', line: 'PermitRootLogin prohibit-password' }
+    - { regexp: '^#?\s*PasswordAuthentication', line: 'PasswordAuthentication no' }
+    - { regexp: '^#?\s*PermitEmptyPasswords', line: 'PermitEmptyPasswords no' }
 
 - name: Reload SSHD service
   ansible.builtin.systemd_service:
