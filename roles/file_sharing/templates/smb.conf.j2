@@ -6,6 +6,7 @@ max log size = 1000
 load printers = no
 security = user
 getwd cache = yes
+socket options = TCP_NODELAY IPTOS_THROUGHPUT SO_RCVBUF=65536 SO_SNDBUF=65536
 
 [homes]
 comment = homes share
