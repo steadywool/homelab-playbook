@@ -5,4 +5,4 @@
   become: true
   roles:
     - common
-    - crowdsec
+    - crowdsec_setup
