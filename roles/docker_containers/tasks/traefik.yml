@@ -44,11 +44,3 @@
       OVH_APPLICATION_KEY: "{{ ovh_application_key }}"
       OVH_APPLICATION_SECRET: "{{ ovh_application_secret }}"
       OVH_CONSUMER_KEY: "{{ ovh_consumer_key }}"
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.traefik.rule: Host(`traefik.{{ traefik_domain }}`)
-      traefik.http.routers.traefik.entrypoints: "https"
-      traefik.http.routers.traefik.tls.certresolver: "ovh"
-      traefik.http.routers.traefik.tls.domains[0].main: "{{ traefik_domain }}"
-      traefik.http.routers.traefik.tls.domains[0].sans: "*.{{ traefik_domain }}"
-      traefik.http.routers.traefik.service: "api@internal"
