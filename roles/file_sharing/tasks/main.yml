@@ -4,10 +4,19 @@
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: nfs,smb,debian
 
+- name: Create NFS & SMB share directories
+  ansible.builtin.file:
+    path: "{{ item['path'] }}"
+    state: directory
+    group: users
+    mode: '0770'
+  loop: "{{ nfs_shares + smb_shares }}"
+  tags: nfs,smb,share
+
 - name: Configure Samba server
-  ansible.builtin.import_tasks: configure_smb_shares.yml
+  ansible.builtin.import_tasks: configure_smb_server.yml
   tags: smb
 
 - name: Configure NFS server
-  ansible.builtin.import_tasks: configure_nfs_shares.yml
+  ansible.builtin.import_tasks: configure_nfs_server.yml
   tags: nfs

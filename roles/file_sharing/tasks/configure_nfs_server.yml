@@ -1,12 +1,4 @@
 ---
-- name: Create share directories
-  ansible.builtin.file:
-    path: "{{ item['path'] }}"
-    state: directory
-    group: users
-    mode: '2770'
-  loop: "{{ nfs_shares }}"
-
 - name: Set default ACL for shared directories
   ansible.posix.acl:
     path: "{{ item[0]['path'] }}"
