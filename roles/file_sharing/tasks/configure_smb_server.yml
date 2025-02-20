@@ -3,7 +3,7 @@
   ansible.builtin.user:
     name: "{{ item['username'] }}"
     home: "{{ item['homedir'] }}"
-    groups: users
+    group: users
     shell: /sbin/nologin
   loop: "{{ smb_users }}"
 
