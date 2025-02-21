@@ -5,7 +5,7 @@
     volume_name: music_nfs
     driver_options:
       type: "nfs"
-      o: "addr={{ hostvars['vm-files-01']['ansible_host'] }},rw,nfsvers=4.2"
+      o: "addr={{ hostvars['vm-files-01']['ansible_host'] }},ro,nfsvers=4.2"
       device: ":/music"
 
 - name: Create Jellyfin volumes
@@ -27,7 +27,7 @@
     volumes:
       - jellyfin_config:/config
       - jellyfin_cache:/cache
-      - music_nfs:/music
+      - music_nfs:/music:ro
     labels:
       traefik.enable: "true"
       traefik.http.routers.jellyfin.rule: Host(`media.{{ traefik_domain }}`)
