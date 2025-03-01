@@ -7,7 +7,7 @@
 - name: Run Actual Budget container
   community.docker.docker_container:
     name: actualbudget
-    image: docker.io/actualbudget/actual-server:latest
+    image: ghcr.io/actualbudget/actual:latest
     state: started
     restart_policy: always
     recreate: true
