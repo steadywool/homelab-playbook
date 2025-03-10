@@ -1,0 +1,17 @@
+---
+- name: Change NUT mode to standalone
+  ansible.builtin.lineinfile:
+    path: /etc/nut/nut.conf
+    state: present
+    regexp: '^MODE='
+    line: 'MODE=standalone'
+
+- name: Add my UPS to ups.conf
+  ansible.builtin.blockinfile:
+    path: /etc/nut/ups.conf
+    state: present
+    block: |
+      [eaton3s]
+        driver = usbhid-ups
+        port = auto
+        desc = "Eaton 3S UPS"

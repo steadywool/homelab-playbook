@@ -1,0 +1,19 @@
+---
+- name: Create UPSMON primary user
+  ansible.builtin.blockinfile:
+    path: /etc/nut/upsd.users
+    state: present
+    block: |
+      [upsmon]
+        password = "{{ nut_upsmon_password }}"
+        upsmon primary
+
+- name: Ensure the SHUTDOWNCMD is correct & monitor the UPS
+  ansible.builtin.lineinfile:
+    path: /etc/nut/upsmon.conf
+    state: present
+    regexp: "{{ item['regexp'] }}"
+    line: "{{ item['line'] }}"
+  loop:
+    - { regexp: '^MONITOR', line: 'MONITOR eaton3s@localhost 1 upsmon "{{ nut_upsmon_password }}" primary' }
+    - { regexp: '^SHUTDOWNCMD', line: 'SHUTDOWNCMD "/sbin/shutdown -h +0"' }

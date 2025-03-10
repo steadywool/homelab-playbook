@@ -1,0 +1,23 @@
+---
+- name: Install NUT on Debian based OS
+  ansible.builtin.import_tasks: install_nut_debian.yml
+  when: ansible_distribution in ["Ubuntu", "Debian"]
+  tags: debian
+
+- name: Configure NUT settings
+  ansible.builtin.import_tasks: configure_nut.yml
+  tags: configure
+
+- name: Monitor UPS state
+  ansible.builtin.import_tasks: monitor_ups_state.yml
+  tags: monitor
+
+- name: Reload NUT services
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    state: reloaded
+    scope: system
+  loop:
+    - nut-server.service
+    - nut-client.service
+    - nut-monitor.service
