@@ -11,6 +11,7 @@
     path: /etc/nut/upsd.users
     state: present
     block: |
+      # Define user credentials for monitoring the UPS
       [upsmon]
         password = {{ nut_upsmon_password }}
         upsmon primary

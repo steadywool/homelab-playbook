@@ -6,18 +6,15 @@
     regexp: '^MODE='
     line: 'MODE=standalone'
 
-- name: Override battery charge low
-  ansible.builtin.blockinfile:
-    path: /etc/nut/ups.conf
-    state: present
-    block: 'override.battery.charge.low = 50'
-
 - name: Add my UPS to ups.conf
   ansible.builtin.blockinfile:
     path: /etc/nut/ups.conf
     state: present
     block: |
+      # Define the UPS device configuration
       [eaton3s]
         driver = usbhid-ups
         port = auto
         desc = "Eaton 3S UPS"
+      # Override low battery value
+      override.battery.charge.low = 50
