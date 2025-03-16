@@ -16,8 +16,8 @@
     src: smb.conf.j2
     dest: "/etc/samba/smb.conf"
 
-- name: Reload Samba service
+- name: Restart Samba service
   ansible.builtin.systemd_service:
     name: smbd.service
-    state: reloaded
+    state: restarted
     scope: system

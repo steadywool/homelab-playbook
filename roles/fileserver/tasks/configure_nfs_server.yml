@@ -22,8 +22,8 @@
 - name: Export the shares
   ansible.builtin.command: exportfs -ar
 
-- name: Reload NFS service
+- name: Restart NFS service
   ansible.builtin.systemd_service:
     name: nfs-server.service
-    state: reloaded
+    state: restarted
     scope: system
