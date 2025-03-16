@@ -9,8 +9,9 @@
     name: wireguard
     image: ghcr.io/wg-easy/wg-easy:latest
     state: started
-    restart_policy: always
+    pull: always
     recreate: true
+    restart_policy: always
     network_mode: traefik_network
     ports:
       - 51820:51820/udp

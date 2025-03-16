@@ -9,8 +9,9 @@
     name: filestash
     image: docker.io/machines/filestash:latest
     state: started
-    restart_policy: always
+    pull: always
     recreate: true
+    restart_policy: always
     network_mode: traefik_network
     volumes:
       - filestash_data:/app/data/state

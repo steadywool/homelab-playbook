@@ -4,8 +4,9 @@
     name: playit-agent
     image: ghcr.io/playit-cloud/playit-agent:latest
     state: started
-    restart_policy: always
+    pull: always
     recreate: true
+    restart_policy: always
     network_mode: host
     env:
         SECRET_KEY: "{{ playit_secret_key }}"

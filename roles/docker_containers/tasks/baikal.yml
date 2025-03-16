@@ -12,8 +12,9 @@
     name: baikal
     image: docker.io/ckulka/baikal:nginx
     state: started
-    restart_policy: always
+    pull: always
     recreate: true
+    restart_policy: always
     network_mode: traefik_network
     volumes:
       - baikal_config:/var/www/baikal/config

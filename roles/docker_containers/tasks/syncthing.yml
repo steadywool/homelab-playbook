@@ -13,8 +13,9 @@
     name: syncthing
     image: docker.io/syncthing/syncthing:latest
     state: started
-    restart_policy: always
+    pull: always
     recreate: true
+    restart_policy: always
     network_mode: traefik_network
     ports:
       - 22000:22000/tcp

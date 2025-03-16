@@ -30,8 +30,9 @@
     name: traefik
     image: docker.io/library/traefik:latest
     state: started
-    restart_policy: always
+    pull: always
     recreate: true
+    restart_policy: always
     network_mode: traefik_network
     ports:
       - 80:80

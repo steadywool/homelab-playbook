@@ -21,8 +21,9 @@
     name: jellyfin
     image: docker.io/jellyfin/jellyfin:latest
     state: started
-    restart_policy: always
+    pull: always
     recreate: true
+    restart_policy: always
     network_mode: traefik_network
     volumes:
       - jellyfin_config:/config

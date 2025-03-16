@@ -1,14 +1,4 @@
 ---
-- name: Get Docker informations
-  ansible.builtin.command: docker container ls --format "{{'{{'}}.Image{{'}}'}}"
-  register: docker_facts
-
-- name: Pull new Docker images
-  community.docker.docker_image_pull:
-    name: "{{ item }}"
-    pull: always
-  loop: "{{ docker_facts['stdout_lines'] }}"
-
 - name: Recreate Docker containers
   ansible.builtin.include_role:
     name: docker_containers
@@ -20,4 +10,4 @@
     networks: true
     volumes: true
     builder_cache: true
-  tags: prune
+  tags: clean
