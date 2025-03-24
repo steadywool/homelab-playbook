@@ -7,3 +7,4 @@
     - common
     - crowdsec
     - ups_management
+    - proxmox_backup

@@ -1,6 +1,9 @@
 ---
 timezone: Europe/Paris # Current timezone
 
+rclone_source: /mnt/pve/backup-dir/dump # Which directory to backup
+rclone_remote: CryptStorage:/ # Where backup are sent with Rclone
+
 traefik_email: "{{ vault_traefik_email }}" # Used for DNS Challenge
 traefik_domain: "{{ vault_traefik_domain }}" # Used by Traefik as wildcard domain
 wireguard_domain: "{{ vault_wireguard_domain }}" # Used by wireguard as dynDNS to public IP
