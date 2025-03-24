@@ -2,10 +2,10 @@
 - name: Install Docker on Debian based OS
   ansible.builtin.import_tasks: install_docker_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
-  tags: setup,debian
+  tags: docker,debian
 
 - name: Create Traefik network
   community.docker.docker_network:
     name: traefik_network
   when: inventory_hostname == "vm-docker-01"
-  tags: setup,network
+  tags: docker,network
