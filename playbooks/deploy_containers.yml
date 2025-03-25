@@ -4,7 +4,7 @@
   ignore_unreachable: true
   become: true
   roles:
-    - common
-    - crowdsec
+    - common_tasks
+    - crowdsec_security
     - docker_setup
     - docker_containers

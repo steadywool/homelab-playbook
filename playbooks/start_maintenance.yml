@@ -4,4 +4,4 @@
   ignore_unreachable: true
   become: true
   roles:
-    - maintenance
+    - system_maintenance
