@@ -20,7 +20,7 @@
     name: "Send backup to remote storage"
     state: present
     minute: "0"
-    hour: "3"
+    hour: "5"
     user: "{{ ansible_user }}"
     job: "rclone sync --quiet --max-age 1d {{ rclone_source }} {{ rclone_remote }}"
   tags: backup,cron
