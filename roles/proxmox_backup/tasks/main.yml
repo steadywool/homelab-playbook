@@ -22,5 +22,5 @@
     minute: "0"
     hour: "5"
     user: "{{ ansible_user }}"
-    job: "rclone sync --quiet --max-age 1d {{ rclone_source }} {{ rclone_remote }}"
+    job: "rclone sync --quiet --max-age 1d --delete-excluded {{ rclone_source }} {{ rclone_remote }}"
   tags: backup,cron
