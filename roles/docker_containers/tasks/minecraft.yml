@@ -1,7 +1,8 @@
 ---
 - name: Create Minecraft directory
   ansible.builtin.file:
-    path: "/srv/minecraft_data"
+    path: "/srv/modded_minecraft_data"
+#    path: "/srv/minecraft_data"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -18,10 +19,11 @@
     ports:
       - 25565:25565
     volumes:
-      - "/srv/minecraft_data:/data"
+      - "/srv/modded_minecraft_data:/data" 
+#      - "/srv/minecraft_data:/data"
     env:
       # General
-      MEMORY: "2G"
+      MEMORY: "4G"
       USE_AIKAR_FLAGS: "true"
       EULA: "true"
       ONLINE_MODE: "false"
@@ -30,25 +32,37 @@
       ENABLE_ROLLING_LOGS: "true"
       # Gameplay
       TYPE: "FABRIC"
-      VERSION: "1.20.4"
+      VERSION: "1.20.1"
+      #VERSION: "1.20.4"
       SERVER_NAME: "minecraft-survival"
       MOTD: "Welcome to Steadywool's Minecraft server"
       DIFFICULTY: "normal"
       MODE: "survival"
       # World
       SPAWN_PROTECTION: "0"
-      VIEW_DISTANCE: "6"
-      SIMULATION_DISTANCE: "5"
+      VIEW_DISTANCE: "7"
+      SIMULATION_DISTANCE: "6"
       # Players
       MAX_PLAYERS: "6"
       FORCE_GAMEMODE: "true"
       ENABLE_WHITELIST: "true"
       # Mods
       MODRINTH_PROJECTS: |
-        terralith,nullscape,incendium,towns-and-towers,
+        yigd:drnbguzp,appleskin:xcauwnEB,jade:oJx1UoWN,jei:KcsHvRrB,farmers-delight-refabricated:ZnoPlYRz,
+        travelersbackpack:eabCK3Xb,chipped:pwyEaKDs,artifacts:jf0yT7BF,create-fabric:7Ub71nPb,
+        naturalist:dMGBsRgz,another-furniture:YKKY0UDo,just-hammers:B5VNswMi,
+        creeper-overhaul:Mw0Hq1SZ,enderman-overhaul:4oiJql9P,more-mob-variants:o6yyhzgj,friends-and-foes:6hhOJ747,
+        terralith,nullscape,incendium,ct-overhaul-village,ctov-friends-and-foes-compat:BbKorFuj,
         yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
         yungs-better-ocean-monuments,yungs-better-nether-fortresses,
         yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
         yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
         blossomtpa,blossomback,blossomhomes,easywhitelist,lithium,ferrite-core
+#      MODRINTH_PROJECTS: |
+#        terralith,nullscape,incendium,towns-and-towers,
+#        yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
+#        yungs-better-ocean-monuments,yungs-better-nether-fortresses,
+#        yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
+#        yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
+#        blossomtpa,blossomback,blossomhomes,easywhitelist,lithium,ferrite-core
       MODRINTH_DOWNLOAD_DEPENDENCIES: "required"
