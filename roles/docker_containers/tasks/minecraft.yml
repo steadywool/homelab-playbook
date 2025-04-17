@@ -26,7 +26,7 @@
       MEMORY: "4G"
       USE_AIKAR_FLAGS: "true"
       EULA: "true"
-      ONLINE_MODE: "false"
+      ONLINE_MODE: "true"
       SNOOPER_ENABLED: "false"
       ENABLE_AUTOPAUSE: "true"
       ENABLE_ROLLING_LOGS: "true"
@@ -50,19 +50,19 @@
       MODRINTH_PROJECTS: |
         yigd:drnbguzp,appleskin:xcauwnEB,jade:oJx1UoWN,jei:KcsHvRrB,farmers-delight-refabricated:ZnoPlYRz,
         travelersbackpack:eabCK3Xb,chipped:pwyEaKDs,artifacts:jf0yT7BF,create-fabric:7Ub71nPb,
-        naturalist:dMGBsRgz,another-furniture:YKKY0UDo,just-hammers:B5VNswMi,
+        naturalist:dMGBsRgz,another-furniture:YKKY0UDo,just-hammers:B5VNswMi,emotecraft:NFPdxMt9,
         creeper-overhaul:Mw0Hq1SZ,enderman-overhaul:4oiJql9P,more-mob-variants:o6yyhzgj,friends-and-foes:6hhOJ747,
         terralith,nullscape,incendium,ct-overhaul-village,ctov-friends-and-foes-compat:BbKorFuj,
         yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
         yungs-better-ocean-monuments,yungs-better-nether-fortresses,
         yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
         yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
-        blossomtpa,blossomback,blossomhomes,easywhitelist,lithium,ferrite-core
+        blossomtpa,blossomback,blossomhomes,lithium,ferrite-core
 #      MODRINTH_PROJECTS: |
 #        terralith,nullscape,incendium,towns-and-towers,
 #        yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
 #        yungs-better-ocean-monuments,yungs-better-nether-fortresses,
 #        yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
 #        yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
-#        blossomtpa,blossomback,blossomhomes,easywhitelist,lithium,ferrite-core
+#        blossomtpa,blossomback,blossomhomes,lithium,ferrite-core
       MODRINTH_DOWNLOAD_DEPENDENCIES: "required"
