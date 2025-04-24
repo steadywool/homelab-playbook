@@ -1,5 +1,0 @@
-#!/bin/sh
-
-if [ -n "$(find {{ rclone_source }} -type f -mtime -1 )" ]; then
-    rclone sync --quiet --max-age 1d --delete-excluded {{ rclone_source }} {{ rclone_remote }}
-fi

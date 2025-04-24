@@ -1,0 +1,7 @@
+{% for remote in rclone_config %}
+[{{ remote['name'] }}]
+{% for key, value in remote.items() if key != 'name' %}
+{{ key }} = {{ value }}
+{% endfor %}
+
+{% endfor %}

@@ -4,6 +4,6 @@
   ignore_unreachable: true
   become: true
   roles:
-    - common_tasks
-    - crowdsec_security
-    - fileserver_setup
+    - common
+    - crowdsec
+    - fileserver

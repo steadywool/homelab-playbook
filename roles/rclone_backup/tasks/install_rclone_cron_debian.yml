@@ -1,0 +1,14 @@
+---
+- name: Install Rclone & Cron
+  ansible.builtin.apt:
+    name:
+      - rclone
+      - cron
+    state: present
+
+- name: Enable Cron service
+  ansible.builtin.systemd_service:
+    name: cron.service
+    state: started
+    enabled: true
+    scope: system

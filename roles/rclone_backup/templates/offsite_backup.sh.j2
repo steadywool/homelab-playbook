@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rclone sync --exclude "*.log" --exclude "*.notes" --checksum --progress {{ rclone_source }} {{ rclone_remote }}
+rclone cleanup {{ rclone_remote }}
