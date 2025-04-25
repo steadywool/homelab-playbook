@@ -7,12 +7,9 @@
 
 - name: Template Rclone config & backup script
   ansible.builtin.template:
-    src: "{{ item['src'] }}"
-    dest: "{{ item['dest'] }}"
-    mode: "{{ item['mode'] }}"
-  loop:
-    - { src: 'offsite_backup.sh.j2', dest: '/usr/local/bin/offsite_backup.sh', mode: '0700' }
-    - { src: 'rclone.conf.j2', dest: '/root/.config/rclone/rclone.conf', mode: '0600' }
+    src: rclone.conf.j2
+    dest: /root/.config/rclone/rclone.conf
+    mode: '0600'
 
 - name: Create daily backup with Rclone
   ansible.builtin.cron:
@@ -21,4 +18,4 @@
     minute: "0"
     hour: "3"
     user: "{{ ansible_user }}"
-    job: "/usr/local/bin/offsite_backup.sh"
+    job: "rclone sync --exclude '{*.notes,*.log}' --checksum {{ rclone_source }} {{ rclone_remote }}; rclone cleanup {{ rclone_remote }}"
