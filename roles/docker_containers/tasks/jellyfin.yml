@@ -16,7 +16,7 @@
     - jellyfin_config
     - jellyfin_cache
 
-- name: Run Jellyffin container
+- name: Run Jellyfin container
   community.docker.docker_container:
     name: jellyfin
     image: docker.io/jellyfin/jellyfin:latest
