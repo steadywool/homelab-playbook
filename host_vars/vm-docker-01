@@ -6,7 +6,6 @@ ansible_user: "{{ vault_inventory['vm-docker-01']['user'] }}"
 # Packages & services that will be installed
 common:
   packages:
-    - python3-passlib
     - nfs-common
     - qemu-guest-agent
   services:
