@@ -1,10 +1,13 @@
 ---
-- name: Change NUT mode to standalone
+- name: Configure NUT server for local standalone mode
   ansible.builtin.lineinfile:
-    path: /etc/nut/nut.conf
+    path: "{{ item['path'] }}"
     state: present
-    regexp: '^MODE='
-    line: 'MODE=standalone'
+    regexp: "{{ item['regexp'] }}"
+    line: "{{ item['line'] }}"
+  loop:
+    - { path: '/etc/nut/nut.conf', regexp: '^MODE=', line: 'MODE=standalone' }
+    - { path: '/etc/nut/upsd.conf', regexp: '^LISTEN', line: 'LISTEN 127.0.0.1 3493' }
 
 - name: Add my UPS to ups.conf
   ansible.builtin.blockinfile:
@@ -16,5 +19,30 @@
         driver = usbhid-ups
         port = auto
         desc = "Eaton 3S UPS"
-      # Override low battery value
-      override.battery.charge.low = 50
+
+- name: Create UPSMON primary user
+  ansible.builtin.blockinfile:
+    path: /etc/nut/upsd.users
+    state: present
+    block: |
+      # Define user credentials for monitoring the UPS
+      [upsmon]
+        password = {{ nut_upsmon_password }}
+        upsmon primary
+
+- name: Ensure UPSMON config is correct
+  ansible.builtin.lineinfile:
+    path: /etc/nut/upsmon.conf
+    state: present
+    regexp: '^MONITOR'
+    line: "MONITOR eaton3s@localhost 1 upsmon {{ nut_upsmon_password }} primary"
+
+- name: Restart NUT services
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    state: restarted
+    scope: system
+  loop:
+    - nut-server.service
+    - nut-client.service
+    - nut-monitor.service

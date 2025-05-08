@@ -7,18 +7,3 @@
 - name: Configure NUT
   ansible.builtin.import_tasks: configure_nut.yml
   tags: ups
-
-- name: Monitor UPS state
-  ansible.builtin.import_tasks: monitor_ups_state.yml
-  tags: ups
-
-- name: Restart NUT services
-  ansible.builtin.systemd_service:
-    name: "{{ item }}"
-    state: restarted
-    scope: system
-  loop:
-    - nut-server.service
-    - nut-client.service
-    - nut-monitor.service
-  tags: ups
