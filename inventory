@@ -1,9 +1,6 @@
 [ungrouped]
 srv-pve-01
-vm-files-01
-vm-docker-01
-vm-games-01
 
 [docker]
-vm-docker-01
+vm-data-01
 vm-games-01

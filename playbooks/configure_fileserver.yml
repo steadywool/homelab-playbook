@@ -1,9 +1,0 @@
----
-- hosts: vm-files-01
-  gather_facts: true
-  ignore_unreachable: true
-  become: true
-  roles:
-    - common
-    - crowdsec
-    - fileserver

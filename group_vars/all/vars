@@ -1,16 +1,6 @@
 ---
 timezone: Europe/Paris # Current timezone
 
-rclone_source: /mnt/pve/backup-dir/dump # Which directory to backup
-rclone_remote: CryptStorage:/ # Where backup are sent with Rclone
-
-rclone_config: "{{ vault_rclone_config }}"
-# rclone_config:
-#   - name: FtpStorage
-#  	  type: ftp
-#     host: ftp.exemple.com
-#     pass: pass
-
 traefik_email: "{{ vault_traefik_email }}" # Used for DNS Challenge
 traefik_domain: "{{ vault_traefik_domain }}" # Used by Traefik as wildcard domain
 wireguard_domain: "{{ vault_wireguard_domain }}" # Used by wireguard as dynDNS to public IP
@@ -25,23 +15,24 @@ nut_upsmon_password: "{{ vault_nut_upsmon_password }}" # Allow UPS monitoring
 wireguard_password: "{{ vault_wireguard_password }}" # WG-Easy UI password
 playit_secret_key: "{{ vault_playit_secret_key }}" # Playit secret
 gotify_password: "{{ vault_gotify_password }}" # Gotify admin password
-crowdsec_gotify_token: "{{ vault_crowdsec_gotify_token }}" # Gotify token for Crowdsec
 
-smb_users: "{{ vault_smb_users }}"
-# smb_users:
-#   - username: user
-#     password: pass
-#     homedir: /path/home/user
+rclone_source: /mnt/pve/backup-dir/dump # Which directory to backup
+rclone_remote: CryptStorage:/ # Where backup are sent with Rclone
 
-smb_shares: "{{ vault_smb_shares }}"
-# smb_shares:
-#   - path: /path/share
-#     allowed_users:
-#       - user
+rclone_config: "{{ vault_rclone_config }}"
+# rclone_config:
+#   - name: FtpStorage
+#  	  type: ftp
+#     host: ftp.exemple.com
+#     pass: pass
 
-nfs_shares: "{{ vault_nfs_shares }}"
-# nfs_shares:
-#   - path: /path/share
-#     options: rw
-#     allowed_hosts:
-#       - 192.168.1.10/24
+smb_config: "{{ vault_smb_config }}"
+# smb_config:
+#   users:
+#     - username: user
+#       password: pass
+#       homedir: /path/home/user
+#   shares:
+#     - path: /path/share
+#       allowed_users:
+#         - user

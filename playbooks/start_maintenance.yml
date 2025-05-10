@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: Start the maintenance
+  hosts: all
   gather_facts: true
   ignore_unreachable: true
   become: true

@@ -1,0 +1,31 @@
+---
+- name: Start common tasks on all hosts
+  hosts: all
+  ignore_unreachable: true
+  become: true
+  roles:
+    - common
+    - crowdsec
+
+- name: Install & configure Docker
+  hosts: docker
+  ignore_unreachable: true
+  become: true
+  roles:
+    - docker_setup
+    - docker_containers
+
+- name: Deploy the fileserver
+  hosts: vm-data-01
+  ignore_unreachable: true
+  become: true
+  roles:
+    - fileserver
+
+- name: Configure Proxmox host
+  hosts: srv-pve-01
+  ignore_unreachable: true
+  become: true
+  roles:
+    - ups_management
+    - rclone_backup

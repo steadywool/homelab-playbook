@@ -17,7 +17,7 @@ recycle:exclude_dir = .recycle
 recycle:keeptree = yes
 recycle:versions = yes
 
-{% for share in smb_shares %}
+{% for share in smb_config.shares %}
 [{{ share['path'] | basename }}]
 comment = {{ share['path'] | basename }} share
 path = {{ share['path'] }}
