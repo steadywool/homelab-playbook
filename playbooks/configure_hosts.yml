@@ -16,7 +16,7 @@
     - docker_containers
 
 - name: Deploy the SMB server
-  hosts: vm-data-01
+  hosts: vm-files-01
   ignore_unreachable: true
   become: true
   roles:

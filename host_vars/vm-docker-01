@@ -1,11 +1,12 @@
 ---
 # Connection informations
-ansible_host: "{{ vault_inventory['vm-data-01']['host'] }}"
-ansible_user: "{{ vault_inventory['vm-data-01']['user'] }}"
+ansible_host: "{{ vault_inventory['vm-docker-01']['host'] }}"
+ansible_user: "{{ vault_inventory['vm-docker-01']['user'] }}"
 
 # Packages & services that will be installed
 common:
   packages:
+    - nfs-common
     - qemu-guest-agent
   services:
     - qemu-guest-agent.service

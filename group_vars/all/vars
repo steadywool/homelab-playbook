@@ -26,13 +26,18 @@ rclone_config: "{{ vault_rclone_config }}"
 #     host: ftp.exemple.com
 #     pass: pass
 
-smb_config: "{{ vault_smb_config }}"
-# smb_config:
-#   users:
+fileserver_config: "{{ vault_fileserver_config }}"
+# fileserver_config:
+#   smb_users:
 #     - username: user
 #       password: pass
 #       homedir: /path/home/user
-#   shares:
+#   smb_shares:
 #     - path: /path/share
 #       allowed_users:
 #         - user
+#   nfs_shares:
+#     - path: /path/share
+#       options: rw
+#       allowed_hosts:
+#         - 192.168.1.10/24

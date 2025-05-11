@@ -1,13 +1,14 @@
 ---
-- name: Install Samba packages
+- name: Install Samba & NFS packages
   ansible.builtin.apt:
     name:
       - samba
       - samba-vfs-modules
+      - nfs-kernel-server
       - avahi-daemon
     state: present
 
-- name: Enable Samba services
+- name: Enable Samba & NFS services
   ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
@@ -16,3 +17,4 @@
   loop:
     - smbd.service
     - nmbd.service
+    - nfs-server.service

@@ -1,0 +1,8 @@
+# NFS root share
+/export {{ ansible_default_ipv4['network'] }}/{{ ansible_default_ipv4['prefix'] }}(ro,fsid=0)
+
+# NFS shares to specific hosts
+{% for share in fileserver_config['nfs_shares'] %}
+/export/{{ share['path'] | basename }} {% for host in share['allowed_hosts'] %}{{ host }}({{ share['options'] }}) {% endfor %}
+
+{% endfor %}
