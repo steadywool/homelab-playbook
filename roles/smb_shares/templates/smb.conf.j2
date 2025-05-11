@@ -10,7 +10,7 @@ security = user
 comment = homes share
 browseable = no
 writable = yes
-valid users = %S
+valid users = {{ smb_config['users'] | map(attribute='username') | join(', ') }}
 vfs objects = recycle
 recycle:repository = .recycle
 recycle:exclude_dir = .recycle

@@ -12,6 +12,7 @@
     name: "{{ item['username'] }}"
     home: "{{ item['homedir'] }}"
     shell: /sbin/nologin
+    uid_min: 2000
   loop: "{{ smb_config.users }}"
 
 - name: Set Samba passwords
