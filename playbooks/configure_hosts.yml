@@ -27,5 +27,5 @@
   ignore_unreachable: true
   become: true
   roles:
-    - ups_management
-    - rclone_backup
+    - power_monitoring
+    - remote_backup
