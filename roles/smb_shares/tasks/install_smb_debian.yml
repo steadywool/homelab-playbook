@@ -4,6 +4,7 @@
     name:
       - samba
       - samba-vfs-modules
+      - avahi-daemon
     state: present
 
 - name: Enable Samba services
