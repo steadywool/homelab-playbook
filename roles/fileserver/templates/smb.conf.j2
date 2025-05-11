@@ -10,14 +10,14 @@ security = user
 comment = homes share
 browseable = no
 writable = yes
-valid users = {{ fileserver_config['smb_users'] | map(attribute='username') | join(', ') }}
+valid users = {{ smb_config['users'] | map(attribute='username') | join(', ') }}
 vfs objects = recycle
 recycle:repository = .recycle
 recycle:exclude_dir = .recycle
 recycle:keeptree = yes
 recycle:versions = yes
 
-{% for share in fileserver_config['smb_shares'] %}
+{% for share in smb_config['shares'] %}
 [{{ share['path'] | basename }}]
 comment = {{ share['path'] | basename }} share
 path = {{ share['path'] }}

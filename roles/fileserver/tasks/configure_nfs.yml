@@ -12,7 +12,7 @@
     opts: bind
     state: mounted
     fstype: none
-  loop: "{{ fileserver_config['nfs_shares'] }}"
+  loop: "{{ nfs_config['exports'] }}"
 
 - name: Template NFS configuration
   ansible.builtin.template:

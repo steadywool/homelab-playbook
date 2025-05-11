@@ -2,11 +2,11 @@
 - name: Create Docker NFS volume for Syncthing
   community.docker.docker_volume:
     state: present
-    volume_name: syncthing_nfs
+    volume_name: sync_nfs
     driver_options:
       type: "nfs"
       o: "addr={{ hostvars['vm-files-01']['ansible_host'] }},rw,nfsvers=4.2"
-      device: ":/syncthing"
+      device: ":/sync"
 
 - name: Run Syncthing container
   community.docker.docker_container:
@@ -22,7 +22,7 @@
       - 22000:22000/udp
       - 21027:21027/udp
     volumes:
-      - syncthing_nfs:/var/syncthing
+      - sync_nfs:/var/syncthing
     labels:
       traefik.enable: "true"
       traefik.http.routers.syncthing.rule: Host(`sync.{{ traefik_domain }}`)

@@ -10,7 +10,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  loop: "{{ fileserver_config['smb_shares'] + fileserver_config['nfs_shares'] }}"
+  loop: "{{ smb_config['shares'] + nfs_config['exports'] }}"
   tags: smb,nfs,dir
 
 - name: Configure Samba server

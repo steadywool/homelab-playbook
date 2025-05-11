@@ -7,15 +7,7 @@
     - common
     - crowdsec
 
-- name: Install & configure Docker
-  hosts: docker
-  ignore_unreachable: true
-  become: true
-  roles:
-    - docker_setup
-    - docker_containers
-
-- name: Deploy the SMB server
+- name: Deploy the fileserver
   hosts: vm-files-01
   ignore_unreachable: true
   become: true
@@ -29,3 +21,11 @@
   roles:
     - power_monitoring
     - remote_backup
+
+- name: Install & configure Docker
+  hosts: docker
+  ignore_unreachable: true
+  become: true
+  roles:
+    - docker_setup
+    - docker_containers
