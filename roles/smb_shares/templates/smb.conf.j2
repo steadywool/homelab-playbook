@@ -24,7 +24,7 @@ path = {{ share['path'] }}
 browseable = yes
 writable = yes
 valid users = {{ share['allowed_users'] | join(', ') }}
-create mask = 0660
-directory mask = 0770
+force user = {{ ansible_user }}
+force group = {{ ansible_user }}
 
 {% endfor %}

@@ -5,5 +5,5 @@
   tags: smb,debian
 
 - name: Configure Samba server
-  ansible.builtin.import_tasks: configure_smb_server.yml
+  ansible.builtin.import_tasks: configure_smb.yml
   tags: smb

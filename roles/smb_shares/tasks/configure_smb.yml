@@ -3,15 +3,14 @@
   ansible.builtin.file:
     path: "{{ item['path'] }}"
     state: directory
-    group: users
-    mode: '2770'
-  loop: "{{ smb_shares }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  loop: "{{ smb_config.shares }}"
 
 - name: Create UNIX users
   ansible.builtin.user:
     name: "{{ item['username'] }}"
     home: "{{ item['homedir'] }}"
-    group: users
     shell: /sbin/nologin
   loop: "{{ smb_config.users }}"
 

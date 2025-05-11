@@ -15,12 +15,12 @@
     - docker_setup
     - docker_containers
 
-- name: Deploy the fileserver
+- name: Deploy the SMB server
   hosts: vm-data-01
   ignore_unreachable: true
   become: true
   roles:
-    - fileserver
+    - smb_shares
 
 - name: Configure Proxmox host
   hosts: srv-pve-01
