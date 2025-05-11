@@ -20,7 +20,7 @@
   ignore_unreachable: true
   become: true
   roles:
-    - smb_shares
+    - fileserver
 
 - name: Configure Proxmox host
   hosts: srv-pve-01
