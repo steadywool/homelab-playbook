@@ -1,10 +1,12 @@
 ---
-- name: Create syncthing directory
-  ansible.builtin.file:
-    path: "/srv/syncthing"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+- name: Create Docker NFS volume for Syncthing
+  community.docker.docker_volume:
+    state: present
+    volume_name: syncthing_nfs
+    driver_options:
+      type: "nfs"
+      o: "addr={{ hostvars['vm-files-01']['ansible_host'] }},rw,nfsvers=4.2"
+      device: ":/syncthing"
 
 - name: Run Syncthing container
   community.docker.docker_container:
@@ -20,7 +22,7 @@
       - 22000:22000/udp
       - 21027:21027/udp
     volumes:
-      - /srv/syncthing:/var/syncthing
+      - syncthing_nfs:/var/syncthing
     labels:
       traefik.enable: "true"
       traefik.http.routers.syncthing.rule: Host(`sync.{{ traefik_domain }}`)
