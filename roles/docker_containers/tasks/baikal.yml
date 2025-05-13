@@ -14,8 +14,9 @@
     state: started
     pull: always
     recreate: true
-    restart_policy: always
-    network_mode: traefik_network
+    restart_policy: unless-stopped
+    networks:
+      - name: traefik_network
     volumes:
       - baikal_config:/var/www/baikal/config
       - baikal_specific:/var/www/baikal/Specific

@@ -23,8 +23,9 @@
     state: started
     pull: always
     recreate: true
-    restart_policy: always
-    network_mode: traefik_network
+    restart_policy: unless-stopped
+    networks:
+      - name: traefik_network
     volumes:
       - jellyfin_config:/config
       - jellyfin_cache:/cache

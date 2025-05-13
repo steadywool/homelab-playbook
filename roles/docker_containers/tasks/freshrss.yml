@@ -14,8 +14,9 @@
     state: started
     pull: always
     recreate: true
-    restart_policy: always
-    network_mode: traefik_network
+    restart_policy: unless-stopped
+    networks:
+      - name: traefik_network
     volumes:
       - freshrss_extensions:/var/www/FreshRSS/extensions
       - freshrss_data:/var/www/FreshRSS/data

@@ -14,9 +14,9 @@
     state: started
     pull: always
     recreate: true
-    restart_policy: always
+    restart_policy: unless-stopped
     ports:
-      - 25565:25565
+      - 25565:25565/tcp
     volumes:
       - "/srv/modded_minecraft_data:/data" 
 #      - "/srv/minecraft_data:/data"

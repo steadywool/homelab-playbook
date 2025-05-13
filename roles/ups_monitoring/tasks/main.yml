@@ -1,9 +1,0 @@
----
-- name: Install NUT on Debian based OS
-  ansible.builtin.import_tasks: install_nut_debian.yml
-  when: ansible_distribution in ["Ubuntu", "Debian"]
-  tags: ups,debian
-
-- name: Configure NUT
-  ansible.builtin.import_tasks: configure_nut.yml
-  tags: ups

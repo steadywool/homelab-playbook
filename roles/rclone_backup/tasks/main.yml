@@ -1,9 +1,0 @@
----
-- name: Install Rclone & Cron on Debian based OS
-  ansible.builtin.import_tasks: install_rclone_cron_debian.yml
-  when: ansible_distribution in ["Ubuntu", "Debian"]
-  tags: backup,debian
-
-- name: Configure backup using Rclone & Cron
-  ansible.builtin.import_tasks: configure_backup.yml
-  tags: backup

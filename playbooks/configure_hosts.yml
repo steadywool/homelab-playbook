@@ -15,8 +15,7 @@
   roles:
     - common
     - crowdsec
-    - rclone_backup
-    - ups_monitoring
+    - proxmox
 
 - name: Install & configure Docker
   hosts: docker

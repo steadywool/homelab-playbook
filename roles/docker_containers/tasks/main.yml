@@ -2,7 +2,7 @@
 - name: Deploy Uptime-Kuma container
   ansible.builtin.import_tasks: uptime_kuma.yml
   when: inventory_hostname == "vm-docker-01"
-  tags: uptime-kuma,uptime
+  tags: uptime
 
 - name: Deploy Gotify container
   ansible.builtin.import_tasks: gotify.yml
@@ -17,7 +17,7 @@
 - name: Deploy Actual Budget container
   ansible.builtin.import_tasks: actualbudget.yml
   when: inventory_hostname == "vm-docker-01"
-  tags: actualbudget,actual
+  tags: actual
 
 - name: Deploy FreshRSS container
   ansible.builtin.import_tasks: freshrss.yml
@@ -52,4 +52,4 @@
 - name: Deploy Playit Agent
   ansible.builtin.import_tasks: playit_agent.yml
   when: inventory_hostname == "vm-games-01"
-  tags: playit,playit-agent
+  tags: playit

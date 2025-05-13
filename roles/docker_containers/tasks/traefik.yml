@@ -31,8 +31,9 @@
     state: started
     pull: always
     recreate: true
-    restart_policy: always
-    network_mode: traefik_network
+    restart_policy: unless-stopped
+    networks:
+      - name: traefik_network
     ports:
       - 80:80
       - 443:443
