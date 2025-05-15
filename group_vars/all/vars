@@ -35,6 +35,7 @@ smb_config: "{{ vault_smb_config }}"
 #       homedir: /path/home/user
 #   shares:
 #     - path: /path/share
+#       writable: no # optional
 #       allowed_users:
 #         - user
 
