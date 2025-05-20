@@ -29,6 +29,11 @@
   when: inventory_hostname == "vm-docker-01"
   tags: jellyfin
 
+- name: Deploy Filestash container
+  ansible.builtin.import_tasks: filestash.yml
+  when: inventory_hostname == "vm-docker-01"
+  tags: filestash
+
 - name: Deploy Syncthing container
   ansible.builtin.import_tasks: syncthing.yml
   when: inventory_hostname == "vm-docker-01"
