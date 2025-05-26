@@ -5,7 +5,6 @@
   become: true
   roles:
     - common
-    - crowdsec
     - fileserver
 
 - name: Configure Proxmox host
@@ -14,7 +13,6 @@
   become: true
   roles:
     - common
-    - crowdsec
     - proxmox
 
 - name: Install & configure Docker
@@ -23,6 +21,5 @@
   become: true
   roles:
     - common
-    - crowdsec
     - docker_setup
     - docker_containers
