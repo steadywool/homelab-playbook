@@ -5,7 +5,7 @@
     volume_name: music_nfs
     driver_options:
       type: "nfs"
-      o: "addr={{ hostvars['vm-files-01']['ansible_host'] }},ro,nfsvers=4.2"
+      o: "addr={{ hostvars['vm-nas-01']['ansible_host'] }},ro,nfsvers=4.2"
       device: ":/music"
 
 - name: Create Jellyfin volumes
@@ -33,7 +33,7 @@
     labels:
       traefik.enable: "true"
       traefik.http.routers.jellyfin.rule: Host(`media.{{ traefik_domain }}`)
-      traefik.http.routers.jellyfin.entrypoints: "https"
+      traefik.http.routers.jellyfin.entrypoints: "websecure"
       traefik.http.routers.jellyfin.tls: "true"
       traefik.http.routers.jellyfin.service: "jellyfin"
       traefik.http.services.jellyfin.loadbalancer.server.port: "8096"

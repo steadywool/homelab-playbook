@@ -22,7 +22,7 @@
     labels:
       traefik.enable: "true"
       traefik.http.routers.gotify.rule: Host(`gotify.{{ traefik_domain }}`)
-      traefik.http.routers.gotify.entrypoints: "https"
+      traefik.http.routers.gotify.entrypoints: "websecure"
       traefik.http.routers.gotify.tls: "true"
       traefik.http.routers.gotify.service: "gotify"
       traefik.http.services.gotify.loadbalancer.server.port: "80"

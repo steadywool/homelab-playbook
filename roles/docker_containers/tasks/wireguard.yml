@@ -33,7 +33,7 @@
     labels:
       traefik.enable: "true"
       traefik.http.routers.wireguard.rule: Host(`wg.{{ traefik_domain }}`)
-      traefik.http.routers.wireguard.entrypoints: "https"
+      traefik.http.routers.wireguard.entrypoints: "websecure"
       traefik.http.routers.wireguard.tls: "true"
       traefik.http.routers.wireguard.service: "wireguard"
       traefik.http.services.wireguard.loadbalancer.server.port: "51821"

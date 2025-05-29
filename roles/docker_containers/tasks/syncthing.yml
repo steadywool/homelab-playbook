@@ -5,7 +5,7 @@
     volume_name: sync_nfs
     driver_options:
       type: "nfs"
-      o: "addr={{ hostvars['vm-files-01']['ansible_host'] }},rw,nfsvers=4.2"
+      o: "addr={{ hostvars['vm-nas-01']['ansible_host'] }},rw,nfsvers=4.2"
       device: ":/sync"
 
 - name: Run Syncthing container
@@ -27,7 +27,7 @@
     labels:
       traefik.enable: "true"
       traefik.http.routers.syncthing.rule: Host(`sync.{{ traefik_domain }}`)
-      traefik.http.routers.syncthing.entrypoints: "https"
+      traefik.http.routers.syncthing.entrypoints: "websecure"
       traefik.http.routers.syncthing.tls: "true"
       traefik.http.routers.syncthing.service: "syncthing"
       traefik.http.services.syncthing.loadbalancer.server.port: "8384"

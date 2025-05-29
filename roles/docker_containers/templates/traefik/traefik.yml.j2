@@ -1,7 +1,7 @@
 ---
 api:
   debug: false # Enable this to debug Traefik
-  dashboard: true # Enable the web dashboard
+  dashboard: false # Enable/disable the web dashboard
 
 # HTTPS certificate
 certificatesResolvers:
@@ -14,15 +14,15 @@ certificatesResolvers:
 
 # HTTP/HTTPS configuration
 entryPoints:
-  http:
-    address: ":80"
+  web:
+    address: ":80/tcp"
     http:
       redirections:
         entryPoint:
-          to: "https"
+          to: "websecure"
           scheme: "https"
-  https:
-    address: ":443"
+  websecure:
+    address: ":443/tcp"
 
 # Allow reverse-proxy on self-signed web app
 serversTransport:
@@ -36,4 +36,4 @@ providers:
     exposedbydefault: false # Must use traefik.enable to expose service
   # Reverse proxy external services
   file:
-    filename: "/etc/traefik/config.yml" # Config directory
+    filename: "/etc/traefik/dynamic_config.yml" # Dynamic config file

@@ -1,6 +1,6 @@
 ---
 - name: Deploy the fileserver
-  hosts: vm-files-01
+  hosts: vm-nas-01
   ignore_unreachable: true
   become: true
   roles:

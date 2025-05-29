@@ -17,7 +17,7 @@ http:
     pve:
       rule: "Host(`pve.{{ traefik_domain }}`)"
       entryPoints: 
-        - "https"
+        - "websecure"
       tls: {}
       service: "pve"
   services:

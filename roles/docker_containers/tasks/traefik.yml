@@ -14,7 +14,7 @@
     group: "{{ ansible_user }}"
   loop:
     - traefik.yml
-    - config.yml
+    - dynamic_config.yml
 
 - name: Create acme.json file
   ansible.builtin.file:

@@ -1,6 +1,6 @@
 # Ungrouped hosts
 srv-pve-01
-vm-files-01
+vm-nas-01
 
 [docker]
 vm-docker-01

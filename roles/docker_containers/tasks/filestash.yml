@@ -20,7 +20,7 @@
     labels:
       traefik.enable: "true"
       traefik.http.routers.filestash.rule: Host(`files.{{ traefik_domain }}`)
-      traefik.http.routers.filestash.entrypoints: "https"
+      traefik.http.routers.filestash.entrypoints: "websecure"
       traefik.http.routers.filestash.tls: "true"
       traefik.http.routers.filestash.service: "filestash"
       traefik.http.services.filestash.loadbalancer.server.port: "8334"
