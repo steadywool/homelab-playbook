@@ -1,12 +1,4 @@
 ---
-- name: Deploy the fileserver
-  hosts: vm-nas-01
-  ignore_unreachable: true
-  become: true
-  roles:
-    - common
-    - fileserver
-
 - name: Configure Proxmox host
   hosts: srv-pve-01
   ignore_unreachable: true
@@ -15,11 +7,18 @@
     - common
     - proxmox
 
+- name: Deploy the fileserver
+  hosts: vm-nas-01
+  ignore_unreachable: true
+  become: true
+  roles:
+    - common
+    - fileserver
+
 - name: Install & configure Docker
   hosts: docker
   ignore_unreachable: true
   become: true
   roles:
     - common
-    - docker_setup
-    - docker_containers
+    - docker

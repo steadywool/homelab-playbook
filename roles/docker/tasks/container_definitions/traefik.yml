@@ -24,6 +24,10 @@
     group: "{{ ansible_user }}"
     mode: '0600'
 
+- name: Create Traefik network
+  community.docker.docker_network:
+    name: traefik_network
+
 - name: Run traefik container
   community.docker.docker_container:
     name: traefik

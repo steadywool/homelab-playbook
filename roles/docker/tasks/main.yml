@@ -1,0 +1,55 @@
+---
+- name: Install Docker on Debian based OS
+  ansible.builtin.import_tasks: install_docker_debian.yml
+  when: ansible_distribution in ["Ubuntu", "Debian"]
+  tags: docker,debian
+
+- name: Deploy Traefik container
+  ansible.builtin.import_tasks: container_definitions/traefik.yml
+  when: inventory_hostname == "vm-docker-01"
+  tags: docker,traefik
+
+- name: Deploy Uptime-Kuma container
+  ansible.builtin.import_tasks: container_definitions/uptime_kuma.yml
+  when: inventory_hostname == "vm-docker-01"
+  tags: docker,uptime
+
+- name: Deploy Baikal container
+  ansible.builtin.import_tasks: container_definitions/baikal.yml
+  when: inventory_hostname == "vm-docker-01"
+  tags: docker,baikal
+
+- name: Deploy Actual Budget container
+  ansible.builtin.import_tasks: container_definitions/actualbudget.yml
+  when: inventory_hostname == "vm-docker-01"
+  tags: docker,actual
+
+- name: Deploy FreshRSS container
+  ansible.builtin.import_tasks: container_definitions/freshrss.yml
+  when: inventory_hostname == "vm-docker-01"
+  tags: docker,freshrss
+
+- name: Deploy Jellyfin container
+  ansible.builtin.import_tasks: container_definitions/jellyfin.yml
+  when: inventory_hostname == "vm-docker-01"
+  tags: docker,jellyfin
+
+- name: Deploy Syncthing container
+  ansible.builtin.import_tasks: container_definitions/syncthing.yml
+  when: inventory_hostname == "vm-docker-01"
+  tags: docker,syncthing
+
+- name: Deploy WG Easy container
+  ansible.builtin.import_tasks: container_definitions/wireguard.yml
+  when: inventory_hostname == "vm-docker-01"
+  tags: docker,wireguard
+
+- name: Deploy Minecraft Server
+  ansible.builtin.import_tasks: container_definitions/minecraft.yml
+  when: inventory_hostname == "vm-games-01"
+  tags: docker,minecraft
+
+- name: Deploy Playit Agent
+  ansible.builtin.import_tasks: container_definitions/playit_agent.yml
+  when: inventory_hostname == "vm-games-01"
+  tags: docker,playit
