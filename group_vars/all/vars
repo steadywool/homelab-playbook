@@ -14,7 +14,6 @@ ovh_consumer_key: "{{ vault_ovh_consumer_key }}"
 nut_upsmon_password: "{{ vault_nut_upsmon_password }}" # Allow UPS monitoring
 wireguard_password: "{{ vault_wireguard_password }}" # WG-Easy UI password
 playit_secret_key: "{{ vault_playit_secret_key }}" # Playit secret
-gotify_password: "{{ vault_gotify_password }}" # Gotify admin password
 
 rclone_source: /mnt/pve/backup-dir/dump # Which directory to backup
 rclone_remote: CryptStorage:/ # Where backup are sent with Rclone
