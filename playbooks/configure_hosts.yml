@@ -21,4 +21,5 @@
   become: true
   roles:
     - common
-    - docker
+    - docker_setup
+    - docker_containers
