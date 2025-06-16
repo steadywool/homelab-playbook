@@ -1,7 +1,42 @@
-# Ungrouped hosts
-srv-pve-01
-vm-nas-01
+ungrouped:
+  hosts:
+    srv-pve-01:
+      # Connection informations
+      ansible_host: "{{ vault_inventory['srv-pve-01']['host'] }}"
+      ansible_user: "{{ vault_inventory['srv-pve-01']['user'] }}"
 
-[docker]
-vm-docker-01
-vm-games-01
+    vm-nas-01:
+      # Connection informations
+      ansible_host: "{{ vault_inventory['vm-nas-01']['host'] }}"
+      ansible_user: "{{ vault_inventory['vm-nas-01']['user'] }}"
+      # Common variables
+      common:
+        packages:
+          - qemu-guest-agent
+        services:
+          - qemu-guest-agent.service
+
+docker:
+  hosts:
+    vm-docker-01:
+      # Connection informations
+      ansible_host: "{{ vault_inventory['vm-docker-01']['host'] }}"
+      ansible_user: "{{ vault_inventory['vm-docker-01']['user'] }}"
+      # Common variables
+      common:
+        packages:
+          - nfs-common
+          - qemu-guest-agent
+        services:
+          - qemu-guest-agent.service
+
+    vm-games-01:
+      # Connection informations
+      ansible_host: "{{ vault_inventory['vm-games-01']['host'] }}"
+      ansible_user: "{{ vault_inventory['vm-games-01']['user'] }}"
+      # Common variables
+      common:
+        packages:
+          - qemu-guest-agent
+        services:
+          - qemu-guest-agent.service

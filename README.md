@@ -8,7 +8,7 @@ Manage my Homelab with Ansible.
 ## 🚀 Installation
 
 > [!WARNING]
-> Important variables are present in `group_vars` and `host_vars`. You need to edit them to customize your installation.</br></br>
+> Important variables are present in `group_vars`. You need to edit them to customize your installation.</br></br>
 > You must also edit the `inventory` file, playbooks and other files using hosts (like the Traefik config file).
 
 Firstly, install Ansible:
