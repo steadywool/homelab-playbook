@@ -7,16 +7,18 @@
     - common
     - proxmox
 
-- name: Deploy the fileserver
-  hosts: vm-nas-01
+- name: Configure vm-services-01
+  hosts: vm-services-01
   ignore_unreachable: true
   become: true
   roles:
     - common
-    - fileserver
+    - samba
+    - docker_setup
+    - docker_containers
 
-- name: Install & configure Docker
-  hosts: docker
+- name: Configure vm-games-01
+  hosts: vm-games-01
   ignore_unreachable: true
   become: true
   roles:

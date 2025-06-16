@@ -1,0 +1,16 @@
+---
+- name: Install SMB on Debian based OS
+  ansible.builtin.import_tasks: install_smb_nfs_debian.yml
+  when: ansible_distribution in ["Ubuntu", "Debian"]
+  tags: smb,debian
+
+- name: Create SMB directories
+  ansible.builtin.file:
+    path: "{{ item['path'] }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  loop: "{{ smb_config['shares'] }}"
+
+- name: Configure Samba server
+  ansible.builtin.import_tasks: configure_smb.yml
