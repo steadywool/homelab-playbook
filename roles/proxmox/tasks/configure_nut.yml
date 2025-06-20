@@ -1,15 +1,5 @@
 ---
-- name: Configure NUT server for local standalone mode
-  ansible.builtin.lineinfile:
-    path: "{{ item['path'] }}"
-    state: present
-    regexp: "{{ item['regexp'] }}"
-    line: "{{ item['line'] }}"
-  loop:
-    - { path: '/etc/nut/nut.conf', regexp: '^MODE=', line: 'MODE=standalone' }
-    - { path: '/etc/nut/upsd.conf', regexp: '^LISTEN', line: 'LISTEN 127.0.0.1 3493' }
-
-- name: Add my UPS to ups.conf
+- name: Declare my UPS unit
   ansible.builtin.blockinfile:
     path: /etc/nut/ups.conf
     state: present
@@ -20,7 +10,14 @@
         port = auto
         desc = "Eaton 3S UPS"
 
-- name: Create UPSMON primary user
+- name: Configure the UPSD daemon
+  ansible.builtin.lineinfile:
+    path: /etc/nut/upsd.conf
+    state: present
+    regexp: '^LISTEN'
+    line: 'LISTEN 127.0.0.1 3493'
+
+- name: Create UPSD primary user
   ansible.builtin.blockinfile:
     path: /etc/nut/upsd.users
     state: present
@@ -36,6 +33,16 @@
     state: present
     regexp: '^MONITOR'
     line: "MONITOR eaton3s@localhost 1 upsmon {{ nut_upsmon_password }} primary"
+  loop:
+    - { regexp: '^MONITOR', line: 'MONITOR eaton3s@localhost 1 upsmon {{ nut_upsmon_password }} primary' }
+    - { regexp: '^SHUTDOWNCMD', line: 'SHUTDOWNCMD /sbin/shutdown -h +0' }
+
+- name: Configure how to start NUT
+  ansible.builtin.lineinfile:
+    path: /etc/nut/nut.conf
+    state: present
+    regexp: '^MODE='
+    line: 'MODE=standalone'
 
 - name: Restart NUT services
   ansible.builtin.systemd_service:
