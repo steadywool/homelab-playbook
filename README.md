@@ -37,7 +37,7 @@ $ cd homelab-playbook
 
 All playbooks are in the `playbooks` directory. Choose one and execute it:
 ```
-$ ansible-playbook playbooks/PLAYBOOK_FILE.yml
+$ ansible-playbook playbooks/PLAYBOOK_FILE.yml -i inventory
 ```
 
 ## ✨ Configuration
