@@ -15,7 +15,7 @@ nut_upsmon_password: "{{ vault_nut_upsmon_password }}" # Allow UPS monitoring
 wireguard_password: "{{ vault_wireguard_password }}" # WG-Easy UI password
 playit_secret_key: "{{ vault_playit_secret_key }}" # Playit secret
 
-rclone_source: /mnt/pve/backup-dir/dump # Which directory to backup
+rclone_source: /mnt # Which directory to backup
 rclone_remote: CryptStorage:/ # Where backup are sent with Rclone
 
 rclone_config: "{{ vault_rclone_config }}"
@@ -33,7 +33,6 @@ smb_config: "{{ vault_smb_config }}"
 #       homedir: /path/home/user
 #   shares:
 #     - path: /path/share
-#       writable: yes # optional
 #       allowed_users:
 #         - user
 

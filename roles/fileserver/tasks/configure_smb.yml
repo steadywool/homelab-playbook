@@ -1,4 +1,12 @@
 ---
+- name: Create SMB directories
+  ansible.builtin.file:
+    path: "{{ item['path'] }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  loop: "{{ smb_config['shares'] }}"
+
 - name: Create UNIX users
   ansible.builtin.user:
     name: "{{ item['username'] }}"

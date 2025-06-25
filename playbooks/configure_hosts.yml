@@ -5,7 +5,7 @@
   become: true
   roles:
     - common
-    - proxmox
+    - ups
 
 - name: Deploy the fileserver
   hosts: vm-nas-01

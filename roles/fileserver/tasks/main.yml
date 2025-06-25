@@ -4,14 +4,10 @@
   when: ansible_distribution in ["Ubuntu", "Debian"]
   tags: smb,nfs,debian
 
-- name: Create SMB & NFS share directories
-  ansible.builtin.file:
-    path: "{{ item['path'] }}"
-    state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-  loop: "{{ smb_config['shares'] + nfs_config['exports'] }}"
-  tags: smb,nfs,dir
+- name: Install Rclone & Cron on Debian based OS
+  ansible.builtin.import_tasks: install_rclone_cron_debian.yml
+  when: ansible_distribution in ["Ubuntu", "Debian"]
+  tags: rclone,debian
 
 - name: Configure Samba server
   ansible.builtin.import_tasks: configure_smb.yml
@@ -20,3 +16,7 @@
 - name: Configure NFS server
   ansible.builtin.import_tasks: configure_nfs.yml
   tags: nfs
+
+- name: Configure backup using Rclone & Cron
+  ansible.builtin.import_tasks: configure_rclone.yml
+  tags: rclone

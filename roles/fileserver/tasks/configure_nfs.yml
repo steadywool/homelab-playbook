@@ -1,4 +1,12 @@
 ---
+- name: Create NFS directories
+  ansible.builtin.file:
+    path: "{{ item['path'] }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  loop: "{{ nfs_config['exports'] }}"
+
 - name: Create root mount point for NFS
   ansible.builtin.file:
     path: /export
