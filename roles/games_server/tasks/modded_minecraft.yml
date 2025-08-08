@@ -1,15 +1,14 @@
 ---
-- name: Create Minecraft directory
+- name: Create modded Minecraft directory
   ansible.builtin.file:
     path: "/srv/modded_minecraft_data"
-#    path: "/srv/minecraft_data"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
 
-- name: Run Minecraft server
+- name: Run modded Minecraft server
   community.docker.docker_container:
-    name: minecraft
+    name: modded-minecraft
     image: docker.io/itzg/minecraft-server:latest
     state: started
     pull: always
@@ -19,7 +18,6 @@
       - 25565:25565/tcp
     volumes:
       - "/srv/modded_minecraft_data:/data" 
-#      - "/srv/minecraft_data:/data"
     env:
       # General
       MEMORY: "4G"
@@ -32,7 +30,6 @@
       # Gameplay
       TYPE: "FABRIC"
       VERSION: "1.20.1"
-      #VERSION: "1.20.4"
       SERVER_NAME: "minecraft-survival"
       MOTD: "Welcome to Steadywool's Minecraft server"
       DIFFICULTY: "normal"
@@ -59,11 +56,4 @@
         yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
         yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
         blossomtpa,blossomback,blossomhomes,lithium,ferrite-core
-#      MODRINTH_PROJECTS: |
-#        terralith,nullscape,incendium,towns-and-towers,
-#        yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
-#        yungs-better-ocean-monuments,yungs-better-nether-fortresses,
-#        yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
-#        yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
-#        blossomtpa,blossomback,blossomhomes,lithium,ferrite-core
       MODRINTH_DOWNLOAD_DEPENDENCIES: "required"

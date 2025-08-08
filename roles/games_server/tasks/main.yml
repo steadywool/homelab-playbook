@@ -1,0 +1,8 @@
+---
+- name: Deploy Minecraft Server
+  ansible.builtin.import_tasks: minecraft.yml
+  tags: docker,minecraft
+
+# - name: Deploy modded Minecraft Server
+#   ansible.builtin.import_tasks: modded_minecraft.yml
+#   tags: docker,minecraft

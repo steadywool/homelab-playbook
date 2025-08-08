@@ -7,8 +7,6 @@ ungrouped:
       ansible_user: "{{ vault_inventory['srv-truenas']['user'] }}"
       ansible_become_password: "{{ vault_inventory['srv-truenas']['password'] }}"
 
-docker:
-  hosts:
     vm-docker:
       # Connection informations
       ansible_host: "{{ vault_inventory['vm-docker']['host'] }}"
