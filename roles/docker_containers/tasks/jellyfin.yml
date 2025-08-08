@@ -5,8 +5,8 @@
     volume_name: music_nfs
     driver_options:
       type: "nfs"
-      o: "addr={{ hostvars['vm-nas-01']['ansible_host'] }},ro,nfsvers=4.2"
-      device: ":/music"
+      o: "addr={{ hostvars['srv-truenas']['ansible_host'] }}"
+      device: ":/mnt/default-pool/music"
 
 - name: Create Jellyfin volumes
   community.docker.docker_volume:

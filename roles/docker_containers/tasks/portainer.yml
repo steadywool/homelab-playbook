@@ -1,0 +1,26 @@
+---
+- name: Create Portainer volume
+  community.docker.docker_volume:
+    state: present
+    volume_name: portainer_data
+
+- name: Run Portainer container
+  community.docker.docker_container:
+    name: portainer
+    image: docker.io/portainer/portainer-ce:lts
+    state: started
+    pull: always
+    recreate: true
+    restart_policy: unless-stopped
+    networks:
+      - name: traefik_network
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - portainer_data:/data
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.portainer.rule: Host(`portainer.{{ traefik_domain }}`)
+      traefik.http.routers.portainer.entrypoints: "websecure"
+      traefik.http.routers.portainer.tls: "true"
+      traefik.http.routers.portainer.service: "portainer"
+      traefik.http.services.portainer.loadbalancer.server.port: "9000"

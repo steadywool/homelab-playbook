@@ -1,55 +1,45 @@
 ---
 - name: Deploy Traefik container
   ansible.builtin.import_tasks: traefik.yml
-  when: inventory_hostname == "vm-docker-01"
+  when: inventory_hostname == "vm-docker"
   tags: docker,traefik
 
-- name: Deploy Uptime-Kuma container
-  ansible.builtin.import_tasks: uptime_kuma.yml
-  when: inventory_hostname == "vm-docker-01"
-  tags: docker,uptime
-
-- name: Deploy Filestash container
-  ansible.builtin.import_tasks: filestash.yml
-  when: inventory_hostname == "vm-docker-01"
-  tags: docker,filestash
+- name: Deploy Portainer container
+  ansible.builtin.import_tasks: portainer.yml
+  when: inventory_hostname == "vm-docker"
+  tags: docker,portainer
 
 - name: Deploy Baikal container
   ansible.builtin.import_tasks: baikal.yml
-  when: inventory_hostname == "vm-docker-01"
+  when: inventory_hostname == "vm-docker"
   tags: docker,baikal
 
 - name: Deploy Actual Budget container
   ansible.builtin.import_tasks: actualbudget.yml
-  when: inventory_hostname == "vm-docker-01"
+  when: inventory_hostname == "vm-docker"
   tags: docker,actual
 
 - name: Deploy FreshRSS container
   ansible.builtin.import_tasks: freshrss.yml
-  when: inventory_hostname == "vm-docker-01"
+  when: inventory_hostname == "vm-docker"
   tags: docker,freshrss
 
 - name: Deploy Jellyfin container
   ansible.builtin.import_tasks: jellyfin.yml
-  when: inventory_hostname == "vm-docker-01"
+  when: inventory_hostname == "vm-docker"
   tags: docker,jellyfin
 
 - name: Deploy Syncthing container
   ansible.builtin.import_tasks: syncthing.yml
-  when: inventory_hostname == "vm-docker-01"
+  when: inventory_hostname == "vm-docker"
   tags: docker,syncthing
 
 - name: Deploy WG Easy container
   ansible.builtin.import_tasks: wireguard.yml
-  when: inventory_hostname == "vm-docker-01"
+  when: inventory_hostname == "vm-docker"
   tags: docker,wireguard
 
 - name: Deploy Minecraft Server
   ansible.builtin.import_tasks: minecraft.yml
-  when: inventory_hostname == "vm-games-01"
+  when: inventory_hostname == "vm-games"
   tags: docker,minecraft
-
-- name: Deploy Playit Agent
-  ansible.builtin.import_tasks: playit_agent.yml
-  when: inventory_hostname == "vm-games-01"
-  tags: docker,playit

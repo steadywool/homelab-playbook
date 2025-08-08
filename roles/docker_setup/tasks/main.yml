@@ -7,5 +7,5 @@
 - name: Create Traefik network
   community.docker.docker_network:
     name: traefik_network
-  when: inventory_hostname == "vm-docker-01"
+  when: inventory_hostname == "vm-docker"
   tags: docker,network

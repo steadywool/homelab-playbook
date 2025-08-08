@@ -1,16 +1,13 @@
 ---
-- name: Create Wg-easy volumes
+- name: Create Wg-easy volume
   community.docker.docker_volume:
     state: present
-    volume_name: "{{ item }}"
-  loop:
-    - wireguard_data
-    - wireguard_modules
+    volume_name: wireguard_data
 
 - name: Run Wg-easy container
   community.docker.docker_container:
     name: wireguard
-    image: ghcr.io/wg-easy/wg-easy:latest
+    image: ghcr.io/wg-easy/wg-easy:15
     state: started
     pull: always
     recreate: true
@@ -21,7 +18,7 @@
       - 51820:51820/udp
     volumes:
       - wireguard_data:/etc/wireguard
-      - wireguard_modules:/lib/modules:ro
+      - /lib/modules:/lib/modules:ro
     capabilities:
       - NET_ADMIN
       - SYS_MODULE
@@ -31,11 +28,6 @@
       net.ipv6.conf.all.disable_ipv6: 0
       net.ipv6.conf.all.forwarding: 1
       net.ipv6.conf.default.forwarding: 1
-    env:
-      WG_HOST: "{{ wireguard_domain }}"
-      PASSWORD_HASH: "{{ wireguard_password | password_hash('bcrypt') }}"
-      WG_DEFAULT_DNS: ""
-      WG_ALLOWED_IPS: "{{ groups['all'] | map('extract', hostvars, 'ansible_host') | map('regex_replace', '(/32)?$', '/32') | join(',') }}"
     labels:
       traefik.enable: "true"
       traefik.http.routers.wireguard.rule: Host(`wg.{{ traefik_domain }}`)

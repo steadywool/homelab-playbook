@@ -1,43 +1,27 @@
 ---
 ungrouped:
   hosts:
-    srv-pve-01:
+    srv-truenas:
       # Connection informations
-      ansible_host: "{{ vault_inventory['srv-pve-01']['host'] }}"
-      ansible_user: "{{ vault_inventory['srv-pve-01']['user'] }}"
-
-    vm-nas-01:
-      # Connection informations
-      ansible_host: "{{ vault_inventory['vm-nas-01']['host'] }}"
-      ansible_user: "{{ vault_inventory['vm-nas-01']['user'] }}"
-      # Common variables
-      common:
-        packages:
-          - qemu-guest-agent
-        services:
-          - qemu-guest-agent.service
+      ansible_host: "{{ vault_inventory['srv-truenas']['host'] }}"
+      ansible_user: "{{ vault_inventory['srv-truenas']['user'] }}"
+      ansible_become_password: "{{ vault_inventory['srv-truenas']['password'] }}"
 
 docker:
   hosts:
-    vm-docker-01:
+    vm-docker:
       # Connection informations
-      ansible_host: "{{ vault_inventory['vm-docker-01']['host'] }}"
-      ansible_user: "{{ vault_inventory['vm-docker-01']['user'] }}"
+      ansible_host: "{{ vault_inventory['vm-docker']['host'] }}"
+      ansible_user: "{{ vault_inventory['vm-docker']['user'] }}"
+      ansible_become_password: "{{ vault_inventory['vm-docker']['password'] }}"
+
       # Common variables
       common:
         packages:
           - nfs-common
-          - qemu-guest-agent
-        services:
-          - qemu-guest-agent.service
-
-    vm-games-01:
+          
+    vm-games:
       # Connection informations
-      ansible_host: "{{ vault_inventory['vm-games-01']['host'] }}"
-      ansible_user: "{{ vault_inventory['vm-games-01']['user'] }}"
-      # Common variables
-      common:
-        packages:
-          - qemu-guest-agent
-        services:
-          - qemu-guest-agent.service
+      ansible_host: "{{ vault_inventory['vm-games']['host'] }}"
+      ansible_user: "{{ vault_inventory['vm-games']['user'] }}"
+      ansible_become_password: "{{ vault_inventory['vm-games']['password'] }}"

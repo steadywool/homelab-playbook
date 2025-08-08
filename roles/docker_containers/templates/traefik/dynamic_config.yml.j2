@@ -14,14 +14,14 @@ tls:
 # Reverse proxy services through this config file
 http:
   routers:
-    pve:
-      rule: "Host(`pve.{{ traefik_domain }}`)"
+    truenas:
+      rule: "Host(`nas.{{ traefik_domain }}`)"
       entryPoints: 
         - "websecure"
       tls: {}
-      service: "pve"
+      service: "truenas"
   services:
-    pve:
+    truenas:
       loadBalancer:
         servers:
-          - url: "https://{{ hostvars['srv-pve-01']['ansible_host'] }}:8006"
+          - url: "http://{{ hostvars['srv-truenas']['ansible_host'] }}/ui:80"
