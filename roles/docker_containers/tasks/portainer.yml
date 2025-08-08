@@ -7,7 +7,7 @@
 - name: Run Portainer container
   community.docker.docker_container:
     name: portainer
-    image: docker.io/portainer/portainer-ce:lts
+    image: docker.io/portainer/portainer-ce:latest
     state: started
     pull: always
     recreate: true

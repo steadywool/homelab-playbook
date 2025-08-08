@@ -6,3 +6,7 @@
 # - name: Deploy modded Minecraft Server
 #   ansible.builtin.import_tasks: modded_minecraft.yml
 #   tags: docker,minecraft
+
+- name: Deploy Portainer agent
+  ansible.builtin.import_tasks: portainer_agent.yml
+  tags: docker,portainer

@@ -1,0 +1,13 @@
+---
+- name: Run Portainer agent container
+  community.docker.docker_container:
+    name: portainer-agent
+    image: docker.io/portainer/agent:latest
+    state: started
+    pull: always
+    recreate: true
+    restart_policy: unless-stopped
+    ports:
+      - 9001:9001
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
