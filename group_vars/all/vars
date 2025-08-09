@@ -9,3 +9,5 @@ ovh_endpoint: "{{ vault_ovh_endpoint }}"
 ovh_application_key: "{{ vault_ovh_application_key }}"
 ovh_application_secret: "{{ vault_ovh_application_secret }}"
 ovh_consumer_key: "{{ vault_ovh_consumer_key }}"
+
+diun_discord_webhook: "{{ vault_diun_discord_webhook }}"

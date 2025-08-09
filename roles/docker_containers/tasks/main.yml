@@ -38,3 +38,7 @@
   ansible.builtin.import_tasks: minecraft.yml
   tags: docker,minecraft
   when: inventory_hostname == "vm-games"
+
+- name: Deploy Diun container
+  ansible.builtin.import_tasks: diun.yml
+  tags: docker,diun

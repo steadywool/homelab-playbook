@@ -1,0 +1,25 @@
+---
+- name: Create Diun volume
+  community.docker.docker_volume:
+    state: present
+    volume_name: diun_data
+
+- name: Run Diun container
+  community.docker.docker_container:
+    name: diun
+    image: docker.io/crazymax/diun:latest
+    state: started
+    pull: always
+    recreate: true
+    restart_policy: unless-stopped
+    volumes:
+      - diun_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    env:
+      TZ: "{{ timezone }}"
+      DIUN_WATCH_WORKERS: "20"
+      DIUN_WATCH_SCHEDULE: "0 3 * * *"
+      DIUN_WATCH_JITTER: "30s"
+      DIUN_PROVIDERS_DOCKER: "true"
+      DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT: "true"
+      DIUN_NOTIF_DISCORD_WEBHOOKURL: "{{ diun_discord_webhook }}"
