@@ -2,12 +2,6 @@
 - name: Pull & recreate Docker containers
   ansible.builtin.include_role:
     name: docker_containers
-  when: inventory_hostname == "vm-docker"
-
-- name: Pull & recreate games server
-  ansible.builtin.include_role:
-    name: games_server
-  when: inventory_hostname == "vm-games"
 
 - name: Prune Docker objects
   community.docker.docker_prune:

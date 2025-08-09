@@ -2,31 +2,39 @@
 - name: Deploy Traefik container
   ansible.builtin.import_tasks: traefik.yml
   tags: docker,traefik
-
-- name: Deploy Portainer container
-  ansible.builtin.import_tasks: portainer.yml
-  tags: docker,portainer
+  when: inventory_hostname == "vm-docker"
 
 - name: Deploy Baikal container
   ansible.builtin.import_tasks: baikal.yml
   tags: docker,baikal
+  when: inventory_hostname == "vm-docker"
 
 - name: Deploy Actual Budget container
   ansible.builtin.import_tasks: actualbudget.yml
   tags: docker,actual
+  when: inventory_hostname == "vm-docker"
 
 - name: Deploy FreshRSS container
   ansible.builtin.import_tasks: freshrss.yml
   tags: docker,freshrss
+  when: inventory_hostname == "vm-docker"
 
 - name: Deploy Jellyfin container
   ansible.builtin.import_tasks: jellyfin.yml
   tags: docker,jellyfin
+  when: inventory_hostname == "vm-docker"
 
 - name: Deploy Syncthing container
   ansible.builtin.import_tasks: syncthing.yml
   tags: docker,syncthing
+  when: inventory_hostname == "vm-docker"
 
 - name: Deploy WG Easy container
   ansible.builtin.import_tasks: wireguard.yml
   tags: docker,wireguard
+  when: inventory_hostname == "vm-docker"
+
+- name: Deploy Minecraft Server
+  ansible.builtin.import_tasks: minecraft.yml
+  tags: docker,minecraft
+  when: inventory_hostname == "vm-games"

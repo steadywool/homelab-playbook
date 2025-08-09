@@ -1,21 +1,12 @@
 ---
-- name: Configure vm-docker
-  hosts: vm-docker
+- name: Deploy Docker containers
+  hosts: docker
   ignore_unreachable: true
   become: true
   roles:
     - common
     - docker_setup
     - docker_containers
-
-- name: Configure vm-games
-  hosts: vm-games
-  ignore_unreachable: true
-  become: true
-  roles:
-    - common
-    - docker_setup
-    - games_server
 
 - name: Start maintenance
   hosts: docker
