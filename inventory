@@ -16,8 +16,7 @@ docker:
       ansible_become_password: "{{ vault_inventory['vm-docker']['password'] }}"
 
       # Common variables
-      common:
-        packages:
+      additional_packages:
           - nfs-common
           
     vm-games:

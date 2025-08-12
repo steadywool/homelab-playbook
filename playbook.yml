@@ -1,10 +1,11 @@
 ---
-- name: Deploy Docker containers
+- name: Provision Docker hosts
   hosts: docker
   ignore_unreachable: true
   become: true
   roles:
     - common
+    - crowdsec
     - docker_setup
     - docker_containers
 

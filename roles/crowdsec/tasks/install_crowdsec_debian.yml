@@ -1,0 +1,37 @@
+---
+- name: Install Crowdsec dependencies
+  ansible.builtin.apt:
+    name:
+      - ca-certificates
+      - curl
+    state: present
+
+- name: Add Crowdsec GPG key
+  ansible.builtin.get_url:
+    url: "https://packagecloud.io/crowdsec/crowdsec/gpgkey"
+    dest: /etc/apt/keyrings/crowdsec.asc
+    mode: '0644'
+
+- name: Add Crowdsec repo
+  ansible.builtin.apt_repository:
+    repo: "{{ item }}"
+  loop: 
+    - "deb [signed-by=/etc/apt/keyrings/crowdsec.asc] https://packagecloud.io/crowdsec/crowdsec/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
+    - "deb-src [signed-by=/etc/apt/keyrings/crowdsec.asc] https://packagecloud.io/crowdsec/crowdsec/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
+
+- name: Install Crowdsec
+  ansible.builtin.apt:
+    name:
+      - crowdsec
+      - crowdsec-firewall-bouncer-iptables
+    state: present
+
+- name: Enable Crowdsec service
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+    scope: system
+  loop:
+    - crowdsec.service
+    - crowdsec-firewall-bouncer.service

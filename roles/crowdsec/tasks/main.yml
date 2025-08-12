@@ -1,0 +1,9 @@
+---
+- name: Install Crowdsec on Debian based OS
+  ansible.builtin.import_tasks: install_crowdsec_debian.yml
+  when: ansible_distribution in ["Ubuntu", "Debian"]
+  tags: crowdsec,debian
+
+- name: Configure Crowdsec
+  ansible.builtin.import_tasks: configure_crowdsec.yml
+  tags: crowdsec,configure

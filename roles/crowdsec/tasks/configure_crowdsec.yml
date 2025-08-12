@@ -1,0 +1,15 @@
+---
+- name: Send notifications to Discord
+  ansible.builtin.template:
+    src: "{{ item['src'] }}"
+    dest: "{{ item['dest'] }}"
+    mode: "{{ item['mode'] }}"
+  loop:
+    - { src: 'discord.yaml.j2', dest: '/etc/crowdsec/notifications/discord.yaml', mode: '0600' }
+    - { src: 'profiles.yaml.j2', dest: '/etc/crowdsec/profiles.yaml', mode: '0644' }
+
+- name: Restart Crowdsec service
+  ansible.builtin.systemd_service:
+    name: crowdsec.service
+    state: restarted
+    scope: system

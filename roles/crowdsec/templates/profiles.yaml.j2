@@ -1,0 +1,22 @@
+name: default_ip_remediation
+#debug: true
+filters:
+ - Alert.Remediation == true && Alert.GetScope() == "Ip"
+decisions:
+ - type: ban
+   duration: 4h
+notifications:
+  - discord  # Set the webhook in /etc/crowdsec/notifications/discord.yaml before enabling this.
+on_success: break
+
+---
+name: default_range_remediation
+#debug: true
+filters:
+ - Alert.Remediation == true && Alert.GetScope() == "Range"
+decisions:
+ - type: ban
+   duration: 4h
+notifications:
+  - discord  # Set the webhook in /etc/crowdsec/notifications/discord.yaml before enabling this.
+on_success: break

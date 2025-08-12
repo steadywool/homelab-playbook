@@ -4,21 +4,21 @@
     name: "{{ timezone }}"
   tags: common,timezone
 
-- name: Install common packages
+- name: Install additional packages
   ansible.builtin.package:
-    name: "{{ common['packages'] }}"
+    name: "{{ additional_packages }}"
     state: present
-  when: common['packages'] is defined
+  when: additional_packages is defined
   tags: common,packages
 
-- name: Enable common services
+- name: Enable additional services
   ansible.builtin.systemd_service:
     name: "{{ item }}"
     state: started
     enabled: true
     scope: system
-  loop: "{{ common['services'] }}"
-  when: common['services'] is defined
+  loop: "{{ additional_services }}"
+  when: additional_services is defined
   tags: common,services
 
 - name: Configure SSH
