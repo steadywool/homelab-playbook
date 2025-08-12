@@ -8,7 +8,7 @@
 
 - name: Run Minecraft server
   community.docker.docker_container:
-    name: vanilla-minecraft
+    name: minecraft
     image: docker.io/itzg/minecraft-server:latest
     state: started
     pull: always
