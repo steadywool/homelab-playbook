@@ -14,7 +14,7 @@ format: |
       {{range .Decisions -}}
       {
         "title": "{{.Type}} {{.Value}} for {{.Duration}}",
-        "description": "[Crowdsec CTI](https://app.crowdsec.net/cti/{{.Value}})\n[Shodan](https://shodan.io/host/{{.Value}})"
+        "description": "https://app.crowdsec.net/cti/{{.Value}}\nhttps://shodan.io/host/{{.Value}}"
       }
       {{end -}}
       {{end -}}
