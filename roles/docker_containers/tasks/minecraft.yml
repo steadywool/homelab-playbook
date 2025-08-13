@@ -29,7 +29,7 @@
       ENABLE_ROLLING_LOGS: "true"
       # Gameplay
       TYPE: "FABRIC"
-      VERSION: "1.20.4"
+      VERSION: "1.21.4"
       SERVER_NAME: "minecraft-survival"
       MOTD: "Welcome to Steadywool's Minecraft server"
       DIFFICULTY: "normal"
@@ -44,69 +44,10 @@
       ENABLE_WHITELIST: "true"
       # Mods
       MODRINTH_PROJECTS: |
-        terralith,nullscape,incendium,towns-and-towers,
+        terralith,nullscape,incendium:7mVvV9Th,towns-and-towers,
         yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
         yungs-better-ocean-monuments,yungs-better-nether-fortresses,
         yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
         yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
         blossomtpa,blossomback,blossomhomes,lithium,ferrite-core
       MODRINTH_DOWNLOAD_DEPENDENCIES: "required"
-
-#- name: Create modded Minecraft directory
-#  ansible.builtin.file:
-#    path: "/srv/modded_minecraft_data"
-#    state: directory
-#    owner: "{{ ansible_user }}"
-#    group: "{{ ansible_user }}"
-#
-#- name: Run modded Minecraft server
-#  community.docker.docker_container:
-#    name: modded-minecraft
-#    image: docker.io/itzg/minecraft-server:latest
-#    state: started
-#    pull: always
-#    recreate: true
-#    restart_policy: unless-stopped
-#    ports:
-#      - 25565:25565/tcp
-#    volumes:
-#      - "/srv/modded_minecraft_data:/data" 
-#    env:
-#      # General
-#      MEMORY: "4G"
-#      USE_AIKAR_FLAGS: "true"
-#      EULA: "true"
-#      ONLINE_MODE: "true"
-#      SNOOPER_ENABLED: "false"
-#      ENABLE_AUTOPAUSE: "true"
-#      ENABLE_ROLLING_LOGS: "true"
-#      # Gameplay
-#      TYPE: "FABRIC"
-#      VERSION: "1.20.1"
-#      SERVER_NAME: "minecraft-survival"
-#      MOTD: "Welcome to Steadywool's Minecraft server"
-#      DIFFICULTY: "normal"
-#      MODE: "survival"
-#      # World
-#      SPAWN_PROTECTION: "0"
-#      VIEW_DISTANCE: "8"
-#      SIMULATION_DISTANCE: "6"
-#      # Players
-#      MAX_PLAYERS: "6"
-#      FORCE_GAMEMODE: "true"
-#      ENABLE_WHITELIST: "true"
-#      # Mods
-#      MODRINTH_PROJECTS: |
-#        yigd:drnbguzp,appleskin:xcauwnEB,jade:oJx1UoWN,jei:KcsHvRrB,
-#        farmers-delight-refabricated:ZnoPlYRz,naturalist:dMGBsRgz,another-furniture:YKKY0UDo,
-#        chipped:pwyEaKDs,artifacts:jf0yT7BF,create-fabric:7Ub71nPb,
-#        creeper-overhaul:Mw0Hq1SZ,enderman-overhaul:4oiJql9P,more-mob-variants:o6yyhzgj,friends-and-foes:6hhOJ747,
-#        travelersbackpack:eabCK3Xb,natures-compass:NovIXDxY,explorers-compass:9ntdShFb,
-#        just-hammers:B5VNswMi,diagonal-fences:eJNY2Ah4,ctov-friends-and-foes-compat:BbKorFuj,
-#        terralith,nullscape,incendium,ct-overhaul-village,
-#        yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
-#        yungs-better-ocean-monuments,yungs-better-nether-fortresses,
-#        yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
-#        yungs-better-jungle-temples,yungs-extras,yungs-better-end-island,
-#        blossomtpa,blossomback,blossomhomes,lithium,ferrite-core
-#      MODRINTH_DOWNLOAD_DEPENDENCIES: "required"
