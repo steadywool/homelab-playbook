@@ -44,7 +44,7 @@
       ENABLE_WHITELIST: "true"
       # Mods
       MODRINTH_PROJECTS: |
-        terralith,nullscape,incendium:7mVvV9Th,towns-and-towers,
+        terralith,nullscape,incendium:5.4.4,towns-and-towers,
         yungs-better-mineshafts,yungs-better-dungeons,yungs-better-strongholds,
         yungs-better-ocean-monuments,yungs-better-nether-fortresses,
         yungs-better-witch-huts,yungs-better-desert-temples,yungs-bridges,
