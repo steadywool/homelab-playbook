@@ -1,24 +1,21 @@
 ---
 - name: Create Traefik directory
   ansible.builtin.file:
-    path: "/srv/traefik_data"
+    path: "/mnt/traefik_data"
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
 
 - name: Template Traefik configuration
   ansible.builtin.template:
-    src: "traefik/{{ item }}.j2"
-    dest: "/srv/traefik_data/{{ item }}"
+    src: "traefik.yml.j2"
+    dest: "/mnt/traefik_data/traefik.yml"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-  loop:
-    - traefik.yml
-    - dynamic_config.yml
 
 - name: Create acme.json file
   ansible.builtin.file:
-    path: "/srv/traefik_data/acme.json"
+    path: "/mnt/traefik_data/acme.json"
     state: touch
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
@@ -39,7 +36,7 @@
       - 443:443
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /srv/traefik_data:/etc/traefik
+      - /mnt/traefik_data:/etc/traefik
     env:
       OVH_ENDPOINT: "{{ ovh_endpoint }}"
       OVH_APPLICATION_KEY: "{{ ovh_application_key }}"

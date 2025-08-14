@@ -28,6 +28,5 @@
       traefik.enable: "true"
       traefik.http.routers.syncthing.rule: Host(`sync.{{ traefik_domain }}`)
       traefik.http.routers.syncthing.entrypoints: "websecure"
-      traefik.http.routers.syncthing.tls: "true"
       traefik.http.routers.syncthing.service: "syncthing"
       traefik.http.services.syncthing.loadbalancer.server.port: "8384"

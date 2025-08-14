@@ -10,7 +10,7 @@ certificatesResolvers:
       email: "{{ traefik_email }}"
       storage: "/etc/traefik/acme.json"
       dnsChallenge:
-        provider: "ovh"  
+        provider: "ovh"
 
 # HTTP/HTTPS configuration
 entryPoints:
@@ -23,6 +23,13 @@ entryPoints:
           scheme: "https"
   websecure:
     address: ":443/tcp"
+    http:
+      tls:
+        certResolver: "ovh"
+        domains:
+          - main: "{{ traefik_domain }}"
+            sans:
+              - "*.{{ traefik_domain }}"
 
 # Allow reverse-proxy on self-signed web app
 serversTransport:
@@ -34,6 +41,3 @@ providers:
     endpoint: "unix:///var/run/docker.sock" # Docker socket
     network: "traefik_network" # Docker network
     exposedbydefault: false # Must use traefik.enable to expose service
-  # Reverse proxy external services
-  file:
-    filename: "/etc/traefik/dynamic_config.yml" # Dynamic config file

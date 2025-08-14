@@ -24,6 +24,5 @@
       traefik.enable: "true"
       traefik.http.routers.baikal.rule: Host(`dav.{{ traefik_domain }}`)
       traefik.http.routers.baikal.entrypoints: "websecure"
-      traefik.http.routers.baikal.tls: "true"
       traefik.http.routers.baikal.service: "baikal"
       traefik.http.services.baikal.loadbalancer.server.port: "80"
