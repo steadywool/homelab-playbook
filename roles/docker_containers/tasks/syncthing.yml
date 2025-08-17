@@ -24,6 +24,9 @@
       - 21027:21027/udp
     volumes:
       - sync_nfs:/var/syncthing
+    env:
+      PUID: "1000"
+      PGID: "1000"
     labels:
       traefik.enable: "true"
       traefik.http.routers.syncthing.rule: Host(`sync.{{ traefik_domain }}`)
