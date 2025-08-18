@@ -17,7 +17,7 @@
       - /var/run/docker.sock:/var/run/docker.sock
     env:
       TZ: "{{ timezone }}"
-      DIUN_WATCH_SCHEDULE: "0 3 * * *"
+      DIUN_WATCH_SCHEDULE: "0 2 * * 0"
       DIUN_PROVIDERS_DOCKER: "true"
       DIUN_PROVIDERS_DOCKER_WATCHBYDEFAULT: "true"
       DIUN_NOTIF_DISCORD_WEBHOOKURL: "{{ diun_discord_webhook }}"
