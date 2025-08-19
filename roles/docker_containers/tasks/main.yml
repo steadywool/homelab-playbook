@@ -4,6 +4,11 @@
   when: inventory_hostname == "vm-docker"
   tags: docker,traefik
 
+- name: Deploy Uptime Kuma container
+  ansible.builtin.import_tasks: uptimekuma.yml
+  when: inventory_hostname == "vm-docker"
+  tags: docker,uptime
+
 - name: Deploy Baikal container
   ansible.builtin.import_tasks: baikal.yml
   when: inventory_hostname == "vm-docker"
