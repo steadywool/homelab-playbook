@@ -9,6 +9,11 @@
   when: inventory_hostname == "vm-docker"
   tags: docker,uptime
 
+- name: Deploy Filestash container
+  ansible.builtin.import_tasks: filestash.yml
+  when: inventory_hostname == "vm-docker"
+  tags: docker,filestash
+
 - name: Deploy Baikal container
   ansible.builtin.import_tasks: baikal.yml
   when: inventory_hostname == "vm-docker"
