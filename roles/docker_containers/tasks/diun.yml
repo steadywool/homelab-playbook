@@ -14,7 +14,7 @@
     restart_policy: unless-stopped
     volumes:
       - diun_data:/data
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     env:
       TZ: "{{ timezone }}"
       DIUN_WATCH_SCHEDULE: "0 2 * * 0"
