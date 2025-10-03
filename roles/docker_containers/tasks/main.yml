@@ -9,6 +9,11 @@
   when: inventory_hostname == "vm-docker"
   tags: docker,uptime
 
+- name: Deploy It's MyTabs container
+  ansible.builtin.import_tasks: itsmytabs.yml
+  when: inventory_hostname == "vm-docker"
+  tags: docker,itsmytabs
+
 - name: Deploy Filestash container
   ansible.builtin.import_tasks: filestash.yml
   when: inventory_hostname == "vm-docker"
