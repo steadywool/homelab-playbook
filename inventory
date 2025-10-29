@@ -17,10 +17,19 @@ docker:
 
       # Common variables
       additional_packages:
-          - nfs-common
-          
+        - nfs-common
+        - qemu-guest-agent
+      additional_services:
+        - qemu-guest-agent.service
+
     vm-games:
       # Connection informations
       ansible_host: "{{ vault_inventory['vm-games']['host'] }}"
       ansible_user: "{{ vault_inventory['vm-games']['user'] }}"
       ansible_become_password: "{{ vault_inventory['vm-games']['password'] }}"
+
+      # Common variables
+      additional_packages:
+        - qemu-guest-agent
+      additional_services:
+        - qemu-guest-agent.service

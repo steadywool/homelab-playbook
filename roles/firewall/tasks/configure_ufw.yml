@@ -13,7 +13,15 @@
   community.general.ufw:
     rule: limit
     port: ssh
-    proto: tcp
+
+- name: Allow web access
+  community.general.ufw:
+    rule: allow
+    port: "{{ item }}"
+  when: inventory_hostname == "vm-docker"
+  loop:
+    - http
+    - https
 
 - name: Enable UFW and log everything
   community.general.ufw:
