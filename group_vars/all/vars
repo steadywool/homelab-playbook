@@ -11,4 +11,3 @@ ovh_application_secret: "{{ vault_ovh_application_secret }}"
 ovh_consumer_key: "{{ vault_ovh_consumer_key }}"
 
 diun_discord_webhook: "{{ vault_diun_discord_webhook }}" # Send Docker notifications to Discord
-crowdsec_discord_webhook: "{{vault_crowdsec_discord_webhook }}" # Send Crowdsec notifications to Discord

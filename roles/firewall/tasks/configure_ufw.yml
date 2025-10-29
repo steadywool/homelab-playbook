@@ -1,0 +1,21 @@
+---
+- name: Set default policy for incoming traffic
+  community.general.ufw:
+    direction: incoming
+    default: deny
+    
+- name: Set default policy for outgoing traffic
+  community.general.ufw:
+    direction: outgoing
+    default: allow
+    
+- name: Limit SSH traffic
+  community.general.ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+- name: Enable UFW and log everything
+  community.general.ufw:
+    state: enabled
+    logging: on

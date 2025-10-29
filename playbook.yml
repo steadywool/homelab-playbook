@@ -5,7 +5,7 @@
   become: true
   roles:
     - common
-    - crowdsec
+    - firewall
     - docker_setup
     - docker_containers
 
