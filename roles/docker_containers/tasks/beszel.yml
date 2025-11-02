@@ -1,0 +1,30 @@
+---
+- name: Create Beszel volumes
+  community.docker.docker_volume:
+    state: present
+    volume_name: "{{ item }}"
+  loop:
+    - beszel_data
+    - beszel_socket
+
+- name: Run Beszel container
+  community.docker.docker_container:
+    name: beszel
+    image: docker.io/henrygd/beszel:latest
+    state: started
+    pull: always
+    recreate: true
+    restart_policy: unless-stopped
+    networks:
+      - name: traefik_network
+    volumes:
+      - beszel_data:/beszel_data
+      - beszel_socket:/beszel_socket
+    env:
+      APP_URL: "https://beszel.{{ traefik_domain }}"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.beszel.rule: Host(`beszel.{{ traefik_domain }}`)
+      traefik.http.routers.beszel.entrypoints: "websecure"
+      traefik.http.routers.beszel.service: "beszel"
+      traefik.http.services.beszel.loadbalancer.server.port: "8090"

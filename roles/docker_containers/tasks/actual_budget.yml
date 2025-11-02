@@ -6,7 +6,7 @@
 
 - name: Run Actual Budget container
   community.docker.docker_container:
-    name: actualbudget
+    name: actual-budget
     image: ghcr.io/actualbudget/actual:latest
     state: started
     pull: always

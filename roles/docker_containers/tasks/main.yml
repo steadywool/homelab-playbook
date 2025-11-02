@@ -4,10 +4,10 @@
   when: inventory_hostname == "vm-docker"
   tags: docker,traefik
 
-- name: Deploy Uptime Kuma container
-  ansible.builtin.import_tasks: uptimekuma.yml
+- name: Deploy Beszel container
+  ansible.builtin.import_tasks: beszel.yml
   when: inventory_hostname == "vm-docker"
-  tags: docker,uptime
+  tags: docker,beszel
 
 - name: Deploy Filestash container
   ansible.builtin.import_tasks: filestash.yml
@@ -20,7 +20,7 @@
   tags: docker,baikal
 
 - name: Deploy Actual Budget container
-  ansible.builtin.import_tasks: actualbudget.yml
+  ansible.builtin.import_tasks: actual_budget.yml
   when: inventory_hostname == "vm-docker"
   tags: docker,actual
 
@@ -48,6 +48,10 @@
   ansible.builtin.import_tasks: minecraft.yml
   when: inventory_hostname == "vm-games"
   tags: docker,minecraft
+
+- name: Deploy Beszel Agent container
+  ansible.builtin.import_tasks: beszel_agent.yml
+  tags: docker,beszel-agent
 
 - name: Deploy Diun container
   ansible.builtin.import_tasks: diun.yml

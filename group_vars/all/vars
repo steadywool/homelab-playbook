@@ -10,4 +10,8 @@ ovh_application_key: "{{ vault_ovh_application_key }}"
 ovh_application_secret: "{{ vault_ovh_application_secret }}"
 ovh_consumer_key: "{{ vault_ovh_consumer_key }}"
 
+# Beszel Agent authentification
+beszel_agent_key: "{{ vault_beszel_agent_key }}"
+beszel_agent_token: "{{ vault_beszel_agent_token }}"
+
 diun_discord_webhook: "{{ vault_diun_discord_webhook }}" # Send Docker notifications to Discord

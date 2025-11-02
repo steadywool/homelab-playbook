@@ -14,14 +14,14 @@
     rule: limit
     port: ssh
 
-- name: Allow web access
+- name: Allow HTTP/HTTPS traffic
   community.general.ufw:
     rule: allow
     port: "{{ item }}"
-  when: inventory_hostname == "vm-docker"
   loop:
     - http
     - https
+  when: inventory_hostname == "vm-docker"
 
 - name: Enable UFW and log everything
   community.general.ufw:
