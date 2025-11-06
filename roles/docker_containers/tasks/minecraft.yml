@@ -3,8 +3,8 @@
   ansible.builtin.file:
     path: "/mnt/minecraft_data"
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: '1000'
+    group: '1000'
 
 - name: Run Minecraft server
   community.docker.docker_container:

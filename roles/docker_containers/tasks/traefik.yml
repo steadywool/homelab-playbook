@@ -3,22 +3,22 @@
   ansible.builtin.file:
     path: "/mnt/traefik_data"
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: '1000'
+    group: '1000'
 
 - name: Template Traefik configuration
   ansible.builtin.template:
     src: "traefik.yml.j2"
     dest: "/mnt/traefik_data/traefik.yml"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: '1000'
+    group: '1000'
 
 - name: Create acme.json file
   ansible.builtin.file:
     path: "/mnt/traefik_data/acme.json"
     state: touch
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: '1000'
+    group: '1000'
     mode: '0600'
 
 - name: Run traefik container
