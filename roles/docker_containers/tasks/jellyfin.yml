@@ -1,12 +1,12 @@
 ---
-- name: Create Docker NFS volume for music files
+- name: Create Docker NFS volume for Jellyfin
   community.docker.docker_volume:
     state: present
-    volume_name: music_nfs
+    volume_name: jellyfin_nfs
     driver_options:
       type: "nfs"
       o: "addr={{ hostvars['srv-truenas']['ansible_host'] }}"
-      device: ":/mnt/default-pool/music"
+      device: ":/mnt/default-pool/jellyfin"
 
 - name: Create Jellyfin volumes
   community.docker.docker_volume:
@@ -29,7 +29,7 @@
     volumes:
       - jellyfin_config:/config
       - jellyfin_cache:/cache
-      - music_nfs:/music:ro
+      - jellyfin_nfs:/mnt:ro
     labels:
       traefik.enable: "true"
       traefik.http.routers.jellyfin.rule: Host(`jellyfin.{{ traefik_domain }}`)

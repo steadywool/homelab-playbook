@@ -2,7 +2,7 @@
 - name: Create Docker NFS volume for Syncthing
   community.docker.docker_volume:
     state: present
-    volume_name: sync_nfs
+    volume_name: syncthing_nfs
     driver_options:
       type: "nfs"
       o: "addr={{ hostvars['srv-truenas']['ansible_host'] }}"
@@ -23,7 +23,7 @@
       - 22000:22000/udp
       - 21027:21027/udp
     volumes:
-      - sync_nfs:/var/syncthing
+      - syncthing_nfs:/var/syncthing
     env:
       PUID: '1000'
       PGID: '1000'
