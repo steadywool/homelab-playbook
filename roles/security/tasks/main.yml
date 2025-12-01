@@ -7,7 +7,7 @@
 
 - name: Configure UFW
   ansible.builtin.import_tasks: configure_ufw.yml
-  tags: security,ufw,configure
+  tags: security,ufw
 
 - name: Configure SSH
   ansible.builtin.import_tasks: configure_ssh.yml
