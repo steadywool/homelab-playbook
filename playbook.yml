@@ -5,9 +5,8 @@
   become: true
   roles:
     - common
-    - firewall
-    - docker_setup
-    - docker_containers
+    - security
+    - docker
 
 - name: Start maintenance
   hosts: docker

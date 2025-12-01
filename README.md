@@ -1,8 +1,8 @@
-# 🐋 Homelab Playbook
+# 🐋 Selfhost Playbook
 
-Manage my Homelab with Ansible.
+Manage my server with Ansible.
 
-![Homelab Schema](assets/homelab_schema.drawio.svg)
+![Selfhost Schema](assets/selfhost_schema.drawio.svg)
 
 *Made with [Drawio](https://www.drawio.com/).*
 
@@ -30,8 +30,8 @@ Firstly, install Ansible:
 
 You can then clone this repository and enter it:
 ```
-$ git clone https://github.com/steadywool/homelab-playbook.git
-$ cd homelab-playbook
+$ git clone https://github.com/steadywool/selfhost-playbook.git
+$ cd selfhost-playbook
 ```
 
 > [!TIP]

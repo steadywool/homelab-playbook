@@ -21,6 +21,10 @@
     group: '1000'
     mode: '0600'
 
+- name: Create the reverse-proxy network
+  community.docker.docker_network:
+    name: traefik_network
+
 - name: Run traefik container
   community.docker.docker_container:
     name: traefik

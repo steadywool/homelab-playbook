@@ -1,11 +1,14 @@
 ---
 # WARNING: UFW does not control Docker-exposed ports.
-
 - name: Install UFW on Debian based OS
   ansible.builtin.import_tasks: install_ufw_debian.yml
   when: ansible_distribution in ["Ubuntu", "Debian"]
-  tags: ufw,debian
+  tags: security,ufw,debian
 
 - name: Configure UFW
   ansible.builtin.import_tasks: configure_ufw.yml
-  tags: ufw,configure
+  tags: security,ufw,configure
+
+- name: Configure SSH
+  ansible.builtin.import_tasks: configure_ssh.yml
+  tags: security,ssh
