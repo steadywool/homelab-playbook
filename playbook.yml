@@ -6,7 +6,8 @@
   roles:
     - common
     - security
-    - docker
+    - docker_setup
+    - docker_containers
 
 - name: Start maintenance
   hosts: docker
