@@ -9,10 +9,10 @@
   when: inventory_hostname == "vm-docker"
   tags: docker,beszel
 
-- name: Deploy Termix container
-  ansible.builtin.import_tasks: termix.yml
+- name: Deploy Guacamole container
+  ansible.builtin.import_tasks: guacamole.yml
   when: inventory_hostname == "vm-docker"
-  tags: docker,termix
+  tags: docker,guacamole
 
 - name: Deploy Filestash container
   ansible.builtin.import_tasks: filestash.yml

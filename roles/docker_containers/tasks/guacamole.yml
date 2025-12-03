@@ -1,0 +1,64 @@
+---
+- name: Create Guacamole volumes
+  community.docker.docker_volume:
+    state: present
+    volume_name: "{{ item }}"
+  loop:
+    - guacamole_db
+    - guacamole_initdb
+
+- name: Run Mariadb container
+  community.docker.docker_container:
+    name: guacamole-mariadb
+    image: docker.io/library/mariadb:latest
+    state: started
+    pull: always
+    recreate: true
+    restart_policy: always
+    networks:
+      - name: traefik_network
+    volumes:
+      - guacamole_initdb:/docker-entrypoint-initdb.d:ro
+      - guacamole_db:/var/lib/mysql
+    env:
+      MARIADB_DATABASE: guacamole_db
+      MARIADB_USER: guacamole_user
+      MARIADB_PASSWORD: "{{ guacamole_mariadb_password }}"
+      MARIADB_RANDOM_ROOT_PASSWORD: "true"
+
+- name: Run Guacd container
+  community.docker.docker_container:
+    name: guacamole-guacd
+    image: docker.io/guacamole/guacd:latest
+    state: started
+    pull: always
+    recreate: true
+    restart_policy: always
+    networks:
+      - name: traefik_network
+
+- name: Run Guacamole container
+  community.docker.docker_container:
+    name: guacamole
+    image: docker.io/guacamole/guacamole:latest
+    state: started
+    pull: always
+    recreate: true
+    restart_policy: always
+    networks:
+      - name: traefik_network
+    volumes:
+      - guacamole_initdb:/opt/guacamole/extensions/guacamole-auth-jdbc/mysql/schema:ro
+    env:
+      GUACD_HOSTNAME: guacamole-guacd
+      MYSQL_HOSTNAME: guacamole-mariadb
+      MYSQL_DATABASE: guacamole_db
+      MYSQL_USER: guacamole_user
+      MYSQL_PASSWORD: "{{ guacamole_mariadb_password }}"
+      WEBAPP_CONTEXT: ROOT
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.guacamole.rule: Host(`remote.{{ traefik_domain }}`)
+      traefik.http.routers.guacamole.entrypoints: "websecure"
+      traefik.http.routers.guacamole.service: "guacamole"
+      traefik.http.services.guacamole.loadbalancer.server.port: "8080"
